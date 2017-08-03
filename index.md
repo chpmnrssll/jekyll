@@ -20,9 +20,8 @@ ol:
    1. li
    1. li
 
-![GitHub Logo](/images/logo.png)
-
-[GitHub](http://github.com)
+![Slow Logo](/images/giphy-tumblr.gif)
+[Here](https://chpmnrssll.github.io/)
 
 Blockquote:
 > We're living the future, so the present is our past.
