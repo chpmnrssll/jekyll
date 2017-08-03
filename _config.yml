@@ -1,3 +1,4 @@
 theme: jekyll-theme-hacker
-title: Russell Chapman
-description: Profile
+title: Profile
+description: Online profile/portfolio
+show_downloads: true
