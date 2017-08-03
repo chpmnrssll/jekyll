@@ -20,7 +20,7 @@ ol:
    1. li
    1. li
 
-![Slow Logo](/images/giphy-tumblr.gif)
+![Slow Logo](/assets/images/giphy-tumblr.gif)
 [Here](https://chpmnrssll.github.io/)
 
 Blockquote:
