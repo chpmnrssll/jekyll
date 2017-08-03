@@ -1,29 +1,14 @@
-# Big heading
-###### Lil heading
+# Big topic heading
+![Slow Logo](/assets/images/giphy-tumblr.gif)
+###### *Blazing Fast!*
 
 *Italic* & _Italic_
-
 **Bold** & __Bold__
+_You **can** combine them `<all>`_
 
-_You **can** combine them_
+* that
+* this
+  * sub-this
+  * sub-this
 
-ul:
-* li
-* li ul
-  * li
-  * li
-
-ol:
-1. li
-1. li
-1. li ol
-   1. li
-   1. li
-
-![Slow Logo](/assets/images/giphy-tumblr.gif)
-[Here](https://chpmnrssll.github.io/)
-
-Blockquote:
-> We're living the future, so the present is our past.
-
-I think you should use an `<addr>` element here instead.
+> We're living the future, so the present is our past. *[Loop](https://chpmnrssll.github.io/)*
