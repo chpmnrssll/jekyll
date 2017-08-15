@@ -1,4 +1,4 @@
 title: Profile & Portfolio
 description: Things made by me...
 owner_name: Russell Chapman
-show_downloads: false
+permalink: /blog/:year/:month/:day/:title
