@@ -1,29 +1,16 @@
----
-layout: post
----
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <title>{{ site.title }} by {{ site.owner_name }}</title>
-  </head>
+  {% include header.html %}
   <body>
     <header>
-      <div class="container">
-        <h1>{{ page.title }}</h1>
-        <p class="meta">{{ page.date | date_to_string }}</p>
-      </div>
+      <h1>{{ site.title }}</h1>
+      <summary>By {{ site.author }}</summary>
     </header>
-    <div class="post">
+    <div>
+      <h4>{{ page.title }}</h4>
+      <summary>{{ page.date | date_to_string }}</summary>
       {{ content }}
     </div>
-    <footer>
-      <div><a href="/">Home</a></div>
-      <div><a href="/blog">Post Index</a></div>
-      <div><a href="{{ site.github.repository_url }}">View on GitHub</a></div>
-    </footer>
+    {% include footer.html %}
   </body>
 </html>

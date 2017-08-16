@@ -1,4 +1,10 @@
-owner_name: Russell Chapman
 title: Projects, Portfolio, & Posts
-description: Things made by me...
+description: All Things Programming...
+author: Russell Chapman
 permalink: /blog/:year/:month/:day/:title
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+sass:
+  style: compressed
