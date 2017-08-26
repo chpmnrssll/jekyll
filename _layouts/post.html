@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  {% include header.html %}
-  <body>
+---
+layout: default
+---
+<article>
     <header>
-      <h1>{{ site.title }}</h1>
-      <summary>By {{ site.author }}</summary>
+      <img src={{ "/assets/images/" | prepend: site.url | append : page.image }} alt="{{ page.title }}">
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.date | date: "%Y, %b %d" }}</p>
     </header>
-    <div>
-      <h4>{{ page.title }}</h4>
-      <summary>{{ page.date | date_to_string }}</summary>
-      {{ content }}
-    </div>
-    {% include footer.html %}
-  </body>
-</html>
+    {{ content }}
+    <footer>
+      <section>
+        {% avatar {{ site.github_username }} %}
+        <h4>{{ site.author }}</h4>
+      </section>
+      <section>
+        Share:
+        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true">Twitter</i></a>
+        <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true">Facebook</i></a>
+        <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true">Google+</i></a>
+      </section>
+      <section>
+        Tags:
+        {% for tag in page.tags %}
+          <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}</a>
+        {% endfor %}
+      </section>
+    </footer>
+  </article>
+  <section class="recent_list">
+    <h3>Recent posts</h3>
+    {% for post in site.posts offset:0 limit:6 %}
+      <a href="{{ site.url }}{{ post.url }}" class="recent_item" style="background-image: url({{ "/assets/images/" | prepend: site.url | append : post.image }} )">{{ post.title }}</a>
+    {% endfor %}
+  </section>
+  {% include disqus.html %}
+</main>

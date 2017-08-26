@@ -1,6 +1,8 @@
 ---
 layout: post
+image: "sloth.gif"
 title: "Developer Launches Site!"
+tags: ["news", "lame"]
 date: 2017-08-15
 ---
 

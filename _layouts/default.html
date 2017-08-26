@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
-  {% include header.html %}
+  {% include head.html %}
   <body>
-    <header>
-      <h1>{{ site.title }}</h1>
-      <summary>By {{ site.author }}</summary>
-    </header>
-    <div>
-      <h4>{{ page.title }}</h4>
+    {% include nav.html %}
+    <main>
       {{ content }}
-    </div>
+    </main>
+    <i class="fa fa-chevron-up top" aria-hidden="true">Top</i>
     {% include footer.html %}
+    {% include scripts.html %}
   </body>
 </html>

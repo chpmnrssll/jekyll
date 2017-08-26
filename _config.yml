@@ -1,10 +1,22 @@
-title: Projects, Portfolio, & Posts
-description: All Things Programming...
-author: Russell Chapman
-permalink: /blog/:year/:month/:day/:title
-plugins:
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-feed
+title:             "Projects, Portfolio, & Posts"
+description:       "All Things Programming..."
+author:            "Russell Chapman"
+github_username:   "chpmnrssll"
+logo:              "logo"
+banner-title:      "add banner title"
+banner-desc:       "add banner description"
+discus_identifier: "add your discus identifier"
+mailchimp:         "add your MailChimp form identifier"
+analytics:         "add your analytics identifier"
+permalink:         "/blog/:year/:month/:day/:title"
+paginate_path:     "/page:num/"
+paginate:          12
+
 sass:
-  style: compressed
+  style:           "compressed"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-avatar
