@@ -1,9 +1,8 @@
 ---
 layout: post
-image: "code.gif"
-title: "Developer commits multiple fixes!"
-tags: ["news", "lamer"]
-date: 2017-08-15
+image: code.gif
+title: Developer commits multiple fixes!
+date: 2017-08-15T00:00:00.000Z
 ---
 
 Messing around with [Jekyll](http://jekyllrb.com) and Markdown.

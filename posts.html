@@ -1,0 +1,13 @@
+---
+layout: posts
+title: Posts Collection
+---
+{% for post in site.posts %}
+<article class="excerpt">
+	<a href="{{ post.url | prepend: site.url }}">
+		<img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
+		{{ post.title }}
+		{{ post.date | date: "%Y, %b %d" }}
+	</a>
+</article>
+{% endfor %}

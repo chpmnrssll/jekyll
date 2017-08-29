@@ -30,8 +30,7 @@ layout: default
   <section class="recent_list">
     <h3>Recent posts</h3>
     {% for post in site.posts offset:0 limit:6 %}
-      <a href="{{ site.url }}{{ post.url }}" class="recent_item" style="background-image: url({{ "/assets/images/" | prepend: site.url | append : post.image }} )">{{ post.title }}</a>
+      <a href="{{ site.url }}{{ post.url }}" class="recent_item" style="background-image: url({{ "/assets/images/" | prepend: site.url | append : post.image }} ); width: 100%;">{{ post.title }}</a>
     {% endfor %}
   </section>
-  {% include disqus.html %}
 </main>

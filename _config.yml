@@ -10,11 +10,11 @@ mailchimp:         "add your MailChimp form identifier"
 analytics:         "add your analytics identifier"
 permalink:         "/blog/:year/:month/:day/:title"
 paginate_path:     "/page:num/"
-paginate:          12
+paginate:          2
 
 sass:
   style:           "compressed"
-  sass_dir:        "_sass"
+  sass_dir:        "/assets/css"
 
 plugins:
   - jekyll-feed

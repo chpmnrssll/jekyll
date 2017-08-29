@@ -1,4 +1,9 @@
 <footer>
-  <a href="{{ site.github.repository_url }}">View on GitHub</a>
-  &copy;<a href="{{ site.url }}/about.html">{{ site.author }}</a> {{ site.time | date: "%Y" }}.
+  <nav>
+    <ul>
+      <li><a href="{{ site.github.repository_url }}">View on GitHub</a></li>
+      <li><a><i class="fa fa-chevron-up top" aria-hidden="true">BackToTop</i></a></li>
+      <li><a href="{{ site.url }}/about.html"><i>&copy;</i> {{ site.author }} <i>{{ site.time | date: "%Y" }}</i></a></li>
+    </ul>
+  </nav>
 </footer>
