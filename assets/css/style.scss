@@ -4,57 +4,60 @@
 @import "reset";
 @import "mixins";
 
-$rgba-primary-0: rgba( 19, 58,146,1);	// Main Primary color */
-$rgba-primary-1: rgba( 51,100,214,1);
-$rgba-primary-2: rgba( 29, 77,187,1);
-$rgba-primary-3: rgba( 18, 46,110,1);
-$rgba-primary-4: rgba(  6, 23, 62,1);
-$rgba-complement-0: rgba(218,148,  7,1);	// Main Complement color */
-$rgba-complement-1: rgba(255,183, 38,1);
-$rgba-complement-2: rgba(255,175, 15,1);
-$rgba-complement-3: rgba(164,113, 11,1);
-$rgba-complement-4: rgba( 92, 61,  0,1);
-$darker: #17181A;
-$dark: #1F222B;
-$medium: #2E323B;
-$light: #3C4457;
-$lighter: #14337D;
-$full: #113C9D;
+$color-primary-0: #0B5A97;
+$color-primary-1: #0F4A78;
+$color-primary-2: #0B3C61;	// Main Primary color */
+$color-primary-3: #042844;
+$color-primary-4: #021828;
+
+$color-secondary-1-0: #01A15C;
+$color-secondary-1-1: #08804C;
+$color-secondary-1-2: #06673D;	// Main Secondary color (1) */
+$color-secondary-1-3: #004829;
+$color-secondary-1-4: #002B18;
+
+$color-secondary-2-0: #1A1AA4;
+$color-secondary-2-1: #1A1A82;
+$color-secondary-2-2: #151569;	// Main Secondary color (2) */
+$color-secondary-2-3: #0B0B4A;
+$color-secondary-2-4: #06062B;
+
+$color-complement-0: #EB8702;
+$color-complement-1: #BA6F0B;
+$color-complement-2: #975A08;	  // Main Complement color */
+$color-complement-3: #693C00;
+$color-complement-4: #3E2400;
+
+$color-mono-0: #D3D7DA;
+$color-mono-1: #889096;
+$color-mono-2: #9DA3A9;
+$color-mono-3: #202325;
+$color-mono-4: #171C20;
 
 body {
-  color: gray;
-  background-color: $darker;
-  @include mq("phone") {
-    color: $rgba-complement-1;
-  };
-  @include mq("tablet") {
-    color: $rgba-complement-0;
-  };
-  @include mq("desktop") {
-    color: $rgba-complement-4;
-  };
+  color: $color-mono-0;
+  background-color: $color-mono-3;
+  font-family: "Press Start 2P";
+  font-size: 24px;
 }
 
 a, a:active {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: $rgba-primary-0;
+  text-shadow: 2px 2px 1px $color-secondary-1-4;
+  color: $color-secondary-1-1;
   text-decoration: none;
 }
 
 a:hover {
-  color: $rgba-primary-1;
+  color: $color-secondary-1-0;
 }
 
 header {
   padding: 8px;
   text-align: center;
-  border-bottom: 2px solid $rgba-primary-1;
+  border-bottom: 2px solid $color-secondary-1-0;
 }
 
 nav {
-  font-size: 16px;
-  font-family: "Press Start 2P";
-  color: $rgba-primary-2;
   a {
     display: inline-block;
     padding: 4px;
@@ -62,22 +65,33 @@ nav {
 }
 
 main {
-  .excerpt {
-    display: inline-flex;
+  font-size: 16px;
+  text-shadow: 3px 3px 1px $color-secondary-1-1;
+}
+
+.excerpt {
+  display: inline-flex;
+  width: 20%;
+  margin: 16px;
+  background-color: $color-mono-3;
+  box-shadow: 2px 2px 2px $color-mono-4;
+  img {
+    width: 100%;
+  }
+}
+
+.author {
+  img {
     width: 20%;
-    margin: 16px;
-    background-color: $dark;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    img {
-      width: 100%;
-    }
+    height: 20%;
+    image-rendering: pixelated;
   }
 }
 
 footer {
   padding: 8px;
   text-align: center;
-  border-top: 2px solid $rgba-primary-1;
+  border-top: 2px solid $color-secondary-1-0;
 }
 
 /*

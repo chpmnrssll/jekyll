@@ -10,10 +10,6 @@ layout: default
   {{ content }}
   <footer>
     <section>
-      {% avatar {{ site.github_username }} %}
-      {{ site.author }}
-    </section>
-    <section>
       Tags:
       {% for tag in page.tags %}
         <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
@@ -25,17 +21,21 @@ layout: default
       <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true">Facebook</i></a>
       <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true">Google+</i></a>
     </section>
-  </footer>
-  <footer class="recent_list">
-    <h3>Recent posts</h3>
-    {% for post in site.posts offset:0 limit:6 %}
-    <article class="excerpt">
-      <a href="{{ post.url | prepend: site.url }}">
-        <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
-        {{ post.title }}
-        {{ post.date | date: "%Y, %b %d" }}
-      </a>
-    </article>
-    {% endfor %}
+    <section class="author">
+      <div>{{ site.author }}</div>
+      {% avatar {{ site.github_username }} %}
+    </section>
+    <section>
+      <h3>Recent posts</h3>
+      {% for post in site.posts offset:0 limit:6 %}
+      <article class="excerpt">
+        <a href="{{ post.url | prepend: site.url }}">
+          <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
+          {{ post.title }}
+          {{ post.date | date: "%Y, %b %d" }}
+        </a>
+      </article>
+      {% endfor %}
+    </section>
   </footer>
 </article>
