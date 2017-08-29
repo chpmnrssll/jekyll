@@ -1,120 +1,90 @@
 ---
 ---
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700);
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700);
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 @import "reset";
+@import "mixins";
 
-/* Colors */
-$darker: #21211E;
-$dark: #2D2D29;
-$medium: #3B3B35;
-$light-medium: #969696;
-$light: #DFECE6;
-$white: #FFFFFF;
-$green: #92C7A3;
-$dark-blue: #215A6D;
-$light-blue: #3CA2A2;
-$dark-purple: #300030;
-$medium-purple: #480048;
-$regular-purple: #601848;
-$orange: #F07241;
-$red: #C04848;
-
-/* Responsive sizes */
-$screen-sm-min: 768px;
-$screen-md-min: 992px;
-$screen-lg-min: 1200px;
+$rgba-primary-0: rgba( 19, 58,146,1);	// Main Primary color */
+$rgba-primary-1: rgba( 51,100,214,1);
+$rgba-primary-2: rgba( 29, 77,187,1);
+$rgba-primary-3: rgba( 18, 46,110,1);
+$rgba-primary-4: rgba(  6, 23, 62,1);
+$rgba-complement-0: rgba(218,148,  7,1);	// Main Complement color */
+$rgba-complement-1: rgba(255,183, 38,1);
+$rgba-complement-2: rgba(255,175, 15,1);
+$rgba-complement-3: rgba(164,113, 11,1);
+$rgba-complement-4: rgba( 92, 61,  0,1);
+$darker: #17181A;
+$dark: #1F222B;
+$medium: #2E323B;
+$light: #3C4457;
+$lighter: #14337D;
+$full: #113C9D;
 
 body {
-  background-color: $dark;
+  color: gray;
+  background-color: $darker;
+  @include mq("phone") {
+    color: $rgba-complement-1;
+  };
+  @include mq("tablet") {
+    color: $rgba-complement-0;
+  };
+  @include mq("desktop") {
+    color: $rgba-complement-4;
+  };
 }
 
-header {
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 16px;
-  border-bottom: 1px solid $light-blue;
-}
-
-nav {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  color: $white;
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    display: inline-block;
-  }
-
-  a {
-    display: block;
-    padding: 4px 8px;
-    text-decoration: none;
-  }
-}
-
-main {
-  font-size: 16px;
-  font-weight: 200;
-  margin-bottom: 16px;
-  border-bottom: 2px solid $light-blue;
-}
-
-.excerpt {
-  width: 40%;
-  background-color: $dark;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  margin: 16px;
-  img {
-    width: 100%;
-  }
-}
-
-footer {
-  width: 100%;
-  margin-left: 0;
-  text-align: center;
-  @media (min-width: $screen-sm-min) {
-    width: 90%;
-    margin-left: 5%;
-  }
-  @media (min-width: $screen-md-min) {
-    width: 80%;
-    margin-left: 10%;
-  }
-  @media (min-width: $screen-lg-min) {
-    width: 70%;
-    margin-left: 15%;
-  }
-  div {
-    color: $light-medium;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-}
-
-a,a:active {
-  color: $dark-blue;
+a, a:active {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: $rgba-primary-0;
   text-decoration: none;
 }
 
 a:hover {
-  color: $light-blue;
-  text-decoration: none;
+  color: $rgba-primary-1;
 }
 
+header {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 2px solid $rgba-primary-1;
+}
+
+nav {
+  font-size: 16px;
+  font-family: "Press Start 2P";
+  color: $rgba-primary-2;
+  a {
+    display: inline-block;
+    padding: 4px;
+  }
+}
+
+main {
+  .excerpt {
+    display: inline-flex;
+    width: 20%;
+    margin: 16px;
+    background-color: $dark;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    img {
+      width: 100%;
+    }
+  }
+}
+
+footer {
+  padding: 8px;
+  text-align: center;
+  border-top: 2px solid $rgba-primary-1;
+}
+
+/*
 table {
   margin: 0 auto;
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
   border: 2px solid $darker;
 }
 
@@ -125,5 +95,6 @@ th {
 
 td {
   padding: 2px;
-  border: 1px solid $dark-blue;
+  border: 1px solid $dark;
 }
+*/
