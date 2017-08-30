@@ -38,7 +38,6 @@ body {
   color: $color-mono-0;
   background-color: $color-mono-3;
   font-family: "Press Start 2P";
-  font-size: 24px;
 }
 
 a, a:active {
@@ -52,7 +51,7 @@ a:hover {
 }
 
 header {
-  padding: 8px;
+  padding: 16px;
   text-align: center;
   border-bottom: 2px solid $color-secondary-1-0;
 }
@@ -64,19 +63,31 @@ nav {
   }
 }
 
-main {
-  article {
-    header {
-      font-size: 32px;
-      text-shadow: 2px 2px $color-primary-0;
-    }
-    p {
-      margin: 16px;
-      font-size: 16px;
-      line-height: 24px;
-      text-shadow: 2px 2px $color-complement-3;
-    }
-  }
+p {
+  margin: 32px;
+  padding: 32px;
+  font-size: 16px;
+  line-height: 18px;
+  text-shadow: 2px 2px $color-primary-0;
+}
+blockquote {
+  margin: 32px;
+  padding: 32px;
+  font-size: 32px;
+  background: $color-mono-4;
+  text-shadow: 2px 2px $color-primary-0;
+  border-left: 32px solid $color-complement-0;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  content: open-quote;
+}
+blockquote:after {
+  content: close-quote;
+}
+article {
+  margin: 16px;
+  padding: 16px;
 }
 
 .excerpt {
@@ -92,16 +103,16 @@ main {
 
 .author {
   font-size: 8px;
-  text-shadow: 1px 1px 1px $color-secondary-1-2;
+  text-shadow: 1px 1px $color-primary-0;
   img {
-    width: 10%;
-    height: 10%;
+    width: 96px;
+    height: 96px;
     image-rendering: pixelated;
   }
 }
 
 footer {
-  padding: 8px;
+  padding: 16px;
   text-align: center;
   border-top: 2px solid $color-secondary-1-0;
 }
