@@ -3,9 +3,9 @@ $breakpoints: (
   "phone-wide":   480px,
   "tablet":       768px,
   "tablet-wide":  1024px,
-  "desktop":      1248px,
+  "desktop":      1280px,
   "desktop-wide": 1440px
-);
+) !default;
 
 @mixin mq($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
@@ -26,10 +26,21 @@ $breakpoints: (
     perspective: $perspective;
 }
 
-@mixin font-source-sans($size: false, $colour: false, $weight: false,  $lh: false) {
-    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-    @if $size { font-size: $size; }
-    @if $colour { color: $colour; }
-    @if $weight { font-weight: $weight; }
-    @if $lh { line-height: $lh; }
+// Include this mixin in parent of columns.
+// Kills default margin of inline-block elements.
+@mixin row () {
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+}
+
+// Include in column elements.
+@mixin col ($cols, $gap: 1rem, $align: top, $first: false, $last: false) {
+  font-size: 1rem;
+  //margin: 1rem;
+  display: inline-block;
+  vertical-align: $align;
+  width: percentage(1.0 / $cols);
+  //padding-left: if($first, 0, $gap);
+  //padding-right: if($last, 0, $gap);
 }

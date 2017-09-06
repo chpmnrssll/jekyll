@@ -7,7 +7,9 @@ layout: default
     <p>{{ page.date | date: "%Y, %b %d" }}</p>
     <img src={{ "/assets/images/" | prepend: site.url | append : page.image }} alt="{{ page.title }}">
   </header>
-  {{ content }}
+  <main>
+    {{ content }}
+  </main>
   <footer>
     <section>
       Tags:
@@ -26,15 +28,15 @@ layout: default
       {% avatar {{ site.github_username }} %}
       <div>{{ site.author }}</div>
     </section>
-    <section>
-      <div>Recent posts</div>
+    <h3>Recent posts</h3>
+    <section class="featured">
       {% for post in site.posts offset:0 limit:6 %}
-      <article class="excerpt">
-        <a href="{{ post.url | prepend: site.url }}">
+      <article>
+        <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+        <p>
           <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
-          {{ post.title }}
           {{ post.date | date: "%Y, %b %d" }}
-        </a>
+        </p>
       </article>
       {% endfor %}
     </section>

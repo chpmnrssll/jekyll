@@ -1,13 +1,13 @@
 ---
-layout: posts
+layout: default
 title: Posts Collection
 ---
-{% for post in site.posts %}
-<article class="excerpt">
-	<a href="{{ post.url | prepend: site.url }}">
-		<img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
-		{{ post.title }}
-		{{ post.date | date: "%Y, %b %d" }}
-	</a>
-</article>
-{% endfor %}
+<section class="featured">
+  {% for post in site.posts %}
+  <article>
+	   <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+     <p><img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">{{ post.title }}{{ post.date | date: "%Y, %b %d" }}</p>
+   </article>
+   {% endfor %}
+</section>
+{% include pagination.html %}
