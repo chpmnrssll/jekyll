@@ -2,12 +2,15 @@
 layout: default
 title: Posts Collection
 ---
-<section class="featured">
+<section class="featured-items">
   {% for post in site.posts %}
-  <article>
-	   <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
-     <p><img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">{{ post.title }}{{ post.date | date: "%Y, %b %d" }}</p>
-   </article>
-   {% endfor %}
+  <a href="{{ post.url | prepend: site.url }}">
+    <article class="featured-items__article-summary">
+	    <h3>{{ post.title }}</h3>
+      <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
+      <time>{{ post.date | date: " %Y-%b-%d" }}</time>
+    </article>
+  </a>
+  {% endfor %}
 </section>
 {% include pagination.html %}

@@ -2,10 +2,11 @@
 layout: default
 ---
 <article>
-  <header>
+  <header style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
+  <!--<header class="parallax__layer parallax__layer--back">-->
+    <!--<img src={{ "/assets/images/" | prepend: site.url | append : page.image }} alt="{{ page.title }}">-->
     <h1>{{ page.title }}</h1>
     <p>{{ page.date | date: "%Y, %b %d" }}</p>
-    <img src={{ "/assets/images/" | prepend: site.url | append : page.image }} alt="{{ page.title }}">
   </header>
   <main>
     {{ content }}
