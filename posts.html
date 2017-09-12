@@ -4,13 +4,13 @@ title: Posts Collection
 ---
 <section class="featured-items">
   {% for post in site.posts %}
-  <a href="{{ post.url | prepend: site.url }}">
-    <article class="featured-items__article-summary">
-	    <h3>{{ post.title }}</h3>
-      <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
-      <time>{{ post.date | date: " %Y-%b-%d" }}</time>
-    </article>
-  </a>
+  <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+    <a href="{{ post.url | prepend: site.url }}">
+      <!--<img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">-->
+      <h1>{{ post.title }}</h1>
+      <time>{{ post.date | date: "%b %d, %Y" }}&nbsp;</time>
+    </a>
+  </article>
   {% endfor %}
 </section>
 {% include pagination.html %}

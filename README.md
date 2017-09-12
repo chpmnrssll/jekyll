@@ -1,4 +1,6 @@
 ## chpmnrssll.github.io
 #### README.md
 
-Nothing yet...
+local build/dev server:
+>bundle exec jekyll serve --livereload
+

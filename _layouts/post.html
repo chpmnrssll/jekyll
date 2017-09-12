@@ -12,34 +12,34 @@ layout: default
     {{ content }}
   </main>
   <footer>
-    <section>
-      Tags:
-      {% for tag in page.tags %}
-        <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
-      {% endfor %}
-    </section>
-    <section>
-      Share:
-      <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-      <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-      <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true">+</i></a>
-    </section>
-    <div>&nbsp;</div>
     <section class="author">
       {% avatar {{ site.github_username }} %}
-      <div>{{ site.author }}</div>
+      <span>{{ site.author }}</span>
     </section>
-    <h3>Recent posts</h3>
-    <section class="featured">
-      {% for post in site.posts offset:0 limit:6 %}
-      <article>
-        <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
-        <p>
-          <img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">
-          {{ post.date | date: "%Y, %b %d" }}
-        </p>
-      </article>
-      {% endfor %}
-    </section>
+    <div>
+      <section>
+        Tags:
+        {% for tag in page.tags %}
+          <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
+        {% endfor %}
+      </section>
+      <section>
+        Share:
+        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true">+</i></a>
+      </section>
+    </div>
   </footer>
 </article>
+<h3>Recent posts</h3>
+<section class="featured-items">
+  {% for post in site.posts offset:0 limit:6 %}
+  <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+    <a href="{{ post.url | prepend: site.url }}">
+      <h1>{{ post.title }}</h1>
+      <time>{{ post.date | date: "%b %d, %Y" }}</time>
+    </a>
+  </article>
+  {% endfor %}
+</section>
