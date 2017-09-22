@@ -19,3 +19,5 @@
 - [Animated wave clipped by text](https://codepen.io/web-tiki/pen/YNKMpB)
 - [Generate Coolors](https://coolors.co/app)
 - [Paletton](http://paletton.com)
+- [Pro Web Type](https://prowebtype.com/)
+- [Fontjoy Machine Learning Font Combinations](http://fontjoy.com/)
