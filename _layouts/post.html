@@ -16,6 +16,7 @@ layout: default
       {% avatar {{ site.github_username }} %}
       <span>{{ site.author }}</span>
     </section>
+    <br/>
     <div>
       <section>
         Tags:
@@ -32,12 +33,12 @@ layout: default
     </div>
   </footer>
 </article>
-<h3>Recent posts</h3>
+<h2>Recent posts</h2>
 <section class="featured-items">
   {% for post in site.posts offset:0 limit:6 %}
   <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
     <a href="{{ post.url | prepend: site.url }}">
-      <h1>{{ post.title }}</h1>
+      <h3>{{ post.title }}</h3>
       <time>{{ post.date | date: "%b %d, %Y" }}</time>
     </a>
   </article>

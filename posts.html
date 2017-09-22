@@ -6,8 +6,7 @@ title: Posts Collection
   {% for post in site.posts %}
   <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
     <a href="{{ post.url | prepend: site.url }}">
-      <!--<img src={{ "/assets/images/" | prepend: site.url | append: post.image }} alt="{{ post.title }}">-->
-      <h1>{{ post.title }}</h1>
+      <h3>{{ post.title }}</h3>
       <time>{{ post.date | date: "%b %d, %Y" }}&nbsp;</time>
     </a>
   </article>

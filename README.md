@@ -13,3 +13,5 @@
 - [Parallax Depth Cards](https://codepen.io/andymerskin/pen/XNMWvQ?editors=0100)
 - [Staticman (push to GitHub)](https://staticman.net/docs/)
 - [Vanilla JS WebComponents](https://medium.com/bunnyllc/vanilla-js-components-8d20c58b69f4)
+- [Links aren't buttons!](https://ctidd.com/2017/links-arent-buttons)
+- [A more modern scale for web typography](http://typecast.com/blog/a-more-modern-scale-for-web-typography)
