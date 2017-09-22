@@ -17,3 +17,5 @@
 - [A more modern scale for web typography](http://typecast.com/blog/a-more-modern-scale-for-web-typography)
 - [Subtle link animations](https://codepen.io/butsuri/pen/bKjHz)
 - [Animated wave clipped by text](https://codepen.io/web-tiki/pen/YNKMpB)
+- [Generate Coolors](https://coolors.co/app)
+- [Paletton](http://paletton.com)
