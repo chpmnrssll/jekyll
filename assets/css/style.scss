@@ -2,17 +2,19 @@
 ---
 //@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 //@import url('https://fonts.googleapis.com/css?family=Space+Mono:700');
+@import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
 //@import url('https://fonts.googleapis.com/css?family=Oswald:200');
+//@import url( 'https://fonts.googleapis.com/css?family=Orbitron');
+//@import url( 'https://fonts.googleapis.com/css?family=Michroma');
 //@import url('https://fonts.googleapis.com/css?family=Karla');
 //@import url('https://fonts.googleapis.com/css?family=Jura');
-@import url( 'https://fonts.googleapis.com/css?family=Orbitron');
-@import url( 'https://fonts.googleapis.com/css?family=Michroma');
+@import url('https://fonts.googleapis.com/css?family=Teko');
 @import "font-awesome-4.7.0/scss/font-awesome.scss";
 @import "mixins";
 //@import "reset";
 
-$color-primary: green;
-$color-background: darken(gray, 30%);
+$color-primary: teal;
+$color-background: darken($color-primary, 23%);
 
 *,*:after,*:before {
   -webkit-box-sizing: border-box;
@@ -20,13 +22,9 @@ $color-background: darken(gray, 30%);
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-size: 100%;
-  font-size-adjust: 0.5;
-  font-family: "Orbitron";
-  background-color: $color-background;
-  color: white;
+:root {
+  font-size: calc(0.85rem + 0.85vw);
+  height: 100%;
   /*
   @include mq("phone-wide") {}
   @include mq("tablet") {}
@@ -36,56 +34,31 @@ body {
   */
 }
 
+body {
+  margin: 0;
+  font-size: 1rem;
+  font-family: "Teko";
+  line-height: 1.25rem;
+  color: lighten($color-primary, 75%);
+  background-color: $color-background;
+  //height: 100%;
+  //overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+h1 { font-size: 5.063rem; }
+h2 { font-size: 3.375rem; }
+h3 { font-size: 2.25rem; }
+h4 { font-size: 1.5rem; }
 h1,h2,h3,h4,h5,h6 {
-  font-size-adjust: 0.5;
-  font-family: "Michroma";
+  font-family: "Sarpanch";
+  text-shadow: 1px 1px 2px black;
+  color: lighten(complement($color-primary), 75%);
 }
 
-h1 {
-  font-size: 2em;       // 2x body copy size = 32px
-  line-height: 1.25;    // 45px / 36px
-  @media (min-width: 43.75em) {
-    font-size: 2.5em;   // 2.5x body copy size = 40px
-    line-height: 1.125;
-  }
-  @media (min-width: 56.25em) {
-    font-size: 3em;     // 3x body copy size = 48px
-    line-height: 1.05;  // keep to a multiple of 20px line height
-  }
-}
-
-h2 {
-  font-size: 1.625em;       // 1.625x body copy size = 26px
-  line-height: 1.15384615;  // 30px / 26px
-  @media (min-width: 43.75em) {
-    font-size: 2em;         // 2x body copy size = 32px
-    line-height: 1.25;
-  }
-  @media (min-width: 56.25em) {
-    font-size: 2.25em;      // 2.25x body copy size = 36px
-    line-height: 1.25;
-  }
-}
-
-h3 {
-  font-size: 1.375em;       // 1.375x body copy size = 22px
-  line-height: 1.13636364;  // 25px / 22px
-  @media (min-width: 43.75em) {
-    font-size: 1.5em;       // 1.5x body copy size = 24px
-    line-height: 1.25;
-  }
-  @media (min-width: 56.25em) {
-    font-size: 1.75em;      // 1.75x body copy size = 28px
-    line-height: 1.25;
-  }
-}
-
-h4 {
-  font-size: 1.125em;         // 1.125x body copy size = 18px
-  line-height: 1.11111111;
-  @media (min-width: 43.75em) {
-    line-height: 1.22222222;  // (22px / 18px
-  }
+time {
+  text-shadow: 1px 1px 2px black;
+  color: lighten(complement($color-primary), 75%);
 }
 
 header {
@@ -95,57 +68,72 @@ header {
 nav {
   display: flex;
   justify-content: center;
-
   a {
-    margin: 1rem;
+    padding: 1rem;
   }
 }
 
 a {
   text-decoration: none;
-  color: lighten($color-primary, 20%);
-  text-shadow: 2px 2px 2px darken($color-primary, 30%);
-
+  color: lighten($color-primary, 25%);
+  text-shadow: 1px 1px 2px darken($color-primary, 25%);
   &:active,&:hover {
     color: lighten($color-primary, 50%);
-    text-shadow: 2px 2px 2px darken($color-primary, 20%), 0 0 8px lighten($color-primary, 30%);
+    text-shadow: 1px 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
   }
 }
-
-article header {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+main {
+  transform-style: preserve-3d;
+  -webkit-perspective: 100px;
+  perspective: 100px;
+  perspective-origin: top;
 }
-
-article img {
-  float: right;
-}
-
-p {
-  text-shadow: 2px 2px 2px darken($color-primary, 30%);
+article {
+  header {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    -ms-transform: translateZ(10px) scaleX(0.9);
+    -webkit-transform: translateZ(10px) scaleX(0.9);
+    transform: translateZ(10px) scaleX(0.9);
+    h3 {
+      margin: 0 0.5rem;
+      line-height: 2.25rem;
+      align-self: flex-start;
+    }
+    time {
+      margin: 0 1rem;
+      align-self: flex-end;
+    }
+    margin-bottom: 2rem;
+  }
+  p {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    margin: 0;
+    padding: 1rem;
+  }
+  img {
+    //float: right;
+  }
+  footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 blockquote {
   padding: 0.5rem;
-  font-size: 1.25em;          // 20px / 16px
-  line-height: 1.25;          // 25px / 20px
-  font-weight: bold;
+  font-weight: 900;
+  border-left: 8px solid $color-primary;
   background-color: lighten($color-background, 5%);
-  border-left: 8px solid complement($color-primary);
-  box-shadow: 2px 2px 4px darken($color-background, 10%);
-  text-shadow: 2px 2px 2px darken(complement($color-primary), 20%);
-  @media (min-width: 43.75em) {
-    font-size: 1.5em;         // 24px / 16px =
-    line-height: 1.45833333;  // 35px / 24px
-  }
-}
-
-article footer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
 }
 
 footer {
@@ -155,15 +143,11 @@ footer {
 .author {
   width: 12rem;
   height: 12rem;
-  text-shadow: 1px 1px 2px complement($color-primary);
-
   img {
     width: 100%;
     height: 100%;
     image-rendering: pixelated;
-    box-shadow: 1px 1px 2px darken($color-background, 20%);
   }
-
   span {
     top: -2rem;
     width: 100%;
@@ -176,8 +160,7 @@ footer {
 .book {
   width: 10vw;
   margin: 1vw;
-  background-color: darken($color-background, 25%);
-  box-shadow: 1px 1px 2px darken($color-background, 50%);
+  background-color: lighten($color-background, 5%);
 }
 
 .featured-items {
@@ -195,28 +178,20 @@ footer {
   background-size: cover;
   background-position: center;
   justify-content: space-between;
-  text-shadow: 2px 2px 2px darken($color-primary, 20%);
-  box-shadow: 2px 2px 8px darken($color-background, 20%);
-
-  h3 {
+  h4 {
     margin: 0;
     align-self: flex-start;
   }
-
   time {
     flex-shrink: 0;
     align-self: flex-end;
   }
-
   a {
     width: 100%;
-    color: white;
     text-decoration: none;
-    text-shadow: 2px 2px 2px darken($color-primary, 30%);
-
+    color: lighten($color-primary, 50%);
     &:active,&:hover {
       color: lighten($color-primary, 50%);
-      text-shadow: 2px 2px 2px darken($color-primary, 20%), 0 0 8px lighten($color-primary, 30%);
     }
   }
 }

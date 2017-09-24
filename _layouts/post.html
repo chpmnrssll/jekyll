@@ -5,8 +5,8 @@ layout: default
   <header style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
   <!--<header class="parallax__layer parallax__layer--back">-->
     <!--<img src={{ "/assets/images/" | prepend: site.url | append : page.image }} alt="{{ page.title }}">-->
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.date | date: "%Y, %b %d" }}</p>
+    <h3>{{ page.title }}</h3>
+    <time>{{ page.date | date: "%Y, %b %d" }}</time>
   </header>
   <main>
     {{ content }}
@@ -33,12 +33,12 @@ layout: default
     </div>
   </footer>
 </article>
-<h2>Recent posts</h2>
+<h3>Recent</h3>
 <section class="featured-items">
   {% for post in site.posts offset:0 limit:6 %}
   <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
     <a href="{{ post.url | prepend: site.url }}">
-      <h3>{{ post.title }}</h3>
+      <h4>{{ post.title }}</h4>
       <time>{{ post.date | date: "%b %d, %Y" }}</time>
     </a>
   </article>
