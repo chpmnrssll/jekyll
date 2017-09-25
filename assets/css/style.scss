@@ -81,12 +81,25 @@ a {
 
 article {
   header {
-    //position: absolute;
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: cover;
-    //transition: 100ms ease-out;
-    width: 100%;
+    background-size: 125vh 100vh;
+    @include mq("phone-wide") {
+      background-size: 150vh 100vh;
+    }
+    @include mq("tablet") {
+      background-size: 200vh 100vh;
+    }
+    @include mq("tablet-wide") {
+      background-size: 250vh 100vh;
+    }
+    @include mq("desktop") {
+      background-size: 275vh 100vh;
+    }
+    @include mq("desktop-wide") {
+      background-size: 300vh 100vh;
+    }
+    transition: 100ms ease-out;
     height: 50vh;
     z-index: -1;
     display: flex;
@@ -106,6 +119,7 @@ article {
     //background-color: darken($color-primary, 15%);
   }
   p {
+    margin: 0;
     padding: 1rem;
   }
   footer {
