@@ -1,22 +1,17 @@
-// Scroll Top
-/*
-$(".top").click(function() {
-  $("html, body").stop().animate({ scrollTop: 0 }, "slow", "swing");
-});
+let parallax = $("#parallax"),
+    win = $(window),
+    scrollTop = 0;
 
-$(window).scroll(function() {
-  if ($(this).scrollTop() > $(window).height()) {
-    $(".top").addClass("up");
-  } else {
-    $(".top").removeClass("up");
+$(window).on("scroll", function() {
+  requestAnimationFrame(anim);
+  function anim() {
+    scrollTop = -win.scrollTop() >> 2;
+    parallax.css("background-position", "center " + scrollTop + "px");
+    console.log(scrollTop);
   }
 });
-*/
-let para = $("#para");
-$(window).on("scroll", function() {
-  window.requestAnimationFrame(function() {
-    //let scrollTop = ~~(-$(window).scrollTop() * 0.5);
-    para.css("background-position", "center " + ~~(-$(window).scrollTop() * 0.5) + "px");
-    //console.log(scrollTop);
-  });
+
+// Scroll to Top
+$(".top").click(function() {
+  $("html, body").stop().animate({ scrollTop: 0 }, "slow", "swing");
 });

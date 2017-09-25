@@ -24,13 +24,6 @@ $color-background: darken($color-primary, 23%);
 
 :root {
   font-size: calc(0.85rem + 0.85vw);
-  /*
-  @include mq("phone-wide") {}
-  @include mq("tablet") {}
-  @include mq("tablet-wide") {}
-  @include mq("desktop") {}
-  @include mq("desktop-wide") {}
-  */
 }
 
 body {
@@ -48,21 +41,18 @@ h3 { font-size: 2.25rem; }
 h4 { font-size: 1.5rem; }
 h1,h2,h3,h4,h5,h6 {
   font-family: "Sarpanch";
-  text-shadow: 1px 1px 2px black;
-  color: lighten(complement($color-primary), 75%);
+  text-shadow: 0px 1px 2px $color-background;
+  color: lighten($color-primary, 75%);
 }
 
 time {
-  text-shadow: 1px 1px 2px black;
-  color: lighten(complement($color-primary), 75%);
-}
-
-header {
-  border-bottom: 4px solid $color-primary;
+  text-shadow: 0px 1px 2px $color-background;
+  color: lighten($color-primary, 75%);
 }
 
 nav {
   display: flex;
+  display: none;
   justify-content: center;
   a {
     padding: 1rem;
@@ -72,17 +62,25 @@ nav {
 a {
   text-decoration: none;
   color: lighten($color-primary, 25%);
-  text-shadow: 1px 1px 2px darken($color-primary, 25%);
+  text-shadow: 0px 1px 2px darken($color-primary, 25%);
   &:active,&:hover {
     color: lighten($color-primary, 50%);
-    text-shadow: 1px 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
+    text-shadow: 0px 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
   }
 }
 
 article {
   header {
-    background-repeat: no-repeat;
+    z-index: -1;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateZ(0);
+    justify-content: space-between;
+    transition: background-position 100ms ease-out;
+    border-bottom: 4px solid $color-primary;
     background-position: center top;
+    background-repeat: no-repeat;
     background-size: 125vh 100vh;
     @include mq("phone-wide") {
       background-size: 150vh 100vh;
@@ -99,12 +97,6 @@ article {
     @include mq("desktop-wide") {
       background-size: 300vh 100vh;
     }
-    transition: 100ms ease-out;
-    height: 50vh;
-    z-index: -1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     h3 {
       margin: 0 1rem;
       line-height: 2.25rem;
@@ -116,17 +108,18 @@ article {
     }
   }
   main {
-    //background-color: darken($color-primary, 15%);
-  }
-  p {
-    margin: 0;
-    padding: 1rem;
+    //background-color: $color-background;
+    p {
+      margin: 0;
+      padding: 1rem;
+    }
   }
   footer {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    border-top: 4px solid $color-primary;
   }
 }
 
@@ -135,10 +128,6 @@ blockquote {
   font-weight: 900;
   border-left: 8px solid $color-primary;
   background-color: lighten($color-background, 5%);
-}
-
-footer {
-  border-top: 4px solid $color-primary;
 }
 
 .author {
