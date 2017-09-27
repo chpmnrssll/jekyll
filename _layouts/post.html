@@ -9,26 +9,33 @@ layout: default
   <main>
     {{ content }}
   </main>
-  <footer>
-    <section class="author">
+  <footer class="author">
+    <section>
       {% avatar {{ site.github_username }} %}
       <span>{{ site.author }}</span>
     </section>
-    <br/>
-    <div>
-      <section>
+    <section>
+      <div>
+        In a world where zombies run large corporations, one man has no choice but to find another planet to colonise. Finally, the man has a meaningful chat with the zombies and they come to an amicable agreement.
+      </div>
+      <div><br/></div>
+      <div>
         Tags:
+        &nbsp;
         {% for tag in page.tags %}
-          <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
+        <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
         {% endfor %}
-      </section>
-      <section>
+      </div>
+      <div>
         Share:
+        &nbsp;
         <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        &nbsp;
         <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        &nbsp;
         <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true">+</i></a>
-      </section>
-    </div>
+      </div>
+    </section>
   </footer>
 </article>
 <h3>Recent</h3>

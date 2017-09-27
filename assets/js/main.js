@@ -7,7 +7,7 @@ $(window).on("scroll", function() {
   function anim() {
     scrollTop = -win.scrollTop() >> 2;
     parallax.css("background-position", "center " + scrollTop + "px");
-    console.log(scrollTop);
+    //console.log(scrollTop);
   }
 });
 

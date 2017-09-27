@@ -2,19 +2,21 @@
 ---
 //@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 //@import url('https://fonts.googleapis.com/css?family=Space+Mono:700');
-@import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
+@import url( 'https://fonts.googleapis.com/css?family=Sarpanch:400,900');
 //@import url('https://fonts.googleapis.com/css?family=Oswald:200');
 //@import url( 'https://fonts.googleapis.com/css?family=Orbitron');
 //@import url( 'https://fonts.googleapis.com/css?family=Michroma');
 //@import url('https://fonts.googleapis.com/css?family=Karla');
 //@import url('https://fonts.googleapis.com/css?family=Jura');
-@import url('https://fonts.googleapis.com/css?family=Teko');
+@import url( 'https://fonts.googleapis.com/css?family=Teko');
 @import "font-awesome-4.7.0/scss/font-awesome.scss";
 @import "mixins";
 //@import "reset";
 
 $color-primary: teal;
-$color-background: darken($color-primary, 23%);
+$color-background: darken($color-primary, 20%);
+$nav-width: 10rem;
+$nav-speed: 100ms;
 
 *,*:after,*:before {
   -webkit-box-sizing: border-box;
@@ -24,6 +26,7 @@ $color-background: darken($color-primary, 23%);
 
 :root {
   font-size: calc(0.85rem + 0.85vw);
+  overflow-x: hidden;
 }
 
 body {
@@ -32,7 +35,8 @@ body {
   font-family: "Teko";
   line-height: 1.25rem;
   color: lighten($color-primary, 75%);
-  background-color: $color-background;
+  //background-color: $color-background;
+  background-image: linear-gradient(-45deg, #111111 0%, $color-background 100%);
 }
 
 h1 { font-size: 5.063rem; }
@@ -41,31 +45,97 @@ h3 { font-size: 2.25rem; }
 h4 { font-size: 1.5rem; }
 h1,h2,h3,h4,h5,h6 {
   font-family: "Sarpanch";
-  text-shadow: 0px 1px 2px $color-background;
+  text-shadow: 0 1px 2px $color-background;
   color: lighten($color-primary, 75%);
 }
 
 time {
-  text-shadow: 0px 1px 2px $color-background;
+  text-shadow: 0 1px 2px $color-background;
   color: lighten($color-primary, 75%);
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  left: -$nav-width;
+  width: $nav-width;
+  height: 100%;
+  //margin: 0 0 0 -$nav-width;
+  -moz-transition: all $nav-speed ease-in;
+  -webkit-transition: all $nav-speed ease-in;
+  -o-transition: all $nav-speed ease-in;
+  transition: all $nav-speed ease-in;
   display: flex;
-  display: none;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(90deg, rgba(1,1,1,0.5) 0%, $color-background 100%);
+
   a {
     padding: 1rem;
+    //background: rgba(127, 127, 127, 0.05);
+    display: flex;
+    justify-content: flex-start;
+    i {
+      width: 2rem;
+    }
+    &:active,&:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
+}
+
+main {
+  -moz-transition: all $nav-speed ease-in-out;
+  -webkit-transition: all $nav-speed ease-in-out;
+  -o-transition: all $nav-speed ease-in-out;
+  transition: all $nav-speed ease-in-out;
+}
+
+label {
+  display: block;
+  position: fixed;
+  font-size: 1.5rem;
+  top: 0.25rem;
+  left: 0.25rem;
+  -moz-transition: all $nav-speed ease-in-out;
+  -webkit-transition: all $nav-speed ease-in-out;
+  -o-transition: all $nav-speed ease-in-out;
+  transition: all $nav-speed ease-in-out;
+  z-index: 500;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked ~ nav {
+  left: 0;
+}
+
+input[type="checkbox"]:checked ~ label {
+  -webkit-transform: rotateZ(135deg);
+  -moz-transform: rotateZ(135deg);
+  -o-transform: rotateZ(135deg);
+  transform: rotateZ(135deg);
+  left: $nav-width+0.25rem;
+}
+
+input[type="checkbox"]:checked ~ main {
+  -webkit-transform: translate3d($nav-width, 0, 0);
+  -moz-transform: translate3d($nav-width, 0, 0);
+  -o-transform: translate3d($nav-width, 0, 0);
+  transform: translate3d($nav-width, 0, 0);
 }
 
 a {
   text-decoration: none;
   color: lighten($color-primary, 25%);
-  text-shadow: 0px 1px 2px darken($color-primary, 25%);
-  &:active,&:hover {
+  text-shadow: 0 1px 2px darken($color-primary, 25%);
+
+  &:active, &:hover {
     color: lighten($color-primary, 50%);
-    text-shadow: 0px 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
+    text-shadow: 0 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
   }
 }
 
@@ -77,73 +147,99 @@ article {
     flex-direction: column;
     transform: translateZ(0);
     justify-content: space-between;
-    transition: background-position 100ms ease-out;
+    //transition: background-position 100ms ease-out;
     border-bottom: 4px solid $color-primary;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: 125vh 100vh;
     @include mq("phone-wide") {
-      background-size: 150vh 100vh;
+      background-size: 175vh 100vh;
     }
     @include mq("tablet") {
-      background-size: 200vh 100vh;
+      background-size: 225vh 100vh;
     }
     @include mq("tablet-wide") {
-      background-size: 250vh 100vh;
-    }
-    @include mq("desktop") {
       background-size: 275vh 100vh;
     }
-    @include mq("desktop-wide") {
-      background-size: 300vh 100vh;
+    @include mq("desktop") {
+      background-size: 325vh 100vh;
     }
+    @include mq("desktop-wide") {
+      background-size: 375vh 100vh;
+    }
+
     h3 {
       margin: 0 1rem;
       line-height: 2.25rem;
-      align-self: flex-start;
+      align-self: flex-end;
     }
+
     time {
       margin: 0 1rem;
       align-self: flex-end;
     }
   }
+
   main {
     //background-color: $color-background;
     p {
       margin: 0;
       padding: 1rem;
     }
-  }
-  footer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    border-top: 4px solid $color-primary;
+
+    blockquote {
+      padding: 0.5rem;
+      font-weight: 900;
+      border-left: 8px solid $color-primary;
+      background-color: lighten($color-background, 5%);
+    }
   }
 }
 
-blockquote {
-  padding: 0.5rem;
-  font-weight: 900;
-  border-left: 8px solid $color-primary;
-  background-color: lighten($color-background, 5%);
+footer {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 4px solid $color-primary;
 }
 
 .author {
-  width: 12rem;
-  height: 12rem;
-  img {
-    width: 100%;
-    height: 100%;
-    image-rendering: pixelated;
+  flex-direction: row;
+
+  section {
+    width: 12rem;
+    height: 12rem;
+    margin: 0.5rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    span {
+      top: -2rem;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    div {
+      //display: flex;
+      //justify-content: center;
+    }
   }
-  span {
-    top: -2rem;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    display: inline-block;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  a {
+    margin: 1rem;
   }
 }
 
@@ -168,19 +264,24 @@ blockquote {
   background-size: cover;
   background-position: center;
   justify-content: space-between;
+
   h4 {
     margin: 0;
     align-self: flex-start;
   }
+
   time {
     flex-shrink: 0;
     align-self: flex-end;
   }
+
   a {
     width: 100%;
     text-decoration: none;
     color: lighten($color-primary, 50%);
-    &:active,&:hover {
+
+    &:active,
+    &:hover {
       color: lighten($color-primary, 50%);
     }
   }

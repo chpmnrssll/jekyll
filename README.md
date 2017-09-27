@@ -21,3 +21,11 @@
 - [Paletton](http://paletton.com)
 - [Pro Web Type](https://prowebtype.com/)
 - [Fontjoy Machine Learning Font Combinations](http://fontjoy.com/)
+
+https://codepen.io/alpakid/pen/wmzDo
+https://codepen.io/marclloyd77/pen/gtypB
+https://codepen.io/SitePoint/pen/uIemr
+https://codepen.io/erikterwan/pen/EVzeRP
+https://codepen.io/CKH4/pen/qdxEgm
+https://github.com/webcomponents/element-boilerplate
+https://developers.google.com/web/fundamentals/architecture/app-shell

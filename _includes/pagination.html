@@ -1,28 +1,28 @@
-<nav class="pagination">
+<section class="pagination">
   {% if paginator.previous_page %}
     {% if paginator.previous_page == 1 %}
-      <a href="/articles.html"><<</a>
+      <a href="/posts.html"><i class="fa fa-chevron-left"></i></a>
     {% else %}
-      <a href="/page{{ paginator.previous_page }}"><<</a>
+      <a href="/page{{ paginator.previous_page }}"><i class="fa fa-chevron-left"></i></a>
     {% endif %}
   {% else %}
-    <span class="disabled"><<</span>
+    <a class="disabled"><i class="fa fa-chevron-left"></i></a>
   {% endif %}
   {% if paginator.page == 1 %}
-    <span class="active">1</span>
+    <a class="active">1</a>
   {% else %}
     <a href="/posts.html">1</a>
   {% endif %}
   {% for count in (2..paginator.total_pages) %}
     {% if count == paginator.page %}
-      <span class="active">{{ count }}</span>
+      <a class="active">{{ count }}</a>
     {% else %}
       <a href="/page{{ count }}">{{ count }}</a>
     {% endif %}
   {% endfor %}
   {% if paginator.next_page %}
-    <a href="/page{{ paginator.next_page }}">>></a>
+    <a href="/page{{ paginator.next_page }}"><i class="fa fa-chevron-right"></i></a>
   {% else %}
-    <span class="disabled">>></span>
+    <a class="disabled"><i class="fa fa-chevron-right"></i></a>
   {% endif %}
-</nav>
+</section>
