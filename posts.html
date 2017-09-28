@@ -1,7 +1,10 @@
 ---
 layout: default
-title: Posts Collection
+title: Posts
 ---
+<header>
+  <h3>{{ page.title }}</h3>
+</header>
 <section class="featured-items">
   {% for post in site.posts %}
   <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">

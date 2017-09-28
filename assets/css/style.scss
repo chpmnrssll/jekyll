@@ -13,14 +13,12 @@
 @import "mixins";
 //@import "reset";
 
-$color-primary: teal;
+$color-primary: darkolivegreen;
 $color-background: darken($color-primary, 20%);
+$animation-speed: 150ms;
 $nav-width: 10rem;
-$nav-speed: 100ms;
 
 *,*:after,*:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -35,8 +33,8 @@ body {
   font-family: "Teko";
   line-height: 1.25rem;
   color: lighten($color-primary, 75%);
-  //background-color: $color-background;
-  background-image: linear-gradient(-45deg, #111111 0%, $color-background 100%);
+  background-color: $color-background;
+  background-image: linear-gradient(270deg, $color-background 0%, rgba(1,1,1,0) 100%);
 }
 
 h1 { font-size: 5.063rem; }
@@ -45,64 +43,62 @@ h3 { font-size: 2.25rem; }
 h4 { font-size: 1.5rem; }
 h1,h2,h3,h4,h5,h6 {
   font-family: "Sarpanch";
-  text-shadow: 0 1px 2px $color-background;
   color: lighten($color-primary, 75%);
+  text-shadow: 1px 1px 2px $color-background;
+}
+
+header h3 {
+  text-align: center;
 }
 
 time {
-  text-shadow: 0 1px 2px $color-background;
   color: lighten($color-primary, 75%);
+  text-shadow: 1px 1px 2px $color-background;
 }
 
 nav {
-  position: fixed;
   top: 0;
-  left: -$nav-width;
   width: $nav-width;
   height: 100%;
-  //margin: 0 0 0 -$nav-width;
-  -moz-transition: all $nav-speed ease-in;
-  -webkit-transition: all $nav-speed ease-in;
-  -o-transition: all $nav-speed ease-in;
-  transition: all $nav-speed ease-in;
   display: flex;
+  position: fixed;
   flex-direction: column;
   justify-content: flex-start;
-  background: linear-gradient(90deg, rgba(1,1,1,0.5) 0%, $color-background 100%);
+  background-image: linear-gradient(90deg, $color-background 0%, rgba(1,1,1,0) 100%);
+  @include prefix((transform: translate3d(-$nav-width,0,0)), webkit moz ms o);
+  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
 
   a {
-    padding: 1rem;
-    //background: rgba(127, 127, 127, 0.05);
     display: flex;
+    padding: 0.5rem;
     justify-content: flex-start;
+    border: 1px solid rgba(127,127,127,0);
+    @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
     i {
-      width: 2rem;
+      width: 1.5rem;
+      padding-right: 0.5rem;
+      text-align: right;
     }
     &:active,&:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(127,127,127,0.1);
+      border: 1px solid rgba(127,127,127,0.2);
     }
   }
 }
 
 main {
-  -moz-transition: all $nav-speed ease-in-out;
-  -webkit-transition: all $nav-speed ease-in-out;
-  -o-transition: all $nav-speed ease-in-out;
-  transition: all $nav-speed ease-in-out;
+  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
 }
 
 label {
-  display: block;
-  position: fixed;
-  font-size: 1.5rem;
+  //z-index: 500;
   top: 0.25rem;
   left: 0.25rem;
-  -moz-transition: all $nav-speed ease-in-out;
-  -webkit-transition: all $nav-speed ease-in-out;
-  -o-transition: all $nav-speed ease-in-out;
-  transition: all $nav-speed ease-in-out;
-  z-index: 500;
+  display: block;
+  position: fixed;
   cursor: pointer;
+  font-size: 1.5rem;
+  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
 }
 
 input[type="checkbox"] {
@@ -110,22 +106,15 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked ~ nav {
-  left: 0;
+  @include prefix((transform: translate3d(0,0,0)), webkit moz ms o);
 }
 
 input[type="checkbox"]:checked ~ label {
-  -webkit-transform: rotateZ(135deg);
-  -moz-transform: rotateZ(135deg);
-  -o-transform: rotateZ(135deg);
-  transform: rotateZ(135deg);
-  left: $nav-width+0.25rem;
+  @include prefix((transform: translate3d($nav-width+0.25rem,0,0)), webkit moz ms o);
 }
 
 input[type="checkbox"]:checked ~ main {
-  -webkit-transform: translate3d($nav-width, 0, 0);
-  -moz-transform: translate3d($nav-width, 0, 0);
-  -o-transform: translate3d($nav-width, 0, 0);
-  transform: translate3d($nav-width, 0, 0);
+  //@include prefix((transform: translate3d($nav-width,0,0)), webkit moz ms o);
 }
 
 a {
@@ -141,32 +130,20 @@ a {
 
 article {
   header {
-    z-index: -1;
-    height: 50vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
-    transform: translateZ(0);
     justify-content: space-between;
-    //transition: background-position 100ms ease-out;
     border-bottom: 4px solid $color-primary;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: 125vh 100vh;
-    @include mq("phone-wide") {
-      background-size: 175vh 100vh;
-    }
-    @include mq("tablet") {
-      background-size: 225vh 100vh;
-    }
-    @include mq("tablet-wide") {
-      background-size: 275vh 100vh;
-    }
-    @include mq("desktop") {
-      background-size: 325vh 100vh;
-    }
-    @include mq("desktop-wide") {
-      background-size: 375vh 100vh;
-    }
+    @include mq("phone-wide") { background-size: 175vh 100vh; }
+    @include mq("tablet") { background-size: 225vh 100vh; }
+    @include mq("tablet-wide") { background-size: 275vh 100vh; }
+    @include mq("desktop") { background-size: 325vh 100vh; }
+    @include mq("desktop-wide") { background-size: 375vh 100vh; }
+    @include prefix((transition: background-position $animation-speed ease-out), webkit moz ms o);
 
     h3 {
       margin: 0 1rem;
@@ -181,17 +158,26 @@ article {
   }
 
   main {
-    //background-color: $color-background;
     p {
       margin: 0;
       padding: 1rem;
     }
+    & > p:first-child {
+      &::first-letter {
+        font-size: 2.0rem;
+      }
+      &::first-line {
+        font-size: 1.15rem;
+      }
+    }
 
     blockquote {
-      padding: 0.5rem;
-      font-weight: 900;
+      font-size: 1.25rem;
       border-left: 8px solid $color-primary;
       background-color: lighten($color-background, 5%);
+      & > p::first-letter {
+        font-size: 1.5rem;
+      }
     }
   }
 }
@@ -202,11 +188,18 @@ footer {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border-top: 4px solid $color-primary;
+  border-top: 4px solid $color-background;
+  //.blue:checked { --color-background: #3498DB; }
+  //.purple:checked { --color-background: #9B59B6; }
+  //.green:checked { --color-background: #2ECC71; }
+  //.red:checked { --color-background: #E74C3C; }
+  //.orange:checked { --color-background: #E67E22; }
+  //.yellow:checked { --color-background: #F1C40F; }
 }
 
 .author {
   flex-direction: row;
+  margin-bottom: 4rem;
 
   section {
     width: 12rem;
@@ -220,6 +213,7 @@ footer {
     }
 
     span {
+      font-family: "Sarpanch";
       top: -2rem;
       width: 100%;
       text-align: center;
@@ -227,9 +221,9 @@ footer {
       display: inline-block;
     }
 
-    div {
-      //display: flex;
-      //justify-content: center;
+    div:first-of-type {
+      margin-top: -1rem;
+      margin-bottom: 1rem;
     }
   }
 }
@@ -250,17 +244,23 @@ footer {
 }
 
 .featured-items {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-row-gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  @include mq("phone-wide") { grid-template-columns: repeat(1, 1fr); }
+  @include mq("tablet") { grid-template-columns: repeat(2, 1fr); }
+  @include mq("tablet-wide") { grid-template-columns: repeat(2, 1fr); }
+  @include mq("desktop") { grid-template-columns: repeat(3, 1fr); }
+  @include mq("desktop-wide") { grid-template-columns: repeat(4, 1fr); }
 }
 
 .featured-items__article-summary {
-  margin: 1rem;
   width: 16rem;
   height: 9rem;
-  flex: auto;
   display: flex;
+  justify-self: center;
   background-size: cover;
   background-position: center;
   justify-content: space-between;

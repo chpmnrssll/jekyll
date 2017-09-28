@@ -4,7 +4,7 @@ layout: default
 <article>
   <header id="parallax" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
     <h3>{{ page.title }}</h3>
-    <time>{{ page.date | date: "%Y, %b %d" }}</time>
+    <time>{{ page.date | date: "%b %d, %Y" }}</time>
   </header>
   <main>
     {{ content }}
@@ -13,12 +13,7 @@ layout: default
     <section>
       {% avatar {{ site.github_username }} %}
       <span>{{ site.author }}</span>
-    </section>
-    <section>
-      <div>
-        In a world where zombies run large corporations, one man has no choice but to find another planet to colonise. Finally, the man has a meaningful chat with the zombies and they come to an amicable agreement.
-      </div>
-      <div><br/></div>
+      <div>In a world run by large corporations, one man has no choice but to find the master code.</div>
       <div>
         Tags:
         &nbsp;
@@ -38,7 +33,6 @@ layout: default
     </section>
   </footer>
 </article>
-<h3>Recent</h3>
 <section class="featured-items">
   {% for post in site.posts offset:0 limit:6 %}
   <article class="featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">

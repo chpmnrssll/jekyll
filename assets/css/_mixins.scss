@@ -19,9 +19,16 @@ $breakpoints: (
   }
 }
 
-@mixin hardware($backface: true, $perspective: 1000) {
-    @if $backface {
-        backface-visibility: hidden;
+/// Prefix several properties at once
+/// @param {Map} $declarations - Declarations to prefix
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
     }
-    perspective: $perspective;
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+  }
 }
