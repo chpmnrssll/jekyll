@@ -199,21 +199,25 @@ article {
 }
 
 footer {
-  display: flex;
   padding-top: 1rem;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
   border-top: 4px solid var(--color-primary);
-}
-
-.colors {
-  .DarkCyan:checked { --hue: 180; --saturation: 100%; --lightness: 27%; }
-  .Indigo:checked { --hue: 275; --saturation: 100%; --lightness: 25%; }
-  .DarkOliveGreen:checked { --hue: 82; --saturation: 39%; --lightness: 30%; }
-  .DarkRed:checked { --hue: 0; --saturation: 100%; --lightness: 27%; }
-  .DarkOrange:checked { --hue: 33; --saturation: 100%; --lightness: 50%; }
-  .Gold:checked { --hue: 51; --saturation: 100%; --lightness: 50%; }
+  section {
+    //display: flex;
+    //align-items: center;
+    //justify-content: space-around;
+    input {
+      margin-top: 1rem;
+    }
+    &:first-child {
+      flex-direction: column;
+    }
+    &:last-child {
+      flex-direction: row;
+    }
+  }
+  input {
+    align-self: center;
+  }
 }
 
 .author {
