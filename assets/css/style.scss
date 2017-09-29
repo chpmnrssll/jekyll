@@ -11,18 +11,31 @@
 @import url( 'https://fonts.googleapis.com/css?family=Teko');
 @import "font-awesome-4.7.0/scss/font-awesome.scss";
 @import "mixins";
-//@import "reset";
 
-$color-primary: darkolivegreen;
-$color-background: darken($color-primary, 20%);
-$animation-speed: 150ms;
-$nav-width: 10rem;
-
-*,*:after,*:before {
+*, *:after, *:before {
   box-sizing: border-box;
 }
 
 :root {
+  --animation-speed: 300ms;
+  --nav-width: 10rem;
+  --hue: 82;
+  --saturation: 39%;
+  --lightness: 30%;
+  --color-primary-lightest: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
+  --color-primary-lighter: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 45%));
+  --color-primary-light: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 10%));
+  --color-primary: hsl(var(--hue), var(--saturation), var(--lightness));
+  --color-primary-dark: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 10%));
+  --color-primary-darker: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 25%));
+  --color-primary-darkest: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 50%));
+  --color-secondary-lightest: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 90%));
+  --color-secondary-lighter: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 45%));
+  --color-secondary-light: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 10%));
+  --color-secondary: hsl(calc(var(--hue) + 180), var(--saturation), var(--lightness));
+  --color-secondary-dark: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 10%));
+  --color-secondary-darker: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 25%));
+  --color-secondary-darkest: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 50%));
   font-size: calc(0.85rem + 0.85vw);
   overflow-x: hidden;
 }
@@ -32,73 +45,91 @@ body {
   font-size: 1rem;
   font-family: "Teko";
   line-height: 1.25rem;
-  color: lighten($color-primary, 75%);
-  background-color: $color-background;
-  background-image: linear-gradient(270deg, $color-background 0%, rgba(1,1,1,0) 100%);
+  color: var(--color-primary-lightest);
+  background-color: var(--color-primary-dark);  // fallback
+  background-image: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
 }
 
+// type scale
 h1 { font-size: 5.063rem; }
 h2 { font-size: 3.375rem; }
 h3 { font-size: 2.25rem; }
 h4 { font-size: 1.5rem; }
-h1,h2,h3,h4,h5,h6 {
+
+h1, h2, h3, h4, h5, h6 {
   font-family: "Sarpanch";
-  color: lighten($color-primary, 75%);
-  text-shadow: 1px 1px 2px $color-background;
+  color: var(--color-primary-lightest);
+  text-shadow: 0px 1px 2px var(--color-primary-darkest);
 }
 
-header h3 {
-  text-align: center;
+header {
+  h3 {
+    text-align: center;
+  }
+  time {
+    color: var(--color-primary-lightest);
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+  }
 }
 
-time {
-  color: lighten($color-primary, 75%);
-  text-shadow: 1px 1px 2px $color-background;
+a {
+  text-decoration: none;
+  color: var(--color-primary-light);
+  text-shadow: 0px 1px 2px var(--color-primary-darkest);
+
+  &:active, &:hover {
+    color: var(--color-primary-lighter);
+    text-shadow: 0px 1px 2px var(--color-primary-darkest), 0 0 8px var(--color-primary-lighter);
+  }
 }
 
 nav {
   top: 0;
-  width: $nav-width;
+  width: var(--nav-width);
   height: 100%;
+  z-index: 100;
   display: flex;
   position: fixed;
   flex-direction: column;
   justify-content: flex-start;
-  background-image: linear-gradient(90deg, $color-background 0%, rgba(1,1,1,0) 100%);
-  @include prefix((transform: translate3d(-$nav-width,0,0)), webkit moz ms o);
-  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
+  background: var(--color-primary-dark);
+  background: linear-gradient(90deg, var(--color-primary-darker) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
+  @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
 
   a {
     display: flex;
     padding: 0.5rem;
     justify-content: flex-start;
-    border: 1px solid rgba(127,127,127,0);
-    @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
+    border: 1px solid rgba(127, 127, 127, 0);
+    @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+
     i {
       width: 1.5rem;
-      padding-right: 0.5rem;
       text-align: right;
+      padding-right: 0.5rem;
     }
-    &:active,&:hover {
-      background: rgba(127,127,127,0.1);
-      border: 1px solid rgba(127,127,127,0.2);
+
+    &:active, &:hover {
+      background: hsla(var(--hue), var(--saturation), 50%, 0.1);
+      border: 1px solid hsla(var(--hue), var(--saturation), 50%, 0.2);
     }
   }
 }
 
 main {
-  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
 }
 
 label {
-  //z-index: 500;
+  z-index: 100;
   top: 0.25rem;
   left: 0.25rem;
   display: block;
   position: fixed;
   cursor: pointer;
   font-size: 1.5rem;
-  @include prefix((transition: all $animation-speed ease-out), webkit moz ms o);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
 }
 
 input[type="checkbox"] {
@@ -106,26 +137,15 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked ~ nav {
-  @include prefix((transform: translate3d(0,0,0)), webkit moz ms o);
+  @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o);
 }
 
 input[type="checkbox"]:checked ~ label {
-  @include prefix((transform: translate3d($nav-width+0.25rem,0,0)), webkit moz ms o);
+  @include prefix((transform: translate3d(calc(var(--nav-width) + 0.25rem), 0, 0)), webkit moz ms o);
 }
 
 input[type="checkbox"]:checked ~ main {
-  //@include prefix((transform: translate3d($nav-width,0,0)), webkit moz ms o);
-}
-
-a {
-  text-decoration: none;
-  color: lighten($color-primary, 25%);
-  text-shadow: 0 1px 2px darken($color-primary, 25%);
-
-  &:active, &:hover {
-    color: lighten($color-primary, 50%);
-    text-shadow: 0 1px 2px darken($color-primary, 25%), 0 0 8px lighten($color-primary, 50%);
-  }
+  //@include prefix((transform: translate3d(var(--nav-width), 0, 0)), webkit moz ms o);
 }
 
 article {
@@ -134,7 +154,7 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-bottom: 4px solid $color-primary;
+    border-bottom: 4px solid var(--color-primary);
     background-position: center top;
     background-repeat: no-repeat;
     background-size: 125vh 100vh;
@@ -143,7 +163,7 @@ article {
     @include mq("tablet-wide") { background-size: 275vh 100vh; }
     @include mq("desktop") { background-size: 325vh 100vh; }
     @include mq("desktop-wide") { background-size: 375vh 100vh; }
-    @include prefix((transition: background-position $animation-speed ease-out), webkit moz ms o);
+    @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
 
     h3 {
       margin: 0 1rem;
@@ -162,39 +182,38 @@ article {
       margin: 0;
       padding: 1rem;
     }
+
     & > p:first-child {
-      &::first-letter {
-        font-size: 2.0rem;
-      }
-      &::first-line {
-        font-size: 1.15rem;
-      }
+      &::first-letter { font-size: 2.0rem; }
+      &::first-line { font-size: 1.15rem; }
     }
 
     blockquote {
       font-size: 1.25rem;
-      border-left: 8px solid $color-primary;
-      background-color: lighten($color-background, 5%);
-      & > p::first-letter {
-        font-size: 1.5rem;
-      }
+      border-left: 8px solid var(--color-primary-light);
+      background-color: var(--color-primary);
+
+      & > p::first-letter { font-size: 1.5rem; }
     }
   }
 }
 
 footer {
-  padding-top: 1rem;
   display: flex;
+  padding-top: 1rem;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border-top: 4px solid $color-background;
-  //.blue:checked { --color-background: #3498DB; }
-  //.purple:checked { --color-background: #9B59B6; }
-  //.green:checked { --color-background: #2ECC71; }
-  //.red:checked { --color-background: #E74C3C; }
-  //.orange:checked { --color-background: #E67E22; }
-  //.yellow:checked { --color-background: #F1C40F; }
+  border-top: 4px solid var(--color-primary);
+}
+
+.colors {
+  .DarkCyan:checked { --hue: 180; --saturation: 100%; --lightness: 27%; }
+  .Indigo:checked { --hue: 275; --saturation: 100%; --lightness: 25%; }
+  .DarkOliveGreen:checked { --hue: 82; --saturation: 39%; --lightness: 30%; }
+  .DarkRed:checked { --hue: 0; --saturation: 100%; --lightness: 27%; }
+  .DarkOrange:checked { --hue: 33; --saturation: 100%; --lightness: 50%; }
+  .Gold:checked { --hue: 51; --saturation: 100%; --lightness: 50%; }
 }
 
 .author {
@@ -240,12 +259,13 @@ footer {
 .book {
   width: 10vw;
   margin: 1vw;
-  background-color: lighten($color-background, 5%);
+  background-color: var(--color-primary-dark);
 }
 
 .featured-items {
   margin-top: 10rem;
   margin-bottom: 2rem;
+  perspective: 100vw;
   display: grid;
   grid-row-gap: 2rem;
   grid-template-columns: repeat(1, 1fr);
@@ -261,12 +281,18 @@ footer {
   height: 9rem;
   display: flex;
   justify-self: center;
-  background-size: cover;
-  background-position: center;
   justify-content: space-between;
+  background-repeat: no-repeat;
+  --x-copy: calc(var(--x-pos) * -1px);
+  --y-copy: calc(var(--y-pos) * -1px);
+  background-position: var(--x-copy, -16rem) var(--y-copy, -9rem);  // var(val, default)
+  box-shadow: 0px 0px 32px var(--color-primary-darkest);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+  @include prefix((transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg))), webkit moz ms o);
 
   h4 {
     margin: 0;
+    color: inherit;
     align-self: flex-start;
   }
 
@@ -278,11 +304,15 @@ footer {
   a {
     width: 100%;
     text-decoration: none;
-    color: lighten($color-primary, 50%);
+    color: var(--color-secondary-lightest);
+    text-shadow: 0px 1px 2px var(--color-secondary-darkest);
 
-    &:active,
-    &:hover {
-      color: lighten($color-primary, 50%);
+    &:active, &:hover {
+      color: var(--color-secondary-lightest);
+      text-shadow: 0px 1px 2px var(--color-secondary-darkest), 0 0 8px var(--color-secondary-lighter);
+      h4 {
+        text-shadow: 0px 1px 2px var(--color-secondary-darkest), 0 0 8px var(--color-secondary-lighter);
+      }
     }
   }
 }
