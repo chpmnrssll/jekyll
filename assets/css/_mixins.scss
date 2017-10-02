@@ -7,7 +7,7 @@ $breakpoints: (
   "desktop-wide": 1440px
 ) !default;
 
-@mixin mq($width, $type: min) {
+@mixin mediaQuery($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
     @if $type == max {
@@ -28,7 +28,7 @@ $breakpoints: (
       #{'-' + $prefix + '-' + $property}: $value;
     }
 
-    // Output standard non-prefixed declaration
+    // Output standard non-prefixed declaration too
     #{$property}: $value;
   }
 }

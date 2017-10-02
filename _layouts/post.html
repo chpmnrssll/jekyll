@@ -2,9 +2,9 @@
 layout: default
 ---
 <article>
-  <header id="parallax" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
-    <h3>{{ page.title }}</h3>
-    <time>{{ page.date | date: "%b %d, %Y" }}</time>
+  <header class="parallax-header" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
+    <h3 class="parallax-header__title">{{ page.title }}</h3>
+    <time class="parallax-header__created">{{ page.date | date: "%b %d, %Y" }}</time>
   </header>
   <main>
     {{ content }}

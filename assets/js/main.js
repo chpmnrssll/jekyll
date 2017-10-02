@@ -1,62 +1,74 @@
-let parallax = $("#parallax"),
-    win = $(window),
-    scrollTop = 0;
+let parallax = document.querySelector(".parallax-header"), scrollTop = 0;
 
 // Parallax header image (2D Fast!)
-$(window).on("scroll", function () {
-  requestAnimationFrame(function () {
-    scrollTop = -win.scrollTop() >> 2;
-    parallax.css("background-position", "center " + scrollTop + "px");
+window.addEventListener("scroll", () => {
+  requestAnimationFrame(() => {
+    if(parallax) {
+      scrollTop = window.pageYOffset >> 2;
+      parallax.style.backgroundPosition = "center " + -scrollTop + "px";
+    }
   });
 });
+
+// addEventListener for iterable NodeList
+NodeList.prototype.addEventListener = function(event, callback) {
+  this.forEach((element) => {
+    element.addEventListener(event, callback);
+  });
+}
 
 // 3D article summary cards
-$(".featured-items__article-summary").on("mousemove", function(e) {
-  const that = this;
-  requestAnimationFrame(function () {
-    const tmp = $(that);  // save a jquery lookup (x3)
-    let w = tmp.width();
-    let h = tmp.height();
-    let offset = tmp.offset();
-    let hw = w >> 1;  // >> 1 === /2
-    let hh = h >> 1;
-    let xOffset = ((e.clientX - offset.left) / w) - 0.5;
-    let yOffset = ((e.clientY - offset.top + window.scrollY) / h) - 0.5;
+const cards = document.querySelectorAll(".featured-items__article-summary");
 
-    that.style.setProperty("--x-offset", xOffset);
-    that.style.setProperty("--y-offset", yOffset);
-    that.style.setProperty("--x-pos", (xOffset * hw) + w);
-    that.style.setProperty("--y-pos", (yOffset * hh) + h);
+// calculate rotation and parallax, then set CSS custom properties
+cards.addEventListener("mousemove", (event) => {
+  const currentTarget = event.currentTarget;
+  requestAnimationFrame(() => {
+    const width = currentTarget.clientWidth;
+    const height = currentTarget.clientHeight;
+    const halfWidth = width >> 1;
+    const halfHeight = height >> 1;
+
+    // offset from center of card for rotation, range(-0.5, 0.5)
+    const scrollOffset = currentTarget.offsetParent.offsetTop + currentTarget.offsetTop - window.pageYOffset;
+    const xOffset = ((event.clientX - currentTarget.offsetLeft) / width) - 0.5;
+    const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
+
+    // parallax background-position, range(0, 50)
+    const xPos = (xOffset * halfWidth) >> 1;
+    const yPos = (yOffset * halfHeight) >> 1;
+
+    currentTarget.style.setProperty("--x-offset", xOffset);
+    currentTarget.style.setProperty("--y-offset", yOffset);
+    currentTarget.style.setProperty("--x-pos", xPos);
+    currentTarget.style.setProperty("--y-pos", yPos);
   });
 });
 
-// Reset card offset & position
-$(".featured-items__article-summary").on("mouseleave", function(e) {
-  const that = this;
-  requestAnimationFrame(function () {
-    const tmp = $(that);  // save a jquery lookup (x2)
-    that.style.setProperty("--x-offset", 0);
-    that.style.setProperty("--y-offset", 0);
-    that.style.setProperty("--x-pos", tmp.width());
-    that.style.setProperty("--y-pos", tmp.height());
+// reset card rotation & background-position
+cards.addEventListener("mouseleave", (event) => {
+  const currentTarget = event.currentTarget;
+  requestAnimationFrame(() => {
+    currentTarget.style.setProperty("--x-offset", 0);
+    currentTarget.style.setProperty("--y-offset", 0);
+    currentTarget.style.setProperty("--x-pos", 0);
+    currentTarget.style.setProperty("--y-pos", 0);
   });
 });
 
-// Scroll to Top button
-$(".top").click(function () {
-  $("html, body").stop().animate({ scrollTop: 0 }, "slow", "swing");
-});
-
-if(localStorage.getItem("hsl")) {
-  let themeColor = JSON.parse(localStorage.getItem("hsl"));
+// load themeColor from localStorage, { hex, h, s, l }
+if (localStorage.getItem("themeColor")) {
+  const themeColor = JSON.parse(localStorage.getItem("themeColor"));
+  document.querySelector("#themeColor").value = themeColor.hex;
   document.documentElement.style.setProperty("--hue", themeColor.h);
   document.documentElement.style.setProperty("--saturation", themeColor.s + "%");
   document.documentElement.style.setProperty("--lightness", themeColor.l + "%");
 }
 
-$("#themeColor").change(function () {
-  let color = hexToHSL(this.value);
-  localStorage.setItem("hsl", JSON.stringify({ h: color.h, s: color.s, l: color.l }));
+// save themeColor to localStorage and update CSS custom properties
+document.querySelector("#themeColor").addEventListener("change", (event) => {
+  const color = hexToHSL(event.target.value);
+  localStorage.setItem("themeColor", JSON.stringify({ h: color.h, s: color.s, l: color.l, hex: color.hex }));
   document.documentElement.style.setProperty("--hue", color.h);
   document.documentElement.style.setProperty("--saturation", color.s + "%");
   document.documentElement.style.setProperty("--lightness", color.l + "%");
@@ -71,23 +83,75 @@ function hexToHSL(hex) {
   let min = Math.min(r, g, b);
   let h, s, l = (max + min) / 2;
 
-  if(max == min) {
-      h = s = 0; // achromatic
+  if (max == min) {
+    h = s = 0; // achromatic
   } else {
-      let d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch(max) {
-          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-          case g: h = (b - r) / d + 2; break;
-          case b: h = (r - g) / d + 4; break;
-      }
-      h /= 6;
+    let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
   }
 
-  s = s*100;
-  l = l*100;
+  s = s * 100;
+  l = l * 100;
   s = Math.round(s);
   l = Math.round(l);
-  h = Math.round(360*h);
-  return { h: h, s: s, l: l };
+  h = Math.round(360 * h);
+  return { hex: hex, h: h, s: s, l: l };
+}
+
+// Scroll to top button
+document.querySelector(".top").addEventListener("click", () => {
+  scrollTo(0, 500, "easeInOutQuad");
+});
+
+// https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
+function scrollTo(destination, duration = 200, easing = "linear") {
+  const easings = {
+    linear(t) { return t; },
+    easeInQuad(t) { return t * t; },
+    easeInCubic(t) { return t * t * t; },
+    easeInQuart(t) { return t * t * t * t; },
+    easeInQuint(t) { return t * t * t * t * t; },
+    easeOutQuad(t) { return t * (2 - t); },
+    easeOutCubic(t) { return (--t) * t * t + 1; },
+    easeOutQuart(t) { return 1 - (--t) * t * t * t; },
+    easeOutQuint(t) { return 1 + (--t) * t * t * t * t; },
+    easeInOutQuad(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; },
+    easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; },
+    easeInOutQuart(t) { return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t; },
+    easeInOutQuint(t) { return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t; }
+  };
+
+  const start = window.pageYOffset;
+  const startTime = "now" in window.performance ? performance.now() : new Date().getTime();
+  const documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight;
+  const destinationOffset = typeof destination === "number" ? destination : destination.offsetTop;
+  const destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
+
+  function tick() {
+    const now = "now" in window.performance ? performance.now() : new Date().getTime();
+    const time = Math.min(1, ((now - startTime) / duration));
+    const timeFunction = easings[easing](time);
+    window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
+
+    if (window.pageYOffset !== destinationOffsetToScroll) {
+      requestAnimationFrame(tick);
+    } else {
+      return;
+    }
+  }
+
+  requestAnimationFrame(tick);
 }
