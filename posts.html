@@ -2,17 +2,15 @@
 layout: default
 title: Posts
 ---
-<header>
-  <h3>{{ page.title }}</h3>
-</header>
 <section class="featured-items">
   {% for post in site.posts %}
-  <article class="card3D featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
-    <a href="{{ post.url | prepend: site.url }}">
-      <h4>{{ post.title }}</h4>
-      <time>{{ post.date | date: "%b %d, %Y" }}</time>
-    </a>
-  </article>
+  <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+    <div class="featured-items__title">
+      <h4 class="featured-items__main-title">{{ post.title }}</h4>
+      <span class="featured-items__sub-title">{{ post.sub-title }}</span>
+      <time class="featured-items__created">{{ post.date | date: "%b %d, %Y" }}</time>
+    </div>
+  </a>
   {% endfor %}
 </section>
 {% include pagination.html %}

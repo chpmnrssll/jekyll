@@ -1,6 +1,6 @@
 let parallax = document.querySelector(".parallax-header"), scrollTop = 0;
 
-// Parallax header image (2D Fast!)
+// Parallax header image (2D Fast)
 window.addEventListener("scroll", () => {
   requestAnimationFrame(() => {
     if(parallax) {
@@ -8,9 +8,9 @@ window.addEventListener("scroll", () => {
       parallax.style.backgroundPosition = "center " + -scrollTop + "px";
     }
   });
-});
+}, { passive: true });
 
-// addEventListener for iterable NodeList
+// https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 NodeList.prototype.addEventListener = function(event, callback) {
   this.forEach((element) => {
     element.addEventListener(event, callback);
@@ -18,7 +18,7 @@ NodeList.prototype.addEventListener = function(event, callback) {
 }
 
 // 3D article summary cards
-const cards = document.querySelectorAll(".featured-items__article-summary");
+const cards = document.querySelectorAll(".featured-items__3DCard");
 
 // calculate rotation and parallax, then set CSS custom properties
 cards.addEventListener("mousemove", (event) => {
@@ -43,7 +43,7 @@ cards.addEventListener("mousemove", (event) => {
     currentTarget.style.setProperty("--x-pos", xPos);
     currentTarget.style.setProperty("--y-pos", yPos);
   });
-});
+}, { passive: true });
 
 // reset card rotation & background-position
 cards.addEventListener("mouseleave", (event) => {
@@ -54,7 +54,7 @@ cards.addEventListener("mouseleave", (event) => {
     currentTarget.style.setProperty("--x-pos", 0);
     currentTarget.style.setProperty("--y-pos", 0);
   });
-});
+}, { passive: true });
 
 // load themeColor from localStorage, { hex, h, s, l }
 if (localStorage.getItem("themeColor")) {
@@ -111,9 +111,9 @@ function hexToHSL(hex) {
 }
 
 // Scroll to top button
-document.querySelector(".top").addEventListener("click", () => {
+document.querySelector("#top-button").addEventListener("click", () => {
   scrollTo(0, 500, "easeInOutQuad");
-});
+}, { passive: true });
 
 // https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
 function scrollTo(destination, duration = 200, easing = "linear") {

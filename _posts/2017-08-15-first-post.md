@@ -5,7 +5,19 @@ title: Developer Launches Site!
 date: 2017-08-15T00:00:00.000Z
 tags: 'News Jekyll Markdown'
 ---
-
-Finally got a start at putting this website together. Powered by [Jekyll](http://jekyllrb.com) and uses Markdown to author posts. It actually is a lot easier than I thought it was going to be.
-
 ![sloth]({{ "/assets/images/gifs/sloth.gif" | prepend: site.url }})
+- Powered by [Jekyll](http://jekyllrb.com) & Markdown format (.md) to author posts.
+- [Jekyll::Livereload](https://github.com/RobertDeRose/jekyll-livereload)
+- [Customizing GitHub Pages](https://help.github.com/categories/customizing-github-pages/)
+- [Staticman (push to GitHub)](https://staticman.net/docs/)
+- [Semantic HTML5](http://www.hongkiat.com/blog/html-5-semantics/)
+- [CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
+- [CSS/BEM](https://en.bem.info/methodology/quick-start/)
+- [Links aren't buttons!](https://ctidd.com/2017/links-arent-buttons)
+- [Vanilla JS WebComponents](https://medium.com/bunnyllc/vanilla-js-components-8d20c58b69f4)
+- [Fontjoy Machine Learning Font Combinations](http://fontjoy.com/)
+- [Pro Web Type](https://prowebtype.com/)
+- [A more modern scale for web typography](http://typecast.com/blog/a-more-modern-scale-for-web-typography)
+- [Generate Coolors](https://coolors.co/app)
+- [Paletton](http://paletton.com)
+- [App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)

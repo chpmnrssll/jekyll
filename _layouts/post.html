@@ -1,45 +1,47 @@
 ---
 layout: default
 ---
-<article>
+<article class="article-full">
   <header class="parallax-header" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
-    <h3 class="parallax-header__title">{{ page.title }}</h3>
+    <div class="parallax-header__title">
+      <h1 class="parallax-header__main-title">{{ page.title }}</h1>
+      <p class="parallax-header__sub-title">{{ page.sub-title }}</p>
+    </div>
     <time class="parallax-header__created">{{ page.date | date: "%b %d, %Y" }}</time>
   </header>
-  <main>
-    {{ content }}
-  </main>
-  <footer class="author">
-    <section>
+  {{ content }}
+  <footer class="article-full__footer">
+    <section class="article-full__author-info">
       {% avatar {{ site.github_username }} %}
-      <span>{{ site.author }}</span>
-      <div>In a world run by large corporations, one man has no choice but to find the master code.</div>
-      <div>
-        Tags:
-        &nbsp;
-        {% for tag in page.tags %}
-        <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
-        {% endfor %}
-      </div>
-      <div>
-        Share:
-        &nbsp;
-        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-        &nbsp;
-        <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-        &nbsp;
-        <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
-      </div>
+      <span class="article-full__author-name">{{ site.author }}</span>
+    </section>
+    <section class="article-full__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
+    <section class="article-full__share">
+      Share:
+      &nbsp;
+      <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+      &nbsp;
+      <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+      &nbsp;
+      <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
+    </section>
+    <section class="article-full__tags">
+      Tags:
+      &nbsp;
+      {% for tag in page.tags %}
+      <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
+      {% endfor %}
     </section>
   </footer>
 </article>
 <section class="featured-items">
   {% for post in site.posts offset:0 limit:6 %}
-  <article class="card3D featured-items__article-summary" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
-    <a href="{{ post.url | prepend: site.url }}">
-      <h4>{{ post.title }}</h4>
-      <time>{{ post.date | date: "%b %d, %Y" }}</time>
+    <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+      <div class="featured-items__title">
+        <h4 class="featured-items__main-title">{{ post.title }}</h4>
+        <span class="featured-items__sub-title">{{ post.sub-title }}</span>
+        <time class="featured-items__created">{{ post.date | date: "%b %d, %Y" }}</time>
+      </div>
     </a>
-  </article>
   {% endfor %}
 </section>
