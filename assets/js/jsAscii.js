@@ -1,97 +1,138 @@
-var image = new Image(),
+let output = document.getElementById("output"),
     canvas = document.createElement("canvas"),
+    ascii = document.createElement("pre");
     ctx = canvas.getContext("2d"),
-    cell = { width: 8, height: 13 },
-    chars = {},
-    scale = 1;
+    image = new Image();
 
-canvas.width = cell.width;
-canvas.height = cell.height;
-ctx.font = cell.height + "px monospace";
-
-var characters = "#*+`´'.:dbPUVMWA<>Xx ".split("")
-for (var c = 32; c < 127; c++) {
-  //for (var c in characters){
-  //  getCharData(characters[c]);
-  getCharData(String.fromCharCode(c));
-}
-
-image.src = "image.png";
+image.src = "/assets/images/skull.png";
 
 image.onload = function() {
-  var width = image.width * scale,
-      height = image.height * scale,
-      scaledHeight = height * 0.92,
-      out = "",
-      data, x, y;
+  let characters = "#*+`´'.:dbPUVA<>Xx ".split(""),
+      cell = { width: 8, height: 8 },
+      characterLightnessValues = [],
+      outputCharacters = [],
+      scale = 1.5;
 
-  canvas.width = width;
-  canvas.height = height;
-  ctx.drawImage(image, 0, 0, width, scaledHeight);
 
-  for (y = 0; y < scaledHeight; y += cell.height + 2) {
-    for (x = 0; x < width; x += cell.width) {
-      data = ctx.getImageData(x, y, cell.width, cell.height).data;
-      out += getNearest(data);
+  function getCharacterLightness(character) {
+    // clear canvas (black)
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, cell.width, cell.height);
+
+    // draw the character (white)
+    ctx.fillStyle = "#FFF";
+    ctx.fillText(character, 0, cell.height / 2);
+
+    let data = ctx.getImageData(0, 0, cell.width, cell.height).data, avg = 0;
+
+    // running average of lightness for this imageData block
+    for (let i = 0; i < data.length; i += 4) {
+      let lightness = (data[i] + data[i+1] + data[i+2]) / 3;
+      avg += lightness;
     }
-    out += "\n";
+
+    avg /= (data.length / 4);
+    return Math.round(Math.min(avg*8, 255));
   }
 
-  ctx.drawImage(image, 0, 0, width, height);
-  var output = document.getElementById("output"),
-    pre = document.createElement("pre");
 
-  output.style.width = width + "px";
-  output.style.height = height + "px";
-  pre.innerText = out;
-  output.appendChild(canvas);
-  output.appendChild(pre);
-};
+  function getMatchingCharacter(data) {
+    let avg = { lightness:0, r:0, g:0, b:0, a:0 },
+        pixelCount = data.length / 4;
+        min = Infinity,
+        best = " ";
 
-function getCharData(character) {
-  if (character == "_") {
-    return;
-  }
+    // running average of lightness, & rgba for this imageData block
+    for (let i = 0; i < data.length; i += 4) {
+      let lightness = (data[i] + data[i+1] + data[i+2]) / 3;
+      avg.lightness += lightness;
+      avg.r += data[i];
+      avg.g += data[i+1];
+      avg.b += data[i+2];
+      avg.a += data[i+3];
+    }
 
-  clear();
-  ctx.fillStyle = "#000";
-  ctx.fillText(character, 0, cell.height / 1.2);
-  chars[character] = ctx.getImageData(0, 0, cell.width, cell.height).data;
-}
+    avg.lightness /= pixelCount;
+    avg.r /= pixelCount;
+    avg.g /= pixelCount;
+    avg.b /= pixelCount;
+    avg.a /= pixelCount;
 
-function getNearest(imageData) {
-  var c, i, diff, charData,
-      min = Infinity,
-      best = " ";
+    avg.lightness = Math.round(avg.lightness)
+    avg.r = Math.round(avg.r);
+    avg.g = Math.round(avg.g);
+    avg.b = Math.round(avg.b);
+    avg.a = Math.round(avg.a);
 
-  for (c in chars) {
-    charData = chars[c];
-    diff = 0;
-    for (i = 0; i < charData.length; i += 4) {
-      if (imageData[i + 3]) {
-        diff += Math.abs(imageData[i] > 200 != charData[i] > 200);
+    // find character with lightness that closely matches this imageData block
+    characters.forEach(function (character) {
+      let difference = Math.abs(avg.lightness - characterLightnessValues[character]);
+      if (difference < min) {
+        min = difference;
+        best = character;
       }
-    }
-    if (diff < min) {
-      min = diff;
-      best = c;
-    }
+    });
+
+    return { character: best, average: avg };
   }
 
-  if (best == "Q" || best == "M") {
-    return "#";
+
+  // draw the characters and get lightness value (imageData)
+  canvas.width = cell.width;
+  canvas.height = cell.height;
+  ctx.font = cell.height + "px Share Tech Mono monospace";
+
+  // use characters array from above
+  /*characters.forEach(function (character) {
+    characterLightnessValues[character] = getCharacterLightness(character);
+  });*/
+
+  // use all characters from 32-127
+  for (let character = 32; character < 127; character++) {
+    let string = String.fromCharCode(character);
+    characters[string] = string;
+    characterLightnessValues[string] = getCharacterLightness(string);
   }
 
-  return best;
-}
+  //change canvas size & draw image
+  canvas.width = this.width * scale;
+  canvas.height = this.height * scale;
+  ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-function clear() {
-  ctx.fillStyle = "#FFF";
-  ctx.fillRect(0, 0, cell.width, cell.height);
-}
+  // loop through imageData (by cell size)
+  for (let y = 0; y < canvas.height; y += cell.width) {
+    for (let x = 0; x < canvas.width; x += cell.height) {
+      let data = ctx.getImageData(x, y, cell.width, cell.height).data;
+      //find matching character from imageData block, add to outputCharacters
+      outputCharacters.push(getMatchingCharacter(data));
+    }
+    // end of the line
+    let avg = { lightness:0, r:0, g:0, b:0, a:0 };
+    outputCharacters.push({ character: "\n", average: avg });
+  }
 
 
+  // final results
+  ascii.style.width = canvas.width + "px";
+  ascii.style.height = canvas.height + "px";
+  ascii.style.font = cell.height + "px monospace";
+  ascii.style.letterSpacing = cell.width*0.4 + "px";
+  ascii.style.lineHeight = cell.height*1.1 + "px";
+  outputCharacters.forEach(function (match) {
+    let span = document.createElement("span");
+    span.innerText = match.character;
+    span.style.color = "rgba("+match.average.r+", "+match.average.g+", "+match.average.b+", "+match.average.a+")";
+    span.style.textShadow = "0px 0px 6px " + span.style.color;
+    ascii.appendChild(span);
+  });
 
+  canvas.width /= 4;
+  canvas.height /= 4;
+  canvas.style.float = "right";
+  ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+  output.appendChild(canvas);
+  output.appendChild(ascii);
+};
 
 //////////////////////////////////////////////////
 
@@ -134,4 +175,26 @@ function imageToASCII(img) {
   // Close the paragraph tag, and return the html string.
   html += "</p>";
   return html;
+}
+
+function getGrayShade(lightness) {
+  if (lightness >= 230) {
+    return WHITE;
+  } else if (lightness >= 200) {
+    return LIGHTGRAY;
+  } else if(lightness >= 180) {
+    return SLATEGRAY;
+  } else if(lightness >= 160) {
+    return GRAY;
+  } else if(lightness >= 130) {
+    return MEDIUM;
+  } else if(lightness >= 100) {
+    return MEDIUMGRAY;
+  } else if(lightness >= 70) {
+    return DARKGRAY;
+  } else if(lightness >= 50) {
+    return CHARCOAL;
+  } else {
+    return BLACK;
+  }
 }
