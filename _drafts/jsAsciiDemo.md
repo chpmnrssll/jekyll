@@ -9,5 +9,5 @@ sub-title: Javascript + HTML5 Canvas Demo
     <p class="plain-header__sub-title">{{ page.sub-title }}</p>
   </div>
 </header>
-<div id="output"></div>
+<div id="output" style="height:100vh"></div>
 <script src="{{ site.url }}/assets/js/jsAscii.js"></script>

@@ -1,6 +1,6 @@
 let parallax = document.querySelector(".parallax-header"), scrollTop = 0;
 
-// Parallax header image (2D Fast)
+// Parallax header image (2D - not fast enough)
 window.addEventListener("scroll", () => {
   requestAnimationFrame(() => {
     if(parallax) {
@@ -66,7 +66,7 @@ if (localStorage.getItem("themeColor")) {
 }
 
 // save themeColor to localStorage and update CSS custom properties
-document.querySelector("#themeColor").addEventListener("change", (event) => {
+document.querySelector("#themeColor").addEventListener("input", (event) => {
   const color = hexToHSL(event.target.value);
   localStorage.setItem("themeColor", JSON.stringify({ h: color.h, s: color.s, l: color.l, hex: color.hex }));
   document.documentElement.style.setProperty("--hue", color.h);

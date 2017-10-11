@@ -2,6 +2,12 @@
 layout: default
 title: Posts
 ---
+<header class="plain-header">
+  <div class="plain-header__title">
+    <h1 class="plain-header__main-title"><em>Russell Chapman</em></h1>
+    <p class="plain-header__sub-title">{{ page.title }}</p>
+  </div>
+</header>
 <section class="featured-items">
   {% for post in site.posts %}
   <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">

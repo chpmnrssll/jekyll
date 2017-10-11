@@ -20,9 +20,9 @@
 
 :root {
   // CSS custom properties & calcs
-  --hue: 82;
-  --saturation: 39%;
+  --hue: 210;
   --lightness: 30%;
+  --saturation: 100%;
   --nav-width: 10rem;
   --animation-speed: 300ms;
   --color-primary-lightest: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
@@ -353,5 +353,5 @@ a {
 .highlight {
   margin-left: 2rem;
   margin-right: 2rem;
-  padding: 0.5rem;
+  //padding: 0.5rem;
 }
