@@ -5,15 +5,15 @@ window.addEventListener("scroll", () => {
   requestAnimationFrame(() => {
     if(parallax) {
       scrollTop = window.pageYOffset >> 2;
-      parallax.style.backgroundPosition = "center " + -scrollTop + "px";
+      parallax.style.backgroundPosition = `center ${ -scrollTop }px`;
     }
   });
 }, { passive: true });
 
 // https://developer.mozilla.org/en-US/docs/Web/API/NodeList
-NodeList.prototype.addEventListener = function(event, callback) {
+NodeList.prototype.addEventListener = function(event, callback, options) {
   this.forEach((element) => {
-    element.addEventListener(event, callback);
+    element.addEventListener(event, callback, options);
   });
 }
 
@@ -56,23 +56,14 @@ cards.addEventListener("mouseleave", (event) => {
   });
 }, { passive: true });
 
-// load themeColor from localStorage, { hex, h, s, l }
-if (localStorage.getItem("themeColor")) {
-  const themeColor = JSON.parse(localStorage.getItem("themeColor"));
-  document.querySelector("#themeColor").value = themeColor.hex;
-  document.documentElement.style.setProperty("--hue", themeColor.h);
-  document.documentElement.style.setProperty("--saturation", themeColor.s + "%");
-  document.documentElement.style.setProperty("--lightness", themeColor.l + "%");
-}
 
-// save themeColor to localStorage and update CSS custom properties
-document.querySelector("#themeColor").addEventListener("input", (event) => {
-  const color = hexToHSL(event.target.value);
-  localStorage.setItem("themeColor", JSON.stringify({ h: color.h, s: color.s, l: color.l, hex: color.hex }));
-  document.documentElement.style.setProperty("--hue", color.h);
-  document.documentElement.style.setProperty("--saturation", color.s + "%");
-  document.documentElement.style.setProperty("--lightness", color.l + "%");
-});
+// load themeColor from localStorage, { hex, h, s, l }
+let themeColor = JSON.parse(localStorage.getItem("themeColor"));
+if (themeColor) {
+  document.documentElement.style.setProperty("--hue", themeColor.hue);
+  document.documentElement.style.setProperty("--saturation", themeColor.saturation + "%");
+  document.documentElement.style.setProperty("--lightness", themeColor.lightness + "%");
+}
 
 function hexToHSL(hex) {
   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

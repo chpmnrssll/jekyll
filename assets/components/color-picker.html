@@ -1,0 +1,195 @@
+<html>
+  <template id="color-picker-template">
+    <style>
+      :host {
+        display: flex;
+        height: 8rem;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hues, .shades {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0.25rem;
+      }
+      .title {
+        text-align: center;
+      }
+      .active {
+        border: 1px inset;
+        transform: scale(1.25, 1.25);
+        box-shadow: -1px -1px 4px var(--color-primary-darkest), 1px 1px 1px var(--color-primary-light);
+      }
+      .visible {
+        transform: scale(1.0, 1.0);
+      }
+      color-button {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0.5rem;
+        border: 1px outset;
+        border-radius: 50%;
+        display: inline-block;
+        transform: scale(0.0, 0.0);
+        -webkit-transition: all 250ms;
+        transition: all 250ms;
+        box-shadow: 1px 1px 4px var(--color-primary-darkest), -1px -1px 1px var(--color-primary-light);
+      }
+    </style>
+    <slot name="title"></slot>
+    <div class="hues"></div>
+    <div class="shades"></div>
+  </template>
+  <script>
+    class colorPicker extends HTMLElement {
+      constructor() {
+        super();
+
+        let importDoc = document.currentScript.ownerDocument;
+        let template = importDoc.querySelector("#color-picker-template");
+
+        this.shadow = this.attachShadow({ mode: "open" });
+        this.shadow.appendChild(template.content);
+        this.hues = this.shadow.querySelector(".hues");
+        this.shades = this.shadow.querySelector(".shades");
+        this.active = { hue: null, shade: null };
+        this.createHues();
+      }
+
+      static get observedAttributes() {
+        return [ "data-hue", "data-saturation", "data-lightness" ];
+      }
+
+      attributeChangedCallback(attr, oldValue, newValue) {
+        // save themeColor to localStorage
+        localStorage.setItem("themeColor", JSON.stringify({ hue: this.dataset.hue, saturation: this.dataset.saturation, lightness: this.dataset.lightness }));
+
+        // update CSS custom properties
+        document.documentElement.style.setProperty("--hue", this.dataset.hue);
+        document.documentElement.style.setProperty("--saturation", this.dataset.saturation + "%");
+        document.documentElement.style.setProperty("--lightness", this.dataset.lightness + "%");
+      }
+
+      createHues() {
+        for (let i = 0; i < 360; i += 40) {
+          let baseHue = document.createElement("color-button");
+          baseHue.dataset.hue = i;
+          baseHue.dataset.saturation = 75;
+          baseHue.dataset.lightness = 50;
+
+          baseHue.addEventListener("click", (event) => {
+            // remove old active hue and shade
+            if (this.active.hue) {
+              this.active.hue.classList.remove("active");
+              if (this.active.shade) {
+                this.active.shade.classList.remove("active");
+              }
+            }
+
+            // set new active hue
+            this.active.hue = event.target;
+            this.active.hue.classList.add("active");
+
+            // update data-* attributes
+            this.dataset.hue = event.target.dataset.hue;
+            this.dataset.saturation = event.target.dataset.saturation;
+            this.dataset.lightness = event.target.dataset.lightness;
+
+            // sequential animation
+            let count = 0;
+            this.shades.querySelectorAll("color-button").forEach(btn => {
+              count += 50;
+              setTimeout(() => {
+                btn.classList.remove("visible");
+              }, count);
+            });
+
+            // remove old shades and create new ones
+            setTimeout(() => {
+              this.removeAllChildren(this.shades);
+              this.createShades();
+            }, count);
+          });
+
+          this.hues.appendChild(baseHue);
+        }
+
+        // sequential animation
+        let count = 0;
+        this.hues.querySelectorAll("color-button").forEach(btn => {
+          count += 50;
+          setTimeout(() => {
+            btn.classList.add("visible");
+          }, count);
+        });
+      }
+
+
+      createShades() {
+        for (let i = 0; i < 10; i++) {
+          let shade = document.createElement("color-button");
+          shade.dataset.hue = this.dataset.hue;
+          shade.dataset.saturation = this.dataset.saturation;
+          shade.dataset.lightness = 50 + ((i - 5) * 10);
+
+          shade.addEventListener("click", (event) => {
+            // remove old active shade
+            if (this.active.shade) {
+              this.active.shade.classList.remove("active");
+            }
+
+            // set new active shade
+            this.active.shade = event.target;
+            this.active.shade.classList.add("active");
+
+            // update data-* attributes
+            this.dataset.hue = event.target.dataset.hue;
+            this.dataset.saturation = event.target.dataset.saturation;
+            this.dataset.lightness = event.target.dataset.lightness;
+          });
+
+          this.shades.appendChild(shade);
+        }
+
+        // sequential animation
+        let count = 0;
+        this.shades.querySelectorAll("color-button").forEach(btn => {
+          count += 50;
+          setTimeout(() => {
+            btn.classList.add("visible");
+          }, count);
+        });
+      }
+
+
+      //tiny helper function
+      removeAllChildren(el) {
+        while (el.hasChildNodes()) {
+          el.removeChild(el.lastChild);
+        }
+      }
+    }
+
+    customElements.define("color-picker", colorPicker);
+
+
+    class colorButton extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      static get observedAttributes() {
+        return [ "data-hue", "data-saturation", "data-lightness" ];
+      }
+
+      attributeChangedCallback(attr, oldValue, newValue) {
+        this.style.borderColor = `hsl(${ this.dataset.hue }, ${ this.dataset.saturation }%, ${ this.dataset.lightness }%)`;
+        this.style.backgroundColor = this.style.borderColor;
+      }
+    }
+
+    customElements.define("color-button", colorButton);
+  </script>
+
+</html>

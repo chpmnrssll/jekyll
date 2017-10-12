@@ -44,7 +44,8 @@ image.onload = function () {
     ctx.font = `${ cell.height }px ${ font }`;
 
     // use preset characters
-    /*let characters = "#*+`´'.:dbPUVA<>Xx ".split("");
+    /*
+    let characters = "#*+`´'.:<>Xx ".split("");
     characters.forEach(function (character) {
       let average = getCharacterAverage(character);
       if (average) {
@@ -77,7 +78,7 @@ image.onload = function () {
     ctx.fillText(character, 0, cell.height);
 
     average = getBlockAverage(imageBlock);
-    average.lightness *= 3; // magic #, unknown force, ???
+    average.lightness *= 3.25; // magic #, unknown force, ???
 
     return average;
   }

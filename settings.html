@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: Settings
 ---
 <header class="plain-header">
   <div class="plain-header__title">
@@ -8,4 +8,5 @@ title: Home
     <p class="plain-header__sub-title">{{ page.title }}</p>
   </div>
 </header>
-<img src="/assets/images/codeFocus.jpg"/>
+<link rel="import" href="{{ '/assets/components/color-picker.html' | prepend: site.baseurl }}"></link>
+<color-picker><span slot="title" style="text-align: center">Theme Color</span></color-picker>
