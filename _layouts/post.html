@@ -4,7 +4,7 @@ layout: default
 <article class="article-full">
   <header class="parallax-header" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
     <div class="parallax-header__title">
-      <h1 class="parallax-header__main-title">{{ page.title }}</h1>
+      <h1 class="parallax-header__main-title"><em>{{ page.title }}</em></h1>
       <p class="parallax-header__sub-title">{{ page.sub-title }}</p>
     </div>
     <time class="parallax-header__created">{{ page.date | date: "%b %d, %Y" }}</time>
@@ -38,7 +38,7 @@ layout: default
   {% for post in site.posts offset:0 limit:6 %}
     <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
       <div class="featured-items__title">
-        <h4 class="featured-items__main-title">{{ post.title }}</h4>
+        <h4 class="featured-items__main-title"><em>{{ post.title }}</em></h4>
         <span class="featured-items__sub-title">{{ post.sub-title }}</span>
         <time class="featured-items__created">{{ post.date | date: "%b %d, %Y" }}</time>
       </div>

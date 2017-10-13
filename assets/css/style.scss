@@ -210,15 +210,15 @@ a {
   }
   @at-root #{&}__sub-title {
     margin-top: 0;
-    color: var(--color-primary-lightest);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    color: var(--color-primary-light);
+    text-shadow: 0px 0px 1px var(--color-primary-darkest);
   }
   @at-root #{&}__created {
     z-index: 90;
     margin-right: 1rem;
     align-self: flex-end;
-    color: var(--color-primary-lightest);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    color: var(--color-primary-light);
+    text-shadow: 0px 0px 1px var(--color-primary-darkest);
   }
 }
 
@@ -296,6 +296,14 @@ a {
   background-color: var(--color-primary-dark);
 }
 
+.full-size {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.25) 100%), url("/assets/images/workshopMechanicTools.jpg");
+}
+
 .featured-items {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -338,15 +346,18 @@ a {
   }
   @at-root #{&}__main-title {
     text-align: right;
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
   }
   @at-root #{&}__sub-title {
     text-align: right;
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
   }
   @at-root #{&}__created {
     position: absolute;
     margin-bottom: 0.5rem;
     right: 0px;
     bottom: 0px;
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
   }
 }
 

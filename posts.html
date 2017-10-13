@@ -12,7 +12,7 @@ title: Posts
   {% for post in site.posts %}
   <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
     <div class="featured-items__title">
-      <h3 class="featured-items__main-title">{{ post.title }}</h3>
+      <h3 class="featured-items__main-title"><em>{{ post.title }}</em></h3>
       <span class="featured-items__sub-title">{{ post.sub-title }}</span>
       <time class="featured-items__created">{{ post.date | date: "%b %d, %Y" }}</time>
     </div>
