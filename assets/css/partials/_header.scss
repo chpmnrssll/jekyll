@@ -1,0 +1,69 @@
+.header {
+  @at-root #{&}__title {
+    margin-right: 1rem;
+    text-align: right;
+    z-index: 1;
+    & h1 {
+      color: var(--color-primary-lightest);
+      text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    }
+  }
+  @at-root #{&}__main-title {
+    color: var(--color-primary-lighter);
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+  }
+  @at-root #{&}__sub-title {
+    color: var(--color-primary-light);
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+  }
+
+  @at-root #{&}__date {
+    margin-right: 1rem;
+    text-align: right;
+    color: var(--color-primary);
+    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    z-index: 1;
+  }
+
+  @at-root #{&}__plain {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @at-root #{&}__parallax {
+    height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 125vh 100vh; // Responsive background-size
+    @include mediaQuery("phone-wide") { background-size: 175vh 100vh; }
+    @include mediaQuery("tablet") { background-size: 225vh 100vh; }
+    @include mediaQuery("tablet-wide") { background-size: 275vh 100vh; }
+    @include mediaQuery("desktop") { background-size: 325vh 100vh; }
+    @include mediaQuery("desktop-wide") { background-size: 375vh 100vh; }
+    @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+
+    // gradient overlay
+    &::before {
+      width: 100%;
+      height: 60vh;
+      position: absolute;
+      opacity: 0.5;
+      content: "";
+      background-image: linear-gradient(0deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%);
+      z-index: 0;
+    }
+
+    // bottom border
+    &::after {
+      content: "";
+      width: 100%;
+      border-bottom: 4px solid var(--color-primary);
+    }
+  }
+}

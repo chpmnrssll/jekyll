@@ -1,4 +1,4 @@
-let parallax = document.querySelector(".parallax-header"), scrollTop = 0;
+let parallax = document.querySelector(".header__parallax"), scrollTop = 0;
 
 // Parallax header image (2D - not fast enough)
 window.addEventListener("scroll", () => {

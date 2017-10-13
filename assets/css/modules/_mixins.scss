@@ -1,0 +1,34 @@
+$breakpoints: (
+"phone": 400px,
+"phone-wide": 480px,
+"tablet": 768px,
+"tablet-wide": 1024px,
+"desktop": 1280px,
+"desktop-wide": 1440px
+);
+
+@mixin mediaQuery($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+/// Prefix several properties at once
+/// @param {Map} $declarations - Declarations to prefix
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration too
+    #{$property}: $value;
+  }
+}

@@ -1,22 +1,20 @@
 ---
 ---
-//@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
-//@import url('https://fonts.googleapis.com/css?family=Space+Mono:700');
-@import url( 'https://fonts.googleapis.com/css?family=Sarpanch:400,900');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
-//@import url('https://fonts.googleapis.com/css?family=Oswald:200');
-//@import url( 'https://fonts.googleapis.com/css?family=Orbitron');
-//@import url( 'https://fonts.googleapis.com/css?family=Michroma');
-//@import url('https://fonts.googleapis.com/css?family=Karla');
-//@import url('https://fonts.googleapis.com/css?family=Jura');
-@import url( 'https://fonts.googleapis.com/css?family=Teko');
-@import "font-awesome-4.7.0/scss/font-awesome.scss";
-@import "mixins";
-@import "syntax";
+// Third-party
+@import "vendor/font-awesome-4.7.0/scss/font-awesome.scss";
 
-*, *:after, *:before {
-  box-sizing: border-box;
-}
+// Modules (mixin declarations, functions, and variables)
+@import "modules/mixins";
+
+// Partials
+@import "partials/reset";
+@import "partials/syntax";
+@import "partials/typography";
+@import "partials/navigation";
+@import "partials/header";
+@import "partials/article";
+@import "partials/featured-items";
+@import "partials/footer";
 
 :root {
   // CSS custom properties & calculations
@@ -44,31 +42,6 @@
   overflow-x: hidden;
 }
 
-body {
-  margin: 0;
-  font-size: 1rem;
-  font-family: "Teko";
-  line-height: 1.333rem;
-  color: var(--color-primary-lightest);
-  background-color: var(--color-primary-dark);  // fallback w/o gradient
-  background-image: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
-  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
-}
-
-// Modular type scale http://www.modularscale.com
-h1 { font-size: 2.25rem; line-height: 2.25rem; }
-h2 { font-size: 1.688rem; line-height: 1.688rem; }
-h3 { font-size: 1.5rem; line-height: 1.5rem; }
-h4 { font-size: 1rem; line-height: 1rem; }
-h5 { font-size: 0.75rem; line-height: 0.75rem; }
-h6 { font-size: 0.5rem; line-height: 0.5rem; }
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-family: "Sarpanch";
-  color: var(--color-primary-lightest);
-  text-shadow: 0px 1px 2px var(--color-primary-darkest);
-}
-
 a {
   text-decoration: none;
   color: var(--color-primary-light);
@@ -78,207 +51,6 @@ a {
     color: var(--color-primary-lighter);
     text-shadow: 0px 1px 2px var(--color-primary-darkest), 0 0 8px var(--color-primary-lighter);
   }
-}
-
-.top-button {
-  position: fixed;
-  cursor: pointer;
-  bottom: 0rem;
-  right: 0rem;
-  width: 2rem;
-  height: 2rem;
-  z-index: 100;
-  padding: 0.25rem;
-  font-size: 1.5rem;
-  background: var(--color-primary-darker); // fallback
-  background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-darker) 100%);
-  @include prefix((border-radius: 50% 0 0 0), webkit moz ms o);
-}
-
-.navigation-menu {
-  position: fixed;
-  width: var(--nav-width);
-  height: 100%;
-  z-index: 99;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: var(--color-primary-dark); // fallback
-  background: linear-gradient(90deg, var(--color-primary-darker) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
-  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
-  @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
-
-  @at-root #{&}__link {
-    &:first-child {
-      margin-top: 2.1rem;
-    }
-    padding: 0.5rem;
-    display: flex;
-    justify-content: flex-start;
-    border: 1px solid rgba(127, 127, 127, 0);
-    @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
-
-    &:active, &:hover {
-      background: hsla(var(--hue), var(--saturation), 50%, 0.1);
-      border: 1px solid hsla(var(--hue), var(--saturation), 50%, 0.2);
-    }
-  }
-  @at-root #{&}__icon {
-    padding-right: 0.5rem;
-    width: 1.5rem;
-    text-align: right;
-  }
-  @at-root #{&}__label {
-    position: fixed;
-    cursor: pointer;
-    top: 0rem;
-    left: 0rem;
-    width: 2rem;
-    height: 2rem;
-    z-index: 100;
-    padding: 0.25rem;
-    font-size: 1.5rem;
-    background: var(--color-primary-darker); // fallback
-    background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-darker) 100%);
-    @include prefix((border-radius: 0 0 50% 0), webkit moz ms o);
-  }
-  @at-root #{&}__button {
-  }
-  @at-root #{&}__checkbox {
-    display: none;
-  }
-  @at-root #{&}__checkbox:checked ~ nav {
-    @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o);
-  }
-}
-
-.plain-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-bottom: 4px solid var(--color-primary);
-
-  @at-root #{&}__title {
-    align-self: flex-end;
-    margin-right: 1rem;
-    text-align: right;
-    z-index: 90;
-  }
-  @at-root #{&}__main-title {
-  }
-  @at-root #{&}__sub-title {
-    margin-top: 0;
-    color: var(--color-primary-lightest);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
-  }
-}
-
-.parallax-header {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: 125vh 100vh; // Responsive background-size
-  @include mediaQuery("phone-wide") { background-size: 175vh 100vh; }
-  @include mediaQuery("tablet") { background-size: 225vh 100vh; }
-  @include mediaQuery("tablet-wide") { background-size: 275vh 100vh; }
-  @include mediaQuery("desktop") { background-size: 325vh 100vh; }
-  @include mediaQuery("desktop-wide") { background-size: 375vh 100vh; }
-  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
-  border-bottom: 4px solid var(--color-primary);
-
-  // gradient overlay
-  &::before {
-    position: absolute;
-    width: 100%;
-    height: 60vh;
-    content: "";
-    background-image: linear-gradient(180deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%);
-    opacity: 0.5;
-  }
-
-  @at-root #{&}__title {
-    align-self: flex-end;
-    margin-right: 1rem;
-    text-align: right;
-    z-index: 90;
-  }
-  @at-root #{&}__main-title {
-  }
-  @at-root #{&}__sub-title {
-    margin-top: 0;
-    color: var(--color-primary-light);
-    text-shadow: 0px 0px 1px var(--color-primary-darkest);
-  }
-  @at-root #{&}__created {
-    z-index: 90;
-    margin-right: 1rem;
-    align-self: flex-end;
-    color: var(--color-primary-light);
-    text-shadow: 0px 0px 1px var(--color-primary-darkest);
-  }
-}
-
-.article-full {
-  > h1, > h2, > h3, > h4, > h5, > h6, > p, > ul {
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-  > blockquote {
-    margin-left: 3rem;
-    margin-right: 4rem;
-    font-size: 1.25rem;
-    border-left: 8px solid var(--color-primary-light);
-    background-color: var(--color-primary);
-    > p { padding: 1rem; }
-    > p::first-letter { font-size: 2rem; }
-  }
-  @at-root #{&}__footer {
-    padding-top: 1rem;
-    border-top: 4px solid var(--color-primary);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  @at-root #{&}__author-info {
-    width: 12rem;
-    height: 12rem;
-    // gravatar class is .avatar by default (No BEM)
-    .avatar {
-      width: 100%;
-      height: 100%;
-      image-rendering: pixelated;
-    }
-  }
-  @at-root #{&}__author-name {
-    position: relative;
-    display: inline-block;
-    top: -2rem;
-    width: 100%;
-    font-family: "Sarpanch";
-    text-align: center;
-  }
-  @at-root #{&}__author-description {
-    width: 12rem;
-    margin-bottom: 1rem;
-  }
-  @at-root #{&}__tags {
-  }
-  @at-root #{&}__share {
-  }
-}
-
-.page-footer {
-  padding: 1rem;
-  border-top: 4px solid var(--color-primary);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .pagination {
@@ -301,64 +73,7 @@ a {
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: linear-gradient(180deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.25) 100%), url("/assets/images/workshopMechanicTools.jpg");
-}
-
-.featured-items {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  perspective: 100vw;
-  display: grid;
-  grid-row-gap: 2rem;
-  grid-template-columns: repeat(1, 1fr);  // Responsive CSS grid
-  @include mediaQuery("phone-wide") { grid-template-columns: repeat(1, 1fr); }
-  @include mediaQuery("tablet") { grid-template-columns: repeat(2, 1fr); }
-  @include mediaQuery("tablet-wide") { grid-template-columns: repeat(2, 1fr); }
-  @include mediaQuery("desktop") { grid-template-columns: repeat(3, 1fr); }
-  @include mediaQuery("desktop-wide") { grid-template-columns: repeat(4, 1fr); }
-
-  @at-root #{&}__3DCard {
-    width: 16rem;
-    height: 9rem;
-    justify-self: center;
-    background-repeat: no-repeat;
-    background-position: calc(50% + var(--x-pos, 0) * 1%) calc(50% + var(--y-pos, 0) * 1%);
-    @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
-    @include prefix((transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg))), webkit moz ms o);
-    box-shadow: 0px 0px 32px var(--color-primary-darkest);
-
-    // gradient overlay
-    &::before {
-      position: absolute;
-      width: 16rem;
-      height: 9rem;
-      content: "";
-      background-image: linear-gradient(180deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.75) 100%);
-      opacity: 0.5;
-    }
-  }
-  @at-root #{&}__title {
-    position: relative;
-    margin: 0.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  @at-root #{&}__main-title {
-    text-align: right;
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
-  }
-  @at-root #{&}__sub-title {
-    text-align: right;
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
-  }
-  @at-root #{&}__created {
-    position: absolute;
-    margin-bottom: 0.5rem;
-    right: 0px;
-    bottom: 0px;
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
-  }
+  background-image: linear-gradient(0deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%), url("/assets/images/codeFocus.jpg");
 }
 
 .highlight {

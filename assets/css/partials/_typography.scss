@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Sarpanch:400,900");
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
+@import url("https://fonts.googleapis.com/css?family=Teko");
+
+body {
+  margin: 0;
+  font-size: 1rem;
+  font-family: "Teko";
+  line-height: 1.333rem;
+  color: var(--color-primary-lightest);
+  background-color: var(--color-primary-dark);  // fallback w/o gradient
+  background-image: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+}
+
+// Modular type scale http://www.modularscale.com
+h1 { font-size: 2.25rem; line-height: 2.25rem; }
+h2 { font-size: 1.688rem; line-height: 1.688rem; }
+h3 { font-size: 1.5rem; line-height: 1.5rem; }
+h4 { font-size: 1rem; line-height: 1rem; }
+h5 { font-size: 0.75rem; line-height: 0.75rem; }
+h6 { font-size: 0.5rem; line-height: 0.5rem; }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: "Sarpanch";
+  color: var(--color-primary-lightest);
+  text-shadow: 0px 1px 2px var(--color-primary-darkest);
+}

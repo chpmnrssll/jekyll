@@ -1,7 +1,10 @@
 ---
 layout: default
+image: ascii.jpg
 title: Image to ASCII
 sub-title: Javascript + HTML5 Canvas Demo
+date: 2017-10-12T00:00:00.000Z
+tags: Ascii Art Generator
 ---
 <header class="plain-header">
   <div class="plain-header__title">

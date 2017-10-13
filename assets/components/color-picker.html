@@ -32,8 +32,8 @@
         border-radius: 50%;
         display: inline-block;
         transform: scale(0.0, 0.0);
-        -webkit-transition: all 250ms;
-        transition: all 250ms;
+        -webkit-transition: all 200ms;
+        transition: all 200ms;
         box-shadow: 1px 1px 4px var(--color-primary-darkest), -1px -1px 1px var(--color-primary-light);
       }
     </style>
@@ -54,6 +54,7 @@
         this.hues = this.shadow.querySelector(".hues");
         this.shades = this.shadow.querySelector(".shades");
         this.active = { hue: null, shade: null };
+        this.sequentialDelay = 35;
         this.createHues();
       }
 
@@ -99,7 +100,7 @@
             // sequential animation
             let count = 0;
             this.shades.querySelectorAll("color-button").forEach(btn => {
-              count += 50;
+              count += this.sequentialDelay;
               setTimeout(() => {
                 btn.classList.remove("visible");
               }, count);
@@ -118,7 +119,7 @@
         // sequential animation
         let count = 0;
         this.hues.querySelectorAll("color-button").forEach(btn => {
-          count += 50;
+          count += this.sequentialDelay;
           setTimeout(() => {
             btn.classList.add("visible");
           }, count);
@@ -155,7 +156,7 @@
         // sequential animation
         let count = 0;
         this.shades.querySelectorAll("color-button").forEach(btn => {
-          count += 50;
+          count += this.sequentialDelay;
           setTimeout(() => {
             btn.classList.add("visible");
           }, count);
