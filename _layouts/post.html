@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="article-full">
+<article class="article">
   <header class="header__parallax" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
     <div class="header__title">
       <h1 class="header__main-title"><em>{{ page.title }}</em></h1>
@@ -10,13 +10,13 @@ layout: default
     <time class="header__date">{{ page.date | date: "%b %d, %Y" }}</time>
   </header>
   {{ content }}
-  <footer class="article-full__footer">
-    <section class="article-full__author-info">
+  <footer class="article__footer">
+    <section class="article__author-info">
       {% avatar {{ site.github_username }} %}
-      <span class="article-full__author-name">{{ site.author }}</span>
+      <span class="article__author-name">{{ site.author }}</span>
     </section>
-    <section class="article-full__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
-    <section class="article-full__share">
+    <section class="article__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
+    <section class="article__share">
       Share:
       &nbsp;
       <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -25,7 +25,7 @@ layout: default
       &nbsp;
       <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
     </section>
-    <section class="article-full__tags">
+    <section class="article__tags">
       Tags:
       &nbsp;
       {% for tag in page.tags %}

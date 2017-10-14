@@ -5,67 +5,22 @@
 
 // Modules (mixin declarations, functions, and variables)
 @import "modules/mixins";
+@import "modules/variables";
 
 // Partials
 @import "partials/reset";
-@import "partials/syntax";
 @import "partials/typography";
 @import "partials/navigation";
 @import "partials/header";
 @import "partials/article";
+@import "partials/highlight";
 @import "partials/featured-items";
 @import "partials/footer";
-
-:root {
-  // CSS custom properties & calculations
-  --hue: 210;
-  --lightness: 30%;
-  --saturation: 100%;
-  --nav-width: 10rem;
-  --animation-speed: 300ms;
-  --color-primary-lightest: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
-  --color-primary-lighter: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 45%));
-  --color-primary-light: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 10%));
-  --color-primary: hsl(var(--hue), var(--saturation), var(--lightness));
-  --color-primary-dark: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 10%));
-  --color-primary-darker: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 25%));
-  --color-primary-darkest: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 50%));
-  --color-secondary-lightest: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 90%));
-  --color-secondary-lighter: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 45%));
-  --color-secondary-light: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 10%));
-  --color-secondary: hsl(calc(var(--hue) + 180), var(--saturation), var(--lightness));
-  --color-secondary-dark: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 10%));
-  --color-secondary-darker: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 25%));
-  --color-secondary-darkest: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 50%));
-
-  font-size: calc(0.85rem + 0.85vw);  // Responsive font-size
-  overflow-x: hidden;
-}
-
-a {
-  text-decoration: none;
-  color: var(--color-primary-light);
-  text-shadow: 0px 1px 2px var(--color-primary-darkest);
-
-  &:active, &:hover {
-    color: var(--color-primary-lighter);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest), 0 0 8px var(--color-primary-lighter);
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-
-  a {
-    margin: 1rem;
-  }
-}
 
 .book {
   margin: 1vw;
   width: 10vw;
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary-dark1);
 }
 
 .full-size {
@@ -73,11 +28,39 @@ a {
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: linear-gradient(0deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%), url("/assets/images/codeFocus.jpg");
+  background-image: linear-gradient(180deg, var(--color-primary-dark1) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.25) 50%, var(--color-primary-dark1) 100%), url("/assets/images/codeFocus.jpg");
 }
 
-.highlight {
-  margin-left: 2rem;
-  margin-right: 2rem;
-  //padding: 0.5rem;
+.box-template {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-primary);
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
+  box-shadow: 0px 0px 8px var(--color-primary-dark2);
+}
+
+.box {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  @at-root #{&}__large {
+    @extend .box-template;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 6;
+    grid-column-end: 1;
+  }
+  @at-root #{&}__med {
+    @extend .box-template;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-row-end: 4;
+  }
+  @at-root #{&}__small {
+    @extend .box-template;
+    grid-row-start: 4;
+    grid-column-start: 2;
+    grid-row-end: 6;
+  }
 }

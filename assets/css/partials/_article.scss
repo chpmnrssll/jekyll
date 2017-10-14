@@ -1,4 +1,4 @@
-.article-full {
+.article {
   > h1, > h2, > h3, > h4, > h5, > h6, > p, > ul {
     margin-left: 2rem;
     margin-right: 2rem;
@@ -7,7 +7,7 @@
     margin-left: 3rem;
     margin-right: 4rem;
     font-size: 1.25rem;
-    border-left: 8px solid var(--color-primary-light);
+    border-left: 8px solid var(--color-primary-light1);
     background-color: var(--color-primary);
     > p { padding: 1rem; }
     > p::first-letter { font-size: 2rem; }
@@ -23,7 +23,7 @@
   @at-root #{&}__author-info {
     width: 12rem;
     height: 12rem;
-    // gravatar class is .avatar by default (No BEM)
+    // gravatar class is .avatar by default (No BEM ;P)
     .avatar {
       width: 100%;
       height: 100%;

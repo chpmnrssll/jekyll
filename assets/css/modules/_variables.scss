@@ -1,0 +1,32 @@
+:root {
+  // CSS custom properties (variables) & calculations
+  --hue: 200;
+  --lightness: 20%;
+  --saturation: 75%;
+  --nav-width: 10rem;
+  --animation-speed: 300ms;
+
+  --color-primary-light5: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
+  --color-primary-light4: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 60%));
+  --color-primary-light3: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 40%));
+  --color-primary-light2: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 20%));
+  --color-primary-light1: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 10%));
+  --color-primary: hsl(var(--hue), var(--saturation), var(--lightness));
+  --color-primary-dark1: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 10%));
+  --color-primary-dark2: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 20%));
+  --color-primary-dark3: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 40%));
+  --color-primary-dark4: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 60%));
+  --color-primary-dark5: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 90%));
+
+  --color-secondary-light5: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 90%));
+  --color-secondary-light4: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 60%));
+  --color-secondary-light3: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 40%));
+  --color-secondary-light2: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 20%));
+  --color-secondary-light1: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 10%));
+  --color-secondary: hsl(calc(var(--hue) + 180), var(--saturation), var(--lightness));
+  --color-secondary-dark1: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 10%));
+  --color-secondary-dark2: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 20%));
+  --color-secondary-dark3: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 40%));
+  --color-secondary-dark4: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 60%));
+  --color-secondary-dark5: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - 90%));
+}

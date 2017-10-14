@@ -4,24 +4,24 @@
     text-align: right;
     z-index: 1;
     & h1 {
-      color: var(--color-primary-lightest);
-      text-shadow: 0px 1px 2px var(--color-primary-darkest);
+      color: var(--color-primary-light5);
+      text-shadow: 0px 1px 2px var(--color-primary-dark5);
     }
   }
   @at-root #{&}__main-title {
-    color: var(--color-primary-lighter);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    color: var(--color-primary-light3);
+    text-shadow: 0px 1px 2px var(--color-primary-dark5);
   }
   @at-root #{&}__sub-title {
-    color: var(--color-primary-light);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    color: var(--color-primary-light2);
+    text-shadow: 0px 1px 4px var(--color-primary-dark5);
   }
 
   @at-root #{&}__date {
     margin-right: 1rem;
     text-align: right;
-    color: var(--color-primary);
-    text-shadow: 0px 1px 2px var(--color-primary-darkest);
+    color: var(--color-primary-light2);
+    text-shadow: 0px 1px 4px var(--color-primary-dark5);
     z-index: 1;
   }
 
@@ -55,7 +55,7 @@
       position: absolute;
       opacity: 0.5;
       content: "";
-      background-image: linear-gradient(0deg, var(--color-primary-darkest) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%);
+      background-image: linear-gradient(0deg, var(--color-primary-dark5) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 100%);
       z-index: 0;
     }
 

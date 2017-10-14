@@ -2,14 +2,22 @@
 @import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css?family=Teko");
 
+:root {
+  overflow-x: hidden;
+
+  // Responsive font-size
+  // https://olivermak.es/2017/02/fluid-typography/
+  font-size: calc(0.85rem + 0.85vw);
+}
+
 body {
   margin: 0;
   font-size: 1rem;
   font-family: "Teko";
   line-height: 1.333rem;
-  color: var(--color-primary-lightest);
-  background-color: var(--color-primary-dark);  // fallback w/o gradient
-  background-image: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
+  color: var(--color-primary-light5);
+  background-color: var(--color-primary-dark1, hsl(200, 75%, 30%));  // fallback w/o gradient
+  background-image: linear-gradient(90deg, var(--color-primary-dark1) 0%, var(--color-primary-dark2) 100%);
   @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
 }
 
@@ -23,6 +31,6 @@ h6 { font-size: 0.5rem; line-height: 0.5rem; }
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-family: "Sarpanch";
-  color: var(--color-primary-lightest);
-  text-shadow: 0px 1px 2px var(--color-primary-darkest);
+  color: var(--color-primary-light5);
+  text-shadow: 0px 1px 2px var(--color-primary-dark5);
 }
