@@ -1,0 +1,81 @@
+<html>
+  <template id="template">
+    <style>
+      :host {
+        transform-style: preserve-3d;
+        perspective: 100vw;
+      }
+      .content {
+        background-repeat: no-repeat;
+        background-position: calc(50% + var(--x-pos, 0) * 1%) calc(50% + var(--y-pos, 0) * 1%);
+        -webkit-transition: all var(--animation-speed ease-out);
+        -moz-transition: all var(--animation-speed ease-out);
+        -o-transition: all var(--animation-speed ease-out);
+        transition: all var(--animation-speed ease-out);
+        -webkit-transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg));
+        -moz-transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg));
+        -o-transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg));
+        transform: rotateY(calc(var(--x-offset) * 30deg)) rotateX(calc(var(--y-offset) * -30deg));
+        box-shadow: 0px 0px 2rem var(--color-primary-dark5);
+      }
+    </style>
+    <slot class="content" name="content"></slot>
+  </template>
+  <script>
+    customElements.define("perspective-card", class extends HTMLElement {
+      constructor() {
+        super();
+
+        let importDoc = document.currentScript.ownerDocument;
+        let template = importDoc.querySelector("#template");
+        this.shadow = this.attachShadow({ mode: "open" });
+        this.shadow.appendChild(template.content);
+
+        // calculate rotation and parallax, then set CSS custom properties
+        this.addEventListener("mousemove", (event) => {
+          const currentTarget = event.target;
+          requestAnimationFrame(() => {
+            const width = currentTarget.clientWidth;
+            const height = currentTarget.clientHeight;
+            const halfWidth = width >> 1;
+            const halfHeight = height >> 1;
+
+            console.log(currentTarget);
+            // offset from center of card for rotation, range(-0.5, 0.5)
+            const scrollOffset = currentTarget.offsetParent.offsetTop + currentTarget.offsetTop - window.pageYOffset;
+            const xOffset = ((event.clientX - this.offsetLeft) / width) - 0.5;
+            const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
+
+            // parallax background-position, range(0, 50)
+            const xPos = (xOffset * halfWidth) >> 1;
+            const yPos = (yOffset * halfHeight) >> 1;
+
+            this.style.setProperty("--x-offset", xOffset);
+            this.style.setProperty("--y-offset", yOffset);
+            this.style.setProperty("--x-pos", xPos);
+            this.style.setProperty("--y-pos", yPos);
+          });
+        }, { passive: true });
+
+        // reset card rotation & background-position
+        this.addEventListener("mouseleave", (event) => {
+          const currentTarget = event.currentTarget;
+          requestAnimationFrame(() => {
+            currentTarget.style.setProperty("--x-offset", 0);
+            currentTarget.style.setProperty("--y-offset", 0);
+            currentTarget.style.setProperty("--x-pos", 0);
+            currentTarget.style.setProperty("--y-pos", 0);
+          });
+        }, { passive: true });
+      }
+
+      /*static get observedAttributes() {
+        return [ "", "", "" ];
+      }*/
+
+      attributeChangedCallback(attr, oldValue, newValue) {
+        console.log(attr, oldValue, newValue);
+      }
+    });
+  </script>
+</html>

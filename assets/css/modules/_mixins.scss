@@ -1,10 +1,12 @@
 $breakpoints: (
-"phone": 400px,
-"phone-wide": 480px,
+"mobile-s": 320px,
+"mobile-m": 375px,
+"mobile-l": 425px,
 "tablet": 768px,
-"tablet-wide": 1024px,
-"desktop": 1280px,
-"desktop-wide": 1440px
+"laptop-s": 1024px,
+"laptop-m": 1280px,
+"laptop-l": 1440px,
+"4k": 2560px
 );
 
 @mixin mediaQuery($width, $type: min) {

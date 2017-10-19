@@ -3,8 +3,9 @@
   --hue: 200;
   --lightness: 20%;
   --saturation: 75%;
+
   --nav-width: 10rem;
-  --animation-speed: 300ms;
+  --animation-speed: 250ms;
 
   --color-primary-light5: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
   --color-primary-light4: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 60%));

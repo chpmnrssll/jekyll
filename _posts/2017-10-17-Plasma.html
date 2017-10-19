@@ -1,0 +1,130 @@
+---
+layout: post
+title: Plasma
+sub-title: Canvas Demo Effect
+date: 2017-10-17T01:00:00.000Z
+tags: HTML5 Javascript Canvas Demo Effect
+---
+<canvas width="256" height="256" id="canvas"></canvas>
+<p>
+  <br/>
+  Another old school 2D plasma demo effect.
+  <br/>
+  Based on some old C source code found <a href="http://josh83.pagesperso-orange.fr/demoz/demoeng.htm">here</a>.
+  <br/>
+  Adapted from original post created on <time>2012-11-05</time>.
+</p>
+<pre class="highlight">
+var canvas, context2D, buffer, width, height, bufferSize;
+var yIndex = {}, palette = {}, sinc = {}, tmp = 0;
+
+window.onload = function() {
+  //Get context, precalc some variables, and create screen buffer
+  canvas = document.getElementById('canvas');
+  context2D = canvas.getContext('2d');
+  width = canvas.width;
+  height = canvas.height;
+  bufferSize = width * height;
+  buffer = context2D.createImageData(canvas.width, canvas.height);
+
+  //Precalc y*width values for each horizontal line
+  for (var y = 0; y < height; y++)
+    yIndex[y] = y * width;
+
+  //Precalc 256 color palette r,g,b values
+  for (var i = 0; i < 256; i++) {
+    palette[i] = {}
+    palette[i].r = ~~(128 + 128 * Math.sin(Math.PI * i / 64));
+    palette[i].g = ~~(128 + 128 * Math.sin(Math.PI * i / 96));
+    palette[i].b = ~~(128 + 128 * Math.sin(Math.PI * i / 128));
+  }
+
+  //Precalc Math.sin table
+  for (var i = 0; i < 1800; i++) {
+    sinc[i] = (Math.sin((Math.PI * i) / 180) * 1024);
+  }
+
+  requestAnimationFrame(update);
+}
+
+function update() {
+  var index, color, xc, yc;
+  tmp = (tmp + 1) % 720;
+
+  //Main loop with optimized magic plasma color formula
+  for (y = 0; y < height; y++) {
+    yc = 128 + ((sinc[(y << 1) + (tmp >> 1)] + sinc[y + (tmp << 1)] + (sinc[(y >> 1) + tmp] << 1)) >> 6);
+    for (x = 0; x < width; x++) {
+      xc = 128 + (((sinc[x + (tmp << 1)] << 1) + sinc[(x << 1) + (tmp >> 1)] + (sinc[x + tmp] << 1)) >> 6);
+
+      index = (yIndex[y] + x) << 2;             //current pixel
+      color = Math.abs(((yc * xc) >> 5) % 255); //current color
+      buffer.data[index++] = palette[color].r;
+      buffer.data[index++] = palette[color].g;
+      buffer.data[index++] = palette[color].b;
+      buffer.data[index++] = 255;
+    }
+  }
+
+  //Flip buffer to canvas
+  context2D.putImageData(buffer, 0, 0);
+  requestAnimationFrame(update);
+}
+</pre>
+<script>
+  var canvas, context2D, buffer, width, height, bufferSize;
+  var yIndex = {}, palette = {}, sinc = {}, tmp = 0;
+
+  window.onload = function() {
+    //Get context, precalc some variables, and create screen buffer
+    canvas = document.getElementById('canvas');
+    context2D = canvas.getContext('2d');
+    width = canvas.width;
+    height = canvas.height;
+    bufferSize = width * height;
+    buffer = context2D.createImageData(canvas.width, canvas.height);
+
+    //Precalc y*width values for each horizontal line
+    for (var y = 0; y < height; y++)
+      yIndex[y] = y * width;
+
+    //Precalc 256 color palette r,g,b values
+    for (var i = 0; i < 256; i++) {
+      palette[i] = {}
+      palette[i].r = ~~(128 + 128 * Math.sin(Math.PI * i / 64));
+      palette[i].g = ~~(128 + 128 * Math.sin(Math.PI * i / 96));
+      palette[i].b = ~~(128 + 128 * Math.sin(Math.PI * i / 128));
+    }
+
+    //Precalc Math.sin table
+    for (var i = 0; i < 1800; i++) {
+      sinc[i] = (Math.sin((Math.PI * i) / 180) * 1024);
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  function update() {
+    var index, color, xc, yc;
+    tmp = (tmp + 1) % 720;
+
+    //Main loop with optimized magic plasma color formula
+    for (y = 0; y < height; y++) {
+      yc = 128 + ((sinc[(y << 1) + (tmp >> 1)] + sinc[y + (tmp << 1)] + (sinc[(y >> 1) + tmp] << 1)) >> 6);
+      for (x = 0; x < width; x++) {
+        xc = 128 + (((sinc[x + (tmp << 1)] << 1) + sinc[(x << 1) + (tmp >> 1)] + (sinc[x + tmp] << 1)) >> 6);
+
+        index = (yIndex[y] + x) << 2;             //current pixel
+        color = Math.abs(((yc * xc) >> 5) % 255); //current color
+        buffer.data[index++] = palette[color].r;
+        buffer.data[index++] = palette[color].g;
+        buffer.data[index++] = palette[color].b;
+        buffer.data[index++] = 255;
+      }
+    }
+
+    //Flip buffer to canvas
+    context2D.putImageData(buffer, 0, 0);
+    requestAnimationFrame(update);
+  }
+</script>

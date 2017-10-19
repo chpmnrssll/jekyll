@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Home
+image: codeFocus.jpg
 ---
 <header class="header__plain">
   <div class="header__title">
@@ -8,20 +9,11 @@ title: Home
     <p class="header__sub-title">{{ page.title }}</p>
   </div>
 </header>
-<section class="full-size">
-  <section class="box">
-    <section class="box__large">
-      <section class="box">
-        <section class="box__large"></section>
-        <section class="box__med"></section>
-        <section class="box__small"></section>
-      </section>
-    </section>
-    <section class="box__med">
-      <section class="box">
-        <section class="box__large"></section>
-        <section class="box__med"></section>
-      </section>
-    </section>
+<link rel="import" href="{{ '/assets/components/perspective-card.html' | prepend: site.baseurl }}"></link>
+<div class="home">
+  <section class="home__features">
+    <perspective-card style="width: 16rem; height: 9rem;"><span slot="content">perspective-card element</span></perspective-card>
   </section>
-</section>
+  <section class="home__aside"></section>
+</div>
+{% include footer.html %}

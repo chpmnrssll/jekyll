@@ -1,0 +1,393 @@
+---
+layout: post
+title: Isometric Voxels
+sub-title: Heightmap Rendering
+date: 2017-10-17T03:00:00.000Z
+tags: HTML5 Javascript Canvas 2.5D Isometric Heightmap
+---
+<canvas width="256" height="256" id="canvas"></canvas>
+<p>
+  <br/>
+  2.5D Isometric projected heightmap effect. Code shows how to load a heightmap
+  image and convert to an imageData object, keyboard handling, viewport scrolling
+  and scaling, 2.5D rotation, and zero pixel overdraw.
+  <br/>
+  <br/>
+  Arrow keys to move
+  <br/>
+  +/- keys to zoom in/out
+  <br/>
+  <br/>
+  Adapted from original post created on <time>2012-11-06</time>.
+</p>
+<pre class="highlight">
+var canvas, context2D, buffer, heightmap, keyDown = {}, keyUp = {}, lastTime = new Date();
+const KEY = {
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+  ADD: 107,
+  SUB: 109
+};
+
+var viewport = {
+  x: 0,
+  y: 0,
+  size: 256,
+  scale: 0
+};
+
+window.onload = function() {
+  //Get context, precalc some variables, and create screen buffer
+  canvas = document.getElementById('canvas');
+  canvas.centerX = canvas.width / 2;
+  canvas.centerY = canvas.height / 2;
+  context2D = canvas.getContext('2d');
+  context2D.font = 'bold 10px sans-serif';
+  buffer = context2D.createImageData(canvas.width, canvas.height);
+  buffer.lineHeight = buffer.width * 4;
+
+  //Load heightmap image and convert to imageData object
+  var img = new Image();
+  img.src = "/assets/images/map.png";
+  img.onload = function() {
+    var hiddenCanvas = document.createElement('canvas');
+    var hiddenContext = hiddenCanvas.getContext("2d");
+    hiddenCanvas.width = img.width;
+    hiddenCanvas.height = img.height;
+    hiddenContext.drawImage(img, 0, 0, img.width, img.height, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
+    heightmap = hiddenContext.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+    //scale heightmap values (alpha channel) to lower range
+    for (var i = 0; i < heightmap.data.length; i += 4) {
+      heightmap.data[i + 3] /= 2;
+    }
+
+    requestAnimationFrame(update);
+  };
+
+  //Keyboard controls
+  document.onkeydown = function(event) {
+    for (var i in KEY) {
+      if (event.keyCode == KEY[i]) {
+        keyDown[event.keyCode] = true;
+        return false;
+      }
+    }
+  };
+
+  document.onkeyup = function(event) {
+    keyUp[event.keyCode] = true;
+  };
+
+};
+
+//Clears keyUp & keyDown buffers
+function clearKeys() {
+  for (var i in keyUp) {
+    if (keyUp[i]) {
+      keyDown[i] = false;
+      keyUp[i] = false;
+    }
+  }
+};
+
+//Checks key buffers and moves/scales viewport
+function checkKeys() {
+  var speed = 1 / ((viewport.scale + 1));
+  var xVel = 0;
+  var yVel = 0;
+
+  if (keyDown[KEY.RIGHT]) {
+    xVel += speed;
+    yVel -= speed;
+  }
+  if (keyDown[KEY.LEFT]) {
+    xVel -= speed;
+    yVel += speed;
+  }
+  if (keyDown[KEY.DOWN]) {
+    xVel += speed;
+    yVel += speed;
+  }
+  if (keyDown[KEY.UP]) {
+    xVel -= speed;
+    yVel -= speed;
+  }
+  if (keyUp[KEY.ADD]) {
+    viewport.scale++;
+    viewport.size = 255 >> viewport.scale;
+  }
+  if (keyUp[KEY.SUB]) {
+    if (viewport.scale > 0) {
+      viewport.scale--;
+      viewport.size = 255 >> viewport.scale;
+    }
+  }
+
+  setViewport(viewport.x + xVel, viewport.y + yVel);
+  clearKeys();
+};
+
+//Set viewport position clipped to heightmap dimensions
+function setViewport(x, y) {
+  if ((x > 0) && (x < heightmap.width - viewport.size)) {
+    viewport.x = x;
+  }
+
+  if ((y > 0) && (y < heightmap.height - viewport.size)) {
+    viewport.y = y;
+  }
+};
+
+function update() {
+  var canvasCenterX = canvas.centerX;
+  var canvasCenterY = canvas.centerY >> 1;
+  var heightmapData = heightmap.data;
+  var heightmapWidth = heightmap.width;
+  var bufferData = buffer.data;
+  var bufferWidth = buffer.width;
+  var bufferLineHeight = buffer.lineHeight;
+  var bufferDataLength = bufferData.length;
+  var viewportScale = viewport.scale;
+
+  //clear buffer
+  for (var i = 0; i < bufferDataLength; i += 4) {
+    bufferData[i] = 0;
+    bufferData[i + 1] = 0;
+    bufferData[i + 2] = 0;
+    bufferData[i + 3] = 255;
+  }
+
+  //draw heightmap
+  for (var u = 256; u > 0; u--) {
+    for (var v = 256; v > 0; v--) {
+      var mapX = Math.ceil(viewport.x + (u >> viewportScale));
+      var mapY = Math.ceil(viewport.y + (v >> viewportScale));
+
+      var mapIndex = ((mapY * heightmapWidth) + mapX) << 2;
+      var r = heightmapData[mapIndex];
+      var g = heightmapData[mapIndex + 1];
+      var b = heightmapData[mapIndex + 2];
+      var height = heightmapData[mapIndex + 3];
+
+      var screenX = canvasCenterX + (u - v);
+      var screenY = canvasCenterY + ((u + v) >> 1) - height;
+      var index = ((screenY * bufferWidth) + screenX) << 2;
+      var count = 0;
+
+      if (index < bufferLineHeight) {
+        break;
+      }
+
+      while (height > 0) {
+        bufferData[index] = r - count;
+        bufferData[index + 1] = g - count;
+        bufferData[index + 2] = b - count;
+        bufferData[index + 3] = 255;
+        index += bufferLineHeight;
+        height -= 2;
+        if (count < 255) {
+          count += 8;
+        }
+        if ((bufferData[index] != 0) && (bufferData[index + 1] != 0) && (bufferData[index + 2] != 0)) {
+          break; //no overdraw
+        }
+      }
+    }
+  }
+
+  //flip buffer
+  context2D.putImageData(buffer, 0, 0);
+
+  checkKeys();
+  requestAnimationFrame(update);
+};
+</pre>
+
+<script>
+var canvas, context2D, buffer, heightmap, keyDown = {}, keyUp = {}, lastTime = new Date();
+const KEY = {
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+  ADD: 107,
+  SUB: 109
+};
+
+var viewport = {
+  x: 0,
+  y: 0,
+  size: 256,
+  scale: 0
+};
+
+window.onload = function() {
+  //Get context, precalc some variables, and create screen buffer
+  canvas = document.getElementById('canvas');
+  canvas.centerX = canvas.width / 2;
+  canvas.centerY = canvas.height / 2;
+  context2D = canvas.getContext('2d');
+  context2D.font = 'bold 10px sans-serif';
+  buffer = context2D.createImageData(canvas.width, canvas.height);
+  buffer.lineHeight = buffer.width * 4;
+
+  //Load heightmap image and convert to imageData object
+  var img = new Image();
+  img.src = "/assets/images/map.png";
+  img.onload = function() {
+    var hiddenCanvas = document.createElement('canvas');
+    var hiddenContext = hiddenCanvas.getContext("2d");
+    hiddenCanvas.width = img.width;
+    hiddenCanvas.height = img.height;
+    hiddenContext.drawImage(img, 0, 0, img.width, img.height, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
+    heightmap = hiddenContext.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+    //scale heightmap values (alpha channel) to lower range
+    for (var i = 0; i < heightmap.data.length; i += 4) {
+      heightmap.data[i + 3] /= 2;
+    }
+
+    requestAnimationFrame(update);
+  };
+
+  //Keyboard controls
+  document.onkeydown = function(event) {
+    for (var i in KEY) {
+      if (event.keyCode == KEY[i]) {
+        keyDown[event.keyCode] = true;
+        return false;
+      }
+    }
+  };
+
+  document.onkeyup = function(event) {
+    keyUp[event.keyCode] = true;
+  };
+
+};
+
+//Clears keyUp & keyDown buffers
+function clearKeys() {
+  for (var i in keyUp) {
+    if (keyUp[i]) {
+      keyDown[i] = false;
+      keyUp[i] = false;
+    }
+  }
+};
+
+//Checks key buffers and moves/scales viewport
+function checkKeys() {
+  var speed = 1 / ((viewport.scale + 1));
+  var xVel = 0;
+  var yVel = 0;
+
+  if (keyDown[KEY.RIGHT]) {
+    xVel += speed;
+    yVel -= speed;
+  }
+  if (keyDown[KEY.LEFT]) {
+    xVel -= speed;
+    yVel += speed;
+  }
+  if (keyDown[KEY.DOWN]) {
+    xVel += speed;
+    yVel += speed;
+  }
+  if (keyDown[KEY.UP]) {
+    xVel -= speed;
+    yVel -= speed;
+  }
+  if (keyUp[KEY.ADD]) {
+    viewport.scale++;
+    viewport.size = 255 >> viewport.scale;
+  }
+  if (keyUp[KEY.SUB]) {
+    if (viewport.scale > 0) {
+      viewport.scale--;
+      viewport.size = 255 >> viewport.scale;
+    }
+  }
+
+  setViewport(viewport.x + xVel, viewport.y + yVel);
+  clearKeys();
+};
+
+//Set viewport position clipped to heightmap dimensions
+function setViewport(x, y) {
+  if ((x > 0) && (x < heightmap.width - viewport.size)) {
+    viewport.x = x;
+  }
+
+  if ((y > 0) && (y < heightmap.height - viewport.size)) {
+    viewport.y = y;
+  }
+};
+
+function update() {
+  var canvasCenterX = canvas.centerX;
+  var canvasCenterY = canvas.centerY >> 1;
+  var heightmapData = heightmap.data;
+  var heightmapWidth = heightmap.width;
+  var bufferData = buffer.data;
+  var bufferWidth = buffer.width;
+  var bufferLineHeight = buffer.lineHeight;
+  var bufferDataLength = bufferData.length;
+  var viewportScale = viewport.scale;
+
+  //clear buffer
+  for (var i = 0; i < bufferDataLength; i += 4) {
+    bufferData[i] = 0;
+    bufferData[i + 1] = 0;
+    bufferData[i + 2] = 0;
+    bufferData[i + 3] = 255;
+  }
+
+  //draw heightmap
+  for (var u = 256; u > 0; u--) {
+    for (var v = 256; v > 0; v--) {
+      var mapX = Math.ceil(viewport.x + (u >> viewportScale));
+      var mapY = Math.ceil(viewport.y + (v >> viewportScale));
+
+      var mapIndex = ((mapY * heightmapWidth) + mapX) << 2;
+      var r = heightmapData[mapIndex];
+      var g = heightmapData[mapIndex + 1];
+      var b = heightmapData[mapIndex + 2];
+      var height = heightmapData[mapIndex + 3];
+
+      var screenX = canvasCenterX + (u - v);
+      var screenY = canvasCenterY + ((u + v) >> 1) - height;
+      var index = ((screenY * bufferWidth) + screenX) << 2;
+      var count = 0;
+
+      if (index < bufferLineHeight) {
+        break;
+      }
+
+      while (height > 0) {
+        bufferData[index] = r - count;
+        bufferData[index + 1] = g - count;
+        bufferData[index + 2] = b - count;
+        bufferData[index + 3] = 255;
+        index += bufferLineHeight;
+        height -= 2;
+        if (count < 255) {
+          count += 8;
+        }
+        if ((bufferData[index] != 0) && (bufferData[index + 1] != 0) && (bufferData[index + 2] != 0)) {
+          break; //no overdraw
+        }
+      }
+    }
+  }
+
+  //flip buffer
+  context2D.putImageData(buffer, 0, 0);
+
+  checkKeys();
+  requestAnimationFrame(update);
+};
+</script>

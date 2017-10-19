@@ -2,7 +2,11 @@
 layout: default
 ---
 <article class="article">
+  {% if page.image %}
   <header class="header__parallax" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
+  {% else %}
+  <header class="header__plain">
+  {% endif %}
     <div class="header__title">
       <h1 class="header__main-title"><em>{{ page.title }}</em></h1>
       <p class="header__sub-title">{{ page.sub-title }}</p>
@@ -11,26 +15,20 @@ layout: default
   </header>
   {{ content }}
   <footer class="article__footer">
-    <section class="article__author-info">
-      {% avatar {{ site.github_username }} %}
-      <span class="article__author-name">{{ site.author }}</span>
-    </section>
+    <section class="article__author-avatar">{% avatar {{ site.github_username }} %}</section>
+    <section class="article__author-name">{{ site.author }}</section>
     <section class="article__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
-    <section class="article__share">
-      Share:
-      &nbsp;
-      <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-      &nbsp;
-      <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-      &nbsp;
-      <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
-    </section>
     <section class="article__tags">
       Tags:
-      &nbsp;
       {% for tag in page.tags %}
-      <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}, </a>
+      <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}</a>
       {% endfor %}
+    </section>
+    <section class="article__share">
+      Share:
+      <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+      <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
     </section>
   </footer>
 </article>
