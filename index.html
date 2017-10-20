@@ -13,6 +13,7 @@ image: codeFocus.jpg
 <div class="home">
   <section class="home__features">
     <perspective-card style="width: 16rem; height: 9rem;"><span slot="content">perspective-card element</span></perspective-card>
+
     <section class="featured-items">
       {% for post in paginator.posts %}
       <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
