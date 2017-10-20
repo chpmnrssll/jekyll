@@ -13,6 +13,21 @@ image: codeFocus.jpg
 <div class="home">
   <section class="home__features">
     <perspective-card style="width: 16rem; height: 9rem;"><span slot="content">perspective-card element</span></perspective-card>
+    <section class="featured-items">
+      {% for post in paginator.posts %}
+      <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+        <header class="header__plain">
+          <div class="header__title">
+            <h3 class="header__main-title"><em>{{ post.title }}</em></h3>
+            <span class="header__sub-title">{{ post.sub-title }}</span>
+          </div>
+          <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+        </header>
+      </a>
+      {% endfor %}
+    </section>
+    {% include pagination.html %}
+
   </section>
   <section class="home__aside"></section>
 </div>

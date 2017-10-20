@@ -7,9 +7,8 @@ banner-title:      "add banner title"
 banner-desc:       "add banner description"
 discus_identifier: "add your discus identifier"
 analytics:         "add your analytics identifier"
-permalink:         "/blog/:year/:month/:day/:title"
 paginate_path:     "/page:num/"
-paginate:          2
+paginate:          6
 
 sass:
   style:    "compressed"

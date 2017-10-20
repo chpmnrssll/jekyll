@@ -9,7 +9,7 @@ title: Articles
   </div>
 </header>
 <section class="featured-items">
-  {% for post in site.posts %}
+  {% for post in paginator.posts %}
   <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
     <header class="header__plain">
       <div class="header__title">
