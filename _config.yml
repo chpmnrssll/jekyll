@@ -1,21 +1,16 @@
-title:             "Projects, Portfolio, & Posts"
-description:       "All Things Programming..."
-author:            "Russell Chapman"
-github_username:   "chpmnrssll"
-logo:              "logo"
-banner-title:      "add banner title"
-banner-desc:       "add banner description"
-discus_identifier: "add your discus identifier"
-analytics:         "add your analytics identifier"
-paginate_path:     "/page:num/"
+title:             Projects, Portfolio, & Posts
+description:       All Things Programming...
+author:            Russell Chapman
+github_username:   chpmnrssll
+paginate_path:     /page:num/
 paginate:          6
 
 sass:
-  style:    "compressed"
-  sass_dir: "/assets/css"
+  style:    compressed
+  sass_dir: /assets/css
 
 plugins:
-  - "jekyll-feed"
-  - "jekyll-seo-tag"
-  - "jekyll-sitemap"
-  - "jekyll-avatar"
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-avatar

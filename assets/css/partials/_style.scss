@@ -1,0 +1,66 @@
+body {
+  color: var(--color-primary-light4);
+
+  // fallback w/o custom properties
+  background-color: hsl($default-hue, $default-saturation, $default-lightness);
+  // fallback w/o gradient
+  background-color: var(--color-primary-dark1, hsl($default-hue, $default-saturation, $default-lightness));
+  background-image: linear-gradient(90deg, var(--color-primary-dark1) 0%, var(--color-primary-dark2) 100%);
+  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-light5);
+  text-shadow: 0px 1px 2px var(--color-primary-dark5);
+}
+
+.book {
+  margin: 1vw;
+  width: 10vw;
+  background-color: var(--color-primary-dark1);
+}
+
+.home {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--color-primary-dark1) 0%,
+      hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 50%,
+      var(--color-primary-dark2) 100%
+    ),
+    url("/assets/images/codeFocus.jpg");
+
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
+}
+
+.featured {
+  // Responsive CSS grid
+  padding: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;  // mobile-s
+  @include mediaQuery("mobile-m") { grid-template-columns: 1fr; }
+  @include mediaQuery("mobile-l") { grid-template-columns: 1fr; }
+  @include mediaQuery("tablet") { grid-template-columns: repeat(2, 1fr); }
+  @include mediaQuery("laptop-s") { grid-template-columns: repeat(2, 1fr); }
+  @include mediaQuery("laptop-m") { grid-template-columns: repeat(3, 1fr); }
+  @include mediaQuery("laptop-l") { grid-template-columns: repeat(3, 1fr); }
+  @include mediaQuery("4k") { grid-template-columns: repeat(3, 1fr); }
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
+  box-shadow: 0px 0px 8px var(--color-primary-dark3);
+
+  & * {
+    text-shadow: 1px 1px 16px var(--color-primary-dark5);
+  }
+
+  @at-root #{&}__item {
+    //width: 16rem;
+    //height: 9rem;
+  }
+}

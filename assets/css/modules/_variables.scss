@@ -1,13 +1,18 @@
+// Defaults for fallbacks
+$default-hue: 200;
+$default-saturation: 75%;
+$default-lightness: 36%;
+
+// CSS custom properties/variables
 :root {
-  // CSS custom properties (variables) & calculations
-  --hue: 200;
-  --lightness: 20%;
-  --saturation: 75%;
+  --hue: $default-hue;
+  --lightness: $default-lightness;
+  --saturation: $default-saturation;
 
   --nav-width: 10rem;
-  --animation-speed: 250ms;
+  --animation-speed: 200ms;
 
-  --color-primary-light5: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 90%));
+  --color-primary-light5: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 80%));
   --color-primary-light4: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 60%));
   --color-primary-light3: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 40%));
   --color-primary-light2: hsl(var(--hue), var(--saturation), calc(var(--lightness) + 20%));
@@ -17,7 +22,7 @@
   --color-primary-dark2: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 20%));
   --color-primary-dark3: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 40%));
   --color-primary-dark4: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 60%));
-  --color-primary-dark5: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 90%));
+  --color-primary-dark5: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 80%));
 
   --color-secondary-light5: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 90%));
   --color-secondary-light4: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + 60%));

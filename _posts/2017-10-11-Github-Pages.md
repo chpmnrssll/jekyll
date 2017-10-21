@@ -54,6 +54,10 @@ tags: GitHub Pages Ruby Gem Jekyll Markdown
 - [CSS/BEM](https://en.bem.info/methodology/quick-start/)
 - [How to structure a Sass project](http://thesassway.com/beginner/how-to-structure-a-sass-project)
 - [CLEAN OUT YOUR SASS JUNK-DRAWER](http://gist.io/4436524)
+- [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- [3D CSS Camera](https://gist.github.com/abernier/1571037)
+- [CSS 3D Transforms](https://desandro.github.io/3dtransforms/docs/card-flip.html)
+- [CSS Grid by example](https://gridbyexample.com/learn/)
 
 #### Other
 - [Building a Vertical Timeline With CSS and a Touch of JavaScript](https://codepen.io/tutsplus/pen/QNeJgR)
@@ -66,3 +70,4 @@ tags: GitHub Pages Ruby Gem Jekyll Markdown
 - [Unnamed Menu - CSS](https://codepen.io/z-/pen/evxZpZ)
 - [Slide Out Footer](https://codepen.io/rileyjshaw/pen/GlBHC)
 - [Parallax Header](https://codepen.io/anon/pen/RZmMJO)
+- [Keith Clark Articles](http://keithclark.co.uk/articles/)

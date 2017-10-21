@@ -1,11 +1,10 @@
 a {
   text-decoration: none;
   color: var(--color-primary-light1);
-  text-shadow: 0px 1px 2px var(--color-primary-dark5);
-
+  text-shadow: 0px 0px 8px var(--color-primary-dark5);
   &:active, &:hover {
-    color: var(--color-primary-light3);
-    text-shadow: 0px 1px 2px var(--color-primary-dark5), 0 0 8px var(--color-primary-light2);
+    color: var(--color-primary-light4);
+    text-shadow: 0px 0px 8px var(--color-primary-dark5), 0 0 8px var(--color-primary-light2);
   }
 }
 
@@ -19,7 +18,8 @@ a {
   z-index: 100;
   padding: 0.25rem;
   font-size: 1.5rem;
-  background: var(--color-primary-dark2, 200, 75%, 20%); // fallback
+  background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
+  background: var(--color-primary-dark2, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
   background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-dark2) 100%);
   @include prefix((border-radius: 50% 0 0 0), webkit moz ms o);
 }
@@ -33,7 +33,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: var(--color-primary-dark3, 200, 75%, 20%); // fallback
+  background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
+  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
   background: linear-gradient(90deg, var(--color-primary-dark3) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
   @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
   @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
@@ -68,7 +69,8 @@ a {
     font-size: 1.5rem;
     position: fixed;
     cursor: pointer;
-    background: var(--color-primary-dark3, 200, 75%, 20%); // fallback
+    background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
+    background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
     background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-dark3) 100%);
     @include prefix((border-radius: 0 0 50% 0), webkit moz ms o);
   }
