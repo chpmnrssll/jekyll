@@ -17,47 +17,6 @@ NodeList.prototype.addEventListener = function(event, callback, options) {
   });
 }
 
-// 3D article summary cards
-const cards = document.querySelectorAll(".featured-items__3DCard");
-
-if (cards) {
-  // calculate rotation and parallax, then set CSS custom properties
-  cards.addEventListener("mousemove", (event) => {
-    const currentTarget = event.currentTarget;
-    requestAnimationFrame(() => {
-      const width = currentTarget.clientWidth;
-      const height = currentTarget.clientHeight;
-      const halfWidth = width >> 1;
-      const halfHeight = height >> 1;
-
-      // offset from center of card for rotation, range(-0.5, 0.5)
-      const scrollOffset = currentTarget.offsetParent.offsetTop + currentTarget.offsetTop - window.pageYOffset;
-      const xOffset = ((event.clientX - currentTarget.offsetLeft) / width) - 0.5;
-      const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
-
-      // parallax background-position, range(0, 50)
-      const xPos = (xOffset * halfWidth) >> 1;
-      const yPos = (yOffset * halfHeight) >> 1;
-
-      currentTarget.style.setProperty("--x-offset", xOffset);
-      currentTarget.style.setProperty("--y-offset", yOffset);
-      currentTarget.style.setProperty("--x-pos", xPos);
-      currentTarget.style.setProperty("--y-pos", yPos);
-    });
-  }, { passive: true });
-
-  // reset card rotation & background-position
-  cards.addEventListener("mouseleave", (event) => {
-    const currentTarget = event.currentTarget;
-    requestAnimationFrame(() => {
-      currentTarget.style.setProperty("--x-offset", 0);
-      currentTarget.style.setProperty("--y-offset", 0);
-      currentTarget.style.setProperty("--x-pos", 0);
-      currentTarget.style.setProperty("--y-pos", 0);
-    });
-  }, { passive: true });
-}
-
 // load themeColor from localStorage, { hex, h, s, l }
 let themeColor = JSON.parse(localStorage.getItem("themeColor"));
 if (themeColor) {

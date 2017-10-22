@@ -8,8 +8,8 @@ tags: Ascii Art Generator
 ---
 <header class="plain-header">
   <div class="plain-header__title">
-    <h1 class="plain-header__main-title">{{ page.title }}</h1>
-    <p class="plain-header__sub-title">{{ page.sub-title }}</p>
+    <h1 class="plain-header__title--main">{{ page.title }}</h1>
+    <p class="plain-header__title--sub">{{ page.sub-title }}</p>
   </div>
 </header>
 <div id="output" style="height:100vh"></div>

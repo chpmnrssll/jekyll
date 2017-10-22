@@ -3,7 +3,7 @@
     <style>
       :host {
         display: block;
-        perspective: 30rem;
+        perspective: 25rem;
         /*overflow: hidden;*/
       }
       .container {
@@ -12,10 +12,10 @@
         pointer-events: none;
         transform-style: preserve-3d;
         box-shadow: 0px 0px 32px var(--color-primary-dark5);
-        -webkit-transform: rotateY(calc(var(--x-offset) * -30deg)) rotateX(calc(var(--y-offset) * 30deg));
-        -moz-transform: rotateY(calc(var(--x-offset) * -30deg)) rotateX(calc(var(--y-offset) * 30deg));
-        -o-transform: rotateY(calc(var(--x-offset) * -30deg)) rotateX(calc(var(--y-offset) * 30deg));
-        transform: rotateY(calc(var(--x-offset) * -30deg)) rotateX(calc(var(--y-offset) * 30deg));
+        -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+        -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+        -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+        transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         -webkit-transition: all var(--animation-speed) ease-out;
         -moz-transition: all var(--animation-speed) ease-out;
         -o-transition: all var(--animation-speed) ease-out;
@@ -24,11 +24,11 @@
       /* gradient overlay */
       .container::before {
         content: "";
-        opacity: 0.2;
+        opacity: 0.3;
         width: 100%;
         height: 100%;
         position: absolute;
-        background: linear-gradient(315deg, var(--color-secondary-dark5) 0%, var(--color-secondary-light1) 100%);
+        background: linear-gradient(315deg, var(--color-primary-dark5) 0%, var(--color-primary-light1) 100%);
       }
       .background-image {
         z-index: -1;
@@ -83,11 +83,12 @@
 
         this.addEventListener("mouseleave", (event) => {
           const currentTarget = event.currentTarget;
-          requestAnimationFrame(() => {
+          const animationSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--animation-speed").slice(0, -2));
+          setTimeout(() => {
             // reset card rotation
             currentTarget.style.setProperty("--x-offset", 0);
             currentTarget.style.setProperty("--y-offset", 0);
-          });
+          }, animationSpeed);
         }, { passive: true });
 
       }

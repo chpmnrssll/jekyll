@@ -5,8 +5,8 @@ image: codeFocus.jpg
 ---
 <header class="header__plain">
   <div class="header__title">
-    <h1 class="header__main-title"><em>Russell Chapman</em></h1>
-    <p class="header__sub-title">{{ page.title }}</p>
+    <h1 class="header__title--main"><em>Russell Chapman</em></h1>
+    <section class="header__title--sub">{{ page.title }}</section>
   </div>
 </header>
 <div class="home">
@@ -20,7 +20,7 @@ image: codeFocus.jpg
       {% endif %}
         <header class="header__plain">
           <section class="header__title">
-            <h3 class="header__title--main"><em>{{ post.title }}</em></h3>
+            <h4 class="header__title--main"><em>{{ post.title }}</em></h4>
             <section class="header__title--sub">{{ post.sub-title }}</section>
           </section>
           <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
