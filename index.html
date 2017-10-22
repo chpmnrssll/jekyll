@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: Artcles
 image: codeFocus.jpg
 ---
 <header class="header__plain">
@@ -9,7 +9,6 @@ image: codeFocus.jpg
     <p class="header__sub-title">{{ page.title }}</p>
   </div>
 </header>
-<link rel="import" href="{{ '/assets/components/perspective-card.html' | prepend: site.baseurl }}"></link>
 <div class="home">
   <section class="featured">
     {% for post in paginator.posts %}
@@ -17,19 +16,19 @@ image: codeFocus.jpg
       {% if post.image == null %}
       <perspective-card class="featured__item">
       {% else %}
-      <perspective-card class="featured__item" parallax-image="{{ '/assets/images/' | prepend: site.url | append: post.image }}">
+      <perspective-card class="featured__item" background-image="{{ '/assets/images/' | prepend: site.url | append: post.image }}">
       {% endif %}
         <header class="header__plain">
           <section class="header__title">
-            <h3 class="header__main-title"><em>{{ post.title }}</em></h3>
-            <section class="header__sub-title">{{ post.sub-title }}</section>
+            <h3 class="header__title--main"><em>{{ post.title }}</em></h3>
+            <section class="header__title--sub">{{ post.sub-title }}</section>
           </section>
           <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
         </header>
       </perspective-card>
     </a>
     {% endfor %}
-    {% include pagination.html %}
   </section>
+  {% include pagination.html %}
 </div>
 {% include footer.html %}

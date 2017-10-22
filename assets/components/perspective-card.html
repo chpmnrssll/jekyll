@@ -21,7 +21,16 @@
         -o-transition: all var(--animation-speed) ease-out;
         transition: all var(--animation-speed) ease-out;
       }
-      .parallax-image {
+      /* gradient overlay */
+      .container::before {
+        content: "";
+        opacity: 0.2;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(315deg, var(--color-secondary-dark5) 0%, var(--color-secondary-light1) 100%);
+      }
+      .background-image {
         z-index: -1;
         top: 0%;
         width: 100%;
@@ -30,20 +39,11 @@
         transform-style: preserve-3d;
       }
       ::slotted(*) {
+        transform-style: preserve-3d;
         -webkit-transform: translateZ(1rem);
         -moz-transform: translateZ(1rem);
         -o-transform: translateZ(1rem);
         transform: translateZ(1rem);
-      }
-      /* gradient overlay */
-      .container::before {
-        content: "";
-        z-index: 0;
-        opacity: 0.25;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: linear-gradient(215deg, var(--color-secondary-dark3) 0%, var(--color-secondary) 100%);
       }
     </style>
     <div class="container">
@@ -69,23 +69,15 @@
           requestAnimationFrame(() => {
             const width = currentTarget.clientWidth;
             const height = currentTarget.clientHeight;
-            //const halfWidth = width >> 1;
-            //const halfHeight = height >> 1;
 
             // offset from center of card, range(-0.5, 0.5)
             const scrollOffset = currentTarget.offsetParent.offsetTop + currentTarget.offsetTop - window.pageYOffset;
             const xOffset = ((event.clientX - this.offsetLeft) / width) - 0.5;
             const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
 
-            // mouse position, range(0, 50)
-            //const xPos = (xOffset * halfWidth) >> 1;
-            //const yPos = (yOffset * halfHeight) >> 1;
-
             // set CSS custom properties/variables
             this.style.setProperty("--x-offset", xOffset);
             this.style.setProperty("--y-offset", yOffset);
-            //this.style.setProperty("--x-pos", xPos);
-            //this.style.setProperty("--y-pos", yPos);
           });
         }, { passive: true });
 
@@ -95,25 +87,21 @@
             // reset card rotation
             currentTarget.style.setProperty("--x-offset", 0);
             currentTarget.style.setProperty("--y-offset", 0);
-
-            // reset background-position
-            //currentTarget.style.setProperty("--x-pos", 0);
-            //currentTarget.style.setProperty("--y-pos", 0);
           });
         }, { passive: true });
 
       }
 
       static get observedAttributes() {
-        return [ "parallax-image" ];
+        return [ "background-image" ];
       }
 
       attributeChangedCallback(attr, oldValue, newValue) {
         //console.log(attr, oldValue, newValue);
-        if (attr === "parallax-image") {
+        if (attr === "background-image") {
           if (!this.parallaxImage) {
             this.parallaxImage = new Image();
-            this.parallaxImage.classList.add("parallax-image")
+            this.parallaxImage.classList.add("background-image")
           }
           this.parallaxImage.src = newValue;
           this.container.appendChild(this.parallaxImage);

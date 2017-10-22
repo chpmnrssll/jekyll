@@ -2,9 +2,15 @@ a {
   text-decoration: none;
   color: var(--color-primary-light1);
   text-shadow: 0px 0px 8px var(--color-primary-dark5);
+  &.disabled {
+    color: var(--color-primary-dark1);
+    text-shadow: 0px 0px 8px var(--color-primary-dark3);
+    pointer-events: none;
+    cursor: default;
+  }
   &:active, &:hover {
-    color: var(--color-primary-light4);
-    text-shadow: 0px 0px 8px var(--color-primary-dark5), 0 0 8px var(--color-primary-light2);
+    color: var(--color-primary-light3);
+    text-shadow: 0 0 8px var(--color-primary-light2);
   }
 }
 

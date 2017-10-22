@@ -32,16 +32,27 @@ layout: default
     </section>
   </footer>
 </article>
-<section class="featured-items">
+
+<div class="home">
+<section class="featured">
   {% for post in site.posts offset:0 limit:6 %}
-    <a class="featured-items__3DCard" href="{{ post.url | prepend: site.url }}" style="background-image: url({{ '/assets/images/' | prepend: site.url | append: post.image }});">
+  <a href="{{ post.url | prepend: site.url }}">
+    {% if post.image == null %}
+    <perspective-card class="featured__item">
+    {% else %}
+    <perspective-card class="featured__item" background-image="{{ '/assets/images/' | prepend: site.url | append: post.image }}">
+    {% endif %}
       <header class="header__plain">
-        <div class="header__title">
-          <h3 class="header__main-title"><em>{{ post.title }}</em></h3>
-          <span class="header__sub-title">{{ post.sub-title }}</span>
-        </div>
+        <section class="header__title">
+          <h3 class="header__title--main"><em>{{ post.title }}</em></h3>
+          <section class="header__title--sub">{{ post.sub-title }}</section>
+        </section>
         <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
       </header>
-    </a>
+    </perspective-card>
+  </a>
   {% endfor %}
 </section>
+</div>
+
+{% include footer.html %}
