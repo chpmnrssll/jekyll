@@ -1,16 +1,16 @@
 a {
   text-decoration: none;
   color: var(--color-primary-light1);
-  text-shadow: 0px 0px 8px var(--color-primary-dark5);
+  //text-shadow: 0px 0px 8px var(--color-primary-dark5);
   &.disabled {
     color: var(--color-primary-dark1);
-    text-shadow: 0px 0px 8px var(--color-primary-dark3);
+    //text-shadow: 0px 0px 8px var(--color-primary-dark3);
     pointer-events: none;
     cursor: default;
   }
   &:active, &:hover {
     color: var(--color-primary-light3);
-    text-shadow: 0 0 8px var(--color-primary-light2);
+    //text-shadow: 0 0 8px var(--color-primary-light2);
   }
 }
 
@@ -42,7 +42,7 @@ a {
   background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
   background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
   background: linear-gradient(90deg, var(--color-primary-dark3) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
-  @include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+  @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
   @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
 
   @at-root #{&}__link {

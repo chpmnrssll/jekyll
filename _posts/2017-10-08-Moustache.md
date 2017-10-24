@@ -1,6 +1,6 @@
 ---
 layout: post
-image: moustacheGlass.jpg
+image: backgrounds/moustacheGlass.jpg
 title: Moustache
 sub-title: Hairy Lipsum Generator
 date: 2017-10-08T00:00:00.000Z

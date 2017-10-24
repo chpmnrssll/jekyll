@@ -11,15 +11,15 @@
         height: 100%;
         pointer-events: none;
         transform-style: preserve-3d;
-        box-shadow: 0px 0px 32px var(--color-primary-dark5);
+        /*box-shadow: 0px 0px 32px var(--color-primary-dark5);*/
         -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
-        -webkit-transition: all var(--animation-speed) ease-out;
-        -moz-transition: all var(--animation-speed) ease-out;
-        -o-transition: all var(--animation-speed) ease-out;
-        transition: all var(--animation-speed) ease-out;
+        -webkit-transition: transform var(--animation-speed) ease-out;
+        -moz-transition: transform var(--animation-speed) ease-out;
+        -o-transition: transform var(--animation-speed) ease-out;
+        transition: transform var(--animation-speed) ease-out;
       }
       /* gradient overlay */
       .container::before {

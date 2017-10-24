@@ -11,21 +11,22 @@
   }
   @at-root #{&}__item {
     time {
+      display: block;
       color: var(--color-secondary-light1);
     }
     img {
-      width: 4rem;
-      height: 4rem;
+      width: 16rem;
+      height: 9rem;
     }
     &:nth-child(odd) {
       grid-column: 1;
       margin-right: 1rem;
-      padding-bottom: 8rem;
+      padding-bottom: 4.5rem;
       text-align: right;
     }
     &:nth-child(even) {
       grid-column: 3;
-      padding-top: 8rem;
+      padding-top: 4.5rem;
       text-align: left;
     }
   }

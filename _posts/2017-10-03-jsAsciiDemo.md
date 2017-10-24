@@ -1,6 +1,6 @@
 ---
 layout: default
-image: ascii.jpg
+image: backgrounds/ascii.jpg
 title: Image to ASCII
 sub-title: Javascript + HTML5 Canvas Demo
 date: 2017-10-12T00:00:00.000Z

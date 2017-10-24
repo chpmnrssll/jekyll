@@ -1,6 +1,6 @@
 ---
 layout: post
-image: why-web-components.jpg
+image: backgrounds/why-web-components.jpg
 title: Vanilla JS Web Components
 sub-title: Using the Custom Elements API
 date: 2017-10-22T00:00:00.000Z

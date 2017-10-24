@@ -1,6 +1,6 @@
 ---
 layout: post
-image: jekyll-github.jpg
+image: backgrounds/jekyll-github.jpg
 title: GitHub Pages
 sub-title: Hosting, Markdown, and Static Site Generator
 date: 2017-10-21T00:00:00.000Z
