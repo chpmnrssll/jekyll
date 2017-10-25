@@ -8,7 +8,7 @@ title: Artcles
     <section class="header__title--sub">{{ page.title }}</section>
   </div>
 </header>
-<div class="home">
+<main>
   <section class="featured">
     {% for post in paginator.posts %}
     <a href="{{ post.url | prepend: site.url }}">
@@ -29,5 +29,5 @@ title: Artcles
     {% endfor %}
   </section>
   {% include pagination.html %}
-</div>
+</main>
 {% include footer.html %}

@@ -1,47 +1,42 @@
 body {
-  color: var(--color-primary-light4);
+  color: hsl($default-hue, $default-saturation, 90%);
+  color: var(--color-primary-light9);
 
-  // fallback w/o custom properties
+  // fallback without custom properties, without gradient, & full gradient
   background-color: hsl($default-hue, $default-saturation, $default-lightness);
-  // fallback w/o gradient
-  background-color: var(--color-primary-dark1, hsl($default-hue, $default-saturation, $default-lightness));
-  background-image: linear-gradient(90deg, var(--color-primary-dark1) 0%, var(--color-primary-dark2) 100%);
-  //@include prefix((transition: all var(--animation-speed) ease-out), webkit moz ms o);
+  background-color: var(--color-primary, hsl($default-hue, $default-saturation, $default-lightness));
+  background-image: linear-gradient(45deg, var(--color-primary-dark5) 0%, var(--color-primary-dark1) 100%);
+
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-primary-light5);
-  text-shadow: 0px 1px 2px var(--color-primary-dark5);
+  color: hsl($default-hue, $default-saturation, 90%);
+  color: var(--color-primary-light9);
+  text-shadow: 0px 1px 2px var(--color-primary-dark9);
 }
 
-.home {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
-  background-image:
-    linear-gradient(
-      180deg,
-      var(--color-primary-dark1) 0%,
-      hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 50%,
-      var(--color-primary-dark2) 100%
-    ),
-    url("/assets/images/backgrounds/codeFocus.jpg");
-
+main {
   padding: 1rem;
   display: grid;
   grid-template-columns: 1fr;
+
+  // fallback without custom properties, without gradient, & full gradient
+  background-color: hsl($default-hue, $default-saturation, $default-lightness);
+  background-color: var(--color-primary, hsl($default-hue, $default-saturation, $default-lightness));
+  background-image: linear-gradient(-45deg, var(--color-primary-dark5) 0%, var(--color-primary-dark1) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  box-shadow: 0px 0px 2rem var(--color-primary-dark9);
 }
 
 .featured {
-  // Responsive CSS grid
-  padding: 1rem;
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
   align-items: center;
 
+  // Responsive grid
   grid-template-columns: 1fr;  // mobile-s
   @include mediaQuery("mobile-m") { grid-template-columns: repeat(2, 1fr); }
   @include mediaQuery("mobile-l") { grid-template-columns: repeat(2, 1fr); }
@@ -51,28 +46,22 @@ h1, h2, h3, h4, h5, h6 {
   @include mediaQuery("laptop-l") { grid-template-columns: repeat(3, 1fr); }
   @include mediaQuery("4k") { grid-template-columns: repeat(5, 1fr); }
 
-  background-color: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
-  box-shadow: 0px 0px 8px var(--color-primary-dark3);
-
   @at-root #{&}__item {
     width: 1fr;
     height: 9rem;
   }
   @at-root #{&}__book {
-    //margin: 1vw;
-    width: 1.6fr;
-    height: 9rem;
+    width: 1.5fr;
+    height: 6rem;
   }
 }
 
 .about {
-  // Responsive CSS grid
   display: grid;
-  padding: 0.5rem;
-  grid-gap: 0.5rem;
+  grid-gap: 1rem;
   align-items: center;
 
+  // Responsive grid
   grid-template-columns: repeat(2, 1fr);  // mobile-s
   @include mediaQuery("mobile-m") { grid-template-columns: repeat(3, 1fr); }
   @include mediaQuery("mobile-l") { grid-template-columns: repeat(4, 1fr); }
@@ -81,16 +70,12 @@ h1, h2, h3, h4, h5, h6 {
   @include mediaQuery("laptop-m") { grid-template-columns: repeat(7, 1fr); }
   @include mediaQuery("laptop-l") { grid-template-columns: repeat(8, 1fr); }
   @include mediaQuery("4k") { grid-template-columns: repeat(5, 1fr); }
-
-  background-color: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.7);
-  box-shadow: 0px 0px 32px var(--color-primary-dark5);
 }
 
 .alternate {
-  display: table;
   margin: auto;
-  text-shadow: 2px 2px 2px var(--color-primary-dark5);
+  display: table;
+  text-shadow: 0px 1px 2px var(--color-primary-dark9);
   @at-root #{&}__green {
     color: lighten(green, 25%);
   }

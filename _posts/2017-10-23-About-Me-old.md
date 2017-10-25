@@ -2,7 +2,7 @@
 layout: post
 image: /music/guitarNeckPick.jpg
 title: About Me
-sub-title: In the year 2013!
+sub-title: Info from 2013
 date: 2017-10-23T00:00:00.000Z
 tags: About Programming
 ---

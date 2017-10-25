@@ -1,47 +1,55 @@
 a {
   text-decoration: none;
   color: var(--color-primary-light1);
-  text-shadow: 0px 0px 8px var(--color-primary-dark5);
+  text-shadow: 2px 2px 2px var(--color-primary-dark5);
   &.disabled {
-    color: var(--color-primary-dark1);
-    text-shadow: 0px 0px 8px var(--color-primary-dark3);
+    color: var(--color-primary-dark2);
+    text-shadow: 2px 2px 2px var(--color-primary-dark5);
     pointer-events: none;
     cursor: default;
   }
   &:active, &:hover {
     color: var(--color-primary-light3);
-    text-shadow: 0 0 8px var(--color-primary-light2);
+    text-shadow: 2px 2px 2px var(--color-primary-dark5), 0px 0px 2px var(--color-primary-light2);
   }
 }
 
 .top-button {
-  position: fixed;
-  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.25rem;
   bottom: 0rem;
   right: 0rem;
-  width: 2rem;
-  height: 2rem;
   z-index: 100;
-  padding: 0.25rem;
-  font-size: 1.5rem;
-  background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-  background: var(--color-primary-dark2, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
-  background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-dark2) 100%);
-  @include prefix((border-radius: 50% 0 0 0), webkit moz ms o);
+  position: fixed;
+  cursor: pointer;
+
+  // fallback without custom properties, without gradient, & full gradient
+  background-color: hsl($default-hue, $default-saturation, $default-lightness);
+  background-color: var(--color-primary-dark1, hsl($default-hue, $default-saturation, $default-lightness));
+  background-image: linear-gradient(-45deg, var(--color-primary-dark5) 0%, var(--color-primary-dark1) 100%);
+  @include prefix((border-radius: 25% 0 0 0), webkit moz ms o);
+
+  opacity: 0.5;
+  &:active, &:hover {
+    opacity: 0.6;
+  }
 }
 
 .navigation-menu {
-  position: fixed;
   width: var(--nav-width);
   height: 100%;
-  z-index: 99;
   top: 0;
+  z-index: 99;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
-  background: linear-gradient(90deg, var(--color-primary-dark3) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
+
+  // fallback without custom properties, without gradient, & full gradient
+  background-color: hsl($default-hue, $default-saturation, $default-lightness);
+  background-color: var(--color-primary-dark5, hsl($default-hue, $default-saturation, $default-lightness));
+  background: linear-gradient(90deg, var(--color-primary-dark5) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
   @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
   @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
 
@@ -49,10 +57,10 @@ a {
     &:first-child {
       margin-top: 2.1rem;
     }
-    padding: 0.5rem;
+    padding: 0.5rem 0.15rem;
     display: flex;
     justify-content: flex-start;
-    border: 1px solid rgba(127, 127, 127, 0);
+    border: 1px solid rgba(127, 127, 127, 0); // hack to fix border on hover
 
     &:active, &:hover {
       background: hsla(var(--hue), var(--saturation), 50%, 0.1);
@@ -65,21 +73,25 @@ a {
     text-align: right;
   }
   @at-root #{&}__label {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.15rem;
     top: 0rem;
     left: 0rem;
-    width: 2rem;
-    height: 2rem;
     z-index: 100;
-    padding: 0.25rem;
-    font-size: 1.5rem;
     position: fixed;
     cursor: pointer;
-    background: hsl($default-hue, $default-saturation, $default-lightness); // fallback
-    background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness)); // fallback
-    background: linear-gradient(-45deg, hsla(var(--hue), var(--saturation), var(--lightness), 0.5) 0%, var(--color-primary-dark3) 100%);
-    @include prefix((border-radius: 0 0 50% 0), webkit moz ms o);
-  }
-  @at-root #{&}__button {
+
+    // fallback without custom properties, without gradient, & full gradient
+    background-color: hsl($default-hue, $default-saturation, $default-lightness);
+    background-color: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
+    background-image: linear-gradient(-45deg, var(--color-primary-dark5) 0%, var(--color-primary-dark1) 100%);
+    @include prefix((border-radius: 0 0 25% 0), webkit moz ms o);
+
+    opacity: 0.5;
+    &:active, &:hover {
+      opacity: 0.6;
+    }
   }
   @at-root #{&}__checkbox {
     display: none;
