@@ -1,5 +1,5 @@
 const image = new Image();
-image.src = "/assets/images/thrillaGorilla.png";
+image.src = "/assets/images/80s/thrillaGorilla.png";
 
 image.onload = function () {
   const cell = { width: 4, height: 4 },

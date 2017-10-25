@@ -50,6 +50,7 @@ tags: GitHub Pages Ruby Gem Jekyll Markdown
 - [CSS 3D Transforms](https://desandro.github.io/3dtransforms/docs/card-flip.html)
 - [CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 - [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- [Web Animations poly-fill](https://github.com/web-animations/web-animations-js)
 
 #### Other
 - [Building a Vertical Timeline With CSS and a Touch of JavaScript](https://codepen.io/tutsplus/pen/QNeJgR)
@@ -67,3 +68,4 @@ tags: GitHub Pages Ruby Gem Jekyll Markdown
 - [Parallax Header](https://codepen.io/anon/pen/RZmMJO)
 - [QUOTES on DESIGN](http://quotesondesign.com/)
 - [QuantumBit Design](http://www.quantumbitdesign.com/index.html)
+- [Aerotwist](https://aerotwist.com/)
