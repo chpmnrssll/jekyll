@@ -1,6 +1,5 @@
 .article {
-  width: 100%;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 
   > h1, > h2, > h3, > h4, > h5, > h6, > p, > ul {
     margin: 2rem;
@@ -21,10 +20,8 @@
       font-size: 1.5rem;
     }
   }
-  canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  .output {
+    height: 150vh;
   }
   @at-root #{&}__footer {
     padding: 1rem;

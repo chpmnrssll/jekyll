@@ -4,7 +4,7 @@ image.src = "/assets/images/80s/thrillaGorilla.png";
 image.onload = function () {
   const cell = { width: 4, height: 4 },
         font = "monospace",
-        scale = 1.25;
+        scale = 1;
 
   let output = document.getElementById("output"),
       canvas = document.createElement("canvas"),
@@ -17,7 +17,7 @@ image.onload = function () {
   ascii.style.width = `${ canvas.width }px`;
   ascii.style.height = `${ canvas.height }px`;
   ascii.style.font = `${ cell.height*2 }px ${ font }`;
-  ascii.style.letterSpacing = `${ cell.width*2 * 0.4 }px`;
+  ascii.style.letterSpacing = `${ cell.width*2 * 0.2 }px`;
   ascii.style.lineHeight = `${ cell.height*2 }px`;
 
   convertImage().forEach(function (match) {
@@ -31,7 +31,6 @@ image.onload = function () {
 
   //canvas.width /= 4;
   //canvas.height /= 4;
-  canvas.style.float = "right";
   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
   output.appendChild(canvas);
   output.appendChild(ascii);
@@ -131,7 +130,7 @@ image.onload = function () {
         let character = getMatchingCharacter(imageBlock);
 
         //filter errant dark characters
-        if(character.average.lightness < 20) {
+        if(character.average.lightness < 50) {
           character.average.a = 0;
         }
         output.push(character);

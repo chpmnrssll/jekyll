@@ -1,9 +1,11 @@
 // Syntax highlighting styles inspired by Atom's One Dark theme
 // Modified to use theme colors (primary & secondary hues)
 .highlight {
-  margin: 1rem 2rem;
-  font-size: 0.65rem;
-  line-height: 0.75rem;
+  width: auto;
+  margin: 1rem;
+  overflow: hidden;
+  font-size: 0.70rem;
+  line-height: 0.70rem;
   background: var(--color-primary-dark2);
   .lineno { color: var(--color-primary-dark1); margin: 0 0.4rem; }
   .c     { color: var(--color-primary-light1); font-style: italic } // Comment

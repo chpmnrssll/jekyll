@@ -5,14 +5,14 @@
 :root {
   // Responsive font-size
   // https://olivermak.es/2017/02/fluid-typography/
-  font-size: calc(0.6rem + 1vw);  // mobile-s
-  @include mediaQuery("mobile-m") { font-size: calc(0.7rem + 1vw); }
-  @include mediaQuery("mobile-l") { font-size: calc(0.8rem + 1vw); }
-  @include mediaQuery("tablet") { font-size: calc(0.9rem + 1vw); }
-  @include mediaQuery("laptop-s") { font-size: calc(1.0rem + 1vw); }
-  @include mediaQuery("laptop-m") { font-size: calc(1.15rem + 1vw); }
-  @include mediaQuery("laptop-l") { font-size: calc(1.25rem + 1vw); }
-  @include mediaQuery("4k") { font-size: calc(1.5rem + 1vw); }
+  font-size: calc(0.60rem + 0.60vw);  // mobile-s
+  @include mediaQuery("mobile-m") { font-size: calc(0.70rem + 0.70vw); }
+  @include mediaQuery("mobile-l") { font-size: calc(0.80rem + 0.80vw); }
+  @include mediaQuery("tablet") { font-size: calc(0.90rem + 0.90vw); }
+  @include mediaQuery("laptop-s") { font-size: calc(1.00rem + 1.00vw); }
+  @include mediaQuery("laptop-m") { font-size: calc(1.10rem + 1.10vw); }
+  @include mediaQuery("laptop-l") { font-size: calc(1.20rem + 1.20vw); }
+  @include mediaQuery("4k") { font-size: calc(1.5rem + 1.5vw); }
 }
 
 body {
@@ -22,12 +22,12 @@ body {
 }
 
 // Modular type scale http://www.modularscale.com
-h1 { font-size: 2.25rem; line-height: 2.25rem; }
-h2 { font-size: 1.75rem; line-height: 1.75rem; }
-h3 { font-size: 1.50rem; line-height: 1.50rem; }
-h4 { font-size: 1.25rem; line-height: 1.25rem; }
-h5 { font-size: 1.00rem; line-height: 1.00rem; }
-h6 { font-size: 0.75rem; line-height: 0.75rem; }
+h1 { font-size: 2.0rem; line-height: 2.0rem; }
+h2 { font-size: 1.667rem; line-height: 1.667rem; }
+h3 { font-size: 1.389rem; line-height: 1.389rem; }
+h4 { font-size: 1.157rem; line-height: 1.157rem; }
+h5 { font-size: 0.965rem; line-height: 0.965rem; }
+h6 { font-size: 0.804rem; line-height: 0.804rem; }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Sarpanch";
 }
