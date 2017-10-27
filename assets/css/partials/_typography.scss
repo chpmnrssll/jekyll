@@ -5,14 +5,14 @@
 :root {
   // Responsive font-size
   // https://olivermak.es/2017/02/fluid-typography/
-  font-size: calc(0.850rem + 0.850vw);  // mobile-s
-  @include mediaQuery("mobile-m") { font-size: calc(0.875rem + 0.875vw); }
-  @include mediaQuery("mobile-l") { font-size: calc(0.900rem + 0.900vw); }
-  @include mediaQuery("tablet") { font-size: calc(0.950rem + 0.950vw); }
-  @include mediaQuery("laptop-s") { font-size: calc(1.000rem + 1.000vw); }
-  @include mediaQuery("laptop-m") { font-size: calc(1.050rem + 1.050vw); }
-  @include mediaQuery("laptop-l") { font-size: calc(2.000rem + 2.000vw); }
-  @include mediaQuery("4k") { font-size: calc(2.050rem + 2.050vw); }
+  font-size: calc(0.6rem + 1vw);  // mobile-s
+  @include mediaQuery("mobile-m") { font-size: calc(0.7rem + 1vw); }
+  @include mediaQuery("mobile-l") { font-size: calc(0.8rem + 1vw); }
+  @include mediaQuery("tablet") { font-size: calc(0.9rem + 1vw); }
+  @include mediaQuery("laptop-s") { font-size: calc(1.0rem + 1vw); }
+  @include mediaQuery("laptop-m") { font-size: calc(1.15rem + 1vw); }
+  @include mediaQuery("laptop-l") { font-size: calc(1.25rem + 1vw); }
+  @include mediaQuery("4k") { font-size: calc(1.5rem + 1vw); }
 }
 
 body {

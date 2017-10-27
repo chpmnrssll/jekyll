@@ -21,31 +21,6 @@ Then I moved into the PC world and found DOS. There was a used bookstore that I 
   <span class="alternate__green">=</span>
   <span class="alternate__purple">-</span>
   <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
-  <span class="alternate__green">=</span>
-  <span class="alternate__purple">-</span>
 </span>
 
 The next upgrade brought about Windows, dial up internet, ftp, and the first web browsers. That opened up a whole lot of options for me. I'd download programming tutorials, coding demos, tracker music (mod/s3m/xm), and any other type of tech information I could find. Playing all these VGA games and seeing the coding demos just made me wanna know more, so I dug deeper in and started playing with 80x86 assembly language and doing my own graphic demos.
