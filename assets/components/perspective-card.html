@@ -24,11 +24,11 @@
       /* gradient overlay */
       .container::before {
         content: "";
-        opacity: 0.5;
         width: 100%;
         height: 100%;
+        opacity: 0.25;
         position: absolute;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark5) 100%);
+        background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark3) 100%);
       }
       .background-image {
         top: 0%;
@@ -92,7 +92,6 @@
             currentTarget.style.setProperty("--y-offset", 0);
           }, animationSpeed);
         }, { passive: true });
-
       }
 
       static get observedAttributes() {

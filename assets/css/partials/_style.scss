@@ -3,17 +3,18 @@ body {
   overflow-x: hidden;
   color: hsl($default-hue, $default-saturation, 90%);
   color: var(--color-primary-light9);
+  text-shadow: 1px 1px 1px var(--color-primary-dark5);
 
   // fallback without custom properties, without gradient, & full gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark5) 100%);
+  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
+  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark7) 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: hsl($default-hue, $default-saturation, 90%);
   color: var(--color-primary-light9);
-  text-shadow: 0px 1px 2px var(--color-primary-dark9);
+  text-shadow: 2px 2px 2px var(--color-primary-dark5);
 }
 
 main {
@@ -23,9 +24,9 @@ main {
 
   // fallback without custom properties, without gradient, & full gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark5) 100%);
-  box-shadow: 0px 0px 1rem var(--color-primary-dark9);
+  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
+  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark7) 100%);
+  box-shadow: 0px 0px 4rem var(--color-primary-dark5);
 }
 
 .featured {
@@ -63,7 +64,7 @@ main {
 .alternate {
   margin: auto;
   display: table;
-  text-shadow: 0px 1px 2px var(--color-primary-dark9);
+  text-shadow: 2px 2px 2px var(--color-primary-dark5);
   @at-root #{&}__green {
     color: lighten(green, 25%);
   }
