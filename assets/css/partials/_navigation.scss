@@ -32,7 +32,7 @@ a {
 
   opacity: 0.4;
   &:active, &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
 
@@ -90,7 +90,7 @@ a {
 
     opacity: 0.4;
     &:active, &:hover {
-      opacity: 0.6;
+      opacity: 0.8;
     }
   }
   @at-root #{&}__checkbox {

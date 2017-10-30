@@ -1,15 +1,56 @@
 ---
 layout: default
-title: About Me
-image: codeFocus.jpg
+title: About
 ---
 <header class="header__plain">
   <div class="header__title">
-    <h1 class="header__main-title"><em>Russell Chapman</em></h1>
-    <p class="header__sub-title">{{ page.title }}</p>
+    <h1 class="header__title--main">Russell Chapman</h1>
+    <p class="header__title--sub">{{ page.title }}</p>
   </div>
 </header>
 <main>
+  <section class="codeStats">
+    <h2>Code Stats</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Files</th>
+          <th>Lines of code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HTML</td>
+          <td>{{ site.data.linesOfCode.HTML.nFiles }}</td>
+          <td>{{ site.data.linesOfCode.HTML.code }}</td>
+        </tr>
+        <tr>
+          <td>Markdown</td>
+          <td>{{ site.data.linesOfCode.Markdown.nFiles }}</td>
+          <td>{{ site.data.linesOfCode.Markdown.code }}</td>
+        </tr>
+        <tr>
+          <td>CSS / Sass</td>
+          <td>{{ site.data.linesOfCode.Sass.nFiles }}</td>
+          <td>{{ site.data.linesOfCode.Sass.code }}</td>
+        </tr>
+        <tr>
+          <td>JavaScript</td>
+          <td>{{ site.data.linesOfCode.JavaScript.nFiles }}</td>
+          <td>{{ site.data.linesOfCode.JavaScript.code }}</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ site.data.linesOfCode.SUM.nFiles }}</td>
+          <td>{{ site.data.linesOfCode.SUM.code }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>{{ site.data.linesOfCode.SUM.blank }}% Blank lines</div>
+    <div>{{ site.data.linesOfCode.SUM.comment }}% Comments</div>
+    </table>
+  </section>
   <section class="about">
     <perspective-card class="featured__book" background-image={{ "/assets/images/logo/logoAMP.png" | prepend: site.url }}></perspective-card>
     <perspective-card class="featured__book" background-image={{ "/assets/images/logo/logoApple.png" | prepend: site.url }}></perspective-card>

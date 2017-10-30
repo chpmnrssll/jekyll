@@ -61,6 +61,38 @@ main {
   @include mediaQuery("laptop-l") { grid-template-columns: repeat(7, 1fr); }
 }
 
+.codeStats {
+  width: 50%;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  text-align: right;
+
+  h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-style: italic;
+  }
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  thead {
+    border-bottom: 1px solid var(--color-secondary);
+  }
+  tbody tr:nth-last-child(1) {
+    font-size: 1rem;
+    font-weight: bold;
+    font-style: normal;
+    border-top: 1px solid var(--color-secondary);
+  }
+  tbody tr, div {
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+}
+
 .alternate {
   margin: auto;
   display: table;
