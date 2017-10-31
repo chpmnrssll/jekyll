@@ -16,8 +16,10 @@ layout: default
   <article class="article">
     {{ content }}
     <footer class="article__footer">
-      <section class="article__author-avatar">{% avatar {{ site.github_username }} %}</section>
-      <section class="article__author-name">{{ site.author }}</section>
+      <a href="{{ '/developers.html' | prepend: site.url }}">
+        <section class="article__author-avatar">{% avatar {{ site.github_username }} %}</section>
+        <section class="article__author-name">{{ site.author }}</section>
+      </a>
       <section class="article__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
       <section class="article__tags">
         Tags: {% for tag in page.tags %}

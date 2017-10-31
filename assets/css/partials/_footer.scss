@@ -1,7 +1,13 @@
 .footer {
+  font-size: 0.65rem;
+  font-style: italic;
+  line-height: 0.5rem;
   padding: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  i {
+    margin-left: 0.1rem;
+  }
 }

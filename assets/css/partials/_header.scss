@@ -23,6 +23,7 @@
     @include prefix((transform: translateZ(1.0rem)), webkit moz ms o);
   }
   @at-root #{&}__title--sub {
+    font-style: italic;
     color: var(--color-primary-light7);
     text-shadow: 2px 2px 2px var(--color-primary-dark5);
     @include prefix((transform: translateZ(0.75rem)), webkit moz ms o);

@@ -1,3 +1,9 @@
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register("/sw.js").catch(function(error) {
+    console.error("Unable to register service worker.", error);
+  });
+}
+
 let parallax = document.querySelector(".header__parallax"), scrollTop = 0;
 
 // Parallax header image (2D - not fast enough)

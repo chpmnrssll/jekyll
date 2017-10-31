@@ -1,15 +1,19 @@
 ---
 layout: default
 title: Settings
+sub-title: User Interface
 ---
 <header class="header__plain">
   <div class="header__title">
-    <h1 class="header__title--main">Russell Chapman</h1>
-    <p class="header__title--sub">{{ page.title }}</p>
+    <h1 class="header__title--main">{{ page.title }}</h1>
+    <section class="header__title--sub">{{ page.sub-title }}</section>
   </div>
 </header>
 <link rel="import" href="{{ '/assets/components/color-picker.html' | prepend: site.baseurl }}"></link>
 <main>
-  <color-picker><span slot="title" style="text-align: center"><h3><em>Theme Color</em></h3></span></color-picker>
+  <color-picker><span slot="title" style="text-align: center"><h4><em>Theme Color</em></h4></span></color-picker>
+<footer class="footer">
+  <a href="{{ site.url }}/404.html"><i class="fa fa-low-vision navigation-menu__icon"></i></a>
+</footer>
 </main>
 {% include footer.html %}

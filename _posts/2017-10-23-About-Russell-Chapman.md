@@ -2,11 +2,16 @@
 layout: post
 image: /music/guitarNeckPick.jpg
 title: About Me
-sub-title: Info from 2013
+sub-title: Russell Chapman
 date: 2017-10-23T00:00:00.000Z
 tags: About Programming
+permalink: /developers/chpmnrssll/
 ---
+
+Info circa 2013...
+
 ### Intro
+
 I knew that I wanted to be a programmer from the time I was young. While all the other kids were just playing games, I was trying to figure out how they worked so I could make my own. I remember staying awake late playing with my friends old Texas Instruments TI99, Basic programming manuals, and saving/loading from tapes. I'd collect every magazine related to computer and video games that was available so I could see it all. When I finally got a Macintosh Classic, I was amazed by the GUI. I started playing with Hypercard when I heard about the game Myst using it.
 
 Then I moved into the PC world and found DOS. There was a used bookstore that I used to get shareware discs from (5 1/4" floppies), programming manuals (K&R Ansi C), and lists of all the local BBS's. I remember being so happy with my first compiled executable files even if they were just ASCii based multiple choice games.
