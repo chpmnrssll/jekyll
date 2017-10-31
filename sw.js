@@ -20,95 +20,95 @@ importScripts('workbox-sw.prod.v2.1.0.js');
 const fileManifest = [
   {
     "url": "2017/08/15/Launch.html",
-    "revision": "24bb5008f2d9c2f11bf1600363dc96e2"
+    "revision": "a6659fa4e898c142540b07f9b9d002a8"
   },
   {
     "url": "2017/08/28/Space.html",
-    "revision": "ef7aaae44929c952100183aa4bdf93cc"
+    "revision": "8ddf4664a0609aa1259eda0e6a437c54"
   },
   {
     "url": "2017/08/29/Billions.html",
-    "revision": "e0331e42a6403ce078194b3041e50a17"
+    "revision": "ee388301f60c2fcb8b21084b81f01636"
   },
   {
     "url": "2017/08/30/Pirates.html",
-    "revision": "4f0ba79316875b3de9b6101b6a0bfa03"
+    "revision": "fe51fc0fd0c664675aee15924762b8d8"
   },
   {
     "url": "2017/08/31/Zombies.html",
-    "revision": "9a8d265c8f901ceba3d39df60f6e708a"
+    "revision": "a14438588360b7df7876ffc93ef5cb4a"
   },
   {
     "url": "2017/10/08/Moustache.html",
-    "revision": "4e36f512d13e242e428832d3b7be91e0"
+    "revision": "d79320f9485af0f59f3a38482447c589"
   },
   {
     "url": "2017/10/09/Gangsta.html",
-    "revision": "e199e9dbc80e4c0112448f0c24deea4a"
+    "revision": "ddd45420c21802116ec0ae4b2564e145"
   },
   {
     "url": "2017/10/09/TV.html",
-    "revision": "87cd221f10ea18dc0f42847b480f6256"
+    "revision": "239271fd743450b922d32f3cf3ab887c"
   },
   {
     "url": "2017/10/10/Corporate.html",
-    "revision": "36e7e46ab578af333eb2dd58309c27ae"
+    "revision": "960c0a08d709c9a23890e5f38ab67a08"
   },
   {
     "url": "2017/10/10/Skate.html",
-    "revision": "5da4a7a1ba0727ca7104026daa3bfbd2"
+    "revision": "df00cb5042c7639a948fe98d50b16e97"
   },
   {
     "url": "2017/10/12/Ascii.html",
-    "revision": "2cccdd4b56fd9c177864f63a8f41991d"
+    "revision": "d20d32b0b8c5c9be5bd8ae0bdfd2e5a9"
   },
   {
     "url": "2017/10/17/Fire.html",
-    "revision": "26cf3ef289d9bc5a3e714ddf70187f46"
+    "revision": "b89f4720a567c06f8d32da31e34bd2ab"
   },
   {
     "url": "2017/10/17/Isometric.html",
-    "revision": "8d4884817a4c1aaabd499e9e21219817"
+    "revision": "e7613fa4c2a6342f1b1b4c3151e7a4ff"
   },
   {
     "url": "2017/10/17/Plasma.html",
-    "revision": "12155173ab7ed201ddf60c99844ae549"
+    "revision": "6fd38b45e3461318592f0437301eb728"
   },
   {
     "url": "2017/10/17/Static.html",
-    "revision": "a6eeb5d7d467bd529e1ca46dc0237f32"
+    "revision": "4ff26a83a9eb26cd38f5341266106e12"
   },
   {
     "url": "2017/10/17/Timeline.html",
-    "revision": "fea6ce126c05a50df51a175ef00626bc"
+    "revision": "86e8b2cc0cb85a3987079d3278ea3129"
   },
   {
-    "url": "2017/10/21/Github-Pages.html",
-    "revision": "23cb7856cc712b445517b92556075817"
+    "url": "2017/10/21/Current-Research.html",
+    "revision": "7d0d6d32163216d3b4d1cb11b37d81cc"
   },
   {
     "url": "2017/10/22/Automotive.html",
-    "revision": "3cf7367b1d448fc91f798f76056efbcb"
+    "revision": "cc30e18c47b72e230f5c733cbac4fd8b"
   },
   {
     "url": "2017/10/22/Vanilla-JS-Web-Components.html",
-    "revision": "1f2162f04396a5dc84d50de809efcf11"
+    "revision": "07151fda624a49b69d907723e7dc97c3"
   },
   {
     "url": "2017/10/23/Professional.html",
-    "revision": "f7ab5272ab7da65ad0b89fcdf7d99ac9"
+    "revision": "6b3af3331d483f0092ed668d98b1bac2"
   },
   {
     "url": "2017/10/24/Programming.html",
-    "revision": "97d8a1c6909ad945f86b9572b6a5b72d"
+    "revision": "57edfc2150b0becd6d31db90ab0cf893"
   },
   {
     "url": "404.html",
-    "revision": "70a3a66522963391bc6da44cd2e7c466"
+    "revision": "6349de70640a6e59788ecebe6d4ac8f7"
   },
   {
-    "url": "about.html",
-    "revision": "269243bec4ad4fb3e3911add92b1607a"
+    "url": "about/index.html",
+    "revision": "5b10be06e979b5e42cf94e6a33843a2b"
   },
   {
     "url": "assets/components/color-picker.html",
@@ -1419,10 +1419,6 @@ const fileManifest = [
     "revision": "08baea441a911bc647cbb767ce86c8ca"
   },
   {
-    "url": "assets/javascript/app.js",
-    "revision": "a6330d1faeebe52700b22f13be6ba452"
-  },
-  {
     "url": "assets/javascript/jsAscii.js",
     "revision": "c15926847d581b2668917fda3757f8db"
   },
@@ -1436,15 +1432,15 @@ const fileManifest = [
   },
   {
     "url": "contact.html",
-    "revision": "412387fb6c672851c40f386b71b68881"
+    "revision": "da391b5aaf59e71d6fd42efcc40a078a"
   },
   {
-    "url": "developers.html",
-    "revision": "f4602fb2dc1434ab71944e48d7a1ec47"
+    "url": "developers/chpmnrssll/index.html",
+    "revision": "c737ee2266660d12d42381b87680dae0"
   },
   {
-    "url": "developers/chpmnrssll/about.html",
-    "revision": "5a74e4cffb4ea5b69adbe2d280da1886"
+    "url": "developers/index.html",
+    "revision": "b13e46462dacd81850a75081d712191d"
   },
   {
     "url": "favicon.ico",
@@ -1452,27 +1448,27 @@ const fileManifest = [
   },
   {
     "url": "feed.xml",
-    "revision": "639833e7694510f80b34114a0ec40c83"
+    "revision": "2922d91a7d0fc02876ffb9a4c4d429d6"
   },
   {
     "url": "index.html",
-    "revision": "4e89fd388b7b4b7eefdba904a7d51913"
+    "revision": "c062bc516cc7e2fe126ed2515151eb75"
   },
   {
     "url": "jsAsciiDemo/index.html",
-    "revision": "e9c20f12cad103f5c95a3c0caecc2d68"
+    "revision": "70c6f3ef8710c0f827ed154c3d91058e"
   },
   {
     "url": "page2/index.html",
-    "revision": "f1a198d0f594f35fc606458713287e7d"
+    "revision": "a571b5db0f0f0b8c73c495ac510c2e0b"
   },
   {
     "url": "page3/index.html",
-    "revision": "7c2abf27b05911d1ec0bb9a82c158ded"
+    "revision": "a35fa2c3a50727f456e6ea97175e8973"
   },
   {
     "url": "page4/index.html",
-    "revision": "fd8d79efa4956832c273e24cf8d91a84"
+    "revision": "b4714db2113fd128e5234238ee8669db"
   },
   {
     "url": "README.md",
@@ -1483,24 +1479,20 @@ const fileManifest = [
     "revision": "45fa963a5e67c6a3ef67c8ffa71b2b88"
   },
   {
-    "url": "service-worker.js",
-    "revision": "2ee3700fac43af1aca61ae761298cd40"
-  },
-  {
     "url": "settings.html",
-    "revision": "1c7f57f4c4c3b591d50d2e16576630df"
+    "revision": "0c3a2f7b6f2568b7651298b9c741e65c"
   },
   {
     "url": "sitemap.xml",
-    "revision": "f16f60cae386fec1777310586dd362af"
+    "revision": "d69a4c2d588a23c89366b9018a555967"
   },
   {
     "url": "sw.js",
-    "revision": "0737858c3ca71dbf8abbb775e79c38f5"
+    "revision": "1b1e6334e80a36e221845154d72030f4"
   },
   {
     "url": "workbox-cli-config.js",
-    "revision": "6f784a75aab43431ed8ae1f67dac0dd2"
+    "revision": "8504718677faa9e0f930baeeb290dbd8"
   },
   {
     "url": "workbox-sw.prod.v2.1.0.js",

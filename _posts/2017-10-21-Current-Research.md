@@ -2,19 +2,14 @@
 layout: post
 image: backgrounds/jekyll-github.jpg
 title: Current Research
-sub-title: Hosting, Markdown, and Static Site Generator
+sub-title: Hosting, Markdown, Static Site Generators
 date: 2017-10-21T00:00:00.000Z
 tags: GitHub Pages Jekyll Markdown
 ---
-##### Javascript
-- ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
-- [Links aren't buttons!](https://ctidd.com/2017/links-arent-buttons)
-- [Front-End Checklist](http://frontendchecklist.com/)
-- [ES6 Cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
-- [Pointer Events](https://developers.google.com/web/updates/2016/10/pointer-events)
-- [Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Using_Touch_Events)
-
 ##### PWA Service Worker App Shell
+- [UI Element Samples](https://github.com/GoogleChromeLabs/ui-element-samples) - Vanilla web platform features
+- [The Shadow Reader](https://github.com/ampproject/amp-publisher-sample/tree/master/amp-pwa-reader) - PWA+AMP techniques
+- [Workbox](https://workboxjs.org/) - JS Libs for Progressive Web Apps (Service Worker)
 - [Awesome Progressive Web Apps](https://github.com/TalAter/awesome-progressive-web-apps)
 - [Awesome Service Workers](https://github.com/TalAter/awesome-service-workers)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/)
@@ -23,6 +18,14 @@ tags: GitHub Pages Jekyll Markdown
 - [your-first-pwapp (source)](https://github.com/googlecodelabs/your-first-pwapp)
 - [App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)
 - [App Shell](https://developers.google.com/web/updates/2015/11/app-shell)
+
+##### Javascript
+- ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
+- [Links aren't buttons!](https://ctidd.com/2017/links-arent-buttons)
+- [Front-End Checklist](http://frontendchecklist.com/)
+- [ES6 Cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
+- [Pointer Events](https://developers.google.com/web/updates/2016/10/pointer-events)
+- [Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Using_Touch_Events)
 
 ##### HTML
 - [Awesome HTML5](https://github.com/diegocard/awesome-html5)
