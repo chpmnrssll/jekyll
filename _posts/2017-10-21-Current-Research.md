@@ -1,8 +1,8 @@
 ---
 layout: post
 image: backgrounds/jekyll-github.jpg
-title: Current Research
-sub-title: Hosting, Markdown, Static Site Generators
+title: Research
+sub-title: PWA AMP JS 3D Animation
 date: 2017-10-21T00:00:00.000Z
 tags: GitHub Pages Jekyll Markdown
 ---

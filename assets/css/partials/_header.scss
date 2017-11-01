@@ -12,43 +12,43 @@
     font-size: 0.75rem;
   }
   @at-root #{&}__title {
-    margin-right: 1.25rem;
-    margin-top: 0.5rem;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
     text-align: right;
   }
   @at-root #{&}__title--main {
     font-style: italic;
     color: var(--color-primary-light8);
     text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(1.0rem)), webkit moz ms o);
+    @include prefix((transform: translateZ(0)), webkit moz ms o);
   }
   @at-root #{&}__title--sub {
     font-style: italic;
     color: var(--color-primary-light7);
     text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(0.75rem)), webkit moz ms o);
+    @include prefix((transform: translateZ(0)), webkit moz ms o);
   }
   @at-root #{&}__date {
-    margin-right: 1.25rem;
-    margin-bottom: 0.5rem;
+    margin-right: 0.75rem;
+    margin-bottom: 0.25rem;
     color: var(--color-primary-light6);
     text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(0.5rem)), webkit moz ms o);
+    @include prefix((transform: translateZ(0)), webkit moz ms o);
   }
 
   @at-root #{&}__parallax {
     height: 60vh;
     display: flex;
+    font-size: 1.2rem;
     align-items: flex-end;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 1.2rem;
 
     background-repeat: no-repeat;
     background-position: center top;
 
-    // Responsive background-size
-    background-size: 125vh 100vh; // mobile-s
+    // mobile-s
+    background-size: 125vh 100vh;
     @include mediaQuery("mobile-m") { background-size: 175vh 100vh; }
     @include mediaQuery("mobile-l") { background-size: 200vh 100vh; }
     @include mediaQuery("tablet") { background-size: 225vh 100vh; }

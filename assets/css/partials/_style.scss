@@ -104,3 +104,13 @@ main {
     color: lighten(purple, 25%);
   }
 }
+
+.canvas {
+  @at-root #{&}__demo {
+    width: 32rem;
+    height: 18rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

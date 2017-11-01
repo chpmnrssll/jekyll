@@ -75,8 +75,8 @@
             const xOffset = ((event.clientX - this.offsetLeft) / width) - 0.5;
             const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
 
+            // set CSS custom properties on the next frame
             requestAnimationFrame(() => {
-              // set CSS custom properties/variables
               this.style.setProperty("--x-offset", xOffset);
               this.style.setProperty("--y-offset", yOffset);
             });
@@ -86,8 +86,9 @@
         this.addEventListener("mouseleave", (event) => {
           const currentTarget = event.currentTarget;
           const animationSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--animation-speed").slice(0, -2));
+
+          // reset card rotation after animationSpeed ms
           setTimeout(() => {
-            // reset card rotation
             currentTarget.style.setProperty("--x-offset", 0);
             currentTarget.style.setProperty("--y-offset", 0);
           }, animationSpeed);
