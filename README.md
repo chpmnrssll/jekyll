@@ -1,1 +1,1 @@
-Personal [Website](https://chpmnrssll@github.io/) for Russell Chapman.
+Personal [Website](https://chpmnrssll@github.io/)
