@@ -5,6 +5,11 @@ github_username:   chpmnrssll
 paginate_path:     /page:num/
 paginate:          6
 
+collections:
+  json:
+    output: true
+    permalink: /:collection/:path
+
 sass:
   style:    compressed
   sass_dir: /assets/css

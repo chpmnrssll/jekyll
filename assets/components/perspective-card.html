@@ -46,16 +46,15 @@
         transform: translateZ(1rem);
       }
     </style>
-    <div class="container">
-      <slot></slot>
-    </div>
+    <div class="container"><slot></slot></div>
   </template>
   <script>
+    const importDocument = document.currentScript.ownerDocument;
+    
     customElements.define("perspective-card", class extends HTMLElement {
       constructor() {
         super();
-        this.importDocument = document.currentScript.ownerDocument;
-        this.template = this.importDocument.querySelector("#template");
+        this.template = importDocument.querySelector("#template");
         this.shadow = this.attachShadow({ mode: "open" });
         this.shadow.appendChild(this.template.content.cloneNode(true));
         this.container = this.shadow.querySelector(".container");

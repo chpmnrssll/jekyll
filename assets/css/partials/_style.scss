@@ -1,3 +1,9 @@
+html {
+  /// https://aykevl.nl/2014/09/fix-jumping-scrollbar
+  // increase margin-right by -scrollbar width
+  margin-right: calc(calc(100vw - 100%) * -1);
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;

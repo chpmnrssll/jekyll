@@ -1,0 +1,141 @@
+---
+layout: default
+title: App
+sub-title: SPA PWA AMP BS...
+---
+<header class="header__plain">
+  <div class="header__title">
+    <h1 class="header__title--main">{{ page.title }}</h1>
+    <section class="header__title--sub">{{ page.sub-title }}</section>
+  </div>
+</header>
+<main>
+  <section id="featured" class="featured"></section>
+  <footer class="footer">
+    <button id="more">More</button>
+  </footer>
+</main>
+{% include footer.html %}
+
+<script>
+(() => {
+  let limit = 3,
+      start = 0,
+      end = limit,
+      counter = 0,
+      posts = {},
+      htmlStyles = {},
+      animationSpeed = 250,
+      req = new XMLHttpRequest(),
+      button = document.querySelector("#more"),
+      featured = document.querySelector("#featured");
+
+  window.addEventListener("load", function() {
+    htmlStyles = window.getComputedStyle(document.querySelector("html"));
+    animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2));
+    req.open("GET", "/json/posts.json", true);
+    req.send();
+  });
+
+  req.addEventListener("load", function () {
+    posts = JSON.parse(this.response);
+    paginate(posts, start, end);
+  });
+
+  button.addEventListener("click", function () {
+    // let children = Array.from(featured.children);
+    // children.forEach((child) => {
+    //   counter = counter > 0 ? counter-1 : 3;
+    //   setTimeout(() => {
+    //     if (child === featured.lastChild) {
+    //       setTimeout(() => {
+    //         remove(child, () => {
+    //           end += limit;
+    //           start += limit;
+    //           paginate(posts, start, end);
+    //         });
+    //       }, animationSpeed*2);
+    //     } else {
+    //       remove(child);
+    //     }
+    //   }, animationSpeed*counter);
+    // });
+    end += limit;
+    start += limit;
+    paginate(posts, start, end);
+
+    // clear the old featured items
+    //while (featured.firstChild) {
+      //featured.removeChild(featured.firstChild);
+    //}
+  });
+
+  function paginate(posts, start, end) {
+    posts.slice(start, end).forEach((post) => {
+      render(post);
+    });
+  }
+
+  function remove(element, cb) {
+    fadeOut(element, animationSpeed, 1).onfinish = () => {
+      if (cb) {
+        cb();
+      }
+      featured.removeChild(element);
+    };
+  }
+
+  function render(post) {
+    let featured__item = document.createElement("perspective-card"),
+        header = document.createElement("header"),
+        section = document.createElement("section"),
+        mainTitle = document.createElement("h6"),
+        subTitle = document.createElement("section"),
+        date = document.createElement("time"),
+        link = document.createElement("a");
+
+    featured__item.classList.add("featured__item");
+    header.classList.add("header__plain");
+    section.classList.add("header__title");
+    mainTitle.classList.add("header__title--main");
+    subTitle.classList.add("header__title--sub");
+    date.classList.add("header__date");
+
+    section.appendChild(mainTitle);
+    section.appendChild(subTitle);
+    header.appendChild(section);
+    header.appendChild(date);
+    featured__item.appendChild(header);
+    link.appendChild(featured__item);
+    link.href = post.url;
+    date.innerText = post.date;
+    mainTitle.innerText = post.title;
+    subTitle.innerText = post.subTitle;
+
+    if (post.image) {
+      featured__item.setAttribute("background-image", "{{ site.url }}/assets/images/" + post.image);
+    }
+
+    counter = counter < 3 ? counter+1 : 0;
+    setTimeout(() => {
+      fadeIn(link, animationSpeed, 1);
+      featured.appendChild(link);
+    }, animationSpeed*counter);
+  }
+
+  function fadeIn(elem, duration, iterations) {
+    let keyframes = [{ opacity: "0", offset: 0 }, { opacity: "1", offset: 1 }],
+        timing = { duration: duration, iterations: iterations };
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function fadeOut(elem, duration, iterations) {
+    let keyframes = [{ opacity: "1", offset: 0 }, { opacity: "0", offset: 1 }],
+        timing = { duration: duration, iterations: iterations };
+
+    return elem.animate(keyframes, timing);
+  }
+
+})();
+</script>
