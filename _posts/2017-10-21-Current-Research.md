@@ -26,6 +26,8 @@ tags: GitHub Pages Jekyll Markdown
 - [ES6 Cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
 - [Pointer Events](https://developers.google.com/web/updates/2016/10/pointer-events)
 - [Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Using_Touch_Events)
+- [Loop through a collection of dom elements](https://pawelgrzybek.com/loop-through-a-collection-of-dom-elements/)
+- [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 
 ##### HTML
 - [Awesome HTML5](https://github.com/diegocard/awesome-html5)
@@ -66,6 +68,7 @@ tags: GitHub Pages Jekyll Markdown
 ##### Animation
 - [Subtle link animations](https://codepen.io/butsuri/pen/bKjHz)
 - [Web Animations poly-fill](https://github.com/web-animations/web-animations-js)
+- [Animation.onfinish](https://developer.mozilla.org/en-US/docs/Web/API/Animation/onfinish)
 - [Animated wave clipped by text](https://codepen.io/web-tiki/pen/YNKMpB)
 - [animated gradient line icons in pure css](https://codepen.io/medialoot/post/how-to-animated-gradient-line-icons-in-pure-css)
 
@@ -103,3 +106,6 @@ tags: GitHub Pages Jekyll Markdown
 - [Customizing GitHub Pages](https://help.github.com/categories/customizing-github-pages/)
 - [Staticman (push to GitHub)](https://staticman.net/docs/)
 - [The Why and How of writing technical articles](https://hackernoon.com/developers-the-why-and-how-to-writing-technical-articles-54e824789ef6)
+
+
+- [https://platformerpower.com/](Platformer Power)

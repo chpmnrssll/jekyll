@@ -1,10 +1,10 @@
 ---
 layout: json
 image: backgrounds/why-web-components.jpg
-title: Vanilla JS Web Components
-sub-title: Using the Custom Elements API
+title: Vanilla JS
+sub-title: Use the platform for real!
 date: 2017-10-22T00:00:00.000Z
-tags: JavaScript Web Components Custom Elements
+tags: JavaScript Web Components
 permalink: ':year/:month/:day/:title.json'
 ---
 
@@ -41,3 +41,15 @@ Blah blah blah, foo baz bar
 ## HTML Imports
 
 ## HTML Template
+
+## Routing
+- [Writing a JavaScript Framework - Client-Side Routing](https://blog.risingstack.com/writing-a-javascript-framework-client-side-routing/)
+- [Building A Single Page Application Router With Vanilla JS](https://www.ynonperek.com/2017/08/24/vanilla-single-page-router-architecture/)
+- [router](https://codepen.io/ynonp/project/editor/XVvNYO)
+- [Deep dive into client-side routing](http://krasimirtsonev.com/blog/article/deep-dive-into-client-side-routing-navigo-pushstate-hash)
+- [Navigo, A simple vanilla JavaScript router](https://github.com/krasimir/navigo)
+- [Functional client-side router in ~570 bytes, built on HTML5 History API](https://github.com/olstenlarck/gibon)
+- [Simple Javascript router](https://github.com/alpine-stack/router)
+- [Simple Vanilla Javascript router](https://github.com/micromata/vanilla-ui-router)
+- [vanilla js webcomponents router](https://github.com/cerico/delph)
+- [BunnyJS](https://github.com/Mevrael/bunny)

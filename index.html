@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Artcles
-sub-title: Devlog
+title: App
+sub-title: SPA PWA AMP BS...
 ---
 <header class="header__plain">
   <div class="header__title">
@@ -10,25 +10,211 @@ sub-title: Devlog
   </div>
 </header>
 <main>
-  <section class="featured">
-    {% for post in paginator.posts %}
-    <a href="{{ post.url | prepend: site.url }}">
-      {% if post.image == null %}
-      <perspective-card class="featured__item">
-      {% else %}
-      <perspective-card class="featured__item" background-image="{{ '/assets/images/' | prepend: site.url | append: post.image }}">
-      {% endif %}
-        <header class="header__plain">
-          <section class="header__title">
-            <h5 class="header__title--main">{{ post.title }}</h5>
-            <section class="header__title--sub">{{ post.sub-title }}</section>
-          </section>
-          <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
-        </header>
-      </perspective-card>
-    </a>
-    {% endfor %}
-  </section>
-  {% include pagination.html %}
+  <section id="featured" class="featured"></section>
+  <footer class="footer">
+    <div id="pagination" class="pagination">
+      <button id="previous" class="disabled"><i class="fa fa-chevron-left"></i></button>
+      <button id="next" class="disabled"><i class="fa fa-chevron-right"></i></button>
+    </div>
+  </footer>
 </main>
 {% include footer.html %}
+
+<script>
+(() => {
+  let max = 6,
+      start = 0,
+      end = max,
+      counter = 0,
+      posts = {},
+      totalPosts = 0,
+      totalPages = 0,
+      currentPage = 0,
+      req = new XMLHttpRequest(),
+      button = document.querySelector("#more"),
+      next = document.querySelector("#next"),
+      prev = document.querySelector("#previous"),
+      featured = document.querySelector("#featured"),
+      pagination = document.querySelector("#pagination"),
+      htmlStyles = window.getComputedStyle(document.querySelector("html")),
+      animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2));
+
+  window.addEventListener("load", function() {
+    req.open("GET", "/json/posts.json", true);
+    req.send();
+  });
+
+  req.addEventListener("load", function () {
+    posts = JSON.parse(this.response);
+    totalPosts = posts.length;
+    totalPages = Math.ceil(totalPosts/max);
+    createPaginationControls();
+    paginate(posts, start, end);
+  });
+
+  // fadeOut & remove old posts, move start/end and paginate+render more posts
+  function handler() {
+    let diff = 0;
+
+    if (this.id === "previous") {
+      diff = -max;
+    } else if (this.id === "next") {
+      diff = max;
+    }
+    else {
+      diff = (parseInt(this.id) - currentPage)*max;
+    }
+
+    featured.children.forEach((child) => {
+      if (counter > 0) {
+        counter--;
+      }
+      setTimeout(() => {
+        if (child !== featured.lastChild) {
+          remove(child);
+        } else {
+          remove(child, () => {
+            setTimeout(() => {
+              end += diff;
+              start += diff;
+              paginate(posts, start, end);
+            }, (max/2)*animationSpeed);
+          });
+        }
+      }, (counter/2)*animationSpeed);
+    });
+  }
+
+  function createPaginationControls() {
+    for (let i = 1; i < totalPages+1; i++) {
+      let control = document.createElement("button");
+      if (i === currentPage) {
+        control.classList.add("disabled");
+      }
+      control.id = i;
+      control.innerText = i;
+      control.addEventListener("click", handler);
+      pagination.insertBefore(control, next);
+    }
+    previous.addEventListener("click", handler);
+    next.addEventListener("click", handler);
+  }
+
+  function paginate(posts, start, end) {
+    currentPage = (start/max)+1;
+
+    pagination.querySelectorAll("button").forEach((button) => {
+      if (button.id == currentPage) {
+        button.classList.add("disabled");
+      } else {
+        button.classList.remove("disabled");
+      }
+    });
+
+    if (currentPage === 1) {
+      previous.classList.add("disabled");
+    } else {
+      previous.classList.remove("disabled");
+    }
+
+    if (currentPage === totalPages) {
+      next.classList.add("disabled");
+    } else {
+      next.classList.remove("disabled");
+    }
+
+    posts.slice(start, end).forEach((post) => {
+      render(post);
+    });
+  }
+
+  function remove(element, cb) {
+    bounceOut(element, animationSpeed, 1).onfinish = () => {
+      requestAnimationFrame(() => {
+        featured.removeChild(element);
+        if (cb) {
+          cb();
+        }
+      });
+    };
+  }
+
+  function render(post) {
+    let featured__item = document.createElement("perspective-card"),
+        header = document.createElement("header"),
+        section = document.createElement("section"),
+        mainTitle = document.createElement("h6"),
+        subTitle = document.createElement("section"),
+        date = document.createElement("time"),
+        link = document.createElement("a");
+
+    featured__item.classList.add("featured__item");
+    header.classList.add("header__plain");
+    section.classList.add("header__title");
+    mainTitle.classList.add("header__title--main");
+    subTitle.classList.add("header__title--sub");
+    date.classList.add("header__date");
+
+    section.appendChild(mainTitle);
+    section.appendChild(subTitle);
+    header.appendChild(section);
+    header.appendChild(date);
+    featured__item.appendChild(header);
+    link.appendChild(featured__item);
+    link.href = post.url;
+    date.innerText = post.date;
+    mainTitle.innerText = post.title;
+    subTitle.innerText = post.subTitle;
+
+    if (post.image) {
+      featured__item.setAttribute("background-image", "{{ site.url }}/assets/images/" + post.image);
+    }
+
+    if (counter < max) {
+      counter++;
+    }
+
+    setTimeout(() => {
+      bounceIn(link, animationSpeed, 1);
+      requestAnimationFrame(() => {
+        featured.appendChild(link);
+      });
+    }, (counter/2)*animationSpeed);
+  }
+
+  function fadeIn(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations };
+    const keyframes = [{ opacity: "0", offset: 0 }, { opacity: "1", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function fadeOut(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations };
+    const keyframes = [{ opacity: "1", offset: 0 }, { opacity: "0", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceIn(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations, easing: "cubic-bezier(0.215, 0.610, 0.355, 1.000)" };
+    const keyframes = [
+      { transform: "scale3d(0, 0, 0)", opacity: "0", offset: 0 },
+      { transform: "scale3d(1.2, 1.2, 1.2)", offset: 0.8 },
+      { transform: "scale3d(1, 1, 1)", opacity: "1", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceOut(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations, easing: "cubic-bezier(0.215, 0.610, 0.355, 1.000)" };
+    const keyframes = [
+      { transform: "scale3d(1, 1, 1)", opacity: "1", offset: 0 },
+      { transform: "scale3d(1.1, 1.1, 1.1)", offset: 0.8 },
+      { transform: "scale3d(0, 0, 0)", opacity: "0", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+})();
+</script>

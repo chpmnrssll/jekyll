@@ -7,14 +7,13 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  color: hsl($default-hue, $default-saturation, 90%);
-  color: var(--color-primary-light9);
+  color: hsl($default-hue, $default-saturation, 70%);
+  color: var(--color-primary-light7);
   text-shadow: 1px 1px 1px var(--color-primary-dark5);
 
-  // fallback without custom properties, without gradient, & full gradient
+  // fallback without custom properties or gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark7) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark5) 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,19 +24,19 @@ h1, h2, h3, h4, h5, h6 {
 
 main {
   padding: 1rem;
-  min-height: 70vh;
+  min-height: 60vh;
   overflow-x: hidden;
 
-  // fallback without custom properties, without gradient, & full gradient
+  // fallback without custom properties or gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark7) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark4) 100%);
   box-shadow: 0px 0px 4rem var(--color-primary-dark5);
 }
 
 .featured {
   display: grid;
   align-items: center;
+  min-height: 50vh;
   grid-gap: calc(1rem + 1vw);
 
   // Responsive grid
