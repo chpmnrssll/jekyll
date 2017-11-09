@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 
 main {
   padding: 1rem;
-  min-height: 60vh;
+  min-height: 75vh;
   overflow-x: hidden;
 
   // fallback without custom properties or gradient
@@ -34,9 +34,10 @@ main {
 }
 
 .featured {
+  min-height: 50vh;
+  margin-right: 1rem;
   display: grid;
   align-items: center;
-  min-height: 50vh;
   grid-gap: calc(1rem + 1vw);
 
   // Responsive grid

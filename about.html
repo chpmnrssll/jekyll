@@ -63,5 +63,7 @@ permalink: /about/
     </table>
     <p>Hand written, human readable, well commented.</p>
   </section>
+  {% capture changelog %}{% include_relative CHANGELOG.md %}{% endcapture %}
+  {{ changelog | markdownify }}
 </main>
 {% include footer.html %}

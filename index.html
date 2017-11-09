@@ -31,7 +31,6 @@ sub-title: SPA PWA AMP BS...
       totalPages = 0,
       currentPage = 0,
       req = new XMLHttpRequest(),
-      button = document.querySelector("#more"),
       next = document.querySelector("#next"),
       prev = document.querySelector("#previous"),
       featured = document.querySelector("#featured"),
@@ -78,7 +77,7 @@ sub-title: SPA PWA AMP BS...
               end += diff;
               start += diff;
               paginate(posts, start, end);
-            }, (max/2)*animationSpeed);
+            }, animationSpeed*1.5);
           });
         }
       }, (counter/2)*animationSpeed);
