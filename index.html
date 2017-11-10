@@ -36,7 +36,7 @@ sub-title: SPA PWA AMP BS...
       featured = document.querySelector("#featured"),
       pagination = document.querySelector("#pagination"),
       htmlStyles = window.getComputedStyle(document.querySelector("html")),
-      animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2));
+      animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2))*2;
 
   window.addEventListener("load", function() {
     req.open("GET", "/json/posts.json", true);
@@ -77,10 +77,10 @@ sub-title: SPA PWA AMP BS...
               end += diff;
               start += diff;
               paginate(posts, start, end);
-            }, animationSpeed*1.5);
+            }, animationSpeed*2);
           });
         }
-      }, (counter/2)*animationSpeed);
+      }, animationSpeed+((counter/2)*animationSpeed));
     });
   }
 
@@ -128,7 +128,7 @@ sub-title: SPA PWA AMP BS...
   }
 
   function remove(element, cb) {
-    bounceOut(element, animationSpeed, 1).onfinish = () => {
+    bounceOutRight(element, animationSpeed, 1).onfinish = () => {
       requestAnimationFrame(() => {
         featured.removeChild(element);
         if (cb) {
@@ -174,11 +174,11 @@ sub-title: SPA PWA AMP BS...
     }
 
     setTimeout(() => {
-      bounceIn(link, animationSpeed, 1);
+      bounceInRight(link, animationSpeed, 1);
       requestAnimationFrame(() => {
         featured.appendChild(link);
       });
-    }, (counter/2)*animationSpeed);
+    }, animationSpeed+((counter/2)*animationSpeed));
   }
 
   function fadeIn(elem, duration, iterations) {
@@ -211,6 +211,54 @@ sub-title: SPA PWA AMP BS...
       { transform: "scale3d(1, 1, 1)", opacity: "1", offset: 0 },
       { transform: "scale3d(1.1, 1.1, 1.1)", offset: 0.8 },
       { transform: "scale3d(0, 0, 0)", opacity: "0", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceInLeft(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations, easing: "cubic-bezier(0.215, 0.610, 0.355, 1.000)" };
+    const keyframes = [
+      { transform: "translate3d(-3000px, 0, 0)", opacity: "0", offset: 0 },
+      { transform: "translate3d(25px, 0, 0)", offset: 0.6 },
+      { transform: "translate3d(-100px, 0, 0)", offset: 0.75 },
+      { transform: "translate3d(5px, 0, 0)", offset: 0.9 },
+      { transform: "none", opacity: "1", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceOutLeft(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations, easing: "cubic-bezier(0.215, 0.610, 0.355, 1.000)" };
+    const keyframes = [
+      { transform: "none", opacity: "1", offset: 0 },
+      { transform: "translate3d(100px, 0, 0)", offset: 0.2 },
+      { transform: "translate3d(-20px, 0, 0)", offset: 0.4 },
+      { transform: "translate3d(-20px, 0, 0)", offset: 0.45 },
+      { transform: "translate3d(-2000px, 0, 0)", opacity: "0", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceInRight(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations, easing: "cubic-bezier(0.215, 0.610, 0.355, 1.000)" };
+    const keyframes = [
+      { transform: "translate3d(3000px, 0, 0)", opacity: "0", offset: 0 },
+      { transform: "translate3d(-25px, 0, 0)", opacity: "1", offset: 0.6 },
+      { transform: "translate3d(100px, 0, 0)", offset: 0.75 },
+      { transform: "translate3d(-5px, 0, 0)", offset: 0.9 },
+      { transform: "none", opacity: "1", offset: 1 }];
+
+    return elem.animate(keyframes, timing);
+  }
+
+  function bounceOutRight(elem, duration, iterations) {
+    const timing = { duration: duration, iterations: iterations };
+    const keyframes = [
+      { transform: "none", opacity: "1", offset: 0 },
+      { transform: "translate3d(100px, 0, 0)", opacity: "1", offset: 0.2 },
+      { transform: "translate3d(-20px, 0, 0)", opacity: "1", offset: 0.4 },
+      { transform: "translate3d(-20px, 0, 0)", opacity: "1", offset: 0.45 },
+      { transform: "translate3d(2000px, 0, 0)", opacity: "0", offset: 1 }];
 
     return elem.animate(keyframes, timing);
   }

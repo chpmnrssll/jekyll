@@ -29,7 +29,7 @@ main {
 
   // fallback without custom properties or gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark4) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark5) 100%);
   box-shadow: 0px 0px 4rem var(--color-primary-dark5);
 }
 
@@ -42,7 +42,7 @@ main {
 
   // Responsive grid
   grid-template-columns: repeat(1, 1fr);
-  @include mediaQuery("mobile-m") { grid-template-columns: repeat(2, 1fr); }
+  @include mediaQuery("mobile-l") { grid-template-columns: repeat(2, 1fr); }
   @include mediaQuery("tablet") { grid-template-columns: repeat(3, 1fr); }
 
   @at-root #{&}__item {
@@ -62,9 +62,9 @@ main {
 
   // Responsive grid
   grid-template-columns: repeat(2, 1fr);  // mobile-s
-  @include mediaQuery("mobile-l") { grid-template-columns: repeat(3, 1fr); }
+  @include mediaQuery("mobile-m") { grid-template-columns: repeat(3, 1fr); }
   @include mediaQuery("tablet") { grid-template-columns: repeat(5, 1fr); }
-  @include mediaQuery("laptop-l") { grid-template-columns: repeat(7, 1fr); }
+  @include mediaQuery("laptop-m") { grid-template-columns: repeat(7, 1fr); }
 }
 
 .codeStats {
