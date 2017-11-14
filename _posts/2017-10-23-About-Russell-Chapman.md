@@ -1,11 +1,11 @@
 ---
-layout: json
+layout: post
 image: /music/guitarNeckPick.jpg
 title: About Me
 sub-title: Russell Chapman
 date: 2017-10-23T00:00:00.000Z
 tags: About Programming
-permalink: ':year/:month/:day/:title.json'
+permalink: 'developers/chpmnrssll/'
 ---
 
 Info circa 2013...

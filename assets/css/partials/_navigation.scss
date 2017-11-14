@@ -1,7 +1,7 @@
 a {
   text-decoration: none;
   color: var(--color-primary-light1);
-  text-shadow: 2px 2px 2px var(--color-primary-dark5);
+  text-shadow: 2px 2px 2px var(--color-primary-dark4);
   &.disabled {
     color: var(--color-primary-dark2);
     text-shadow: 2px 2px 2px var(--color-primary-dark5);
@@ -10,7 +10,7 @@ a {
   }
   &:active, &:hover {
     color: var(--color-primary-light3);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5), 0px 0px 2px var(--color-primary-light2);
+    text-shadow: 2px 2px 2px var(--color-primary-dark3), 0px 0px 2px var(--color-primary-light3);
   }
 }
 
@@ -98,17 +98,5 @@ a {
   }
   @at-root #{&}__checkbox:checked ~ nav {
     @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o);
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-
-  button {
-    @extend a;
-    margin: 1rem;
-    background-color: rgba(0,0,0,0);
-    cursor: pointer;
   }
 }

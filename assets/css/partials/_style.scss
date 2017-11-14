@@ -9,17 +9,17 @@ body {
   overflow-x: hidden;
   color: hsl($default-hue, $default-saturation, 70%);
   color: var(--color-primary-light7);
-  text-shadow: 1px 1px 1px var(--color-primary-dark5);
+  //text-shadow: 1px 1px 1px var(--color-primary-dark5);
 
   // fallback without custom properties or gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark5) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark3) 0%, var(--color-primary-dark4) 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: hsl($default-hue, $default-saturation, 90%);
-  color: var(--color-primary-light9);
-  text-shadow: 2px 2px 2px var(--color-primary-dark5);
+  //color: hsl($default-hue, $default-saturation, 90%);
+  //color: var(--color-primary-light9);
+  //text-shadow: 2px 2px 2px var(--color-primary-dark5);
 }
 
 main {
@@ -29,12 +29,14 @@ main {
 
   // fallback without custom properties or gradient
   background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark5) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark4) 0%, var(--color-primary-dark5) 100%);
   box-shadow: 0px 0px 4rem var(--color-primary-dark5);
 }
 
 .featured {
-  min-height: 50vh;
+  //position: absolute;
+  perspective: 20vw;
+  min-height: 65vh;
   margin-right: 1rem;
   display: grid;
   align-items: center;
@@ -119,4 +121,18 @@ main {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+.universe {
+  //position: absolute;
+  perspective: 20vw;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.star {
+  transform-style: preserve-3d;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  opacity: 0.2;
 }

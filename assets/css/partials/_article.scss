@@ -13,7 +13,7 @@
     margin-right: 4rem;
     font-size: 1.25rem;
     border-left: 2px solid var(--color-primary);
-    background-color: var(--color-primary-dark1);
+    background-color: var(--color-primary-dark3);
     box-shadow: 0.25rem 0.25rem 1rem var(--color-primary-dark5);
     > p { padding: 1rem; }
     > p::first-letter {
@@ -30,7 +30,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    //border-top: 2px solid var(--color-primary-dark1);
+    border-top: 2px solid var(--color-primary-dark3);
     border-bottom: 2px solid var(--color-primary-dark3);
   }
   @at-root #{&}__author-avatar {

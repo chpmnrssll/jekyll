@@ -1,0 +1,151 @@
+<template id="template">
+  <style>
+    #container {
+      display: flex;
+      justify-content: center;
+    }
+    button {
+      margin: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: rgba(0,0,0,0);
+      color: var(--color-primary-light1);
+      text-shadow: 2px 2px 2px var(--color-primary-dark6);
+    }
+    button:disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      color: var(--color-primary-dark3);
+      text-shadow: 2px 2px 2px var(--color-primary-dark9);
+    }
+    button:active, button:hover {
+      color: var(--color-primary-light3);
+      text-shadow: 2px 2px 2px var(--color-primary-dark3), 0px 0px 6px var(--color-primary-light1);
+    }
+  </style>
+  <div id="container">
+    <!--
+    <button id="previous"><i class="fa fa-chevron-left"></i></button>
+    <button id="next"><i class="fa fa-chevron-right"></i></button>
+    -->
+  </div>
+</template>
+
+<script>
+  const currentScript = document.currentScript;
+
+  customElements.define("data-pager", class extends HTMLElement {
+    constructor() {
+      super();
+      const mainDoc = currentScript.ownerDocument;
+      const template = mainDoc.querySelector("#template");
+      const instance = template.content.cloneNode(true);
+      this.shadowDOM = this.attachShadow({ mode: "open" });
+      this.shadowDOM.appendChild(instance);
+      this.containerElement = this.shadowDOM.querySelector("#container");
+    }
+
+    static get observedAttributes() {
+      return ["totalrecords", "recordsperpage", "totalpages", "currentpage"];
+    }
+
+    get totalRecords() {
+      return this.getAttribute("totalRecords") || 0;
+    }
+    set totalRecords(value) {
+      this.setAttribute("totalRecords", value);
+    }
+    get recordsPerPage() {
+      return this.getAttribute("recordsPerPage") || 0;
+    }
+    set recordsPerPage(value) {
+      this.setAttribute("recordsPerPage", value);
+    }
+    get totalPages() {
+      return this.getAttribute("totalPages") || 0;
+    }
+    set totalPages(value) {
+      this.setAttribute("totalPages", value);
+    }
+    get currentPage() {
+      return this.getAttribute("currentPage") || 0;
+    }
+    set currentPage(value) {
+      this.setAttribute("currentPage", value);
+    }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+      if (attr === "totalrecords" && this.recordsPerPage || attr === "recordsperpage" && this.totalRecords) {
+        this.totalPages = Math.ceil(this.totalRecords / this.recordsPerPage);
+      } else if (attr === "currentpage") {
+        this.lastPage = parseInt(oldValue || 0);
+        this.dispatchEvent(new CustomEvent("pageChange", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            currentPage: this.currentPage,
+            lastPage: this.lastPage
+          }
+        }));
+      }
+
+      this.containerElement.innerHTML = "";
+      this.render();
+    }
+
+    render() {
+      this.containerElement.appendChild(this.createPreviousButton());
+      for (let pageNumber = 0; pageNumber < this.totalPages; pageNumber++) {
+        let button = this.createPageButton(pageNumber);
+        this.containerElement.appendChild(button);
+      }
+      this.containerElement.appendChild(this.createNextButton());
+    }
+
+    createPreviousButton() {
+      let buttonElement = document.createElement("button");
+      buttonElement.innerHTML = "<";
+      buttonElement.addEventListener("click", (event) => {
+        if (this.currentPage <= 0) {
+          this.currentPage = this.totalPages-1;
+        } else {
+          this.currentPage--;
+        }
+      });
+
+      return buttonElement;
+    }
+
+    createNextButton() {
+      let buttonElement = document.createElement("button");
+      buttonElement.innerHTML = ">";
+      buttonElement.addEventListener("click", (event) => {
+        if (this.currentPage >= this.totalPages-1) {
+          this.currentPage = 0;
+        } else {
+          this.currentPage++;
+        }
+      });
+
+      return buttonElement;
+    }
+
+    createPageButton(pageNumber) {
+      let buttonElement = document.createElement("button");
+      buttonElement.innerHTML = pageNumber+1;
+
+      if (pageNumber == this.currentPage) {
+        buttonElement.disabled = true;
+      } else {
+        buttonElement.disabled = false;
+      }
+
+      buttonElement.addEventListener("click", (event) => {
+        this.currentPage = pageNumber;
+      });
+
+      return buttonElement;
+    }
+
+  });
+</script>

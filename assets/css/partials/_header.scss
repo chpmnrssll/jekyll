@@ -1,45 +1,41 @@
 .header {
   transform-style: preserve-3d;
 
+  @at-root #{&}__title {
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    text-align: right;
+    z-index: 2;
+  }
+  @at-root #{&}__title--main {
+    font-style: italic;
+    color: var(--color-primary-light5);
+    text-shadow: 2px 2px 2px var(--color-primary-dark4);
+  }
+  @at-root #{&}__title--sub {
+    font-style: italic;
+    color: var(--color-primary-light4);
+    text-shadow: 2px 2px 2px var(--color-primary-dark5);
+  }
+  @at-root #{&}__date {
+    font-style: italic;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-light3);
+    text-shadow: 2px 2px 2px var(--color-primary-dark6);
+  }
+
   @at-root #{&}__plain {
     height: 100%;
     display: flex;
     text-align: right;
     flex-direction: column;
-    //align-items: flex-end;          // align items in Cross Axis
-    //align-content: stretch;         // extra space in Cross Axis
-    justify-content: space-between; // align items in Main Axis
-    font-size: 0.75rem;
-  }
-  @at-root #{&}__title {
-    margin-right: 1.25rem;
-    margin-top: 0.5rem;
-    text-align: right;
-  }
-  @at-root #{&}__title--main {
-    font-style: italic;
-    color: var(--color-primary-light8);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(0)), webkit moz ms o);
-  }
-  @at-root #{&}__title--sub {
-    font-style: italic;
-    color: var(--color-primary-light7);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(0)), webkit moz ms o);
-  }
-  @at-root #{&}__date {
-    margin-right: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-primary-light6);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5);
-    @include prefix((transform: translateZ(0)), webkit moz ms o);
+    justify-content: space-between;
   }
 
   @at-root #{&}__parallax {
     height: 60vh;
     display: flex;
-    font-size: 1.2rem;
     align-items: flex-end;
     flex-direction: column;
     justify-content: space-between;
@@ -55,7 +51,7 @@
 
     background-repeat: no-repeat;
     background-position: center top;
-    @include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
+    //@include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
 
     // gradient overlay
     &::before {
@@ -63,9 +59,9 @@
       left: 0;
       width: 100%;
       height: 60vh;
-      opacity: 0.25;
+      opacity: 0.15;
       position: absolute;
-      background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-secondary-dark3) 100%);
+      background: linear-gradient(135deg, var(--color-primary-light9) 0%, var(--color-primary) 100%);
     }
   }
 }
