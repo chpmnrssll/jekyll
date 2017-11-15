@@ -34,7 +34,6 @@ main {
 }
 
 .featured {
-  //position: absolute;
   perspective: 20vw;
   min-height: 65vh;
   margin-right: 1rem;
@@ -124,15 +123,17 @@ main {
 }
 
 .universe {
-  //position: absolute;
   perspective: 20vw;
-  background-color: rgba(0, 0, 0, 0);
+  transform-style: preserve-3d;
+  min-height: 75vh;
 }
 
 .star {
+  position: absolute;
   transform-style: preserve-3d;
   border-radius: 50%;
-  height: 16px;
-  width: 16px;
-  opacity: 0.2;
+  height: 8px;
+  width: 8px;
+  background: var(--color-secondary-light5);
+  box-shadow: 0px 0px 8px var(--color-secondary-light1);
 }

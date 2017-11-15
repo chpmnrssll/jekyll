@@ -1,3 +1,6 @@
+---
+---
+{
 let posts = {},
     counter = 0,
     lastPage = 0,
@@ -6,13 +9,15 @@ let posts = {},
     recordsPerPage = 6,
     inAnimation = zoom.in.right,
     outAnimation = zoom.out.left,
-    next = document.querySelector("#next"),
-    prev = document.querySelector("#previous"),
-    featured = document.querySelector("#featured"),
-    pagination = document.querySelector("#pagination"),
-    htmlStyles = window.getComputedStyle(document.querySelector("html")),
-    animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2)),
     req = new XMLHttpRequest();
+
+const next = document.querySelector("#next"),
+      prev = document.querySelector("#previous"),
+      featured = document.querySelector("#featured"),
+      pagination = document.querySelector("#pagination"),
+      htmlStyles = window.getComputedStyle(document.querySelector("html")),
+      animationSpeed = parseInt(htmlStyles.getPropertyValue("--animation-speed").slice(0, -2)),
+      zoomSpeed = animationSpeed * (recordsPerPage / 2);
 
 window.addEventListener("load", function() {
   req.open("GET", "/json/posts.json", true);
@@ -20,22 +25,15 @@ window.addEventListener("load", function() {
 });
 
 req.addEventListener("load", function() {
+  let pagerElement = document.querySelector("data-pager");
   posts = JSON.parse(this.response);
-  let paginationElement = document.querySelector("data-pager");
-  paginationElement.totalRecords = posts.length;
-  paginationElement.recordsPerPage = recordsPerPage;
-  paginationElement.addEventListener("pageChange", function (event) {
+  pagerElement.totalRecords = posts.length;
+  pagerElement.recordsPerPage = recordsPerPage;
+
+  pagerElement.addEventListener("pageChange", function (event) {
     currentPage = event.detail.currentPage;
     lastPage = event.detail.lastPage;
-
-    if (currentPage >= paginationElement.totalPages-1 && lastPage == 0) {
-      direction = -1;
-    } else if (currentPage == 0 && lastPage == paginationElement.totalPages-1) {
-      direction = 1;
-    } else {
-      direction = currentPage > lastPage ? 1 : -1;
-    }
-
+    direction = currentPage > lastPage ? 1 : -1;
     inAnimation = direction > 0 ? zoom.in.right : zoom.in.left;
     outAnimation = direction < 0 ? zoom.out.right : zoom.out.left;
     removePosts();
@@ -46,18 +44,21 @@ req.addEventListener("load", function() {
 
 function removePosts() {
   if (featured.children) {
-    let children = direction >= 0 ? Array.from(featured.children).reverse() : Array.from(featured.children);
-    children.forEach((child, index, array) => {
+    Array.from(featured.children).forEach((child) => {
       animateOut(child).then(paginatePosts);
     });
   }
 }
 
+let preRendered = [];
+
 function paginatePosts() {
   let start = currentPage * recordsPerPage;
   let end = start + recordsPerPage;
-  posts.slice(start, end).forEach((post) => {
-    animateIn(render(post));
+  posts.slice(start, end).forEach((post, index) => {
+    // only render post if it ain't in the preRendered array
+    preRendered[post.url] = preRendered[post.url] || render(post);
+    animateIn(preRendered[post.url]);
   });
 }
 
@@ -96,8 +97,7 @@ function render(post) {
 
 function animateIn(element) {
   if (counter < recordsPerPage) { counter++; }
-  const sequenceSpeed = animationSpeed * (counter / recordsPerPage);
-  const zoomSpeed = animationSpeed * recordsPerPage;
+  const sequenceSpeed = animationSpeed * (counter+1);
 
   setTimeout(() => {
     featured.appendChild(element);
@@ -107,19 +107,18 @@ function animateIn(element) {
 
 function animateOut(element) {
   if (counter > 0) { counter--; }
-  const sequenceSpeed = animationSpeed * (counter / recordsPerPage);
-  const zoomSpeed = animationSpeed * recordsPerPage;
-  const lastElement = counter == 0;
-  //const last = element === featured.lastElementChild;
+  const sequenceSpeed = animationSpeed * (counter+1);
+  const lastElement = counter === 0;
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       outAnimation(element, zoomSpeed, 1).onfinish = () => {
         element.remove();
         if (lastElement) {
-          resolve();
+          setTimeout(resolve, zoomSpeed);
         }
-      };
+      }
     }, sequenceSpeed);
   });
+}
 }

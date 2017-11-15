@@ -3,7 +3,7 @@
     <style>
       :host {
         display: block;
-        perspective: 20rem;
+        perspective: 25rem;
         /*overflow: hidden;*/
       }
       .container {
@@ -11,6 +11,7 @@
         height: 100%;
         pointer-events: none;
         transform-style: preserve-3d;
+        will-change: transform opacity;
         -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
         -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
@@ -28,6 +29,7 @@
         opacity: 0.15;
         position: absolute;
         transform-style: preserve-3d;
+        will-change: transform opacity;
         background: linear-gradient(135deg, var(--color-primary-light9) 0%, var(--color-primary) 100%);
         -webkit-transform: translateZ(-1rem) scale(1.05);
         -moz-transform: translateZ(-1rem) scale(1.05);
@@ -42,6 +44,7 @@
         height: 100%;
         position: absolute;
         transform-style: preserve-3d;
+        will-change: transform opacity;
         -webkit-transform: translateZ(-1rem) scale(1.05);
         -moz-transform: translateZ(-1rem) scale(1.05);
         -o-transform: translateZ(-1rem) scale(1.05);
@@ -55,6 +58,7 @@
   </template>
   <script>
     const importDocument = document.currentScript.ownerDocument;
+    const animationSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--animation-speed").slice(0, -2));
 
     customElements.define("perspective-card", class extends HTMLElement {
       constructor() {
@@ -67,7 +71,6 @@
 
       connectedCallback() {
         this.addEventListener("mousemove", (event) => {
-
           // save this events target, then wait for a new frame
           const currentTarget = event.target;
           requestAnimationFrame(() => {
@@ -79,24 +82,20 @@
             const xOffset = ((event.clientX - this.offsetLeft) / width) - 0.5;
             const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
 
-            // set CSS custom properties on the next frame
-            requestAnimationFrame(() => {
-              this.style.setProperty("--x-offset", xOffset);
-              this.style.setProperty("--y-offset", yOffset);
-            });
+            // set CSS custom properties
+            this.style.setProperty("--x-offset", xOffset);
+            this.style.setProperty("--y-offset", yOffset);
           });
         }, { passive: true });
 
         this.addEventListener("mouseleave", (event) => {
           const currentTarget = event.currentTarget;
-          const animationSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--animation-speed").slice(0, -2));
-          const resetSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--reset-speed").slice(0, -2));
 
           // reset card rotation after animationSpeed ms
           setTimeout(() => {
             currentTarget.style.setProperty("--x-offset", 0);
             currentTarget.style.setProperty("--y-offset", 0);
-          }, resetSpeed);
+          }, animationSpeed * 2);
         }, { passive: true });
       }
 

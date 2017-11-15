@@ -1,20 +1,20 @@
-var starCount = 100;
-var maxTime = 1000;
-var universe = document.querySelector(".universe");
-var width = universe.offsetWidth*2;
-var height = universe.offsetHeight;
+{
+const starCount = 64;
+const maxTime = 1000;
+const universe = document.querySelector(".universe");
+const width = universe.offsetWidth*2;
+const height = universe.offsetHeight;
 
-for (var i = 0; i < starCount; ++i) {
-  var star = document.createElement("div");
-  var ypos = r(height);
-  var zpos = (i * 2);
-  var speed = 1000 * r(maxTime + 1);
+for (let i = 0; i < starCount; ++i) {
+  let star = document.createElement("div");
+  let ypos = r(height);
+  let zpos = (i-starCount) * 4;
+  let speed = 1000 * r(maxTime);
   star.classList.add("star");
-  star.style.backgroundColor = `rgb(${255-r(127)}, ${255-r(127)}, ${255-r(127)})`;
 
   universe.appendChild(star);
   star.animate([
-      { transform: `translate3d(${-16}px, ${ypos}px, ${zpos}px)` },
+      { transform: `translate3d(${-width}px, ${ypos}px, ${zpos}px)` },
       { transform: `translate3d(${width+16}px, ${ypos}px, ${zpos}px)` }
     ],
     {
@@ -26,4 +26,5 @@ for (var i = 0; i < starCount; ++i) {
   function r(num) {
     return Math.round(Math.random() * num);
   }
+}
 }

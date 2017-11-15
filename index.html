@@ -3,7 +3,6 @@ layout: default
 title: Artcles
 sub-title: Devlog
 ---
-<link rel="import" href="{{ site.baseurl }}/assets/components/data-pager.html"/>
 <header class="header__plain">
   <div class="header__title">
     <h1 class="header__title--main">{{ page.title }}</h1>
@@ -12,10 +11,13 @@ sub-title: Devlog
 </header>
 <main>
   <section id="featured" class="featured"></section>
-  <div class="universe"></div>
+  <!--<div class="universe"></div>-->
   <footer class="footer">
     <data-pager id="pagination">
     </data-pager>
   </footer>
 </main>
 {% include footer.html %}
+<link rel="import" href="{{ site.baseurl }}/assets/components/data-pager.html"/>
+<script src="{{ site.baseurl }}/assets/javascript/animations.js"></script>
+<script src="{{ site.baseurl }}/assets/javascript/posts.js"></script>

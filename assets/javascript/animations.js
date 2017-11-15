@@ -2,26 +2,26 @@ let zoom = {
   in: {
     right: (element, duration, iterations) => {
       const keyframes = [
-        { opacity: 0, transform: "translate3d(550vw, 0, -200vw) rotateY(35deg)" },
+        { opacity: 0, transform: "translate3d(45vw, 0vw, -25vw) rotateY(45deg)" },
         { opacity: 1, transform: "none" }
       ];
       const timing = {
         duration: duration,
         iterations: iterations,
-        easing: "ease-in-out"
+        easing: "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
       };
 
       return element.animate(keyframes, timing);
     },
     left: (element, duration, iterations) => {
       const keyframes = [
-        { opacity: 0, transform: "translate3d(-550vw, 0, -200vw) rotateY(-35deg)" },
+        { opacity: 0, transform: "translate3d(-45vw, 0vw, -25vw) rotateY(-45deg)" },
         { opacity: 1, transform: "none" }
       ];
       const timing = {
         duration: duration,
         iterations: iterations,
-        easing: "ease-in-out"
+        easing: "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
       };
 
       return element.animate(keyframes, timing);
@@ -31,12 +31,12 @@ let zoom = {
     right: (element, duration, iterations) => {
       const keyframes = [
         { opacity: 1, transform: "none" },
-        { opacity: 0, transform: "translate3d(550vw, 0, -200vw) rotateY(35deg)" }
+        { opacity: 0, transform: "translate3d(45vw, 0vw, -25vw) rotateY(-45deg)" }
       ];
       const timing = {
         duration: duration,
         iterations: iterations,
-        easing: "ease-in-out"
+        easing: "cubic-bezier(0.6, -0.28, 0.735, 0.045)"
       };
 
       return element.animate(keyframes, timing);
@@ -44,14 +44,13 @@ let zoom = {
     left: (element, duration, iterations) => {
       const keyframes = [
         { opacity: 1, transform: "none" },
-        { opacity: 0, transform: "translate3d(-550vw, 0, -200vw) rotateY(-35deg)" }
+        { opacity: 0, transform: "translate3d(-45vw, 0vw, -25vw) rotateY(45deg)" }
       ];
       const timing = {
         duration: duration,
         iterations: iterations,
-        easing: "ease-in-out"
+        easing: "cubic-bezier(0.6, -0.28, 0.735, 0.045)"
       };
-
       return element.animate(keyframes, timing);
     }
   }

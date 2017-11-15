@@ -28,7 +28,6 @@
     <button id="next"><i class="fa fa-chevron-right"></i></button>-->
   </div>
 </template>
-
 <script>
   const currentScript = document.currentScript;
 
@@ -73,7 +72,8 @@
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
-      if (attr === "totalrecords" && this.recordsPerPage || attr === "recordsperpage" && this.totalRecords) {
+      if ((attr === "totalrecords" && this.recordsPerPage) ||
+          (attr === "recordsperpage" && this.totalRecords)) {
         this.totalPages = Math.ceil(this.totalRecords / this.recordsPerPage);
       } else if (attr === "currentpage") {
         this.lastPage = parseInt(oldValue || 0);
@@ -92,55 +92,32 @@
     }
 
     render() {
-      this.containerElement.appendChild(this.createPreviousButton());
+      // Previous button
+      this.containerElement.appendChild(
+        this.createButton("<", this.currentPage <= 0,
+          () => { this.currentPage--; }));
+
+      // Page buttons
       for (let pageNumber = 0; pageNumber < this.totalPages; pageNumber++) {
-        let button = this.createPageButton(pageNumber);
-        this.containerElement.appendChild(button);
-      }
-      this.containerElement.appendChild(this.createNextButton());
-    }
-
-    createPreviousButton() {
-      let buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "<";
-      buttonElement.addEventListener("click", (event) => {
-        if (this.currentPage <= 0) {
-          this.currentPage = this.totalPages-1;
-        } else {
-          this.currentPage--;
-        }
-      });
-
-      return buttonElement;
-    }
-
-    createNextButton() {
-      let buttonElement = document.createElement("button");
-      buttonElement.innerHTML = ">";
-      buttonElement.addEventListener("click", (event) => {
-        if (this.currentPage >= this.totalPages-1) {
-          this.currentPage = 0;
-        } else {
-          this.currentPage++;
-        }
-      });
-
-      return buttonElement;
-    }
-
-    createPageButton(pageNumber) {
-      let buttonElement = document.createElement("button");
-      buttonElement.innerHTML = pageNumber+1;
-
-      if (pageNumber == this.currentPage) {
-        buttonElement.disabled = true;
-      } else {
-        buttonElement.disabled = false;
+        this.containerElement.appendChild(
+          this.createButton(pageNumber+1, pageNumber == this.currentPage,
+            () => { this.currentPage = pageNumber; }));
       }
 
-      buttonElement.addEventListener("click", (event) => {
-        this.currentPage = pageNumber;
-      });
+      // Next button
+      this.containerElement.appendChild(
+        this.createButton(">", this.currentPage >= this.totalPages-1,
+          () => { this.currentPage++; }));
+    }
+
+    createButton(innerHTML, disabled, clickHandler) {
+      let buttonElement = document.createElement("button");
+
+      buttonElement.innerHTML = innerHTML;
+      buttonElement.disabled = disabled;
+      if (!disabled) {
+        buttonElement.addEventListener("click", clickHandler);
+      }
 
       return buttonElement;
     }
