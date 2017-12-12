@@ -1,56 +1,13 @@
----
-layout: default
----
-{% if page.image %}
-<header class="header__parallax" style="background-image: url({{ '/assets/images/' | prepend: site.url | append : page.image }});">
-{% else %}
-<header class="header__plain">
-{% endif %}
-  <div class="header__title">
-    <h1 class="header__title--main">{{ page.title }}</h1>
-    <section class="header__title--sub">{{ page.sub-title }}</section>
-  </div>
-  <time class="header__date">{{ page.date | date: "%b %d, %Y" }}</time>
-</header>
-<main>
-  <article class="article">
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+{% include head.html %}
+<body>
+  {% include navigation.html %}
+  {% include header.html %}
+  <main class="content">
     {{ content }}
-    <footer class="article__footer">
-      <a href="{{ site.url }}/developers/chpmnrssll/">
-        <section class="article__author-avatar">{% avatar {{ site.github_username }} %}</section>
-        <section class="article__author-name">{{ site.author }}</section>
-      </a>
-      <section class="article__author-description">In a world run by large corporations, one man has no choice but to find the master code.</section>
-      <section class="article__tags">
-        Tags: {% for tag in page.tags %}
-        <a href="{{ site.url }}/tags#{{ tag }}" class="tag">{{ tag }}</a> {% endfor %}
-      </section>
-      <section class="article__share">
-        Share:
-        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-        <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-        <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" target="_blank"><i class="fa fa-google">+</i></a>
-      </section>
-    </footer>
-  </article>
-  <section class="featured">
-    {% for post in site.posts offset:0 limit:6 %}
-    <a href="{{ post.url | prepend: site.url }}">
-      {% if post.image == null %}
-      <perspective-card class="featured__item">
-      {% else %}
-      <perspective-card class="featured__item" background-image="{{ '/assets/images/' | prepend: site.url | append: post.image }}">
-      {% endif %}
-        <header class="header__plain">
-          <section class="header__title">
-            <h4 class="header__title--main">{{ post.title }}</h4>
-            <section class="header__title--sub">{{ post.sub-title }}</section>
-          </section>
-          <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
-        </header>
-      </perspective-card>
-    </a>
-    {% endfor %}
-  </section>
-</main>
-{% include footer.html %}
+  </main>
+  {% include footer.html %}
+  <script src="{{ site.baseurl }}/assets/javascript/main.js"></script>
+</body>
+</html>

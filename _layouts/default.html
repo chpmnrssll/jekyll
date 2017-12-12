@@ -1,11 +1,13 @@
----
----
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-  {% include head.html %}
-  <body>
-    {% include navigation.html %}
+{% include head.html %}
+<body>
+  {% include navigation.html %}
+  {% include header.html %}
+  <main class="content">
     {{ content }}
-    {% include scripts.html %}
-  </body>
+  </main>
+  {% include footer.html %}
+  <script src="{{ site.baseurl }}/assets/javascript/main.js"></script>
+</body>
 </html>

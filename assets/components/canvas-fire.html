@@ -1,0 +1,121 @@
+<html>
+<style>
+canvas {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  image-rendering: pixelated;
+  z-index: 0;
+}
+</style>
+<script>
+window.customElements.define('canvas-fire', class extends window.HTMLElement {
+  constructor () {
+    super()
+    const scale = 8
+    const width = scale * 16
+    const height = scale * 9
+    const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+    this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
+    this.canvas = document.createElement('canvas')
+    this.canvas.width = width
+    this.canvas.height = height
+    this.context2D = this.canvas.getContext('2d')
+    this.buffer = this.context2D.createImageData(this.canvas.width, this.canvas.height)
+    this.bufferSize = this.canvas.width * this.canvas.height
+    this.appendChild(this.canvas)
+
+    // Precalc y*width values for each horizontal line
+    this.yIndex = {}
+    for (let y = 0; y < this.canvas.height; y++) {
+      this.yIndex[y] = y * this.canvas.width
+    }
+
+    this.turbulenceIndex = 0
+    // Precalc random turbulence values
+    this.turbulence = this.context2D.createImageData(this.canvas.width, this.canvas.height)
+    for (let i = 0; i < this.bufferSize; i++) {
+      this.turbulence[i] = Math.random() + 0.48
+    }
+
+    this.running = false
+  }
+
+  connectedCallback () {
+    this.parentElement.addEventListener('mouseenter', this._mouseenterHandler.bind(this), { passive: true })
+    this.parentElement.addEventListener('mouseleave', this._mouseleaveHandler.bind(this), { passive: true })
+  }
+
+  disconnectedCallback () {
+    this.parentElement.removeEventListener('mouseenter', this._mouseenterHandler)
+    this.parentElement.removeEventListener('mouseleave', this._mouseleaveHandler)
+  }
+
+  _mouseleaveHandler (event) {
+    setTimeout(() => {
+      this.running = false
+    }, this.animationSpeed * 4)
+  }
+
+  _mouseenterHandler (event) {
+    this.running = true
+    window.requestAnimationFrame(this.update.bind(this))
+  }
+
+  update () {
+    //Fill bottom line of buffer with random fire colors
+    for (let x = 0; x < this.canvas.width; x++) {
+      let index = (this.yIndex[this.canvas.height - 1] + x) << 2
+      let c = Math.floor(Math.random() * 255)
+      this.buffer.data[index++] = c * 1.50
+      this.buffer.data[index++] = c * 0.75
+      this.buffer.data[index++] = c * 0.25
+      this.buffer.data[index++] = 255
+    }
+
+    // Loop through buffer from the bottom up
+    for (let y = this.canvas.height - 2; y > 0; y--) {
+      for (let x = 0; x < this.canvas.width; x++) {
+        // X-1: Left pixel
+        let index = (this.yIndex[y] + x - 1) << 2
+        let r1 = this.buffer.data[index++]
+        let g1 = this.buffer.data[index++]
+        let b1 = this.buffer.data[index++]
+
+        // X+1: Right pixel
+        index = (this.yIndex[y] + x + 1) << 2
+        let r2 = this.buffer.data[index++]
+        let g2 = this.buffer.data[index++]
+        let b2 = this.buffer.data[index++]
+
+        // Y+1: Bottom pixel
+        index = (this.yIndex[y + 1] + x) << 2
+        let r3 = this.buffer.data[index++]
+        let g3 = this.buffer.data[index++]
+        let b3 = this.buffer.data[index++]
+
+        // Center pixel
+        index = (this.yIndex[y] + x) << 2
+        const turbulence = this.turbulence[((this.yIndex[y] + x) + (this.turbulenceIndex)) % this.bufferSize]
+
+        // Average pixels, add turbulence, & write to buffer w/fancy bit-shift ops
+        this.buffer.data[index++] = ((r1 + r2 >> 1) + r3 >> 1) * turbulence
+        this.buffer.data[index++] = ((g1 + g2 >> 1) + g3 >> 1) * turbulence
+        this.buffer.data[index++] = ((b1 + b2 >> 1) + b3 >> 1) * turbulence
+        this.buffer.data[index++] = 255
+      }
+    }
+
+    // Move turbulence index a random amount each frame
+    this.turbulenceIndex += Math.floor(this.bufferSize * Math.random())
+
+    // Flip buffer to canvas
+    this.context2D.putImageData(this.buffer, 0, 0)
+    if (this.running) {
+      window.requestAnimationFrame(this.update.bind(this))
+    }
+  }
+})
+</script>
+</html>

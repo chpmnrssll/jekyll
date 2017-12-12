@@ -1,11 +1,10 @@
 ---
-layout: json
+layout: post
 image: backgrounds/why-web-components.jpg
 title: Vanilla JS
 sub-title: Use the platform for real!
 date: 2017-10-22T00:00:00.000Z
 tags: JavaScript Web Components
-permalink: ':year/:month/:day/:title.json'
 ---
 
 # Intro

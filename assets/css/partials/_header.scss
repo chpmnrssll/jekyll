@@ -1,7 +1,6 @@
 .header {
-  transform-style: preserve-3d;
-
   @at-root #{&}__title {
+    perspective: 25rem;
     margin-right: 1rem;
     margin-top: 0.5rem;
     text-align: right;
@@ -9,20 +8,21 @@
   }
   @at-root #{&}__title--main {
     font-style: italic;
-    color: var(--color-primary-light5);
-    text-shadow: 2px 2px 2px var(--color-primary-dark4);
+    color: var(--color-primary-light8);
+    text-shadow: 1px 1px 1px var(--color-primary-dark10), 1px 1px 8px var(--color-primary-dark3);
   }
   @at-root #{&}__title--sub {
+    font-size: 0.9rem;
     font-style: italic;
-    color: var(--color-primary-light4);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5);
+    color: var(--color-secondary-light1);
+    text-shadow: 1px 1px 1px var(--color-secondary-dark10), 0px 0px 8px var(--color-secondary-dark1);
   }
   @at-root #{&}__date {
-    font-style: italic;
+    font-size: 0.8rem;
     margin-right: 1rem;
     margin-bottom: 0.5rem;
-    color: var(--color-primary-light3);
-    text-shadow: 2px 2px 2px var(--color-primary-dark6);
+    color: var(--color-primary-light2);
+    text-shadow: 1px 1px 1px var(--color-primary-dark10), 1px 1px 8px var(--color-primary-dark3);
   }
 
   @at-root #{&}__plain {

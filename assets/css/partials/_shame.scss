@@ -1,44 +1,21 @@
-html {
-  /// https://aykevl.nl/2014/09/fix-jumping-scrollbar
-  // increase margin-right by negative scrollbar width
-  margin-right: calc(calc(100vw - 100%) * -1);
-}
+.pagination {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  color: hsl($default-hue, $default-saturation, 70%);
-  color: var(--color-primary-light7);
-  //text-shadow: 1px 1px 1px var(--color-primary-dark5);
-
-  // fallback without custom properties or gradient
-  background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: linear-gradient(135deg, var(--color-primary-dark3) 0%, var(--color-primary-dark4) 100%);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  //color: hsl($default-hue, $default-saturation, 90%);
-  //color: var(--color-primary-light9);
-  //text-shadow: 2px 2px 2px var(--color-primary-dark5);
-}
-
-main {
-  padding: 1rem;
-  min-height: 75vh;
-  overflow-x: hidden;
-
-  // fallback without custom properties or gradient
-  background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: linear-gradient(135deg, var(--color-primary-dark4) 0%, var(--color-primary-dark5) 100%);
-  box-shadow: 0px 0px 4rem var(--color-primary-dark5);
+  > a {
+    margin: 1rem;
+  }
 }
 
 .featured {
-  perspective: 20vw;
-  min-height: 65vh;
-  margin-right: 1rem;
   display: grid;
+  //min-height: 65vh;
+  margin-right: 1rem;
   align-items: center;
+  perspective: 25rem;
+  transform-style: preserve-3d;
   grid-gap: calc(1rem + 1vw);
 
   // Responsive grid
@@ -47,12 +24,26 @@ main {
   @include mediaQuery("tablet") { grid-template-columns: repeat(3, 1fr); }
 
   @at-root #{&}__item {
-    //width: 1fr;
-    height: 8rem;
-  }
-  @at-root #{&}__book {
-    width: 1.5fr;
-    height: 6rem;
+    width: 16fr;
+    height: 9fr;
+    cursor: pointer;
+    -webkit-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    transform: none;
+    // opacity: 1;
+
+    > header {
+      transform-style: preserve-3d;
+      -webkit-transform: translateZ(1rem);
+      -moz-transform: translateZ(1rem);
+      -o-transform: translateZ(1rem);
+      transform: translateZ(1rem);
+    }
   }
 }
 
@@ -66,6 +57,11 @@ main {
   @include mediaQuery("mobile-m") { grid-template-columns: repeat(3, 1fr); }
   @include mediaQuery("tablet") { grid-template-columns: repeat(5, 1fr); }
   @include mediaQuery("laptop-m") { grid-template-columns: repeat(7, 1fr); }
+
+  @at-root #{&}__book {
+    width: 16fr;
+    height: 9fr;
+  }
 }
 
 .codeStats {
@@ -135,5 +131,5 @@ main {
   height: 8px;
   width: 8px;
   background: var(--color-secondary-light5);
-  box-shadow: 0px 0px 8px var(--color-secondary-light1);
+  box-shadow: 0px 0px 8px var(--color-secondary);
 }

@@ -1,16 +1,16 @@
 a {
   text-decoration: none;
   color: var(--color-primary-light1);
-  text-shadow: 2px 2px 2px var(--color-primary-dark4);
+  text-shadow: 1px 1px 2px var(--color-primary-dark10);
   &.disabled {
-    color: var(--color-primary-dark2);
-    text-shadow: 2px 2px 2px var(--color-primary-dark5);
+    color: var(--color-primary-dark3);
+    text-shadow: 1px 1px 2px var(--color-primary-dark10);
     pointer-events: none;
     cursor: default;
   }
   &:active, &:hover {
     color: var(--color-primary-light3);
-    text-shadow: 2px 2px 2px var(--color-primary-dark3), 0px 0px 2px var(--color-primary-light3);
+    text-shadow: 1px 1px 2px var(--color-primary-dark10), 0px 0px 8px var(--color-primary);
   }
 }
 
@@ -54,10 +54,15 @@ a {
   @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
 
   @at-root #{&}__link {
+    @extend a;
+    cursor: pointer;
+    background: none;
     padding: 0.25rem;
     display: flex;
     justify-content: flex-start;
-    border: 1px solid rgba(127, 127, 127, 0); // hack to fix border on hover
+    font-family: "Teko";
+    font-size: 1rem;
+    border: 1px solid rgba(127, 127, 127, 0); // fixes vertical shifting on hover
 
     &:first-child {
       margin-top: 2rem;
@@ -69,6 +74,7 @@ a {
   }
   @at-root #{&}__icon {
     width: 1.5rem;
+    padding-top: 0.2rem;
     padding-right: 0.5rem;
     text-align: right;
   }

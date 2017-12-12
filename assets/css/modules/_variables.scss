@@ -1,13 +1,13 @@
 // Defaults for fallbacks
 $default-hue: 200;
-$default-saturation: 75%;
-$default-lightness: 36%;
+$default-saturation: 100%;
+$default-lightness: 50%;
 $default-shades: 10;
 
 // CSS custom properties/variables
 :root {
   --nav-width: 10rem;
-  --animation-speed: 200ms;
+  --animation-speed: 250ms;
   --hue: #{$default-hue};
   --lightness: #{$default-lightness};
   --saturation: #{$default-saturation};

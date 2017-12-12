@@ -30,6 +30,7 @@ tags: GitHub Pages Jekyll Markdown
 - [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 
 ##### HTML
+- [HTML Style Guide](https://marcobiedermann.github.io/html-style-guide/)
 - [Awesome HTML5](https://github.com/diegocard/awesome-html5)
 - [Semantic HTML5](http://www.hongkiat.com/blog/html-5-semantics/)
 - [Details/Summary elements](http://blog.teamtreehouse.com/use-details-summary-elements)
@@ -37,6 +38,10 @@ tags: GitHub Pages Jekyll Markdown
 - [Using HTML sections and outlines](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines)
 
 ##### CSS SASS BEM
+- [css tricks to revolutionise your layouts](http://www.creativebloq.com/features/css-tricks-to-revolutionise-your-layouts)
+- [how create pyramid layout](http://www.creativebloq.com/css3/how-create-pyramid-layout-css-31619524)
+- [Transparent JPG (With SVG)](https://css-tricks.com/transparent-jpg-svg/)
+- [Aspect Ratios for Grid Items](https://css-tricks.com/aspect-ratios-grid-items/)
 - [PostCSS](https://github.com/postcss/postcss)
 - [CLEAN OUT YOUR SASS JUNK-DRAWER](http://gist.io/4436524)
 - [How to structure a Sass project](http://thesassway.com/beginner/how-to-structure-a-sass-project)
@@ -49,6 +54,9 @@ tags: GitHub Pages Jekyll Markdown
 - [CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 
 ##### Lazy Loading Responsive Image Gradient
+- [using svg as placeholders](https://medium.freecodecamp.org/using-svg-as-placeholders-more-image-loading-techniques-bed1b810ab2c)
+- [SVG-based LQIP technique](https://github.com/technopagan/sqip)
+- [lazy loading images using intersection observer](https://deanhume.com/Home/BlogPost/lazy-loading-images-using-intersection-observer/10163)
 - [postcss-resemble-image](https://github.com/ben-eb/postcss-resemble-image)
 - [resemble-image](https://github.com/Lorti/resemble-image)
 - [image gradient dominant colors](https://github.com/benhowdle89/grade)
@@ -106,6 +114,20 @@ tags: GitHub Pages Jekyll Markdown
 - [Customizing GitHub Pages](https://help.github.com/categories/customizing-github-pages/)
 - [Staticman (push to GitHub)](https://staticman.net/docs/)
 - [The Why and How of writing technical articles](https://hackernoon.com/developers-the-why-and-how-to-writing-technical-articles-54e824789ef6)
+- [Splitting a subfolder out into a new repository](https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/)
+- [Working with submodules](https://github.com/blog/2104-working-with-submodules)
 
+##### WebRTC
+- [cjb/serverless-webrtc](https://github.com/cjb/serverless-webrtc)
+- [simple-peer](https://github.com/feross/simple-peer)
+- [serverless-webrtc](https://github.com/svarunan/serverless-webrtc)
+- [serverless-webrtc-chat](https://github.com/owebio/serverless-webrtc-chat)
+- [webrtc-reversi](https://github.com/bmwalters/webrtc-reversi)
 
-- [https://platformerpower.com/](Platformer Power)
+#
+- [remoteStorage.js](https://remotestoragejs.readthedocs.io/en/latest/index.html)
+
+###### !?.
+- [Platformer Power](https://platformerpower.com/)
+- [Computer Graphics from scratch](http://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
+- [webgl blog](https://alain.xyz/blog)

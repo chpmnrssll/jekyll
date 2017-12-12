@@ -1,119 +1,154 @@
 <html>
-  <template id="template">
-    <style>
-      :host {
-        display: block;
-        perspective: 25rem;
-        /*overflow: hidden;*/
-      }
-      .container {
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        transform-style: preserve-3d;
-        will-change: transform opacity;
-        -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
-        -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
-        -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
-        transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
-        -webkit-transition: transform var(--animation-speed) ease-out;
-        -moz-transition: transform var(--animation-speed) ease-out;
-        -o-transition: transform var(--animation-speed) ease-out;
-        transition: transform var(--animation-speed) ease-out;
-      }
-      /* gradient overlay */
-      .container::before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        opacity: 0.15;
-        position: absolute;
-        transform-style: preserve-3d;
-        will-change: transform opacity;
-        background: linear-gradient(135deg, var(--color-primary-light9) 0%, var(--color-primary) 100%);
-        -webkit-transform: translateZ(-1rem) scale(1.05);
-        -moz-transform: translateZ(-1rem) scale(1.05);
-        -o-transform: translateZ(-1rem) scale(1.05);
-        transform: translateZ(-1rem) scale(1.05);
-      }
-      .background-image {
-        box-shadow: 0.25rem 0.25rem 2rem var(--color-primary-dark5);
-        top: 0%;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        transform-style: preserve-3d;
-        will-change: transform opacity;
-        -webkit-transform: translateZ(-1rem) scale(1.05);
-        -moz-transform: translateZ(-1rem) scale(1.05);
-        -o-transform: translateZ(-1rem) scale(1.05);
-        transform: translateZ(-1rem) scale(1.05);
-      }
-      ::slotted(*) {
-        transform-style: preserve-3d;
-      }
-    </style>
-    <div class="container"><slot></slot></div>
-  </template>
-  <script>
-    const importDocument = document.currentScript.ownerDocument;
-    const animationSpeed = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--animation-speed").slice(0, -2));
+<template id="template">
+  <style>
+    :host {
+      display: block;
+      perspective: 25rem;
+      /*overflow: hidden;*/
+    }
+    #container {
+      height: 9rem;
+      /*pointer-events: none;*/
+      transform-style: preserve-3d;
+      will-change: transform opacity;
+      -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+      -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+      -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+      transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 35deg));
+      -webkit-transition: transform var(--animation-speed) ease-out;
+      -moz-transition: transform var(--animation-speed) ease-out;
+      -o-transition: transform var(--animation-speed) ease-out;
+      transition: transform var(--animation-speed) ease-out;
+    }
+    .slow {
+      -webkit-transition: transform calc(var(--animation-speed) * 8) ease-out;
+      -moz-transition: transform calc(var(--animation-speed) * 8) ease-out;
+      -o-transition: transform calc(var(--animation-speed) * 8) ease-out;
+      transition: transform calc(var(--animation-speed) * 8) ease-out;
+    }
+    #gradient {
+      content: "";
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      position: absolute;
+      transform-style: preserve-3d;
+      -webkit-transition: opacity calc(var(--animation-speed) * 3) ease-out;
+      -moz-transition: opacity calc(var(--animation-speed) * 3) ease-out;
+      -o-transition: opacity calc(var(--animation-speed) * 3) ease-out;
+      transition: opacity calc(var(--animation-speed) * 3) ease-out;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark4) 100%);
+      /*mix-blend-mode: hue;*/
+    }
+    *:hover #gradient {
+      opacity: 0.1;
+      background-color: cyan;
+    }
+    #background-image {
+      top: 0%;
+      z-index: -10;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      box-shadow: 0.25rem 0.25rem 2rem var(--color-primary-dark5);
+    }
+  </style>
+  <div id="container">
+    <div id="gradient"></div>
+    <slot id="content"></slot>
+  </div>
+</template>
+<script>
+  const perspectiveCardDocument = document.currentScript.ownerDocument
 
-    customElements.define("perspective-card", class extends HTMLElement {
-      constructor() {
-        super();
-        this.template = importDocument.querySelector("#template");
-        this.shadow = this.attachShadow({ mode: "open" });
-        this.shadow.appendChild(this.template.content.cloneNode(true));
-        this.container = this.shadow.querySelector(".container");
+  window.customElements.define('perspective-card', class extends window.HTMLElement {
+    constructor() {
+      super()
+      const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+      this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
+      this.template = perspectiveCardDocument.querySelector('#template').content.cloneNode(true)
+      this.shadowDOM = this.attachShadow({ mode: 'open' })
+      this.shadowDOM.appendChild(this.template)
+      this.containerElement = this.shadowDOM.querySelector('#container')
+      this.frameCount = 0
+      this.frameSkip = 4
+    }
+
+    connectedCallback() {
+      this.addEventListener('click', this._clickHandler, { passive: true })
+      this.addEventListener('mouseenter', this._mouseenterHandler, { passive: true })
+      this.addEventListener('mousemove', this._mousemoveHandler, { passive: true, capture: true })
+      this.addEventListener('mouseleave', this._mouseleaveHandler, { passive: true })
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('click', this._clickHandler)
+      this.removeEventListener('mouseenter', this._mouseenterHandler)
+      this.removeEventListener('mousemove', this._mousemoveHandler)
+      this.removeEventListener('mouseleave', this._mouseleaveHandler)
+    }
+
+    _clickHandler(event) {
+      page(this.postURL)
+    }
+
+    _mouseenterHandler(event) {
+      this.containerElement.classList.remove('slow')
+    }
+
+    _mousemoveHandler(event) {
+      if (this.frameCount < this.frameSkip) {
+        window.requestAnimationFrame(() => {
+          this.frameCount++
+        })
+      } else {
+        const self = this
+        window.requestAnimationFrame(() => {
+          const width = self.clientWidth
+          const height = self.clientHeight
+          const scrollOffset = self.offsetParent.offsetTop + self.offsetTop - window.pageYOffset
+
+          // offset from center of card, range(-0.5, 0.5)
+          const xOffset = ((event.clientX - self.offsetLeft) / width) - 0.5
+          const yOffset = ((event.clientY - scrollOffset) / height) - 0.5
+
+          self._setCustomProperties(xOffset, yOffset)
+          self.frameCount = 0
+        })
       }
+    }
 
-      connectedCallback() {
-        this.addEventListener("mousemove", (event) => {
-          // save this events target, then wait for a new frame
-          const currentTarget = event.target;
-          requestAnimationFrame(() => {
-            const width = currentTarget.clientWidth;
-            const height = currentTarget.clientHeight;
+    _mouseleaveHandler(event) {
+      // reset card rotation after a short delay
+      this.containerElement.classList.add('slow')
+      setTimeout(() => {
+        this.frameCount = 0
+        this._setCustomProperties(0, 0)
+      }, this.animationSpeed * 2)
+    }
 
-            // offset from center of card, range(-0.5, 0.5)
-            const scrollOffset = currentTarget.offsetParent.offsetTop + currentTarget.offsetTop - window.pageYOffset;
-            const xOffset = ((event.clientX - this.offsetLeft) / width) - 0.5;
-            const yOffset = ((event.clientY - scrollOffset) / height) - 0.5;
+    _setCustomProperties(xOffset, yOffset) {
+      this.style.setProperty('--x-offset', xOffset)
+      this.style.setProperty('--y-offset', yOffset)
+    }
 
-            // set CSS custom properties
-            this.style.setProperty("--x-offset", xOffset);
-            this.style.setProperty("--y-offset", yOffset);
-          });
-        }, { passive: true });
+    static get observedAttributes() {
+      return ['background-image', 'post-url']
+    }
 
-        this.addEventListener("mouseleave", (event) => {
-          const currentTarget = event.currentTarget;
-
-          // reset card rotation after animationSpeed ms
-          setTimeout(() => {
-            currentTarget.style.setProperty("--x-offset", 0);
-            currentTarget.style.setProperty("--y-offset", 0);
-          }, animationSpeed * 2);
-        }, { passive: true });
+    attributeChangedCallback(attr, oldValue, newValue) {
+      if (attr === 'background-image' && newValue.includes('.')) {
+        this.backgroundImage = new window.Image()
+        this.backgroundImage.id = 'background-image'
+        this.backgroundImage.src = newValue
+        this.containerElement.appendChild(this.backgroundImage)
+      } else if (attr === 'post-url') {
+        this.postURL = newValue
       }
-
-      static get observedAttributes() {
-        return [ "background-image" ];
-      }
-
-      attributeChangedCallback(attr, oldValue, newValue) {
-        //console.log(attr, oldValue, newValue);
-        if (attr === "background-image") {
-          if (!this.parallaxImage) {
-            this.parallaxImage = new Image();
-          }
-          this.parallaxImage.classList.add("background-image")
-          this.parallaxImage.src = newValue;
-          this.container.appendChild(this.parallaxImage);
-        }
-      }
-    });
-  </script>
+    }
+  })
+</script>
 </html>

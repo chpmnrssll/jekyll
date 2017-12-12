@@ -2,6 +2,14 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1rem 1fr;
+  overflow: hidden;
+
+  img {
+    align-self: center;
+    width: 16rem;
+    height: 9rem;
+    box-shadow: 0.25rem 0.25rem 1rem var(--color-primary-dark5);
+  }
 
   @at-root #{&}__divider {
     width: 0;
@@ -12,33 +20,66 @@
     border-left: 2px solid var(--color-secondary);
     box-shadow: 1px 1px 1px var(--color-secondary-dark5);
   }
+
   @at-root #{&}__item {
-    time {
-      //margin: 0;
-      display: block;
-      color: var(--color-secondary);
-      text-shadow: 1px 1px 1px var(--color-secondary-dark5);
-    }
-    h5 {
-      margin-bottom: 0.5rem;
-    }
-    img {
-      width: 16rem;
-      height: 9rem;
-      box-shadow: 0.25rem 0.25rem 1rem var(--color-primary-dark5);
-    }
+    align-self: center;
+
     &:nth-child(odd) {
       grid-column: 1;
-      padding-bottom: 12rem;
-      text-align: right;
-      h5 { text-align: right; }
-      time { text-align: right; }
+      padding-bottom: 10rem;
+      header {
+        margin-left: 2rem;
+        flex-direction: row;
+        time { text-align: right; }
+        h1,h2,h3,h4,h5,h6 { text-align: left; }
+      }
+      section a {
+        align-self: flex-end;
+      }
     }
+
     &:nth-child(even) {
       grid-column: 3;
-      padding-top: 12rem;
-      h5 { text-align: left; }
-      time { text-align: left; }
+      padding-top: 10rem;
+      header {
+        margin-right: 2rem;
+        flex-direction: row-reverse;
+        time { text-align: left; }
+        h1,h2,h3,h4,h5,h6 { text-align: right; }
+      }
+      section a {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  @at-root #{&}__header {
+    display: flex;
+
+    time {
+      flex-grow: 1;
+      align-self: baseline;
+      color: var(--color-secondary);
+      text-shadow: 1px 1px 1px var(--color-secondary-dark4);
+    }
+    h1,h2,h3,h4,h5,h6 {
+      flex-grow: 15;
+      font-style: italic;
+      align-self: baseline;
+      color: var(--color-secondary);
+      text-shadow: 1px 1px 1px var(--color-secondary-dark4);
+    }
+  }
+
+  @at-root #{&}__details {
+    display: flex;
+    padding-top: 1rem;
+    flex-direction: column;
+
+    a > img {
+      width: 4rem;
+      height: 3rem;
+      background-color: var(--color-primary-light4);
     }
   }
 }

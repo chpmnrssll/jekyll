@@ -1,32 +1,32 @@
 {"header" : {
   "cloc_url"           : "github.com/AlDanial/cloc",
   "cloc_version"       : "1.74",
-  "elapsed_seconds"    : 2.35483193397522,
-  "n_files"            : 69,
-  "n_lines"            : 5587,
-  "files_per_second"   : 29.3014541736404,
-  "lines_per_second"   : 2372.5684705526,
+  "elapsed_seconds"    : 4.50085711479187,
+  "n_files"            : 82,
+  "n_lines"            : 6930,
+  "files_per_second"   : 18.2187520973529,
+  "lines_per_second"   : 1539.70673212994,
   "report_file"        : "_data/linesOfCode.json"},
-"JavaScript" :{
-  "nFiles": 11,
-  "blank_pct": 6.26,
-  "comment_pct": 3.40,
-  "code": 1853},
 "HTML" :{
-  "nFiles": 27,
-  "blank_pct": 7.67,
-  "comment_pct": 0.05,
-  "code": 1838},
-"Markdown" :{
-  "nFiles": 16,
-  "blank_pct": 18.22,
-  "comment_pct": 0.00,
-  "code": 708},
+  "nFiles": 36,
+  "blank_pct": 8.38,
+  "comment_pct": 2.87,
+  "code": 2721},
+"JavaScript" :{
+  "nFiles": 15,
+  "blank_pct": 6.72,
+  "comment_pct": 4.10,
+  "code": 2097},
 "Sass" :{
-  "nFiles": 12,
-  "blank_pct": 8.22,
-  "comment_pct": 5.48,
-  "code": 584},
+  "nFiles": 13,
+  "blank_pct": 9.24,
+  "comment_pct": 5.24,
+  "code": 649},
+"Markdown" :{
+  "nFiles": 15,
+  "blank_pct": 18.94,
+  "comment_pct": 0.00,
+  "code": 644},
 "JSON" :{
   "nFiles": 1,
   "blank_pct": 0.00,
@@ -34,16 +34,16 @@
   "code": 49},
 "YAML" :{
   "nFiles": 1,
-  "blank_pct": 16.67,
+  "blank_pct": 13.33,
   "comment_pct": 0.00,
-  "code": 18},
+  "code": 15},
 "Bourne Shell" :{
   "nFiles": 1,
   "blank_pct": 0.00,
   "comment_pct": 0.00,
   "code": 4},
 "SUM": {
-  "blank": 8.65,
-  "comment": 1.90,
-  "code": 5054,
-  "nFiles": 69} }
+  "blank": 8.95,
+  "comment": 3.20,
+  "code": 6179,
+  "nFiles": 82} }

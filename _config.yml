@@ -1,14 +1,10 @@
-title:             Projects, Portfolio, & Posts
-description:       All Things Programming...
-author:            Russell Chapman
-github_username:   chpmnrssll
-paginate_path:     /page:num/
-paginate:          6
-
-collections:
-  json:
-    output: true
-    permalink: /:collection/:path
+title:           Projects, Portfolio, & Posts
+description:     All Things Programming...
+author:          Russell Chapman
+github_username: chpmnrssll
+permalink:       /:collection/:title
+paginate_path:   /:num
+paginate:        6
 
 sass:
   style:    compressed

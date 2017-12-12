@@ -1,0 +1,142 @@
+---
+---
+<html>
+
+<style>
+  .hide {
+    opacity: 0;
+  }
+  perspective-card {
+    cursor: pointer;
+  }
+</style>
+
+<link rel="import" href="{{ '/assets/components/perspective-card.html' | prepend: site.baseurl }}"></link>
+<script src="{{ site.baseurl }}/assets/javascript/animations.js"></script>
+<script>
+  window.customElements.define('featured-posts', class extends window.HTMLElement {
+    constructor() {
+      super()
+      const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+      this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
+    }
+
+    connectedCallback() {
+      this.posts = {}
+      this.counter = 0
+      this.lastPage = 0
+      this.direction = 0
+      this.currentPage = 0
+      this.recordsPerPage = 6
+      this.inAnimation = zoom.in.right
+      this.outAnimation = zoom.out.left
+      this.pagerElement = document.querySelector('#pagination')
+      this.pagerElement.recordsPerPage = this.recordsPerPage
+      this.pagerElement.addEventListener('pageChange', this._pageChangeHandler.bind(this))
+      this.req = new window.XMLHttpRequest()
+      this.req.addEventListener('load', this._loadHandler.bind(this))
+      this.req.open('GET', '/json/posts.json', true)
+      this.req.send()
+    }
+
+    disconnectedCallback() {
+      this.req.removeEventListener('load', this._loadHandler)
+      this.pagerElement.removeEventListener('pageChange', this._pageChangeHandler)
+    }
+
+    _loadHandler(event) {
+      this.posts = JSON.parse(event.srcElement.response)
+      this.pagerElement.totalRecords = this.posts.length
+      this._paginatePosts()
+    }
+
+    _pageChangeHandler(event) {
+      this.lastPage = event.detail.lastPage
+      this.currentPage = event.detail.currentPage
+      this.direction = this.currentPage > this.lastPage ? 1 : -1
+      this.inAnimation = this.direction > 0 ? zoom.in.right : zoom.in.left
+      this.outAnimation = this.direction < 0 ? zoom.out.right : zoom.out.left
+      page(`/${parseInt(this.currentPage)+2}`)
+      this._removePosts()
+    }
+
+    _removePosts() {
+      Array.from(this.children).forEach((child) => {
+        this._animateOut(child, () => {
+          if (this.counter <= 0) {
+            this._paginatePosts()
+          }
+        })
+        this.counter -= this.counter > 0 ? 1 : 0
+      })
+    }
+
+    _paginatePosts() {
+      let start = this.currentPage * this.recordsPerPage
+      let posts = this.posts.slice(start, start + this.recordsPerPage)
+
+      posts.forEach((post, index) => {
+        let postElement = this._render(post)
+        this.appendChild(postElement)
+        this._animateIn(postElement)
+        this.counter += this.counter < this.recordsPerPage ? 1 : 0
+      })
+    }
+
+    _render(post) {
+      let featuredItem = document.createElement('perspective-card')
+      let header = document.createElement('header')
+      let date = document.createElement('time')
+      let section = document.createElement('section')
+      let subTitle = document.createElement('section')
+      let title = document.createElement('h4')
+
+      header.classList.add('header__plain')
+      header.appendChild(section)
+      header.appendChild(date)
+      section.classList.add('header__title')
+      section.appendChild(title)
+      section.appendChild(subTitle)
+      title.classList.add('header__title--main')
+      title.innerText = post.title
+      subTitle.classList.add('header__title--sub')
+      subTitle.innerText = post.subTitle
+      date.classList.add('header__date')
+      date.innerText = post.date
+
+      if (post.image) {
+        featuredItem.setAttribute('background-image', `{{ site.url }}/assets/images/${post.image}`)
+      }
+
+      featuredItem.classList.add('featured__item', 'hide')
+      featuredItem.appendChild(header)
+      featuredItem.addEventListener('click', (event) => {
+        page(post.url)
+      })
+      return featuredItem
+    }
+
+    _animateIn(element) {
+      const zoomSpeed = this.animationSpeed * (this.recordsPerPage / 2)
+      const sequenceSpeed = this.animationSpeed * (this.counter + 1)
+      setTimeout(() => {
+        element.classList.remove('hide')
+        this.inAnimation(element, zoomSpeed, 1)
+      }, sequenceSpeed)
+    }
+
+    _animateOut(element, callback) {
+      const zoomSpeed = this.animationSpeed * (this.recordsPerPage / 2)
+      const sequenceSpeed = this.animationSpeed * (this.counter + 1)
+      setTimeout(() => {
+        this.outAnimation(element, zoomSpeed, 1).onfinish = () => {
+          element.remove()
+          if (callback) {
+            setTimeout(callback, zoomSpeed)
+          }
+        }
+      }, sequenceSpeed)
+    }
+  })
+</script>
+</html>

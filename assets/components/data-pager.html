@@ -1,126 +1,148 @@
-<template id="template">
-  <style>
-    #container {
-      display: flex;
-      justify-content: center;
-    }
-    button {
-      margin: 1rem;
-      cursor: pointer;
-      border: none;
-      background-color: rgba(0,0,0,0);
-      color: var(--color-primary-light1);
-      text-shadow: 2px 2px 2px var(--color-primary-dark6);
-    }
-    button:disabled {
-      cursor: not-allowed;
-      pointer-events: none;
-      color: var(--color-primary-dark3);
-      text-shadow: 2px 2px 2px var(--color-primary-dark9);
-    }
-    button:active, button:hover {
-      color: var(--color-primary-light3);
-      text-shadow: 2px 2px 2px var(--color-primary-dark3), 0px 0px 6px var(--color-primary-light1);
-    }
-  </style>
-  <div id="container">
-    <!--<button id="previous"><i class="fa fa-chevron-left"></i></button>
-    <button id="next"><i class="fa fa-chevron-right"></i></button>-->
-  </div>
-</template>
+<html>
+<style>
+  :host {
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    margin: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    color: var(--color-primary-light1);
+    text-shadow: 2px 2px 2px var(--color-primary-dark6);
+  }
+  button:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: var(--color-primary-dark3);
+    text-shadow: 2px 2px 2px var(--color-primary-dark9);
+  }
+  button:active, button:hover {
+    color: var(--color-primary-light3);
+    text-shadow: 2px 2px 2px var(--color-primary-dark3), 0px 0px 6px var(--color-primary-light1);
+  }
+</style>
 <script>
-  const currentScript = document.currentScript;
+  const dataPagerDocument = document.currentScript.ownerDocument
 
-  customElements.define("data-pager", class extends HTMLElement {
+  window.customElements.define('data-pager', class extends window.HTMLElement {
     constructor() {
-      super();
-      const mainDoc = currentScript.ownerDocument;
-      const template = mainDoc.querySelector("#template");
-      const instance = template.content.cloneNode(true);
-      this.shadowDOM = this.attachShadow({ mode: "open" });
-      this.shadowDOM.appendChild(instance);
-      this.containerElement = this.shadowDOM.querySelector("#container");
+      super()
+      this.shadowDOM = this.attachShadow({ mode: 'open' })
+      this.template = dataPagerDocument.querySelector('style')
+    }
+
+    connectedCallback() {
+    }
+
+    disconnectedCallback() {
     }
 
     static get observedAttributes() {
-      return ["totalrecords", "recordsperpage", "totalpages", "currentpage"];
+      return ['totalrecords', 'recordsperpage', 'totalpages', 'currentpage']
     }
 
     get totalRecords() {
-      return this.getAttribute("totalRecords") || 0;
+      return this.getAttribute('totalrecords') || 0
     }
     set totalRecords(value) {
-      this.setAttribute("totalRecords", value);
+      this.setAttribute('totalrecords', value)
     }
     get recordsPerPage() {
-      return this.getAttribute("recordsPerPage") || 0;
+      return this.getAttribute('recordsperpage') || 0
     }
     set recordsPerPage(value) {
-      this.setAttribute("recordsPerPage", value);
+      this.setAttribute('recordsperpage', value)
     }
     get totalPages() {
-      return this.getAttribute("totalPages") || 0;
+      return this.getAttribute('totalpages') || 0
     }
     set totalPages(value) {
-      this.setAttribute("totalPages", value);
+      this.setAttribute('totalpages', value)
     }
     get currentPage() {
-      return this.getAttribute("currentPage") || 0;
+      return this.getAttribute('currentpage') || 0
     }
     set currentPage(value) {
-      this.setAttribute("currentPage", value);
+      this.setAttribute('currentpage', value)
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
-      if ((attr === "totalrecords" && this.recordsPerPage) ||
-          (attr === "recordsperpage" && this.totalRecords)) {
-        this.totalPages = Math.ceil(this.totalRecords / this.recordsPerPage);
-      } else if (attr === "currentpage") {
-        this.lastPage = parseInt(oldValue || 0);
-        this.dispatchEvent(new CustomEvent("pageChange", {
-          bubbles: true,
-          composed: true,
-          detail: {
-            currentPage: this.currentPage,
-            lastPage: this.lastPage
-          }
-        }));
+      if ((attr === 'totalrecords' && this.recordsPerPage) ||
+        (attr === 'recordsperpage' && this.totalRecords)) {
+        // Re calculate the nuber of pages
+        this.totalPages = Math.ceil(this.totalRecords / this.recordsPerPage)
+      } else if (attr === 'currentpage') {
+        this.lastPage = parseInt(oldValue || 0)
+        this.dispatchEvent(
+          new window.CustomEvent('pageChange', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              currentPage: this.currentPage,
+              lastPage: this.lastPage
+            }
+          })
+        )
+        // TODO: virtual DOM diffing?
+        this._render()
+      } else if (attr === 'totalpages' && newValue > 0) {
+        // After totalPages has been set, first render
+        this._render()
       }
-
-      this.containerElement.innerHTML = "";
-      this.render();
     }
 
-    render() {
+    _render() {
+      if (this.shadowDOM.firstChild) {
+        while(this.shadowDOM.firstChild) {
+          this.shadowDOM.firstChild.remove()
+        }
+      }
+      if (this.template) {
+        this.shadowDOM.appendChild(this.template)
+      }
+
       // Previous button
-      this.containerElement.appendChild(
-        this.createButton("<", this.currentPage <= 0,
-          () => { this.currentPage--; }));
+      this.shadowDOM.appendChild(
+        this.createButton(
+          '<',
+          this.currentPage <= 0,
+          () => { this.currentPage-- }
+        )
+      )
 
       // Page buttons
       for (let pageNumber = 0; pageNumber < this.totalPages; pageNumber++) {
-        this.containerElement.appendChild(
-          this.createButton(pageNumber+1, pageNumber == this.currentPage,
-            () => { this.currentPage = pageNumber; }));
+        this.shadowDOM.appendChild(
+          this.createButton(
+            pageNumber + 1,
+            pageNumber == this.currentPage,
+            () => { this.currentPage = pageNumber }
+          )
+        )
       }
 
       // Next button
-      this.containerElement.appendChild(
-        this.createButton(">", this.currentPage >= this.totalPages-1,
-          () => { this.currentPage++; }));
+      this.shadowDOM.appendChild(
+        this.createButton(
+          '>',
+          this.currentPage >= this.totalPages - 1,
+          () => { this.currentPage++ }
+        )
+      )
     }
 
     createButton(innerHTML, disabled, clickHandler) {
-      let buttonElement = document.createElement("button");
-
-      buttonElement.innerHTML = innerHTML;
-      buttonElement.disabled = disabled;
+      let buttonElement = document.createElement('button')
+      buttonElement.innerHTML = innerHTML
+      buttonElement.disabled = disabled
       if (!disabled) {
-        buttonElement.addEventListener("click", clickHandler);
+        buttonElement.addEventListener('click', clickHandler)
       }
 
-      return buttonElement;
+      return buttonElement
     }
-
-  });
+  })
 </script>
+</html>

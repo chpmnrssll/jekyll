@@ -1,0 +1,36 @@
+html {
+  /// https://aykevl.nl/2014/09/fix-jumping-scrollbar
+  // increase margin-right by negative scrollbar width
+  margin-right: calc(calc(100vw - 100%) * -1);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: hsl($default-hue, $default-saturation, 70%);
+  color: var(--color-primary-light7);
+  //text-shadow: 1px 1px 1px var(--color-primary-dark5);
+
+  // fallback without custom properties or gradient
+  background: hsl($default-hue, $default-saturation, $default-lightness);
+  background: linear-gradient(135deg, var(--color-primary-dark3) 0%, var(--color-primary-dark4) 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  //color: hsl($default-hue, $default-saturation, 90%);
+  //color: var(--color-primary-light9);
+  //text-shadow: 2px 2px 2px var(--color-primary-dark5);
+}
+
+main {
+  padding: 1rem;
+  min-height: 75vh;
+  overflow-x: hidden;
+  perspective: 25rem;
+  transform-style: preserve-3d;
+
+  // fallback without custom properties or gradient
+  background: hsl($default-hue, $default-saturation, $default-lightness);
+  background: linear-gradient(135deg, var(--color-primary-dark4) 0%, var(--color-primary-dark5) 100%);
+  box-shadow: 0px 0px 4rem var(--color-primary-dark5);
+}
