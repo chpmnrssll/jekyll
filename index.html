@@ -20,7 +20,7 @@ sub-title: Russell Chapman
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-  <a href="{{ site.url }}{{ paginator.previous_page_path }}">
+  <a href="{{ site.url }}{{ paginator.previous_page_path }}/">
     <small><i class="fa fa-chevron-left"></i></small>
   </a>
   {% else %}
@@ -50,7 +50,7 @@ sub-title: Russell Chapman
     <small><i class="fa fa-chevron-right"></i></small>
   </a>
   {% else %}
-  <a href="{{ site.url }}{{ paginator.next_page_path }}" class="disabled">
+  <a href="{{ site.url }}{{ paginator.next_page_path }}/" class="disabled">
     <small><i class="fa fa-chevron-right"></i></small>
   </a>
   {% endif %}
