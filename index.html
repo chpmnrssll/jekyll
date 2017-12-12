@@ -24,7 +24,7 @@ sub-title: Russell Chapman
     <small><i class="fa fa-chevron-left"></i></small>
   </a>
   {% else %}
-  <a href="{{ site.url }}{{ paginator.previous_page_path }}" class="disabled">
+  <a href="{{ site.url }}{{ paginator.previous_page_path }}/" class="disabled">
     <small><i class="fa fa-chevron-left"></i></small>
   </a>
   {% endif %}
@@ -32,21 +32,21 @@ sub-title: Russell Chapman
   {% for pageNumber in (1..paginator.total_pages) %}
     {% if pageNumber == paginator.page %}
       {% if pageNumber == 1 %}
-        <a href="{{ site.url }}" class="disabled">{{ pageNumber }}</a>
+        <a href="{{ site.url }}/" class="disabled">{{ pageNumber }}</a>
       {% else %}
-        <a href="{{ site.url }}/{{ pageNumber }}" class="disabled">{{ pageNumber }}</a>
+        <a href="{{ site.url }}/{{ pageNumber }}/" class="disabled">{{ pageNumber }}</a>
       {% endif %}
     {% else %}
       {% if pageNumber == 1 %}
-        <a href="{{ site.url }}">{{ pageNumber }}</a>
+        <a href="{{ site.url }}/">{{ pageNumber }}</a>
       {% else %}
-        <a href="{{ site.url }}/{{ pageNumber }}">{{ pageNumber }}</a>
+        <a href="{{ site.url }}/{{ pageNumber }}/">{{ pageNumber }}</a>
       {% endif %}
     {% endif %}
   {% endfor %}
 
   {% if paginator.next_page %}
-  <a href="{{ site.url }}{{ paginator.next_page_path }}">
+  <a href="{{ site.url }}{{ paginator.next_page_path }}/">
     <small><i class="fa fa-chevron-right"></i></small>
   </a>
   {% else %}
