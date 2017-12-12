@@ -90,10 +90,10 @@ page('/404', (context, next) => {
 page({ dispatch: false })
 
 document.querySelector('#button-home').addEventListener('click', () => { page('/') })
-document.querySelector('#button-categories').addEventListener('click', () => { page('/categories') })
-document.querySelector('#button-contact').addEventListener('click', () => { page('/contact') })
-document.querySelector('#button-settings').addEventListener('click', () => { page('/settings') })
-document.querySelector('#button-about').addEventListener('click', () => { page('/about') })
+document.querySelector('#button-categories').addEventListener('click', () => { page('/categories/') })
+document.querySelector('#button-contact').addEventListener('click', () => { page('/contact/') })
+document.querySelector('#button-settings').addEventListener('click', () => { page('/settings/') })
+document.querySelector('#button-about').addEventListener('click', () => { page('/about/') })
 
 let zoom = {
   in: (element, duration, iterations, delay) => {
