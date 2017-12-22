@@ -1,12 +1,12 @@
 <html>
 <style>
   canvas {
+    height: 100%;
+    image-rendering: pixelated;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    /*image-rendering: pixelated;*/
-    z-index: 0;
+    z-index: -1;
   }
 </style>
 <script>
@@ -14,13 +14,11 @@ window.customElements.define('canvas-demo', class extends window.HTMLElement {
   constructor () {
     super()
     const scale = 8
-    const width = scale * 16
-    const height = scale * 9
     const htmlStyles = window.getComputedStyle(document.querySelector('html'))
     this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
     this.canvas = document.createElement('canvas')
-    this.canvas.width = width
-    this.canvas.height = height
+    this.canvas.width = scale * 16
+    this.canvas.height = scale * 9
     this.context2D = this.canvas.getContext('2d')
     this.buffer = this.context2D.createImageData(this.canvas.width, this.canvas.height)
     this.bufferSize = this.canvas.width * this.canvas.height
@@ -56,15 +54,15 @@ window.customElements.define('canvas-demo', class extends window.HTMLElement {
     this.parentElement.removeEventListener('mouseleave', this._mouseleaveHandler)
   }
 
+  _mouseenterHandler (event) {
+    this.running = true
+    window.requestAnimationFrame(this.update.bind(this))
+  }
+
   _mouseleaveHandler (event) {
     setTimeout(() => {
       this.running = false
     }, this.animationSpeed * 4)
-  }
-
-  _mouseenterHandler (event) {
-    this.running = true
-    window.requestAnimationFrame(this.update.bind(this))
   }
 })
 </script>

@@ -1,108 +1,90 @@
-a {
-  text-decoration: none;
-  color: var(--color-primary-light1);
-  text-shadow: 1px 1px 2px var(--color-primary-dark10);
-  &.disabled {
-    color: var(--color-primary-dark3);
-    text-shadow: 1px 1px 2px var(--color-primary-dark10);
-    pointer-events: none;
-    cursor: default;
-  }
-  &:active, &:hover {
-    color: var(--color-primary-light3);
-    text-shadow: 1px 1px 2px var(--color-primary-dark10), 0px 0px 8px var(--color-primary);
+.navigation-button {
+  background: none;
+  border: 0;
+  color: var(--color-primary-light);
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px var(--color-primary-darkest);
+  width: 2rem;
+
+  &:active,
+  &:hover {
+    color: var(--color-primary-lighter);
+    text-shadow: 1px 1px 1px var(--color-primary-dark), 0 0 8px var(--color-primary-light);
   }
 }
 
-.top-button {
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0.25rem;
-  bottom: 0rem;
-  right: 0rem;
-  z-index: 100;
+.navigation-button__top {
+  @extend .navigation-button;
+  bottom: 0;
+  margin-right: .5rem;
   position: fixed;
-  cursor: pointer;
+  right: 0;
+  z-index: 99;
+}
 
-  // fallback without custom properties, without gradient, & full gradient
-  background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(135deg, var(--color-primary-dark3) 0%, var(--color-primary-dark5) 100%);
-  @include prefix((border-radius: 25% 0 0 0), webkit moz ms o);
+.navigation-button__open {
+  @extend .navigation-button;
+  height: 2rem;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
 
-  opacity: 0.4;
-  &:active, &:hover {
-    opacity: 0.8;
-  }
+.navigation-button__close {
+  @extend .navigation-button;
+  padding: 1rem;
+  text-align: right;
 }
 
 .navigation-menu {
-  width: var(--nav-width);
-  height: 100%;
-  top: 0;
-  z-index: 99;
-  position: fixed;
+  @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
+
+  background: radial-gradient(hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 0%, var(--color-primary-darkest) 80%);
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  width: calc(100% + var(--nav-width));
+  z-index: 100;
 
-  // fallback without custom properties, without gradient, & full gradient
-  background: hsl($default-hue, $default-saturation, $default-lightness);
-  background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
-  background: linear-gradient(90deg, var(--color-primary-dark7) 0%, hsla(var(--hue), var(--saturation), var(--lightness), 0) 100%);
-  @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
-  @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
+  @at-root #{&}__show {
+    @include prefix((transform: none), webkit moz ms o);
+    opacity: 1;
+  }
+
+  @at-root #{&}__hide {
+    @include prefix((transform: translate3d(calc(var(--nav-width) * -1), 0, 0)), webkit moz ms o);
+    opacity: 0;
+    pointer-events: none;
+  }
 
   @at-root #{&}__link {
-    @extend a;
-    cursor: pointer;
-    background: none;
-    padding: 0.25rem;
+    @extend .navigation-button;
+    border: 1px solid rgba(0, 0, 0, 0); // fixes vertical shifting on hover
     display: flex;
     justify-content: flex-start;
-    font-family: "Teko";
-    font-size: 1rem;
-    border: 1px solid rgba(127, 127, 127, 0); // fixes vertical shifting on hover
+    padding: .5rem;
+    text-decoration: none;
+    width: var(--nav-width);
 
-    &:first-child {
-      margin-top: 2rem;
+    &:active,
+    &:hover {
+      background: hsla(var(--color-primary-hue), var(--color-primary-saturation), 25%, .5);
+      border: 1px solid hsla(var(--color-primary-hue), var(--color-primary-saturation), 50%, .5);
     }
-    &:active, &:hover {
-      background: hsla(var(--hue), var(--saturation), 50%, 0.1);
-      border: 1px solid hsla(var(--hue), var(--saturation), 50%, 0.2);
+
+    span {
+      padding-top: .4rem;
     }
   }
+
   @at-root #{&}__icon {
-    width: 1.5rem;
-    padding-top: 0.2rem;
-    padding-right: 0.5rem;
+    margin-right: 1rem;
     text-align: right;
-  }
-  @at-root #{&}__label {
-    width: 1.5rem;
-    height: 1.5rem;
-    top: 0rem;
-    left: 0rem;
-    z-index: 100;
-    padding: 0.15rem;
-    position: fixed;
-    cursor: pointer;
-
-    // fallback without custom properties, without gradient, & full gradient
-    background: hsl($default-hue, $default-saturation, $default-lightness);
-    background: var(--color-primary-dark3, hsl($default-hue, $default-saturation, $default-lightness));
-    background: linear-gradient(135deg, var(--color-primary-dark1) 0%, var(--color-primary-dark3) 100%);
-    @include prefix((border-radius: 0 0 25% 0), webkit moz ms o);
-
-    opacity: 0.4;
-    &:active, &:hover {
-      opacity: 0.8;
-    }
-  }
-  @at-root #{&}__checkbox {
-    display: none;
-  }
-  @at-root #{&}__checkbox:checked ~ nav {
-    @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o);
+    width: 2rem;
   }
 }

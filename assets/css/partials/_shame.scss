@@ -1,108 +1,76 @@
-.pagination {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-
-  > a {
-    margin: 1rem;
-  }
-}
-
-.featured {
-  display: grid;
-  //min-height: 65vh;
-  margin-right: 1rem;
-  align-items: center;
-  perspective: 25rem;
-  transform-style: preserve-3d;
-  grid-gap: calc(1rem + 1vw);
-
-  // Responsive grid
-  grid-template-columns: repeat(1, 1fr);
-  @include mediaQuery("mobile-l") { grid-template-columns: repeat(2, 1fr); }
-  @include mediaQuery("tablet") { grid-template-columns: repeat(3, 1fr); }
-
-  @at-root #{&}__item {
-    width: 16fr;
-    height: 9fr;
-    cursor: pointer;
-    -webkit-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -moz-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -o-transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: all var(--animation-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-transform: none;
-    -moz-transform: none;
-    -o-transform: none;
-    transform: none;
-    // opacity: 1;
-
-    > header {
-      transform-style: preserve-3d;
-      -webkit-transform: translateZ(1rem);
-      -moz-transform: translateZ(1rem);
-      -o-transform: translateZ(1rem);
-      transform: translateZ(1rem);
-    }
-  }
+.hidden {
+  opacity: 0;
 }
 
 .about {
-  display: grid;
+  @include media-query('mobile-m') { grid-template-columns: repeat(3, 1fr); }
+  @include media-query('tablet') { grid-template-columns: repeat(5, 1fr); }
+  @include media-query('laptop-m') { grid-template-columns: repeat(7, 1fr); }
+
   align-items: center;
+  display: grid;
   grid-gap: calc(1rem + 1vw);
 
   // Responsive grid
   grid-template-columns: repeat(2, 1fr);  // mobile-s
-  @include mediaQuery("mobile-m") { grid-template-columns: repeat(3, 1fr); }
-  @include mediaQuery("tablet") { grid-template-columns: repeat(5, 1fr); }
-  @include mediaQuery("laptop-m") { grid-template-columns: repeat(7, 1fr); }
 
   @at-root #{&}__book {
-    width: 16fr;
     height: 9fr;
+    width: 16fr;
   }
 }
 
 .codeStats {
-  width: 75%;
-  margin: 2rem auto 4rem auto;
+  margin: 2rem auto 4rem;
   text-align: right;
+  width: 75%;
 
   h3 {
+    font-style: italic;
     margin-bottom: 2rem;
     text-align: center;
-    font-style: italic;
   }
+
   table {
-    width: 100%;
     margin-bottom: 1rem;
+    width: 100%;
   }
+
   thead {
     border-bottom: 1px solid var(--color-secondary);
-  }
-  tbody tr:nth-last-child(1) {
-    font-size: 1rem;
     font-weight: bold;
-    font-style: normal;
-    border-top: 1px solid var(--color-secondary);
   }
+
+  tbody {
+    font-style: italic;
+
+    tr {
+      &:nth-last-child(1) {
+        border-top: 1px solid var(--color-secondary);
+        font-style: normal;
+        font-weight: bold;
+      }
+    }
+  }
+
   td {
     width: 4rem;
-  }
-  tbody tr, div, p {
-    font-size: 0.75rem;
-    font-style: italic;
+
+    &:nth-child(1) {
+      width: 6rem;
+    }
   }
 }
 
 .alternate {
-  margin: auto;
   display: table;
-  text-shadow: 2px 2px 2px var(--color-primary-dark5);
+  margin: auto;
+  text-shadow: 2px 2px 2px var(--color-primary-dark);
+
   @at-root #{&}__green {
     color: lighten(green, 25%);
   }
+
   @at-root #{&}__purple {
     color: lighten(purple, 25%);
   }
@@ -110,26 +78,29 @@
 
 .canvas {
   @at-root #{&}__demo {
-    width: 32rem;
-    height: 18rem;
     display: block;
+    height: 18rem;
     margin-left: auto;
     margin-right: auto;
+    width: 32rem;
   }
 }
 
 .universe {
+  left: 0;
+  // min-height: 75vh;
+  overflow: hidden;
   perspective: 20vw;
+  top: 0;
   transform-style: preserve-3d;
-  min-height: 75vh;
 }
 
 .star {
-  position: absolute;
-  transform-style: preserve-3d;
+  background: var(--color-secondary-light);
   border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-secondary);
   height: 8px;
+  // position: absolute;
+  transform-style: preserve-3d;
   width: 8px;
-  background: var(--color-secondary-light5);
-  box-shadow: 0px 0px 8px var(--color-secondary);
 }

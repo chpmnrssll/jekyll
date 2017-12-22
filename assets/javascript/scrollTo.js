@@ -1,5 +1,5 @@
 // Scroll to top button
-document.querySelector('#top-button').addEventListener('click', () => {
+document.querySelector('.navigation-button__top').addEventListener('click', () => {
   scrollTo(0, 500, 'easeInOutQuad')
 }, { passive: true })
 

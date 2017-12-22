@@ -1,20 +1,22 @@
 ---
 ---
 // Third-party
-@import "vendor/font-awesome-4.7.0/scss/font-awesome.scss";
+@import 'vendor/font-awesome-4.7.0/scss/font-awesome';
 
 // Modules (mixin declarations, functions, and variables)
-@import "modules/mixins";
-@import "modules/variables";
+@import 'modules/mixins';
+@import 'modules/variables';
 
 // Partials
-@import "partials/reset";
-@import "partials/typography";
-@import "partials/navigation";
-@import "partials/header";
-@import "partials/footer";
-@import "partials/article";
-@import "partials/highlight";
-@import "partials/time-line";
-@import "partials/main";
-@import "partials/shame"
+@import 'partials/article';
+@import 'partials/featured';
+@import 'partials/footer';
+@import 'partials/header';
+@import 'partials/highlight';
+@import 'partials/main';
+@import 'partials/navigation';
+@import 'partials/pagination';
+@import 'partials/reset';
+@import 'partials/shame';
+@import 'partials/time-line';
+@import 'partials/typography';

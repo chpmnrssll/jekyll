@@ -1,15 +1,15 @@
 $breakpoints: (
-"mobile-s": 320px,
-"mobile-m": 375px,
-"mobile-l": 425px,
-"tablet": 768px,
-"laptop-s": 1024px,
-"laptop-m": 1280px,
-"laptop-l": 1440px,
-"4k": 2560px
+  'mobile-s': 320px,
+  'mobile-m': 375px,
+  'mobile-l': 425px,
+  'tablet': 768px,
+  'laptop-s': 1024px,
+  'laptop-m': 1280px,
+  'laptop-l': 1440px,
+  '4k': 2560px
 );
 
-@mixin mediaQuery($width, $type: min) {
+@mixin media-query($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
     @if $type == max {

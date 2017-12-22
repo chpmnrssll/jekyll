@@ -1,10 +1,10 @@
-function createStarField () {
+function createStarField (parentElement) {
   const starCount = 100
   const maxTime = 1000
 
   let universe = document.createElement('div')
   universe.classList.add('universe')
-  document.querySelector('.content').appendChild(universe)
+  parentElement.appendChild(universe)
 
   for (let i = 0; i < starCount; ++i) {
     const width = universe.offsetWidth * 2

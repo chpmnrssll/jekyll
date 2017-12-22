@@ -20,9 +20,15 @@ sub-title: Russell Chapman
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-  <a href="{{ site.url }}{{ paginator.previous_page_path }}/">
-    <small><i class="fa fa-chevron-left"></i></small>
-  </a>
+    {% if paginator.previous_page == 1 %}
+    <a href="/">
+      <small><i class="fa fa-chevron-left"></i></small>
+    </a>
+    {% else %}
+    <a href="{{ site.url }}{{ paginator.previous_page_path }}/">
+      <small><i class="fa fa-chevron-left"></i></small>
+    </a>
+    {% endif %}
   {% else %}
   <a href="{{ site.url }}{{ paginator.previous_page_path }}/" class="disabled">
     <small><i class="fa fa-chevron-left"></i></small>
@@ -55,6 +61,4 @@ sub-title: Russell Chapman
   </a>
   {% endif %}
 </div>
-{% endif %}
-
-<link rel="import" href="{{ '/assets/components/perspective-card.html' | prepend: site.baseurl }}"></link>
+{% endif %} 

@@ -1,13 +1,14 @@
 .footer {
-  font-size: 0.65rem;
-  font-style: italic;
-  line-height: 0.5rem;
-  padding: 1rem;
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  font-size: .75rem;
+  font-style: italic;
   justify-content: center;
+  line-height: .75rem;
+  padding: 1rem;
+
   i {
-    margin-left: 0.1rem;
+    margin-left: .1rem;
   }
 }

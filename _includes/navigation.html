@@ -1,22 +1,28 @@
-<input id="hidden-checkbox" class="navigation-menu__checkbox" type="checkbox"/>
-<label for="hidden-checkbox" class="navigation-menu__label"><a class="navigation-menu__button"><i class="fa fa-bars navigation-menu__icon"></i></a></label>
-<nav class="navigation-menu">
-  <button class="navigation-menu__link" id="button-home">
-    <i class="fa fa-home navigation-menu__icon"></i><span>Home</span>
+<button class="navigation-button__open">
+  <i class="fa fa-bars"></i>
+</button>
+
+<nav class="navigation-menu navigation-menu__hide">
+  <button class="navigation-button__close">
+    <i class="fa fa-times"></i>
   </button>
-  <button class="navigation-menu__link" id="button-categories">
-    <i class="fa fa-newspaper-o navigation-menu__icon"></i><span>Categories</span>
-  </button>
-  <button class="navigation-menu__link" id="button-contact">
-    <i class="fa fa-envelope-o navigation-menu__icon"></i><span>Contact</span>
-  </button>
-  <button class="navigation-menu__link" id="button-settings">
-    <i class="fa fa-cog navigation-menu__icon"></i><span>Settings</span>
-  </button>
-  <button class="navigation-menu__link" id="button-about">
-    <i class="fa fa-question navigation-menu__icon"></i><span>About</span>
-  </button>
+  <a class="navigation-menu__link" href="/">
+    <i class="navigation-menu__icon fa fa-home"></i><span>Home</span>
+  </a>
+  <a class="navigation-menu__link" href="/categories">
+    <i class="navigation-menu__icon fa fa-newspaper-o"></i><span>Categories</span>
+  </a>
+  <a class="navigation-menu__link" href="/contact">
+    <i class="navigation-menu__icon fa fa-envelope-o"></i><span>Contact</span>
+  </a>
+  <a class="navigation-menu__link" href="/settings">
+    <i class="navigation-menu__icon fa fa-cog"></i><span>Settings</span>
+  </a>
+  <a class="navigation-menu__link" href="/about">
+    <i class="navigation-menu__icon fa fa-question"></i><span>About</span>
+  </a>
 </nav>
-<section class="top-button">
-  <a id="top-button" class="navigation-menu__button"><i class="fa fa-chevron-up navigation-menu__icon"></i></a>
-</section>
+
+<button class="navigation-button__top">
+  <i class="fa fa-chevron-up navigation-menu__icon"></i>
+</button>

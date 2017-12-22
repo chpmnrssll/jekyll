@@ -49,8 +49,7 @@ function update()
 <script>
 var canvas, context2D, buffer, width, height, bufferSize;
 
-window.onload = function ()
-{
+function startDemo () {
 	//Get context, precalc some variables, and create screen buffer
 	canvas = document.getElementById('canvas');
 	context2D = canvas.getContext('2d');
@@ -62,8 +61,7 @@ window.onload = function ()
   requestAnimationFrame(update);
 }
 
-function update()
-{
+function update () {
 	//Pick random shade for every pixel (0-255)
 	for(var i = 0; i < bufferSize; i++) {
 		var c = Math.floor(Math.random()*255);
@@ -78,4 +76,6 @@ function update()
 	context2D.putImageData(buffer, 0,0);
   requestAnimationFrame(update);
 }
+
+setTimeout(startDemo, 1000)
 </script>

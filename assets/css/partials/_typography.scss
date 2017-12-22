@@ -1,33 +1,65 @@
-@import url("https://fonts.googleapis.com/css?family=Sarpanch:400,900");
-@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
-@import url("https://fonts.googleapis.com/css?family=Teko");
+@import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/css?family=Teko');
 
 :root {
-  // Responsive font-size
-  // https://olivermak.es/2017/02/fluid-typography/
-  font-size: calc(0.60rem + 0.60vw);  // mobile-s
-  @include mediaQuery("mobile-m") { font-size: calc(0.70rem + 0.70vw); }
-  @include mediaQuery("mobile-l") { font-size: calc(0.80rem + 0.80vw); }
-  @include mediaQuery("tablet") { font-size: calc(0.90rem + 0.90vw); }
-  @include mediaQuery("laptop-s") { font-size: calc(1.00rem + 1.00vw); }
-  @include mediaQuery("laptop-m") { font-size: calc(1.10rem + 1.10vw); }
-  @include mediaQuery("laptop-l") { font-size: calc(1.20rem + 1.20vw); }
-  @include mediaQuery("4k") { font-size: calc(1.5rem + 1.5vw); }
+  // Responsive font-size https://olivermak.es/2017/02/fluid-typography/
+  @include media-query('tablet') {
+    font-size: calc(.9rem + .9vw);
+  }
+  @include media-query('laptop-s') {
+    font-size: calc(1rem + 1vw);
+  }
+  @include media-query('laptop-l') {
+    font-size: calc(1.1rem + 1.1vw);
+  }
+  @include media-query('4k') {
+    font-size: calc(1.3rem + 1.3vw);
+  }
 }
 
 body {
+  font-family: 'Teko';
   font-size: 1rem;
-  font-family: "Teko";
   line-height: 1rem;
 }
 
 // Modular type scale http://www.modularscale.com
-h1 { font-size: 2.0rem; line-height: 2.0rem; }
-h2 { font-size: 1.667rem; line-height: 1.667rem; }
-h3 { font-size: 1.389rem; line-height: 1.389rem; }
-h4 { font-size: 1.157rem; line-height: 1.157rem; }
-h5 { font-size: 0.965rem; line-height: 0.965rem; }
-h6 { font-size: 0.804rem; line-height: 0.804rem; }
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Sarpanch";
+h1 {
+  font-size: 2.027rem;
+  line-height: 2.027rem;
+}
+
+h2 {
+  font-size: 1.802rem;
+  line-height: 1.802rem;
+}
+
+h3 {
+  font-size: 1.602rem;
+  line-height: 1.602rem;
+}
+
+h4 {
+  font-size: 1.424rem;
+  line-height: 1.424rem;
+}
+
+h5 {
+  font-size: 1.266rem;
+  line-height: 1.266rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Sarpanch';
 }

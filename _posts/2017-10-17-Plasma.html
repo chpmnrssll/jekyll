@@ -76,7 +76,8 @@ function update() {
   var canvas, context2D, buffer, width, height, bufferSize;
   var yIndex = {}, palette = {}, sinc = {}, tmp = 0;
 
-  window.onload = function() {
+  function startDemo() {
+    console.log('startDemo')
     //Get context, precalc some variables, and create screen buffer
     canvas = document.getElementById('canvas');
     context2D = canvas.getContext('2d');
@@ -128,4 +129,6 @@ function update() {
     context2D.putImageData(buffer, 0, 0);
     requestAnimationFrame(update);
   }
+
+  setTimeout(startDemo, 1000)
 </script>

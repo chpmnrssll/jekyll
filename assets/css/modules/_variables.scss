@@ -1,24 +1,26 @@
-// Defaults for fallbacks
-$default-hue: 200;
-$default-saturation: 100%;
-$default-lightness: 50%;
-$default-shades: 10;
-
-// CSS custom properties/variables
 :root {
   --nav-width: 10rem;
   --animation-speed: 250ms;
-  --hue: #{$default-hue};
-  --lightness: #{$default-lightness};
-  --saturation: #{$default-saturation};
 
-  // Loops to enumerate light & dark shades, this saves tons of typing
-  --color-primary: hsl(var(--hue), var(--saturation), var(--lightness));
-  --color-secondary: hsl(calc(var(--hue) + 180), var(--saturation), var(--lightness));
-  @for $i from 1 through $default-shades {
-    --color-primary-light#{$i}: hsl(var(--hue), var(--saturation), calc(var(--lightness) + #{$i*10}%));
-    --color-primary-dark#{$i}: hsl(var(--hue), var(--saturation), calc(var(--lightness) - #{$i*10}%));
-    --color-secondary-light#{$i}: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) + #{$i*10}%));
-    --color-secondary-dark#{$i}: hsl(calc(var(--hue) + 180), var(--saturation), calc(var(--lightness) - #{$i*10}%));
-  }
+  --color-primary-hue: 200;
+  --color-primary-saturation: 70%;
+  --color-primary-lightness: 50%;
+  --color-primary: hsl(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness));
+  --color-primary-dark: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 10%), calc(var(--color-primary-lightness) - 15%));
+  --color-primary-darker: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 15%), calc(var(--color-primary-lightness) - 30%));
+  --color-primary-darkest: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 30%), calc(var(--color-primary-lightness) - 45%));
+  --color-primary-light: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 10%), calc(var(--color-primary-lightness) + 15%));
+  --color-primary-lighter: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 15%), calc(var(--color-primary-lightness) + 30%));
+  --color-primary-lightest: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 30%), calc(var(--color-primary-lightness) + 45%));
+
+  --color-secondary-hue: 20;
+  --color-secondary-saturation: 70%;
+  --color-secondary-lightness: 40%;
+  --color-secondary: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), var(--color-secondary-lightness));
+  --color-secondary-dark: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 10%), calc(var(--color-secondary-lightness) - 15%));
+  --color-secondary-darker: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 15%), calc(var(--color-secondary-lightness) - 30%));
+  --color-secondary-darkest: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 30%), calc(var(--color-secondary-lightness) - 45%));
+  --color-secondary-light: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 10%), calc(var(--color-secondary-lightness) + 15%));
+  --color-secondary-lighter: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 15%), calc(var(--color-secondary-lightness) + 30%));
+  --color-secondary-lightest: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 30%), calc(var(--color-secondary-lightness) + 45%));
 }

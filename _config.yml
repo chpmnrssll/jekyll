@@ -4,7 +4,7 @@ author:          Russell Chapman
 github_username: chpmnrssll
 permalink:       /:collection/:title
 paginate_path:   /:num
-paginate:        6
+paginate:        12
 
 sass:
   style:    compressed
