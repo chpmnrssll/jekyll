@@ -15,21 +15,15 @@
   grid-template-columns: repeat(2, 1fr);  // mobile-s
 
   @at-root #{&}__book {
-    height: 9fr;
-    width: 16fr;
+    height: 0;
+    padding-top: 56.25%;
   }
 }
 
-.codeStats {
-  margin: 2rem auto 4rem;
+.code-stats {
+  margin: 6rem auto;
   text-align: right;
-  width: 75%;
-
-  h3 {
-    font-style: italic;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
+  width: 90%;
 
   table {
     margin-bottom: 1rem;
@@ -38,19 +32,19 @@
 
   thead {
     border-bottom: 1px solid var(--color-secondary);
-    font-weight: bold;
+    color: var(--color-primary-light);
+    font-size: .6rem;
   }
 
   tbody {
+    color: var(--color-primary-lighter);
     font-style: italic;
+  }
 
-    tr {
-      &:nth-last-child(1) {
-        border-top: 1px solid var(--color-secondary);
-        font-style: normal;
-        font-weight: bold;
-      }
-    }
+  tfoot {
+    border-top: 1px solid var(--color-secondary);
+    color: var(--color-primary-lightest);
+    font-weight: bold;
   }
 
   td {
