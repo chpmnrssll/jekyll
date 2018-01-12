@@ -3,18 +3,11 @@
 class SideNav {
   constructor () {
     this.showButtonEl = document.querySelector('.navigation-button__open')
-    // this.hideButtonEl = document.querySelector('.navigation-button__close')
+    this.hideButtonEl = document.querySelector('.navigation-button__close')
     this.sideNavEl = document.querySelector('.navigation-menu')
-    // this.sideNavContainerEl = document.querySelector('.side-nav')
-
-    // Control whether the container's children can be focused
-    // Set initial state to inert since the drawer is offscreen
-    // this.detabinator = new Detabinator(this.sideNavContainerEl)
-    // this.detabinator.inert = true
 
     this.showSideNav = this.showSideNav.bind(this)
     this.hideSideNav = this.hideSideNav.bind(this)
-    this.blockClicks = this.blockClicks.bind(this)
     this.onTouchStart = this.onTouchStart.bind(this)
     this.onTouchMove = this.onTouchMove.bind(this)
     this.onTouchEnd = this.onTouchEnd.bind(this)
@@ -24,9 +17,6 @@ class SideNav {
     this.startX = 0
     this.currentX = 0
     this.touchingSideNav = false
-
-    this.transitionEndTime = 0
-    this.transitionEndProperty = null
     this.supportsPassive = undefined
     this.addEventListeners()
   }
@@ -50,9 +40,8 @@ class SideNav {
 
   addEventListeners () {
     this.showButtonEl.addEventListener('click', this.showSideNav)
-    // this.hideButtonEl.addEventListener('click', this.hideSideNav)
+    this.hideButtonEl.addEventListener('click', this.hideSideNav)
     this.sideNavEl.addEventListener('click', this.hideSideNav)
-    // this.sideNavContainerEl.addEventListener('click', this.blockClicks)
     this.sideNavEl.addEventListener('touchstart', this.onTouchStart, this.applyPassive())
     this.sideNavEl.addEventListener('touchmove', this.onTouchMove, this.applyPassive())
     this.sideNavEl.addEventListener('touchend', this.onTouchEnd)
@@ -87,7 +76,6 @@ class SideNav {
 
     const translateX = Math.min(0, this.currentX - this.startX)
     this.sideNavEl.style.transform = ''
-    // this.sideNavContainerEl.style.transform = ''
 
     if (translateX < 0) {
       this.hideSideNav()
@@ -102,50 +90,24 @@ class SideNav {
     window.requestAnimationFrame(this.update)
 
     const translateX = Math.min(0, this.currentX - this.startX)
-    // this.sideNavContainerEl.style.transform = `translateX(${translateX}px)`
     this.sideNavEl.style.transform = `translateX(${translateX})`
-  }
-
-  blockClicks (event) {
-    event.stopPropagation()
   }
 
   showSideNav () {
     this.sideNavEl.classList.remove('navigation-menu__hide')
     this.sideNavEl.classList.add('navigation-menu__show')
-    // this.sideNavEl.classList.add('side-nav--animatable')
-    // this.sideNavEl.classList.add('side-nav--visible')
-    // this.detabinator.inert = false
-
-    this.transitionEndProperty = 'transform'
-    // the duration of transition (make unique to distinguish transitions)
-    this.transitionEndTime = 0.33
-
     this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
   }
 
   hideSideNav () {
     this.sideNavEl.classList.remove('navigation-menu__show')
     this.sideNavEl.classList.add('navigation-menu__hide')
-    // this.sideNavEl.classList.add('side-nav--animatable')
-    // this.sideNavEl.classList.remove('side-nav--visible')
-    // this.detabinator.inert = true
-
-    this.transitionEndProperty = 'transform'
-    this.transitionEndTime = 0.13
-
     this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
   }
 
   onTransitionEnd (event) {
-    if (event.propertyName !== this.transitionEndProperty && event.elapsedTime !== this.transitionEndTime) {
-      return
-    }
-
-    this.transitionEndProperty = null
-    this.transitionEndTime = 0
-
-    this.sideNavEl.classList.remove('side-nav--animatable')
     this.sideNavEl.removeEventListener('transitionend', this.onTransitionEnd)
   }
 }
+
+const nav = new SideNav()

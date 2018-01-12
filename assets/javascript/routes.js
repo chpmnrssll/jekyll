@@ -79,12 +79,6 @@ page.exit('*', (context, next) => {
 // page({ dispatch: false })
 page()
 
-// document.querySelector('#button-home').addEventListener('click', () => { page('/') })
-// document.querySelector('#button-categories').addEventListener('click', () => { page('/categories/') })
-// document.querySelector('#button-contact').addEventListener('click', () => { page('/contact/') })
-// document.querySelector('#button-settings').addEventListener('click', () => { page('/settings/') })
-// document.querySelector('#button-about').addEventListener('click', () => { page('/about/') })
-
 const slide = {
   in: (element, duration, iterations, delay) => {
     const keyframes = [

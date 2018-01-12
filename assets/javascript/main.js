@@ -9,8 +9,6 @@ window.addEventListener('load', (event) => {
   {% include_relative starField.js %}
   {% include_relative sideNav.js %}
 
-  const nav = new SideNav()
-
   // if (navigator.serviceWorker) {
   //   navigator.serviceWorker.register('/sw.js').catch(function (error) {
   //     console.error('Unable to register service worker.', error)
