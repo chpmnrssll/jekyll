@@ -1,51 +1,50 @@
 .header {
-  @at-root #{&}__title {
-    margin-top: .5rem;
+  @at-root #{&}__plain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 .5rem 0 2rem;
     text-align: right;
-    z-index: 2;
+  }
+
+  @at-root #{&}__title {
+    // margin-right: .5rem;
   }
 
   @at-root #{&}__title--main {
     color: var(--color-primary-lightest);
     font-style: italic;
-    text-shadow: 2px 2px 2px var(--color-primary-darkest), 0 0 8px var(--color-primary);
+    text-shadow: 0 0 4px var(--color-primary), 2px 2px 2px var(--color-primary-darkest);
   }
 
   @at-root #{&}__title--sub {
     color: var(--color-secondary-light);
+    font-family: 'Teko';
     font-style: italic;
-    text-shadow: 1px 1px 2px var(--color-secondary-darkest), 0 0 8px var(--color-secondary-dark);
-  }
-  @at-root #{&}__date {
-    color: var(--color-primary-lighter);
-    margin-bottom: .5rem;
-    text-shadow: 1px 1px 2px var(--color-primary-darkest), 0 0 8px var(--color-primary-dark);
+    font-weight: lighter;
+    text-shadow: 0 0 4px var(--color-secondary-dark), 1px 1px 2px var(--color-secondary-darkest);
   }
 
-  @at-root #{&}__plain {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-right: 1rem;
-    text-align: right;
+  @at-root #{&}__date {
+    color: var(--color-primary-lighter);
+    // margin-bottom: .25rem;
+    font-size: 1rem;
+    text-shadow: 0 0 4px var(--color-primary-dark), 1px 1px 2px var(--color-primary-darkest);
   }
 
   @at-root #{&}__parallax {
+    @include media-query('mobile-s') { background-size: 125vh 100vh; }
     @include media-query('mobile-m') { background-size: 175vh 100vh; }
     @include media-query('mobile-l') { background-size: 200vh 100vh; }
     @include media-query('tablet') { background-size: 225vh 100vh; }
     @include media-query('laptop') { background-size: 275vh 100vh; }
     @include media-query('laptop-l') { background-size: 325vh 100vh; }
     @include media-query('4k') { background-size: 375vh 100vh; }
+    //@include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
 
     align-items: flex-end;
-
-    //@include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
     background-position: center top;
     background-repeat: no-repeat;
-    // mobile-s
-    background-size: 125vh 100vh;
-
     display: flex;
     flex-direction: column;
     height: 60vh;

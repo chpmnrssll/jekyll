@@ -79,25 +79,19 @@
       this.shadowDOM = this.attachShadow({ mode: 'open' })
       this.shadowDOM.appendChild(this.template)
       this.containerElement = this.shadowDOM.querySelector('#container')
-      this.frameSkip = 5
+      this.frameSkip = 4
     }
 
     connectedCallback() {
-      this.addEventListener('click', this._clickHandler, { passive: true })
       this.addEventListener('mouseenter', this._mouseenterHandler, { passive: true })
       this.addEventListener('mousemove', this._mousemoveHandler, { passive: true, capture: true })
       this.addEventListener('mouseleave', this._mouseleaveHandler, { passive: true })
     }
 
     disconnectedCallback() {
-      this.removeEventListener('click', this._clickHandler)
       this.removeEventListener('mouseenter', this._mouseenterHandler)
       this.removeEventListener('mousemove', this._mousemoveHandler)
       this.removeEventListener('mouseleave', this._mouseleaveHandler)
-    }
-
-    _clickHandler(event) {
-      page(this.postURL)
     }
 
     _mouseenterHandler(event) {
@@ -148,7 +142,7 @@
     }
 
     static get observedAttributes() {
-      return ['background-image', 'post-url']
+      return ['background-image']
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
@@ -157,8 +151,6 @@
         this.backgroundImage.id = 'background-image'
         this.backgroundImage.src = newValue
         this.containerElement.appendChild(this.backgroundImage)
-      } else if (attr === 'post-url') {
-        this.postURL = newValue
       }
     }
   })

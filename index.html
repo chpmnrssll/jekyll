@@ -5,15 +5,17 @@ sub-title: Russell Chapman
 ---
 <section class="featured">
   {% for post in paginator.posts %}
-  <perspective-card class="featured__item" post-url="{{ post.url | prepend: site.url }}" background-image="{{ site.url }}/assets/images/{{ post.image }}">
-    <header class="header__plain">
-      <section class="header__title">
-        <h4 class="header__title--main">{{ post.title }}</h4>
-        <section class="header__title--sub">{{ post.sub-title }}</section>
-      </section>
-      <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
-    </header>
-  </perspective-card>
+  <a href="{{ post.url | prepend: site.url }}">
+    <perspective-card class="featured__item" background-image="{{ site.url }}/assets/images/{{ post.image }}">
+      <header class="header__plain">
+        <section class="header__title">
+          <h2 class="header__title--main">{{ post.title }}</h2>
+          <h3 class="header__title--sub">{{ post.sub-title }}</h3>
+        </section>
+        <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+      </header>
+    </perspective-card>
+  </a>
   {% endfor %}
 </section>
 
@@ -61,4 +63,4 @@ sub-title: Russell Chapman
   </a>
   {% endif %}
 </div>
-{% endif %} 
+{% endif %}

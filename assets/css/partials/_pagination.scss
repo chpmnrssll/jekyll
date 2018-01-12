@@ -5,23 +5,7 @@
   justify-content: center;
 
   > a {
-    color: var(--color-primary);
-    font-size: 1.5rem;
     margin: 1.5rem;
     text-decoration: none;
-    text-shadow: 1px 1px 1px var(--color-primary-darkest);
-
-    &.disabled {
-      color: var(--color-primary-darker);
-      cursor: default;
-      pointer-events: none;
-      text-shadow: 1px 1px 1px var(--color-primary-darkest);
-    }
-
-    &:active,
-    &:hover {
-      color: var(--color-primary-light);
-      text-shadow: 1px 1px 1px var(--color-primary-darker), 0 0 8px var(--color-primary-light);
-    }
   }
 }

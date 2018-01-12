@@ -4,7 +4,8 @@ image: backgrounds/why-web-components.jpg
 title: Vanilla JS
 sub-title: Use the platform for real!
 date: 2017-10-22T00:00:00.000Z
-tags: JavaScript Web Components
+tags: JavaScript Custom Elements
+category: Article
 ---
 
 # Intro

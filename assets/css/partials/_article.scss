@@ -1,6 +1,8 @@
 article {
-  margin: 2rem;
-  // margin-bottom: 2rem;
+  font-size: .8rem;
+  // margin: 0 auto;
+  // max-width: 100%;
+  // width: 15em;
 
   h1,
   h2,
@@ -9,24 +11,24 @@ article {
   h5,
   h6,
   p {
-    margin: 1rem;
+    margin: 1rem 0;
   }
 
   p {
     &::first-letter {
-      font-size: 1.5rem;
-      margin-left: .5rem;
+      font-size: 1.4rem;
+      margin-left: .4rem;
     }
   }
 
   blockquote {
     background-color: var(--color-primary-darker);
-    border-left: 2px solid var(--color-primary);
-    box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
-    font-size: 1.25rem;
-    line-height: 1.25rem;
-    margin: 2.5rem;
-    padding: 1rem;
+    border-left: .4vw solid var(--color-primary);
+    box-shadow: .2rem .2rem 1rem var(--color-primary-darkest);
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    margin: .4rem;
+    padding: .8rem;
   }
 
   .output {
@@ -42,6 +44,7 @@ article {
     justify-content: space-around;
     padding: 1rem;
   }
+
   @at-root #{&}__author-avatar {
     height: 12rem;
     width: 12rem;
@@ -54,6 +57,7 @@ article {
       width: 100%;
     }
   }
+
   @at-root #{&}__author-name {
     font-family: 'Sarpanch';
     font-size: 1.25rem;
@@ -62,12 +66,14 @@ article {
     padding-top: .5rem;
     text-align: center;
   }
+
   @at-root #{&}__author-description {
     border-bottom: 2px solid var(--color-secondary);
     border-top: 2px solid var(--color-secondary);
     padding-bottom: .5rem;
     padding-top: .5rem;
     width: 12rem;
+
     @at-root #{&}__tags {
       padding-top: .5rem;
 
@@ -75,6 +81,7 @@ article {
         padding-left: .2rem;
       }
     }
+
     @at-root #{&}__share {
       a {
         padding-left: .2rem;

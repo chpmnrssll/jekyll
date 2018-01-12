@@ -1,23 +1,31 @@
 .navigation-button {
+  @include media-query('mobile-l') {
+    font-size: 1.5rem;
+  }
+  @include media-query('tablet') {
+    font-size: 1.2rem;
+  }
+  @include media-query('laptop-s') {
+    font-size: 1rem;
+  }
+
   background: none;
   border: 0;
   color: var(--color-primary-light);
   cursor: pointer;
-  font-size: 1.5rem;
-  text-shadow: 1px 1px 1px var(--color-primary-darkest);
-  width: 2rem;
+  font-size: 1.7rem;
+  text-shadow: 2px 2px 4px var(--color-primary-darkest);
 
   &:active,
   &:hover {
     color: var(--color-primary-lighter);
-    text-shadow: 1px 1px 1px var(--color-primary-dark), 0 0 8px var(--color-primary-light);
+    text-shadow: 0 0 8px var(--color-primary-light), 4px 4px 8px var(--color-primary-darkest);
   }
 }
 
 .navigation-button__top {
   @extend .navigation-button;
   bottom: 0;
-  margin-right: .5rem;
   position: fixed;
   right: 0;
   z-index: 99;
@@ -25,7 +33,6 @@
 
 .navigation-button__open {
   @extend .navigation-button;
-  height: 2rem;
   left: 0;
   position: fixed;
   top: 0;
@@ -34,14 +41,15 @@
 
 .navigation-button__close {
   @extend .navigation-button;
-  padding: 1rem;
-  text-align: right;
+  position: absolute;
 }
 
 .navigation-menu {
   @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
 
-  background: radial-gradient(hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 0%, var(--color-primary-darkest) 80%);
+  // background: radial-gradient(hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 0%, var(--color-primary-darkest) 80%);
+  background: linear-gradient(90deg, var(--color-primary-darkest) 0%, hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 60%),
+              linear-gradient(135deg, var(--color-primary-darkest) 0%, hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 80%);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -64,27 +72,26 @@
 
   @at-root #{&}__link {
     @extend .navigation-button;
-    border: 1px solid rgba(0, 0, 0, 0); // fixes vertical shifting on hover
     display: flex;
     justify-content: flex-start;
-    padding: .5rem;
+    margin-bottom: 1rem;
     text-decoration: none;
+    text-shadow: 0 0 8px var(--color-primary-darker);
     width: var(--nav-width);
 
-    &:active,
-    &:hover {
-      background: hsla(var(--color-primary-hue), var(--color-primary-saturation), 25%, .5);
-      border: 1px solid hsla(var(--color-primary-hue), var(--color-primary-saturation), 50%, .5);
+    &:first-of-type {
+      margin-top: 3rem;
     }
 
     span {
-      padding-top: .4rem;
+      line-height: 1em;
+      padding-left: .2em;
+      padding-top: .1em;
     }
   }
 
   @at-root #{&}__icon {
-    margin-right: 1rem;
-    text-align: right;
-    width: 2rem;
+    text-align: center;
+    width: 1.25em;
   }
 }

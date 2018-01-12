@@ -6,21 +6,21 @@
   --color-primary-saturation: 70%;
   --color-primary-lightness: 50%;
   --color-primary: hsl(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness));
-  --color-primary-dark: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 10%), calc(var(--color-primary-lightness) - 15%));
-  --color-primary-darker: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 15%), calc(var(--color-primary-lightness) - 30%));
-  --color-primary-darkest: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) + 30%), calc(var(--color-primary-lightness) - 45%));
-  --color-primary-light: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 10%), calc(var(--color-primary-lightness) + 15%));
-  --color-primary-lighter: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 15%), calc(var(--color-primary-lightness) + 30%));
-  --color-primary-lightest: hsl(var(--color-primary-hue), calc(var(--color-primary-saturation) - 30%), calc(var(--color-primary-lightness) + 45%));
+  --color-primary-dark: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) - 20%));
+  --color-primary-darker: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) - 30%));
+  --color-primary-darkest: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) - 40%));
+  --color-primary-light: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) + 10%));
+  --color-primary-lighter: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) + 35%));
+  --color-primary-lightest: hsl(var(--color-primary-hue), var(--color-primary-saturation), calc(var(--color-primary-lightness) + 48%));
 
   --color-secondary-hue: 20;
-  --color-secondary-saturation: 70%;
+  --color-secondary-saturation: 60%;
   --color-secondary-lightness: 40%;
   --color-secondary: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), var(--color-secondary-lightness));
-  --color-secondary-dark: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 10%), calc(var(--color-secondary-lightness) - 15%));
-  --color-secondary-darker: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 15%), calc(var(--color-secondary-lightness) - 30%));
-  --color-secondary-darkest: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) + 30%), calc(var(--color-secondary-lightness) - 45%));
-  --color-secondary-light: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 10%), calc(var(--color-secondary-lightness) + 15%));
-  --color-secondary-lighter: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 15%), calc(var(--color-secondary-lightness) + 30%));
-  --color-secondary-lightest: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 30%), calc(var(--color-secondary-lightness) + 45%));
+  --color-secondary-dark: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) - 20%));
+  --color-secondary-darker: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) - 30%));
+  --color-secondary-darkest: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) - 40%));
+  --color-secondary-light: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) + 10%));
+  --color-secondary-lighter: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) + 30%));
+  --color-secondary-lightest: hsl(var(--color-secondary-hue), var(--color-secondary-saturation), calc(var(--color-secondary-lightness) + 45%));
 }

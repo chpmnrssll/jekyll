@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background: linear-gradient(315deg, var(--color-primary-darker) 0%, var(--color-primary-darkest) 100%);
+  background: linear-gradient(-135deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
   color: var(--color-primary-lighter);
   min-height: 100vh;
   overflow-x: hidden;
@@ -22,28 +22,28 @@ h6 {
 }
 
 main {
-  background: linear-gradient(135deg, var(--color-primary-darker) 0%, var(--color-primary-darkest) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
   min-height: 75vh;
-  overflow-x: hidden;
-  padding: 1rem;
+  overflow: hidden;
+  padding: .75rem;
   perspective: 25rem;
   transform-style: preserve-3d;
 }
 
 a {
-  color: var(--color-primary-lighter);
-  text-shadow: 1px 1px 1px var(--color-primary-darkest);
+  color: var(--color-primary-light);
+  text-shadow: 2px 2px 2px var(--color-primary-darkest);
 
   &.disabled {
-    color: var(--color-primary-dark);
+    color: var(--color-primary-darker);
     cursor: default;
     pointer-events: none;
-    text-shadow: 1px 1px 1px var(--color-primary-darkest);
+    text-shadow: 0 0 8px var(--color-primary-darkest), 2px 2px 2px var(--color-primary-darkest);
   }
 
   &:active,
   &:hover {
-    color: var(--color-primary-lightest);
-    text-shadow: 1px 1px 1px var(--color-primary-dark), 0 0 8px var(--color-primary-light);
+    color: var(--color-primary-lighter);
+    text-shadow: 0 0 8px var(--color-primary-light), 2px 2px 2px var(--color-primary-darkest);
   }
 }

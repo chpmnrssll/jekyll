@@ -2,7 +2,7 @@ title:           Projects, Portfolio, & Posts
 description:     All Things Programming...
 author:          Russell Chapman
 github_username: chpmnrssll
-permalink:       /:collection/:title
+permalink:       /:categories/:title
 paginate_path:   /:num
 paginate:        12
 

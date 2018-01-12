@@ -5,8 +5,9 @@ title: Research
 sub-title: PWA AMP JS 3D Animation
 date: 2017-10-21T00:00:00.000Z
 tags: GitHub Pages Jekyll Markdown
+category: About
 ---
-##### PWA Service Worker App Shell
+## PWA Service Worker App Shell
 - [UI Element Samples](https://github.com/GoogleChromeLabs/ui-element-samples) - Vanilla web platform features
 - [The Shadow Reader](https://github.com/ampproject/amp-publisher-sample/tree/master/amp-pwa-reader) - PWA+AMP techniques
 - [Workbox](https://workboxjs.org/) - JS Libs for Progressive Web Apps (Service Worker)
@@ -19,7 +20,7 @@ tags: GitHub Pages Jekyll Markdown
 - [App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)
 - [App Shell](https://developers.google.com/web/updates/2015/11/app-shell)
 
-##### Javascript
+## Javascript
 - ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
 - [Links aren't buttons!](https://ctidd.com/2017/links-arent-buttons)
 - [Front-End Checklist](http://frontendchecklist.com/)
@@ -29,7 +30,7 @@ tags: GitHub Pages Jekyll Markdown
 - [Loop through a collection of dom elements](https://pawelgrzybek.com/loop-through-a-collection-of-dom-elements/)
 - [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 
-##### HTML
+## HTML
 - [HTML Style Guide](https://marcobiedermann.github.io/html-style-guide/)
 - [Awesome HTML5](https://github.com/diegocard/awesome-html5)
 - [Semantic HTML5](http://www.hongkiat.com/blog/html-5-semantics/)
@@ -37,7 +38,7 @@ tags: GitHub Pages Jekyll Markdown
 - [HTML5 sectioning elements](http://blog.teamtreehouse.com/use-html5-sectioning-elements)
 - [Using HTML sections and outlines](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines)
 
-##### CSS SASS BEM
+## CSS SASS BEM
 - [css tricks to revolutionise your layouts](http://www.creativebloq.com/features/css-tricks-to-revolutionise-your-layouts)
 - [how create pyramid layout](http://www.creativebloq.com/css3/how-create-pyramid-layout-css-31619524)
 - [Transparent JPG (With SVG)](https://css-tricks.com/transparent-jpg-svg/)
@@ -53,7 +54,7 @@ tags: GitHub Pages Jekyll Markdown
 - [CSS Containment](https://developers.google.com/web/updates/2016/06/css-containment)
 - [CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
 
-##### Lazy Loading Responsive Image Gradient
+## Lazy Loading Responsive Image Gradient
 - [using svg as placeholders](https://medium.freecodecamp.org/using-svg-as-placeholders-more-image-loading-techniques-bed1b810ab2c)
 - [SVG-based LQIP technique](https://github.com/technopagan/sqip)
 - [lazy loading images using intersection observer](https://deanhume.com/Home/BlogPost/lazy-loading-images-using-intersection-observer/10163)
@@ -64,7 +65,7 @@ tags: GitHub Pages Jekyll Markdown
 - [responsively-lazy](https://github.com/ivopetkov/responsively-lazy)
 - [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
 
-##### 3D Parallax
+## 3D Parallax
 - [Performant Parallaxing](https://developers.google.com/web/updates/2016/12/performant-parallaxing)
 - [Practical CSS Parallax](http://keithclark.co.uk/articles/practical-css-parallax/)
 - [Pure CSS Parallax](http://keithclark.co.uk/articles/pure-css-parallax-websites/)
@@ -73,14 +74,14 @@ tags: GitHub Pages Jekyll Markdown
 - [Parallax Header](https://codepen.io/anon/pen/RZmMJO)
 - [Parallax Depth Cards](https://codepen.io/andymerskin/pen/XNMWvQ?editors=0100)
 
-##### Animation
+## Animation
 - [Subtle link animations](https://codepen.io/butsuri/pen/bKjHz)
 - [Web Animations poly-fill](https://github.com/web-animations/web-animations-js)
 - [Animation.onfinish](https://developer.mozilla.org/en-US/docs/Web/API/Animation/onfinish)
 - [Animated wave clipped by text](https://codepen.io/web-tiki/pen/YNKMpB)
 - [animated gradient line icons in pure css](https://codepen.io/medialoot/post/how-to-animated-gradient-line-icons-in-pure-css)
 
-##### Navigation
+## Navigation
 - [Slide Out Footer](https://codepen.io/rileyjshaw/pen/GlBHC)
 - [Unnamed Menu - CSS](https://codepen.io/z-/pen/evxZpZ)
 - [Pure CSS Off-Screen Menu](https://codepen.io/SitePoint/pen/uIemr)
@@ -88,19 +89,19 @@ tags: GitHub Pages Jekyll Markdown
 - [Inline SVG hamburger animation](https://codepen.io/chriswrightdesign/pen/fAayG)
 - [Building a Vertical Timeline With CSS and a Touch of JavaScript](https://codepen.io/tutsplus/pen/QNeJgR)
 
-##### Typography
+## Typography
 - [A more modern scale for web typography](http://typecast.com/blog/a-more-modern-scale-for-web-typography)
 - [Fontjoy Machine Learning Font Combinations](http://fontjoy.com/)
 - [Pro Web Type](https://prowebtype.com/)
 
-##### Design
+## Design
 - [Aerotwist](https://aerotwist.com/)
 - [QUOTES on DESIGN](http://quotesondesign.com/)
 - [QuantumBit Design](http://www.quantumbitdesign.com/index.html)
 - [Generate Coolors](https://coolors.co/app)
 - [Paletton](http://paletton.com)
 
-##### Jekyll
+## Jekyll
 - [Jekyll REST API (read-only)](https://github.com/riichard/jekyll-rest-api)
 - [Jekyll Compress HTML](https://github.com/penibelst/jekyll-compress-html)
 - [Jekyll::Livereload](https://github.com/RobertDeRose/jekyll-livereload)
@@ -108,7 +109,7 @@ tags: GitHub Pages Jekyll Markdown
 - [Bundler](http://bundler.io/)
 - [Ruby](https://www.ruby-lang.org/en/)
 
-##### GitHub
+## GitHub
 - [Writing on GitHub](https://help.github.com/categories/writing-on-github/)
 - [GitHub Pages Basics](https://help.github.com/categories/github-pages-basics/)
 - [Customizing GitHub Pages](https://help.github.com/categories/customizing-github-pages/)
@@ -117,17 +118,17 @@ tags: GitHub Pages Jekyll Markdown
 - [Splitting a subfolder out into a new repository](https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/)
 - [Working with submodules](https://github.com/blog/2104-working-with-submodules)
 
-##### WebRTC
+## WebRTC
 - [cjb/serverless-webrtc](https://github.com/cjb/serverless-webrtc)
 - [simple-peer](https://github.com/feross/simple-peer)
 - [serverless-webrtc](https://github.com/svarunan/serverless-webrtc)
 - [serverless-webrtc-chat](https://github.com/owebio/serverless-webrtc-chat)
 - [webrtc-reversi](https://github.com/bmwalters/webrtc-reversi)
 
-#
+##
 - [remoteStorage.js](https://remotestoragejs.readthedocs.io/en/latest/index.html)
 
-###### !?.
-- [Platformer Power](https://platformerpower.com/)
+## !?#
 - [Computer Graphics from scratch](http://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
+- [Platformer Power](https://platformerpower.com/)
 - [webgl blog](https://alain.xyz/blog)
