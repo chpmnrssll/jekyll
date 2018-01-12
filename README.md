@@ -9,6 +9,8 @@
 - [CSS/BEM](https://en.bem.info/methodology/quick-start/)
 - [Semantic HTML5](http://www.hongkiat.com/blog/html-5-semantics/)
 - [App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell)
+- [Commitizen command line utility](https://github.com/commitizen/cz-cli)
+- [conventiona changelog](https://github.com/conventional-changelog/conventional-changelog)
 
 ### Local Server / Build Instructions
 ```bash
