@@ -64,6 +64,10 @@ category: About
 - [simple image lazy loading](https://codepen.io/derekmorash/post/simple-image-lazy-loading)
 - [responsively-lazy](https://github.com/ivopetkov/responsively-lazy)
 - [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- ["SQIP" SVG-based LQIP technique](https://github.com/technopagan/sqip)
+- [pure JS lazy loader (intersection observer)](https://github.com/ApoorvSaxena/lozad.js)
+- [Reproducing images with geometric primitives](https://github.com/fogleman/primitive/)
+- [JS port of primitive](https://github.com/ondras/primitive.js)
 
 ## 3D Parallax
 - [Performant Parallaxing](https://developers.google.com/web/updates/2016/12/performant-parallaxing)
@@ -77,6 +81,7 @@ category: About
 ## Animation
 - [Subtle link animations](https://codepen.io/butsuri/pen/bKjHz)
 - [Web Animations poly-fill](https://github.com/web-animations/web-animations-js)
+- [Web Animations tools](https://github.com/web-animations/web-animations-tools)
 - [Animation.onfinish](https://developer.mozilla.org/en-US/docs/Web/API/Animation/onfinish)
 - [Animated wave clipped by text](https://codepen.io/web-tiki/pen/YNKMpB)
 - [animated gradient line icons in pure css](https://codepen.io/medialoot/post/how-to-animated-gradient-line-icons-in-pure-css)
@@ -100,6 +105,8 @@ category: About
 - [QuantumBit Design](http://www.quantumbitdesign.com/index.html)
 - [Generate Coolors](https://coolors.co/app)
 - [Paletton](http://paletton.com)
+- [Inkscape Filter Guide](http://www.littlewebhut.com/inkscape/graphics_filter_guide/)
+- [Trianglify](https://github.com/qrohlf/trianglify)
 
 ## Jekyll
 - [Jekyll REST API (read-only)](https://github.com/riichard/jekyll-rest-api)
@@ -125,10 +132,15 @@ category: About
 - [serverless-webrtc-chat](https://github.com/owebio/serverless-webrtc-chat)
 - [webrtc-reversi](https://github.com/bmwalters/webrtc-reversi)
 
-##
-- [remoteStorage.js](https://remotestoragejs.readthedocs.io/en/latest/index.html)
-
 ## !?#
+- [remoteStorage.js](https://remotestoragejs.readthedocs.io/en/latest/index.html)
 - [Computer Graphics from scratch](http://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
 - [Platformer Power](https://platformerpower.com/)
-- [webgl blog](https://alain.xyz/blog)
+- [Simple Skeletal Animation](https://codepen.io/tsmallfield/pen/FJkof?editors=0010)
+- [WebGL blog](https://alain.xyz/blog)
+- [Matter.js](https://github.com/liabru/matter-js)
+- [Javascript Physics with Matter.js](http://codersblock.com/blog/javascript-physics-with-matter-js/)
+- [Interactive SVG](https://github.com/petercollingridge/InteractiveSVG.js)
+- [SVG Animated icons](https://github.com/aeolingamenfel/animated-icons)
+- [SVG icon Custom Element](https://github.com/amiller-gh/svg-icon)
+- [SVG Custom Elements](https://medium.com/claritydesignsystem/the-road-to-svg-and-custom-elements-in-clarity-icons-1d691c6cc91)
