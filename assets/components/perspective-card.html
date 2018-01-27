@@ -10,6 +10,7 @@
       box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
       height: 100%;
       left: 0;
+      overflow: hidden;
       position: absolute;
       top: 0;
       transform-style: preserve-3d;
@@ -45,7 +46,7 @@
       opacity: 0;
     }
     #background-image {
-      height: 100%;
+      /* height: 100%; */
       opacity: 0.7;
       position: absolute;
       top: 0%;
@@ -86,7 +87,7 @@
       this.addEventListener('mouseenter', this._mouseenterHandler, { passive: true })
       this.addEventListener('mousemove', this._mousemoveHandler, { passive: true, capture: true })
       this.addEventListener('mouseleave', this._mouseleaveHandler, { passive: true })
-    }
+      }
 
     disconnectedCallback() {
       this.removeEventListener('mouseenter', this._mouseenterHandler)
@@ -116,6 +117,7 @@
     }
 
     _update() {
+
       if (this.frameCount < this.frameSkip) {
         this.frameCount++
       } else {

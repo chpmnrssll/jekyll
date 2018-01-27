@@ -1,10 +1,11 @@
-title:           Projects, Portfolio, & Posts
-description:     All Things Programming...
 author:          Russell Chapman
+description:     All Things Programming...
 github_username: chpmnrssll
+host:            0.0.0.0
 permalink:       /:categories/:title
 paginate_path:   /:num
 paginate:        12
+title:           Projects, Portfolio, & Posts
 
 sass:
   style:    compressed

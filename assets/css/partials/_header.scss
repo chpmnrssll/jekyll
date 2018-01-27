@@ -9,6 +9,7 @@
 
   @at-root #{&}__title {
     // margin-right: .5rem;
+    opacity: 1;
   }
 
   @at-root #{&}__title--main {
@@ -27,7 +28,6 @@
 
   @at-root #{&}__date {
     color: var(--color-primary-lighter);
-    // margin-bottom: .25rem;
     font-size: 1rem;
     text-shadow: 0 0 4px var(--color-primary-dark), 1px 1px 2px var(--color-primary-darkest);
   }

@@ -1,0 +1,46 @@
+---
+layout: default
+title: Categories
+sub-title: Listing
+---
+{% assign categoryOrder = "About, Article, Automotive, News" | split: ", " %}
+{% for category in categoryOrder %}
+<br/>
+<h2>{{ category }}</h2>
+<br/>
+<section class="featured">
+{% for post in site.categories[category] %}
+  <a href="{{ post.url }}">
+    <perspective-card class="featured__item" background-image="/assets/images/{{ post.image }}">
+      <header class="header__plain">
+        <section class="header__title">
+          <h2 class="header__title--main">{{ post.title }}</h2>
+          <h3 class="header__title--sub">{{ post.sub-title }}</h3>
+        </section>
+        <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+      </header>
+    </perspective-card>
+  </a>
+{% endfor %}
+</section>
+{% endfor %}
+
+<!-- {% for category in site.categories %}
+<h1>{{ category[0] }}</h1>
+<section class="featured">
+  {% for post in category[1] %}
+  <a href="{{ post.url | prepend: site.url }}">
+    <perspective-card class="featured__item" background-image="{{ site.url }}/assets/images/{{ post.image }}">
+      <header class="header__plain">
+        <section class="header__title">
+          <h2 class="header__title--main">{{ post.title }}</h2>
+          <h3 class="header__title--sub">{{ post.sub-title }}</h3>
+        </section>
+        <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+      </header>
+    </perspective-card>
+  </a>
+  {% endfor %}
+</section>
+{% endfor %}
+<br/> -->

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
-<script src="{{ site.baseurl }}/assets/javascript/main.js"></script>
-<link rel="import" href="{{ '/assets/components/perspective-card.html' | prepend: site.baseurl }}"></link>
+<script src="/assets/javascript/main.js"></script>
+<link rel="import" href="/assets/components/perspective-card.html"></link>
+<link rel="import" href="/assets/components/gradient-overlay.html"></link>
 <body>
   {% include navigation.html %}
   {% include header.html %}
   <main class="content">
+    <header class="header__plain">
+      <time class="header__date">{{  page.date | date: "%b %d, %Y" }}</time>
+    </header>
     <article>
       {{ content }}
     </article>

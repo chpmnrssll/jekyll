@@ -5,7 +5,9 @@ sub-title: Russell Chapman
 ---
 <section class="featured">
   {% for post in paginator.posts %}
-  <a href="{{ post.url | prepend: site.url }}">
+  {% for tag in post.tags %}
+  {% if tag == "Featured" %}
+  <a href="{{ post.url }}">
     <perspective-card class="featured__item" background-image="{{ site.url }}/assets/images/{{ post.image }}">
       <header class="header__plain">
         <section class="header__title">
@@ -16,6 +18,8 @@ sub-title: Russell Chapman
       </header>
     </perspective-card>
   </a>
+  {% endif %}
+  {% endfor %}
   {% endfor %}
 </section>
 

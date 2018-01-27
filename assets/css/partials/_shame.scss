@@ -2,6 +2,23 @@
   opacity: 0;
 }
 
+.output {
+  display: flex;
+  flex-direction: column-reverse;
+
+  canvas {
+    // flex-grow: 1;
+    height: 9rem;
+    width: 16rem;
+  }
+
+  pre {
+    font-size: .5rem;
+    letter-spacing: .1rem;
+    line-height: .5rem;
+  }
+}
+
 .about {
   @include media-query('mobile-m') { grid-template-columns: repeat(3, 1fr); }
   @include media-query('tablet') { grid-template-columns: repeat(5, 1fr); }

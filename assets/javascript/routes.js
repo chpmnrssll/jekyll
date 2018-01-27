@@ -10,7 +10,7 @@ function _loadHandler (event) {
     page('/404')
     // createStarField()
   } else {
-    const parser = new DOMParser()
+    const parser = new window.DOMParser()
     const newDocument = parser.parseFromString(event.srcElement.response, 'text/html')
     const newTitle = newDocument.querySelector('.header__title--main')
     const newSubTitle = newDocument.querySelector('.header__title--sub')
@@ -70,11 +70,6 @@ page.exit('*', (context, next) => {
     }
   })
 })
-
-// page('/posts/:title', (context, next) => {
-//   console.log('post!')
-//   // _URLRequest(context.path, _loadHandler)
-// })
 
 // page({ dispatch: false })
 page()
