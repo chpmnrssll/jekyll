@@ -9,6 +9,8 @@ body {
   color: var(--color-primary-lighter);
   min-height: 100vh;
   overflow-x: hidden;
+  perspective: 50vw;
+  transform-style: preserve-3d;
 }
 
 h1,
@@ -22,11 +24,10 @@ h6 {
 }
 
 main {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
   min-height: 75vh;
   overflow: hidden;
   padding: .75rem;
-  perspective: 25rem;
+  perspective: 50vw;
   transform-style: preserve-3d;
 }
 

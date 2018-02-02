@@ -1,9 +1,38 @@
-function _URLRequest (url, loadHandler) {
-  let request = new window.XMLHttpRequest()
-  request.onloadend = loadHandler
-  request.open('GET', url, true)
-  request.send()
-}
+const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+const animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2)) * 2
+
+// URL Request 'middleware' for all routes
+page('*', (context, next) => {
+  // Ignore initial page load
+  if (!context.init) {
+    let request = new window.XMLHttpRequest()
+    request.onloadend = _loadHandler
+    request.open('GET', context.path, true)
+    request.send()
+  }
+})
+
+page.exit('*', (context, next) => {
+  const pageTitle = document.querySelector('.header__title--main')
+  slide.out(pageTitle, animationSpeed, 1, 0).onfinish = () => {
+    pageTitle.remove()
+  }
+
+  const pageSubTitle = document.querySelector('.header__title--sub')
+  slide.out(pageSubTitle, animationSpeed, 1, 100).onfinish = () => {
+    pageSubTitle.remove()
+  }
+
+  const pageContent = document.querySelector('.content')
+  zoom.out(pageContent, animationSpeed, 1, 200).onfinish = () => {
+    while (pageContent.firstChild) {
+      pageContent.firstChild.remove()
+    }
+    setTimeout(next, animationSpeed * 2)
+  }
+})
+
+page()
 
 function _loadHandler (event) {
   if (event.srcElement.status === 404) {
@@ -12,72 +41,38 @@ function _loadHandler (event) {
   } else {
     const parser = new window.DOMParser()
     const newDocument = parser.parseFromString(event.srcElement.response, 'text/html')
-    const newTitle = newDocument.querySelector('.header__title--main')
-    const newSubTitle = newDocument.querySelector('.header__title--sub')
     const newContent = newDocument.querySelector('.content')
-    const currentTitle = document.querySelector('.header__title--main')
-    const currentSubTitle = document.querySelector('.header__title--sub')
-    const currentContent = document.querySelector('.content')
-    const htmlStyles = window.getComputedStyle(document.querySelector('html'))
-    const animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2)) * 2
+    const newSubTitle = newDocument.querySelector('.header__title--sub')
+    const newTitle = newDocument.querySelector('.header__title--main')
+    const pageContent = document.querySelector('.content')
+    const pageHeader = document.querySelector('.header__title')
 
-    currentTitle.innerHTML = newTitle.innerHTML
-    slide.in(currentTitle, animationSpeed, 1, 0).onfinish = () => {
-      currentTitle.style.opacity = 1
+    newTitle.style.opacity = 0
+    pageHeader.appendChild(newTitle)
+    slide.in(newTitle, animationSpeed, 1, 0).onfinish = () => {
+      newTitle.style.opacity = 1
     }
 
-    currentSubTitle.innerHTML = newSubTitle.innerHTML
-    slide.in(currentSubTitle, animationSpeed, 1, 0).onfinish = () => {
-      currentSubTitle.style.opacity = 1
+    newSubTitle.style.opacity = 0
+    pageHeader.appendChild(newSubTitle)
+    slide.in(newSubTitle, animationSpeed, 1, 200).onfinish = () => {
+      newSubTitle.style.opacity = 1
     }
 
-    currentContent.innerHTML = newContent.innerHTML
-    currentContent.children.forEach((child, index) => {
-      zoom.in(child, animationSpeed, 1, 0).onfinish = () => {
-        child.style.opacity = 1
-      }
-    })
+    newContent.style.opacity = 0
+    pageContent.parentNode.replaceChild(newContent, pageContent)
+    zoom.in(newContent, animationSpeed, 1, 400).onfinish = () => {
+      newContent.style.opacity = 1
+    }
 
-    // createStarField(currentContent)
+    // createStarField(pageContent)
   }
 }
-
-// URL Request 'middleware' for all routes
-page('*', (context, next) => {
-  _URLRequest(context.path, _loadHandler)
-})
-
-page.exit('*', (context, next) => {
-  const currentTitle = document.querySelector('.header__title--main')
-  const currentSubTitle = document.querySelector('.header__title--sub')
-  const currentContent = document.querySelector('.content')
-  const htmlStyles = window.getComputedStyle(document.querySelector('html'))
-  const animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2)) * 2
-
-  slide.out(currentTitle, animationSpeed, 1, 0).onfinish = () => {
-    currentTitle.style.opacity = 0
-  }
-  slide.out(currentSubTitle, animationSpeed, 1, 0).onfinish = () => {
-    currentSubTitle.style.opacity = 0
-  }
-
-  currentContent.children.forEach((child, index) => {
-    zoom.out(child, animationSpeed, 1, 0).onfinish = () => {
-      child.style.opacity = 0
-    }
-    if (index === currentContent.children.length - 1) {
-      setTimeout(next, animationSpeed * 2)
-    }
-  })
-})
-
-// page({ dispatch: false })
-page()
 
 const slide = {
   in: (element, duration, iterations, delay) => {
     const keyframes = [
-      { opacity: 0, transform: 'translate(-75vw, 0) skew(-45deg) scale(1.5, 0)' },
+      { opacity: 0, transform: 'translate(-75vw, 0) scale(2.5, 0)' },
       { opacity: 1, transform: 'none' }
     ]
     const timing = {
@@ -91,7 +86,7 @@ const slide = {
   out: (element, duration, iterations, delay) => {
     const keyframes = [
       { opacity: 1, transform: 'none' },
-      { opacity: 0, transform: 'translate(-75vw, 0) skew(-45deg) scale(1.5, 0)' }
+      { opacity: 0, transform: 'translate(-75vw, 0) scale(2.5, 0)' }
     ]
     const timing = {
       delay: delay,
@@ -106,21 +101,21 @@ const slide = {
 const zoom = {
   in: (element, duration, iterations, delay) => {
     const keyframes = [
-      { opacity: 0, transform: 'translate3d(0, 0, -250vw) rotateX(60deg)' },
+      { opacity: 0, transform: 'translate3d(-100vw, -50vh, -50vw) rotateY(-45deg)' },
       { opacity: 1, transform: 'none' }
     ]
     const timing = {
       delay: delay,
       duration: duration,
       iterations: iterations,
-      easing: 'cubic-bezier(0.075, 0.82, 0.165, 1)'
+      easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
     }
     return element.animate(keyframes, timing)
   },
   out: (element, duration, iterations, delay) => {
     const keyframes = [
       { opacity: 1, transform: 'none' },
-      { opacity: 0, transform: 'translate3d(0, 0, -250vw) rotateX(60deg)' }
+      { opacity: 0, transform: 'translate3d(100vw, -50vh, -50vw) rotateY(45deg)' }
     ]
     const timing = {
       delay: delay,
