@@ -1,7 +1,7 @@
 author:          Russell Chapman
 description:     All Things Programming...
 github_username: chpmnrssll
-host:            192.168.1.69
+#host:            192.168.1.69
 permalink:       /:categories/:title
 paginate_path:   /:num
 paginate:        12
