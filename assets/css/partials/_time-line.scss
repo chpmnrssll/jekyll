@@ -101,18 +101,18 @@
   @at-root #{&}__thumb {
     background: var(--color-primary-dark);
     box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
-    height: 2rem;
+    height: 3rem;
     margin: .1rem;
     padding: .1rem;
-    width: 2rem;
+    width: 3rem;
   }
 
   @at-root #{&}__thumb-alt {
     background: var(--color-primary-lightest);
     box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
-    height: 2rem;
+    height: 3rem;
     margin: .1rem;
     padding: .1rem;
-    width: 2rem;
+    width: 3rem;
   }
 }

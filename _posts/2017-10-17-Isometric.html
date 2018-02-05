@@ -7,193 +7,32 @@ date: 2017-10-17T03:00:00.000Z
 tags: Featured HTML5 Javascript Canvas 2.5D Isometric Heightmap
 category: Demo
 ---
-<canvas width="512" height="256" id="canvas" class="canvas__demo"></canvas>
+<canvas-demo w="512" h="256" class="canvas__demo--big" src="/assets/components/canvasDemos/isometric.js"></canvas-demo>
 <p>
-  <br/> 2.5D Isometric projected heightmap effect. Code shows how to load a heightmap image and convert to an imageData object, keyboard handling, viewport scrolling and scaling, 2.5D rotation, and zero pixel overdraw.
-  <br/>
-  <br/> wasd keys to move
-  <br/> up/down keys to zoom in/out
-  <br/>
-  <br/> Adapted from original post created on <time>2012-11-06</time>.
+2.5D Isometric projected heightmap effect. Code shows how to load a heightmap image and convert to an imageData object, keyboard handling, viewport scrolling and scaling, 2.5D rotation, and zero pixel overdraw.
 </p>
-<script>
-  let canvas, context2D, buffer, heightmap, keyDown = {}, keyUp = {}, lastTime = new Date();
-  const KEY = {
-    LEFT: 65,
-    UP: 87,
-    RIGHT: 68,
-    DOWN: 83,
-    ADD: 38,
-    SUB: 40
-  };
-
-  let viewport = {
-    size: 127,
-    scale: 1,
-    x: 127,
-    y: 127
-  };
-
-  window.onload = function() {
-    //Get context, precalc some variables, and create screen buffer
-    canvas = document.getElementById('canvas');
-    canvas.centerX = canvas.width / 2;
-    canvas.centerY = canvas.height / 2;
-    context2D = canvas.getContext('2d');
-    buffer = context2D.createImageData(canvas.width, canvas.height);
-    buffer.lineHeight = buffer.width * 4;
-
-    //Load heightmap image and convert to imageData object
-    let img = new Image();
-    img.src = "/assets/images/about/map.png";
-    img.onload = function() {
-      var hiddenCanvas = document.createElement('canvas');
-      var hiddenContext = hiddenCanvas.getContext("2d");
-      hiddenCanvas.width = img.width;
-      hiddenCanvas.height = img.height;
-      hiddenContext.drawImage(img, 0, 0, img.width, img.height, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
-      heightmap = hiddenContext.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-
-      //scale heightmap (alpha channel) values to smaller range
-      for (var i = 0; i < heightmap.data.length; i += 4) {
-        heightmap.data[i + 3] *= 0.2;
-      }
-
-      requestAnimationFrame(update);
-    };
-
-    //Keyboard controls
-    document.onkeydown = function(event) {
-      for (let i in KEY) {
-        if (event.keyCode == KEY[i]) {
-          keyDown[event.keyCode] = true;
-          return false;
-        }
-      }
-    };
-
-    document.onkeyup = function(event) {
-      keyUp[event.keyCode] = true;
-    };
-
-  };
-
-  //Clears keyUp & keyDown buffers
-  function clearKeys() {
-    for (let i in keyUp) {
-      if (keyUp[i]) {
-        keyDown[i] = false;
-        keyUp[i] = false;
-      }
-    }
-  };
-
-  //Checks key buffers and moves/scales viewport
-  function checkKeys() {
-    const speed = 2 / viewport.scale;
-    let xVel = 0, yVel = 0;
-
-    if (keyDown[KEY.RIGHT]) {
-      xVel += speed;
-      yVel -= speed;
-    }
-    if (keyDown[KEY.LEFT]) {
-      xVel -= speed;
-      yVel += speed;
-    }
-    if (keyDown[KEY.DOWN]) {
-      xVel += speed;
-      yVel += speed;
-    }
-    if (keyDown[KEY.UP]) {
-      xVel -= speed;
-      yVel -= speed;
-    }
-    if (keyUp[KEY.ADD]) {
-      viewport.scale += 0.1;
-      viewport.size += viewport.scale;
-    }
-    if (keyUp[KEY.SUB]) {
-      if (viewport.scale > 0) {
-        viewport.scale -= 0.1;
-        viewport.size -= viewport.scale;
-      }
-    }
-
-    setViewport(viewport.x + xVel, viewport.y + yVel);
-    clearKeys();
-  };
-
-  //Set viewport position clipped to heightmap dimensions
-  function setViewport(x, y) {
-    if ((x > 0) && (x < heightmap.width - viewport.size)) {
-      viewport.x = x;
-    }
-
-    if ((y > 0) && (y < heightmap.height - viewport.size)) {
-      viewport.y = y;
-    }
-  };
-
-  function update() {
-    const canvasCenterX = canvas.centerX;
-    const canvasCenterY = canvas.centerY >> 4;
-    const viewportScale = viewport.scale;
-    const heightmapData = heightmap.data;
-    const heightmapWidth = heightmap.width;
-    const bufferLineHeight = buffer.lineHeight;
-    const bufferDataLength = buffer.data.length;
-    const bufferWidth = buffer.width;
-    let bufferData = buffer.data;
-
-    //clear buffer
-    for (let i = 0; i < bufferDataLength; i += 4) {
-      bufferData[i] = 0;
-      bufferData[i + 1] = 0;
-      bufferData[i + 2] = 0;
-      bufferData[i + 3] = 255;
-    }
-
-    //draw heightmap
-    for (let u = 256; u > 0; u--) {
-      for (let v = 256; v > 0; v--) {
-        let mapX = Math.ceil(viewport.x + (u / viewportScale)),
-            mapY = Math.ceil(viewport.y + (v / viewportScale)),
-            mapIndex = ((mapY * heightmapWidth) + mapX) << 2,
-            r = heightmapData[mapIndex],
-            g = heightmapData[mapIndex + 1],
-            b = heightmapData[mapIndex + 2],
-            height = heightmapData[mapIndex + 3],
-            screenX = canvasCenterX + (u - v),
-            screenY = canvasCenterY + ((u + v) >> 1) - height,
-            index = ((screenY * bufferWidth) + screenX) << 2,
-            count = 0;
-
-        if (index < bufferLineHeight) {
-          break;
-        }
-
-        while (height > 0) {
-          bufferData[index] = r - count;
-          bufferData[index + 1] = g - count;
-          bufferData[index + 2] = b - count;
-          bufferData[index + 3] = 255;
-          index += bufferLineHeight;
-          height -= 1 * viewportScale;
-          if (count < 255) {
-            count += 16;
-          }
-          if ((bufferData[index] != 0) && (bufferData[index + 1] != 0) && (bufferData[index + 2] != 0)) {
-            break; //no overdraw
-          }
-        }
-      }
-    }
-
-    //flip buffer
-    context2D.putImageData(buffer, 0, 0);
-
-    checkKeys();
-    requestAnimationFrame(update);
-  };
-</script>
+<table>
+  <thead>
+    <tr>
+      <th>Keyboard controls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>wasd</td>
+      <th>move</th>
+    </tr>
+    <tr>
+      <td>left / right</td>
+      <th>rotate</th>
+    </tr>
+    <tr>
+      <td>up / down</td>
+      <th>zoom in / out</th>
+    <tr>
+  </tbody>
+</table>
+<p>
+<small>Adapted from original post created on <time>2012-11-06</time>.</small>
+</p>
+<link rel="import" href="/assets/components/canvas-demo.html"></link>

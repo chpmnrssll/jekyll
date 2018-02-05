@@ -7,7 +7,7 @@ date: 2017-10-17T00:00:00.000Z
 tags: Featured HTML5 Javascript Canvas Demo Effect
 category: Demo
 ---
-<canvas width="256" height="256" id="canvas" class="canvas__demo"></canvas>
+<canvas-demo class="canvas__demo" src="/assets/components/canvasDemos/static.js"></canvas-demo>
 <p>
   <br/>
   HTML5 Canvas test. Simple static effect using an offscreen imageData buffer.
@@ -15,68 +15,9 @@ category: Demo
   Adapted from original post created on <time>2012-11-03</time>.
 </p>
 <pre class="highlight">
-var canvas, context2D, buffer, width, height, bufferSize;
-
-window.onload = function ()
-{
 	//Get context, precalc some variables, and create screen buffer
-	canvas = document.getElementById('canvas');
-	context2D = canvas.getContext('2d');
-	width = canvas.width;
-	height = canvas.height;
-	bufferSize = width*height;
-	buffer = context2D.createImageData(width, height);
-
-  requestAnimationFrame(update);
-}
-
-function update()
-{
 	//Pick random shade for every pixel (0-255)
-	for(var i = 0; i < bufferSize; i++) {
-		var c = Math.floor(Math.random()*255);
-		var index = i*4;
-		buffer.data[index++] = c;
-		buffer.data[index++] = c;
-		buffer.data[index++] = c;
-		buffer.data[index++] = 255;
-	}
-
 	//Flip buffer to canvas
-	context2D.putImageData(buffer, 0,0);
-  requestAnimationFrame(update);
-}
 </pre>
-<script>
-var canvas, context2D, buffer, width, height, bufferSize;
 
-function startDemo () {
-	//Get context, precalc some variables, and create screen buffer
-	canvas = document.getElementById('canvas');
-	context2D = canvas.getContext('2d');
-	width = canvas.width;
-	height = canvas.height;
-	bufferSize = width*height;
-	buffer = context2D.createImageData(width, height);
-
-  requestAnimationFrame(update);
-}
-
-function update () {
-	//Pick random shade for every pixel (0-255)
-	for(var i = 0; i < bufferSize; i++) {
-		var c = Math.floor(Math.random()*255);
-		var index = i*4;
-		buffer.data[index++] = c;
-		buffer.data[index++] = c;
-		buffer.data[index++] = c;
-		buffer.data[index++] = 255;
-	}
-
-	//Flip buffer to canvas
-	context2D.putImageData(buffer, 0,0);
-  requestAnimationFrame(update);
-}
-
-setTimeout(startDemo, 1000)
-</script>
+<link rel="import" href="/assets/components/canvas-demo.html"></link>

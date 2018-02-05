@@ -90,10 +90,17 @@
 .canvas {
   @at-root #{&}__demo {
     display: block;
-    height: 18rem;
+    height: 9rem;
     margin-left: auto;
     margin-right: auto;
-    width: 32rem;
+    width: 16rem;
+  }
+  @at-root #{&}__demo--big {
+    display: block;
+    // height: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
   }
 }
 

@@ -4,15 +4,16 @@ if (workbox) {
   // workbox.core.setLogLevel(workbox.core.LOG_LEVELS.error)
 
   workbox.routing.registerRoute(
-    // /.*\.(?:html|css|js)/,
-    /.*\.*/,
+    /.*\.(?:html|css|js)/,
+    // /.*\.*/,
+    // workbox.strategies.cacheFirst()
     workbox.strategies.staleWhileRevalidate()
   )
 
-  // workbox.routing.registerRoute(
-  //   /.*\.(?:png|jpg|jpeg|svg|gif)/,
-  //   workbox.strategies.cacheFirst()
-  // )
+  workbox.routing.registerRoute(
+    /.*\.(?:png|jpg|jpeg|svg|gif)/,
+    workbox.strategies.cacheFirst()
+  )
 
   workbox.routing.registerRoute(
     new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
