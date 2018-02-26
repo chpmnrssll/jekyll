@@ -7,23 +7,11 @@
   @include media-query('mobile-s') {
     font-size: calc(1rem + 1vw);
   }
-  @include media-query('mobile-m') {
-    font-size: calc(1.2rem + 1.2vw);
-  }
-  @include media-query('mobile-l') {
-    font-size: calc(1rem + 1vw);
-  }
   @include media-query('tablet') {
     font-size: calc(1.1rem + 1.1vw);
   }
-  @include media-query('laptop-s') {
-    font-size: calc(1.2rem + 1.2vw);
-  }
-  @include media-query('laptop-m') {
-    font-size: calc(1rem + 1vw);
-  }
   @include media-query('laptop-l') {
-    font-size: calc(1.1rem + 1.1vw);
+    font-size: calc(1.2rem + 1.2vw);
   }
   @include media-query('4k') {
     font-size: calc(1.4rem + 1.4vw);
@@ -48,65 +36,18 @@ h6 {
 }
 
 h1 {
-  @include media-query('mobile-s') {
-    font-size: 2.4rem;
-    line-height: 2.4rem;
-  }
-  @include media-query('mobile-l') {
-    font-size: 1.8rem;
-    line-height: 1.8rem;
-  }
-  @include media-query('tablet') {
-    font-size: 1.4rem;
-    line-height: 1.4rem;
-  }
-
-  font-size: 1.6rem;
-  line-height: 1.6rem;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 h2 {
-  @include media-query('mobile-s') {
-    font-size: 1.4rem;
-    line-height: 1.4rem;
-  }
-  @include media-query('mobile-l') {
-    font-size: 1rem;
-    line-height: 1rem;
-  }
-  @include media-query('tablet') {
-    font-size: .85rem;
-    line-height: .85rem;
-  }
-  @include media-query('laptop-s') {
-    font-size: 1rem;
-    line-height: 1rem;
-  }
-
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: .9rem;
+  line-height: .9rem;
 }
 
 h3 {
-  @include media-query('mobile-s') {
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-  }
-  @include media-query('mobile-l') {
-    font-size: .8rem;
-    line-height: .8rem;
-  }
-  @include media-query('tablet') {
-    font-size: .7rem;
-    line-height: .7rem;
-  }
-  @include media-query('laptop-s') {
-    font-size: .8rem;
-    line-height: .8rem;
-  }
-
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: .8rem;
+  line-height: .8rem;
 }
 
 h4 {

@@ -1,6 +1,6 @@
 ---
 layout: post
-image: backgrounds/cityGlow.jpg
+image: backgrounds/primitive/cityGlow.svg
 title: Corporate
 sub-title: Corporate Ipsum
 date: 2017-10-10T00:00:00.000Z

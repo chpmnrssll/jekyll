@@ -28,7 +28,7 @@
   display: grid;
   grid-gap: 1rem;
   // overflow: hidden;
-  transform-style: preserve-3d;
+  // transform-style: preserve-3d;
   will-change: transform;
 
   @at-root #{&}__item {
@@ -37,6 +37,8 @@
 
     height: 0;
     padding-top: 56.25%;
+    // perspective: 50vw;
+    transform-style: preserve-3d;
     will-change: transform;
 
     > header {
@@ -51,27 +53,14 @@
       z-index: 1;
 
       > time {
-        @include media-query('mobile-s') {
-          font-size: 1.2rem;
-          line-height: 1.2rem;
-        }
-        @include media-query('mobile-l') {
-          font-size: .8rem;
-          line-height: .8rem;
-        }
-        @include media-query('tablet') {
-          font-size: .7rem;
-          line-height: .7rem;
-        }
-
-        font-size: 1rem;
-        line-height: 1rem;
+        font-size: .8rem;
+        line-height: .8rem;
         margin-bottom: .2rem;
       }
     }
 
     &:hover > header {
-      @include prefix((transform: translate3d(0, 0, 1rem)), webkit moz ms o);
+      @include prefix((transform: translate3d(0, 0, -100px)), webkit moz ms o);
     }
   }
 }

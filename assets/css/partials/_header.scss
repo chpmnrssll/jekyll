@@ -22,13 +22,14 @@
     color: var(--color-secondary-light);
     font-family: 'Teko';
     font-style: italic;
+    font-size: .9rem;
     font-weight: lighter;
     text-shadow: 0 0 4px var(--color-secondary-dark), 1px 1px 2px var(--color-secondary-darkest);
   }
 
   @at-root #{&}__date {
     color: var(--color-primary-lighter);
-    font-size: 1rem;
+    font-size: .8rem;
     text-shadow: 0 0 4px var(--color-primary-dark), 1px 1px 2px var(--color-primary-darkest);
   }
 

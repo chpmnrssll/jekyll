@@ -101,7 +101,7 @@ const slide = {
 const zoom = {
   in: (element, duration, iterations, delay) => {
     const keyframes = [
-      { opacity: 0, transform: 'translate3d(-100vw, 0, -20vw) rotateY(-60deg)' },
+      { opacity: 0, transform: 'translate3d(-100vw, 0, -20vw) rotateY(-45deg)' },
       { opacity: 1, transform: 'none' }
     ]
     const timing = {
@@ -115,7 +115,7 @@ const zoom = {
   out: (element, duration, iterations, delay) => {
     const keyframes = [
       { opacity: 1, transform: 'none' },
-      { opacity: 0, transform: 'translate3d(100vw, 0, -20vw) rotateY(60deg)' }
+      { opacity: 0, transform: 'translate3d(100vw, 0, -20vw) rotateY(45deg)' }
     ]
     const timing = {
       delay: delay,

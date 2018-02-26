@@ -5,6 +5,7 @@
       display: block;
       /*overflow: hidden;*/
       perspective: 50vw;
+      transform-style: preserve-3d;
     }
     #container {
       box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
@@ -29,7 +30,7 @@
       background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-darkest) 100%);
       content: "";
       height: 100%;
-      /*mix-blend-mode: hue;*/
+      mix-blend-mode: hue;
       opacity: 0.3;
       position: absolute;
       top: 0;
@@ -121,7 +122,7 @@
       if (this.frameCount < this.frameSkip) {
         this.frameCount++
       } else {
-        if (this.currentX !== 0 && this.currentY !== 0) {
+        if (this.currentX !== 0 && this.currentY !== 0 && this.offsetParent) {
           const scrollOffset = this.offsetParent.offsetTop + this.offsetTop - window.pageYOffset
 
           // offset from center of card, range(-0.5, 0.5)

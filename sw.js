@@ -1,7 +1,7 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-beta.0/workbox-sw.js')
 
 if (workbox) {
-  // workbox.core.setLogLevel(workbox.core.LOG_LEVELS.error)
+  workbox.core.setLogLevel(workbox.core.LOG_LEVELS.silent)
 
   workbox.routing.registerRoute(
     /.*\.(?:html|css|js)/,

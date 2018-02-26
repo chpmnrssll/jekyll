@@ -3,7 +3,7 @@ layout: default
 title: Categories
 sub-title: Listing
 ---
-{% assign categoryOrder = "About, Article, Automotive, News" | split: ", " %}
+<!-- {% assign categoryOrder = "About, Article, Automotive, News" | split: ", " %}
 {% for category in categoryOrder %}
 <br/>
 <h2>{{ category }}</h2>
@@ -23,10 +23,11 @@ sub-title: Listing
   </a>
 {% endfor %}
 </section>
-{% endfor %}
+{% endfor %} -->
 
-<!-- {% for category in site.categories %}
-<h1>{{ category[0] }}</h1>
+{% for category in site.categories %}
+<h2>{{ category[0] }}</h2>
+<br/>
 <section class="featured">
   {% for post in category[1] %}
   <a href="{{ post.url | prepend: site.url }}">
@@ -42,5 +43,5 @@ sub-title: Listing
   </a>
   {% endfor %}
 </section>
+<br/>
 {% endfor %}
-<br/> -->

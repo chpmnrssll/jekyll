@@ -69,7 +69,7 @@ window.customElements.define('js-ascii', class extends window.HTMLElement {
         // }
 
         this.context.clearRect(x, y, this.fontWidth, this.fontHeight)
-        this.context.fillStyle = 'rgba(0,0,0,.5)'
+        this.context.fillStyle = 'rgba(0,0,0,.25)'
         this.context.fillRect(x, y, this.fontWidth, this.fontHeight)
         this.context.fillStyle = `rgba(${character.average.r}, ${character.average.g}, ${character.average.b}, ${character.average.a})`
         this.context.fillText(character.character, x + this.centerX, y + this.centerY)

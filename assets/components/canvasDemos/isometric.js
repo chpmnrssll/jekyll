@@ -17,6 +17,7 @@
     }
     this.viewport.canvas = document.createElement('canvas')
     this.viewport.context = this.viewport.canvas.getContext('2d')
+    this.viewport.context.imageSmoothingEnabled = false
 
     // isometric canvas is twice as wide as map tile
     this.viewport.canvas.width = this.canvas.width / 2
@@ -26,7 +27,9 @@
     this.viewport.canvas.style.imageRendering = 'pixelated'
     this.viewport.canvas.style.width = '100%'
     this.viewport.canvas.style.height = '100%'
-    // this.shadowDOM.appendChild(this.viewport.canvas)
+
+    this.viewport.pattern = this.viewport.context.createPattern(this.heightmap, 'repeat')
+    this.shadowDOM.appendChild(this.viewport.canvas)
 
     document.addEventListener('keydown', this._keydownHandler.bind(this))
     document.addEventListener('keyup', this._keyupHandler.bind(this))
@@ -121,17 +124,32 @@
   function updateViewport () {
     this.viewport.context.clearRect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
     this.viewport.context.save()
+
+    // this.viewport.context.beginPath()
+    // this.viewport.context.rect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
     this.viewport.context.translate(this.viewport.canvas.halfW, this.viewport.canvas.halfH)
     this.viewport.context.scale(1, 1)
     this.viewport.context.rotate(this.viewport.angle * Math.PI / 180)
     this.viewport.context.translate(-this.viewport.canvas.halfW, -this.viewport.canvas.halfH)
     this.viewport.context.drawImage(this.heightmap, this.viewport.x, this.viewport.y, this.viewport.canvas.width, this.viewport.canvas.height, 0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+    // this.viewport.context.fillStyle = this.viewport.pattern
+    // this.viewport.context.fillRect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+    // this.viewport.context.fill()
+
+    this.viewport.context.beginPath()
+    this.viewport.context.strokeStyle = 'rgba(255,128,64,.5)'
+    this.viewport.context.moveTo(this.viewport.canvas.halfW, this.viewport.canvas.halfH)
+    this.viewport.context.lineTo(this.viewport.canvas.halfW, this.viewport.canvas.halfH-63)
+    this.viewport.context.stroke()
+    this.viewport.context.fillStyle = 'rgba(255,128,64,.5)'
+    this.viewport.context.fillText('N', this.viewport.canvas.halfW-4, this.viewport.canvas.halfH-63)
+
     this.viewport.context.restore()
     this.viewport.map = this.viewport.context.getImageData(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
 
     // Scale heightmap (alpha channel) values to smaller range
     for (let i = 0; i < this.viewport.map.data.length; i += 4) {
-      this.viewport.map.data[i + 3] *= 0.3
+      this.viewport.map.data[i + 3] *= 0.35
     }
   },
 
@@ -179,14 +197,8 @@
             let fade = 0
 
             while (height > 0) {
-              // clip to viewport bottom
-              if (bufferIndex > this.buffer.length) {
-                break
-              }
-
-              // clip to viewport top
-              if (bufferIndex < this.buffer.lineHeight) {
-                // bufferIndex += this.buffer.lineHeight
+              // clip to viewport top & bottom
+              if (bufferIndex > this.buffer.length || bufferIndex < this.buffer.lineHeight) {
                 break
               }
 
@@ -195,6 +207,7 @@
                 // stop here, no overdraw
                 break
               }
+
               this.buffer.data[bufferIndex] = r
               this.buffer.data[bufferIndex + 1] = g
               this.buffer.data[bufferIndex + 2] = b
@@ -202,9 +215,9 @@
 
               bufferIndex += this.buffer.lineHeight
               height--
-              if (fade < 255) {
-                fade += 8
-              }
+              // if (fade < 255) {
+              //   fade += 8
+              // }
             }
           }
         }
