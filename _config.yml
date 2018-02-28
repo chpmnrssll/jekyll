@@ -4,7 +4,7 @@ github_username: chpmnrssll
 # host:            192.168.1.67
 permalink:       /:categories/:title
 paginate_path:   /:num
-paginate:        6
+paginate:        12
 title:           Projects, Portfolio, & Posts
 
 sass:
