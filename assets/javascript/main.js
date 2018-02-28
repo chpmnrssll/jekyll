@@ -1,7 +1,7 @@
 ---
 ---
 window.addEventListener('load', (event) => {
-  {% include_relative vendor/page.js %}
+  {% include_relative vendor/page/page.js %}
   {% include_relative nodeList.js %}
   {% include_relative scrollTo.js %}
   {% include_relative themeColors.js %}
