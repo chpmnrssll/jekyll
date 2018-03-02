@@ -9,6 +9,11 @@ exact things you want to bring to the company, whether it’s knowledge of some
 tech, domain knowledge, a process you follow, or whatever else you think might
 work to help solve their problems. And again, back it up with a specific example.
 
+
+Based on real Hired interview data, Frontend Engineers in Denver earn an average
+annual salary of $110,014. The salaries of candidates in this role range from a
+low of $60,000 to a high of $198,000, with a median salary of $110,000.
+
 # Past CV
 
 What happened to oDesk? Well, at least I've been carried over to UpWork!  But
@@ -40,8 +45,10 @@ How many years experience do you have with CSS?
   15+, I've been using CSS since tables were used for page layout and flash was
   still cool.
 
+
 How many years experience do you have with JavaScript?
   Since IE6 or so (early 2000s?). I remember Microsoft JScript nonsense.
+
 
 Have you created responsive web applications before?
   Yes, my GitHub Pages site is a responsive single page app. It's built with
@@ -53,9 +60,22 @@ Have you created responsive web applications before?
 
 Can you show me examples(links) of your best work? Which part of the project did
 you directly contribute to? No Word Press or TEMPLATE SITES.
+  My current portfolio site is some of my best work. It's a GitHub, Jekyll, Sass, BEM, single page, animated, offline, responsive app.
+    https://chpmnrssll.github.io/
+
+  Multi-user content management app:
+    https://github.com/chpmnrssll/multi-CMS
+
+  PHP MongoDB REST server:
+    https://github.com/chpmnrssll/api
+
+  Old PHP SQL content management system:
+    https://github.com/chpmnrssll/old/tree/master/php
+
 
 This project is very large with several custom features. Can you send me
 examples of a website with custom software solutions that you like and why?
+
 
 Are you comfortable working in someone else's code?
   Yes, as long as it's a consistent style; I am proficient with git too.

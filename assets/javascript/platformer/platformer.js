@@ -1,4 +1,15 @@
-window.addEventListener('load', (event) => {
+(() => {
+  setTimeout(() => {
+    let script = document.createElement('script')
+    script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
+    script.onload = init
+
+    let article = document.querySelector('article')
+    article.appendChild(script)
+  }, 1000)
+})()
+
+function init () {
   let Engine = Matter.Engine
   let Render = Matter.Render
   let Runner = Matter.Runner
@@ -12,18 +23,17 @@ window.addEventListener('load', (event) => {
   // create engine
   let engine = Engine.create()
   let world = engine.world
+  let canvas = document.querySelector('#platformer')
+  let style = window.getComputedStyle(canvas)
 
   // create renderer
   let render = Render.create({
-    element: document.querySelector('article'),
+    canvas: canvas,
     engine: engine,
     options: {
-      width: 800,
-      height: 600,
-      hasBounds: true,
-      bounds: Matter.Bounds.create(),
-      // losing track of time, damn dinosaur!
       background: '#0f0f13',
+      width: parseInt(style.width),
+      height: parseInt(style.height),
       showAngleIndicator: false,
       wireframes: false
     }
@@ -38,21 +48,23 @@ window.addEventListener('load', (event) => {
   // add bodies
   world.bodies = []
 
-  const width = 800
-  const height = 600
+  const width = render.options.width
+  const height = render.options.height
   const wallSize = 10
 
   // these static walls will not be rendered in this sprites example, see options
   World.add(world, [
-    Bodies.rectangle(-width, -height, width * 2, wallSize, { isStatic: true }),
-    Bodies.rectangle(width - wallSize, -height, wallSize, height * 2, { isStatic: true }),
-    Bodies.rectangle(0, height - wallSize, width * 2, wallSize, { isStatic: true }),
-    Bodies.rectangle(0, 0, wallSize, height * 2, { isStatic: true })
+    Bodies.rectangle(width / 2, 0, width * 2, wallSize, { isStatic: true }),
+    Bodies.rectangle(width, height / 2, wallSize, height * 2, { isStatic: true }),
+    Bodies.rectangle(width / 2, height, width * 2, wallSize, { isStatic: true }),
+    Bodies.rectangle(0, height / 2, wallSize, height * 2, { isStatic: true })
   ])
 
-  let stack = Composites.stack(0, 0, 10, 5, 50, 10, function (x, y) {
-    if (Common.random() > 0.35) {
+  let stack = Composites.stack(0, 0, 32, 16, width / 16, height / 16, (x, y) => {
+    let r = Common.random()
+    if (r > 0.5) {
       return Bodies.rectangle(x, y, 58, 22, {
+        density: 0.5,
         render: {
           sprite: {
             texture: '/assets/images/logo/logoNpm.png',
@@ -61,15 +73,34 @@ window.addEventListener('load', (event) => {
           }
         }
       })
-    } else {
+    } else if (r > 0.25) {
       return Bodies.circle(x, y, 30, {
-        density: 0.0005,
-        frictionAir: 0.06,
-        // restitution: 0.3,
-        friction: 0.01,
+        density: 0.005,
         render: {
           sprite: {
             texture: '/assets/images/logo/logoAtom.png',
+            xScale: 0.25,
+            yScale: 0.25
+          }
+        }
+      })
+    } else if (r > 0.10) {
+      return Bodies.circle(x, y, 30, {
+        density: 0.25,
+        render: {
+          sprite: {
+            texture: '/assets/images/logo/logoYeoman.png',
+            xScale: 0.25,
+            yScale: 0.25
+          }
+        }
+      })
+    } else {
+      return Bodies.circle(x, y, 30, {
+        density: 0.05,
+        render: {
+          sprite: {
+            texture: '/assets/images/logo/logoBower.png',
             xScale: 0.25,
             yScale: 0.25
           }
@@ -100,24 +131,14 @@ window.addEventListener('load', (event) => {
   // fit the render viewport to the scene
   // Render.lookAt(render, {
   //   min: {
-  //     x: -width,
-  //     y: -height
+  //     x: 0,
+  //     y: 0
   //   },
   //   max: {
   //     x: width,
   //     y: height
   //   }
   // })
-  render.bounds = {
-    min: {
-      x: -width,
-      y: -height
-    },
-    max: {
-      x: width,
-      y: height
-    }
-  }
 
   Engine.run(engine)
-})
+}
