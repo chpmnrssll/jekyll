@@ -1,6 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
-@import url('https://fonts.googleapis.com/css?family=Teko');
+// @import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
+// @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+// @import url('https://fonts.googleapis.com/css?family=Teko');
+
+@font-face {
+  font-family: 'Sarpanch';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Sarpanch Regular'), local('Sarpanch-Regular'), url('https://fonts.gstatic.com/s/sarpanch/v3/hESy6Xt4NCpRuk6Pzi2HTos.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Sarpanch';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Sarpanch Black'), local('Sarpanch-Black'), url('https://fonts.gstatic.com/s/sarpanch/v3/hES16Xt4NCpRuk6PziUEaZ7Y3nA.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Share Tech Mono'), local('ShareTechMono-Regular'), url('https://fonts.gstatic.com/s/sharetechmono/v7/J7aHnp1uDWRBEqV98dVQztYldFcLowEF.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Teko Regular'), local('Teko-Regular'), url('https://fonts.gstatic.com/s/teko/v7/LYjNdG7kmE0gfaN9pQ.woff2') format('woff2');
+}
 
 :root {
   // Responsive font-size https://olivermak.es/2017/02/fluid-typography/

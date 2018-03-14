@@ -1,13 +1,15 @@
 (() => {
   setTimeout(() => {
     let script = document.createElement('script')
-    script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
     script.onload = init
-
-    let article = document.querySelector('article')
-    article.appendChild(script)
+    script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
+    document.querySelector('article').appendChild(script)
   }, 1000)
 })()
+
+let render
+let player = {}
+let keys = []
 
 function init () {
   // create engine
@@ -17,11 +19,11 @@ function init () {
   let style = window.getComputedStyle(canvas)
 
   // create renderer
-  let render = Matter.Render.create({
+  render = Matter.Render.create({
     canvas: canvas,
     engine: engine,
     options: {
-      // background: '#0f0f13',
+      background: '#112244',
       width: parseInt(style.width),
       height: parseInt(style.height),
       showAngleIndicator: false,
@@ -31,19 +33,45 @@ function init () {
 
   Matter.Render.run(render)
 
-  // create runner
   let runner = Matter.Runner.create()
   Matter.Runner.run(runner, engine)
 
-  // add bodies
-  world.bodies = []
+  // Matter.World.add(world, screenBounds(render.options.width, render.options.height, 200))
+  //
+  // let wall = Matter.Bodies.rectangle(render.options.width / 3, render.options.height / 5, 500, 20, { isStatic: true, angle: 0.05, render: { fillStyle: '#224466' } })
+  // let wall2 = Matter.Bodies.rectangle(render.options.width / 1.5, render.options.height / 2, 500, 20, { isStatic: true, angle: -0.05, render: { fillStyle: '#224466' } })
+  // let wall3 = Matter.Bodies.rectangle(render.options.width / 3, render.options.height / 1.25, 500, 20, { isStatic: true, angle: 0.05, render: { fillStyle: '#224466' } })
+  // Matter.World.add(engine.world, [ wall, wall2, wall3 ])
+  //
+  // Matter.World.add(world, Matter.Composites.stack(10, 10, 4, 2, 1, 1, randomLogo))
 
-  Matter.World.add(world, screenBounds(render.options.width, render.options.height, 100))
+  fetch('/assets/images/level.svg')
+    .then(response => response.text())
+    .then(data => {
+      let parser = new window.DOMParser()
+      let doc = parser.parseFromString(data, 'image/svg+xml')
+      let paths = doc.querySelectorAll('path')
+      let vertexSets = []
+      let color = Matter.Common.choose(['#556270', '#4ECDC4', '#C7F464', '#FF6B6B', '#C44D58'])
+      paths.forEach(path => {
+        vertexSets.push(Matter.Svg.pathToVertices(path, 10))
+      })
+      let level = Matter.Bodies.fromVertices(0, 0, vertexSets, {
+        isStatic: true,
+        render: {
+          fillStyle: color,
+          strokeStyle: color,
+          lineWidth: 1
+        }
+      }, true)
+      // Matter.Body.scale(level, 10, 10)
+      // Matter.Body.translate(level, { x: 50, y: 200 })
+      Matter.World.add(world, level)
+      Matter.Engine.run(engine)
+    })
 
-  let w = parseInt(render.options.width / 8)
-  let h = parseInt(render.options.height / 8)
-  let stack = Matter.Composites.stack(0, 0, 4, 4, w, h, randomLogo)
-  Matter.World.add(world, stack)
+  player = createPlayer(0, 0)
+  Matter.World.add(engine.world, player.body)
 
   // add mouse control
   let mouse = Matter.Mouse.create(render.canvas)
@@ -58,23 +86,143 @@ function init () {
   })
 
   Matter.World.add(world, mouseConstraint)
-
-  // keep the mouse in sync with rendering
   render.mouse = mouse
 
-  // fit the render viewport to the scene
-  // Matter.Render.lookAt(render, {
-  //   min: {
-  //     x: 0,
-  //     y: 0
-  //   },
-  //   max: {
-  //     x: width,
-  //     y: height
-  //   }
-  // })
+  document.addEventListener('keypress', keyDown)
+  document.addEventListener('keyup', keyUp)
+  Matter.Events.on(render, 'beforeRender', beforeRender)
+  Matter.Events.on(engine, 'collisionEnd', collisionEnd)
+  Matter.Events.on(engine, 'collisionActive', collisionActive)
+  // Matter.Engine.run(engine)
+}
 
-  Matter.Engine.run(engine)
+function createPlayer (x, y) {
+  let w = 32
+  let h = 32
+  let w2 = w / 2
+  let h2 = h / 2
+  let size = 4
+
+  let body = Matter.Bodies.rectangle(x, y, w, h, {
+    density: 0.02,
+    friction: 0.5,
+    render: {
+      // sprite: {
+      //   texture: '/assets/images/badMario.png',
+      //   xScale: 0.125,
+      //   yScale: 0.125
+      // },
+      fillStyle: '#224488'
+    }
+  })
+
+  let top = Matter.Bodies.rectangle(x, y-h2-size, w*0.75, size, { isSensor: true })
+  let right = Matter.Bodies.rectangle(x+w2+size, y, size, h*0.75, { isSensor: true })
+  let bottom = Matter.Bodies.rectangle(x, y+h2+size, w*0.75, size, { isSensor: true })
+  let left = Matter.Bodies.rectangle(x-w2-size, y, size, h*0.75, { isSensor: true })
+
+  return {
+    // join body parts into one
+    body: Matter.Body.create({ parts: [ body, top, right, bottom, left ], friction: 0 }),
+    sensors: {
+      top: top,
+      right: right,
+      bottom: bottom,
+      left: left
+    }
+  }
+}
+let holding = false
+function keyDown (event) {
+  keys[event.key] = true
+  if (event.key === 'w' && event.repeat) {
+    holding = true
+  }
+}
+
+function keyUp (event) {
+  keys[event.key] = false
+  if (event.key === 'w') {
+    holding = false
+  }
+}
+
+function beforeRender (event) {
+  // keep player at 0 rotation
+  Matter.Body.setAngle(player.body, 0)
+
+  const screenWidth = 640
+  const screenHeight = 360
+  // fit the render viewport to the scene
+  Matter.Render.lookAt(render, {
+    min: {
+      x: player.body.position.x - screenWidth,
+      y: player.body.position.y - screenHeight
+    },
+    max: {
+      x: player.body.position.x + screenWidth,
+      y: player.body.position.y + screenHeight
+    }
+  })
+
+  if (keys['w'] && !holding) {
+    if (player.onFloor) {
+      // let force = (-0.0275 * player.body.mass)
+      let force = (-0.03 * player.body.mass)
+      Matter.Body.applyForce(player.body, player.body.position, { x: 0, y: force })
+      keys['w'] = false
+    } else if (player.onRight) {
+      let force = (-0.025 * player.body.mass)
+      let forcey = (-0.05 * player.body.mass)
+      Matter.Body.applyForce(player.body, player.body.position, { x: force, y: forcey })
+      keys['w'] = false
+    } else if (player.onLeft) {
+      let force = (0.025 * player.body.mass)
+      let forcey = (-0.05 * player.body.mass)
+      Matter.Body.applyForce(player.body, player.body.position, { x: force, y: forcey })
+      keys['w'] = false
+    }
+  }
+  if (keys['d']) {
+    let force = (0.0005 * player.body.mass)
+    Matter.Body.applyForce(player.body, player.body.position, { x: force, y: 0 })
+  }
+  if (keys['a']) {
+    let force = (-0.0005 * player.body.mass)
+    Matter.Body.applyForce(player.body, player.body.position, { x: force, y: 0 })
+  }
+}
+
+function collisionEnd (event) {
+  let pairs = event.pairs
+
+  for (let i = 0, j = pairs.length; i !== j; ++i) {
+    let pair = pairs[i]
+
+    if (pair.bodyA === player.sensors.bottom || pair.bodyB === player.sensors.bottom) {
+      player.onFloor = false
+    } else if (pair.bodyA === player.sensors.right || pair.bodyB === player.sensors.right) {
+      player.onRight = false
+    } else if (pair.bodyA === player.sensors.left || pair.bodyB === player.sensors.left) {
+      player.onLeft = false
+    }
+  }
+}
+
+function collisionActive (event) {
+  let pairs = event.pairs
+
+  for (let i = 0, j = pairs.length; i !== j; ++i) {
+    let pair = pairs[i]
+
+    if (pair.bodyA === player.sensors.bottom || pair.bodyB === player.sensors.bottom) {
+      player.onFloor = true
+    } else if (pair.bodyA === player.sensors.right || pair.bodyB === player.sensors.right) {
+      player.onRight = true
+    } else if (pair.bodyA === player.sensors.left || pair.bodyB === player.sensors.left) {
+      player.onLeft = true
+    }
+  }
 }
 
 let lastRect = null
@@ -106,7 +254,7 @@ function randomLogo (x, y) {
     { density: 0.6, width: 62, height: 48, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoSass.png' }
   ]
 
-  let scale = Matter.Common.random(1, 1.5)
+  let scale = Matter.Common.random(0.25, 0.75)
 
   if (Matter.Common.random() > 0.5) {
     let texture = rectTextures[parseInt(Matter.Common.random(0, rectTextures.length))]
@@ -143,6 +291,7 @@ function randomLogo (x, y) {
   }
 }
 
+// create 4 rectangles just outside the visible screen boundary
 function screenBounds (width, height, size) {
   const halfW = width / 2
   const halfH = height / 2
@@ -151,9 +300,9 @@ function screenBounds (width, height, size) {
   const doubleH = height * 2
 
   return [
-    Matter.Bodies.rectangle(halfW, -halfS, doubleW, size, { isStatic: true }),
-    Matter.Bodies.rectangle(width + halfS, halfH, size, doubleH, { isStatic: true }),
-    Matter.Bodies.rectangle(halfW, height + halfS, doubleW, size, { isStatic: true }),
-    Matter.Bodies.rectangle(-halfS, halfH, size, doubleH, { isStatic: true })
+    Matter.Bodies.rectangle(halfW, -halfS, doubleW, size, { render: { fillStyle: '#224466' }, isStatic: true }),
+    Matter.Bodies.rectangle(width + halfS, halfH, size, doubleH, { render: { fillStyle: '#224466' }, isStatic: true }),
+    Matter.Bodies.rectangle(halfW, height + halfS, doubleW, size, { render: { fillStyle: '#224466' }, isStatic: true }),
+    Matter.Bodies.rectangle(-halfS, halfH, size, doubleH, { render: { fillStyle: '#224466' }, isStatic: true })
   ]
 }

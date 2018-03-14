@@ -16,3 +16,12 @@
 ```bash
 $ bundle exec jekyll serve --livereload
 ```
+
+### Build/Rebuild CHANGELOG.md
+```bash
+conventional-changelog -i CHANGELOG.md -s -r 0
+```
+
+### Counting lines of code
+Run ./cloc.sh
+Saves to '_data/linesOfCode.json'
