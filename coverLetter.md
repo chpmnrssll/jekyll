@@ -7,8 +7,13 @@ reason why.
 The second paragraph tells the company why they want to hire you. Highlight the
 exact things you want to bring to the company, whether it’s knowledge of some
 tech, domain knowledge, a process you follow, or whatever else you think might
-work to help solve their problems. And again, back it up with a specific example.
+work to help solve their problems. And again, back it up with a specific
+example.
 
+A great cover letter is an opportunity to explain any shortcomings you might
+have. Horribly underqualified but pretty sure you have what it takes? Have a
+huge gap in your resume? Really, really want to work for this particular
+company? The cover letter is where you do it.
 
 Based on real Hired interview data, Frontend Engineers in Denver earn an average
 annual salary of $110,014. The salaries of candidates in this role range from a

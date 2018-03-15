@@ -1,8 +1,13 @@
-article {
-  font-size: .8rem;
+.article {
+  display: grid;
+  grid-template-columns: 1fr 1fr 10px 768px 10px 1fr 1fr;
+  // font-size: .8rem;
   // margin: 0 auto;
   // max-width: 100%;
   // width: 15em;
+  > * {
+    grid-column: 4;
+  }
 
   h1,
   h2,
@@ -27,7 +32,6 @@ article {
     box-shadow: .2rem .2rem 1rem var(--color-primary-darkest);
     font-size: 1.2rem;
     line-height: 1.2rem;
-    margin: .4rem;
     padding: .8rem;
   }
 

@@ -3,37 +3,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 .5rem 0 2rem;
+    margin: .25rem .5rem;
     text-align: right;
   }
 
   @at-root #{&}__title {
-    // margin-right: .5rem;
     opacity: 1;
   }
 
   @at-root #{&}__title--main {
     color: var(--color-primary-lightest);
-    font-style: italic;
-    text-shadow: 0 0 4px var(--color-primary), 2px 2px 2px var(--color-primary-darkest);
+    // font-style: italic;
+    margin-bottom: .05rem;
+    text-shadow: 2px 2px 4px var(--color-primary-darkest);
   }
 
   @at-root #{&}__title--sub {
     color: var(--color-secondary-light);
     font-family: 'Teko';
     font-style: italic;
-    font-size: .9rem;
     font-weight: lighter;
-    text-shadow: 0 0 4px var(--color-secondary-dark), 1px 1px 2px var(--color-secondary-darkest);
+    text-shadow: 1px 1px 4px var(--color-secondary-darkest);
   }
 
   @at-root #{&}__date {
     color: var(--color-primary-lighter);
-    font-size: .8rem;
-    text-shadow: 0 0 4px var(--color-primary-dark), 1px 1px 2px var(--color-primary-darkest);
+    text-shadow: 1px 1px 4px var(--color-primary-darkest);
   }
 
   @at-root #{&}__parallax {
+    //@include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
     @include media-query('mobile-s') { background-size: 125vh 100vh; }
     @include media-query('mobile-m') { background-size: 175vh 100vh; }
     @include media-query('mobile-l') { background-size: 200vh 100vh; }
@@ -41,7 +40,6 @@
     @include media-query('laptop') { background-size: 275vh 100vh; }
     @include media-query('laptop-l') { background-size: 325vh 100vh; }
     @include media-query('4k') { background-size: 375vh 100vh; }
-    //@include prefix((transition: background-position var(--animation-speed) ease-out), webkit moz ms o);
 
     align-items: flex-end;
     background-position: center top;

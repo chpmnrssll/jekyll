@@ -35,12 +35,12 @@ page.exit('*', (context, next) => {
 page()
 
 function _loadHandler (event) {
-  if (event.srcElement.status === 404) {
+  if (event.target.status === 404) {
     page('/404')
     // createStarField()
   } else {
     const parser = new window.DOMParser()
-    const newDocument = parser.parseFromString(event.srcElement.response, 'text/html')
+    const newDocument = parser.parseFromString(event.target.response, 'text/html')
     const newContent = newDocument.querySelector('.content')
     const newSubTitle = newDocument.querySelector('.header__title--sub')
     const newTitle = newDocument.querySelector('.header__title--main')

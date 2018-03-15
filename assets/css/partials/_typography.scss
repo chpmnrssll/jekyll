@@ -1,7 +1,3 @@
-// @import url('https://fonts.googleapis.com/css?family=Sarpanch:400,900');
-// @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
-// @import url('https://fonts.googleapis.com/css?family=Teko');
-
 @font-face {
   font-family: 'Sarpanch';
   font-style: normal;
@@ -32,20 +28,15 @@
 
 :root {
   // Responsive font-size https://olivermak.es/2017/02/fluid-typography/
-  @include media-query('mobile-s') {
-    font-size: calc(1rem + 1vw);
-  }
-  @include media-query('tablet') {
-    font-size: calc(1.1rem + 1.1vw);
-  }
-  @include media-query('laptop-l') {
-    font-size: calc(1.2rem + 1.2vw);
-  }
-  @include media-query('4k') {
-    font-size: calc(1.4rem + 1.4vw);
-  }
-
-  font-size: calc(.9rem + .9vw);
+  // @include media-query('mobile-s') { font-size: calc(1.1rem + 1.1vw); }
+  // @include media-query('mobile-m') { font-size: calc(1.2rem + 1.2vw); }
+  // @include media-query('mobile-l') { font-size: calc(1.3rem + 1.3vw); }
+  // @include media-query('tablet') { font-size: calc(1.1rem + 1.1vw); }
+  // @include media-query('laptop-s') { font-size: calc(1.2rem + 1.2vw); }
+  // @include media-query('laptop-m') { font-size: calc(1.3rem + 1.3vw); }
+  // @include media-query('laptop-l') { font-size: calc(1.4rem + 1.4vw); }
+  // @include media-query('4k') { font-size: calc(1.5rem + 1.5vw); }
+  font-size: calc(1rem + 1vw);
 }
 
 body {
@@ -69,26 +60,31 @@ h1 {
 }
 
 h2 {
-  font-size: .9rem;
-  line-height: .9rem;
-}
-
-h3 {
   font-size: .8rem;
   line-height: .8rem;
 }
 
-h4 {
+h3 {
   font-size: .75rem;
   line-height: .75rem;
 }
 
+h4 {
+  font-size: .65rem;
+  line-height: .65rem;
+}
+
 h5 {
+  font-size: .55rem;
+  line-height: .55rem;
+}
+
+h6 {
   font-size: .5rem;
   line-height: .5rem;
 }
 
-h6 {
-  font-size: .25rem;
-  line-height: .25rem;
+time {
+  font-size: .65rem;
+  line-height: .65rem;
 }

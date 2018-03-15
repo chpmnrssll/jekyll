@@ -4,26 +4,25 @@ title: Featured
 sub-title: Articles
 ---
 <section class="featured">
-  {% for post in paginator.posts %}
+  {% for post in site.posts %}
   {% for tag in post.tags %}
   {% if tag == "Featured" %}
-  <a href="{{ post.url }}">
-    <perspective-card class="featured__item" background-image="/assets/images/{{ post.image }}">
-      <header class="header__plain">
-        <section class="header__title">
-          <h2 class="header__title--main">{{ post.title }}</h2>
-          <h3 class="header__title--sub">{{ post.sub-title }}</h3>
-        </section>
-        <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
-      </header>
-    </perspective-card>
+  <a class="featured__item" href="{{ post.url }}">
+    <img class="featured__item--background" src="/assets/images/{{ post.image }}">
+    <header class="header__plain">
+      <section class="header__title">
+        <h3 class="header__title--main">{{ post.title }}</h3>
+        <h4 class="header__title--sub">{{ post.sub-title }}</h4>
+      </section>
+      <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+    </header>
   </a>
   {% endif %}
   {% endfor %}
   {% endfor %}
 </section>
 
-{% if paginator.total_pages > 1 %}
+<!-- {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
     {% if paginator.previous_page == 1 %}
@@ -67,4 +66,4 @@ sub-title: Articles
   </a>
   {% endif %}
 </div>
-{% endif %}
+{% endif %} -->
