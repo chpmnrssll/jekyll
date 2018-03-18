@@ -17,11 +17,21 @@
 $ bundle exec jekyll serve --livereload
 ```
 
-### Build/Rebuild CHANGELOG.md
+### cloc.sh
+Counts lines of code and writes to
+```bash
+$ _data/linesOfCode.json
+```
+
+### Build/Update CHANGELOG.md
 ```bash
 conventional-changelog -i CHANGELOG.md -s -r 0
 ```
 
-### Counting lines of code
-Run ./cloc.sh
-Saves to '_data/linesOfCode.json'
+### Commits
+Commits should be a guide to the code.
+Break large commits down into single objectives.
+An objective should be a related code that requires further explanation, such as:
+- Why it's needed
+- What it is
+- How it works
