@@ -1,11 +1,9 @@
 author:          Russell Chapman
-description:     All Things Programming...
+description:     Program all the things...
 github_username: chpmnrssll
 host:            192.168.1.70
-permalink:       /:categories/:title
-paginate_path:   /:num
-paginate:        12
-title:           Projects, Portfolio, & Posts
+permalink:       /posts/:categories/:title
+title:           Russell Chapman
 
 sass:
   style:    compressed

@@ -4,9 +4,7 @@ window.addEventListener('load', (event) => {
   {% include_relative vendor/page/page.js %}
   {% include_relative nodeList.js %}
   {% include_relative scrollTo.js %}
-  {% include_relative themeColors.js %}
   {% include_relative routes.js %}
-  {% include_relative starField.js %}
   {% include_relative sideNav.js %}
 
   if (navigator.serviceWorker) {
