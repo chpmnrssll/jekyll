@@ -1,0 +1,57 @@
+.card {
+  @include media-query('mobile-l') { flex-direction: row; }
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 0;
+
+  @at-root #{&}-alt {
+    @include media-query('mobile-l') { flex-direction: row-reverse; }
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+
+    h3,
+    h4 {
+      @include media-query('mobile-l') {
+        text-align: right;
+      }
+      text-align: left;
+    }
+  }
+
+  @at-root #{&}__body {
+    @include media-query('mobile-l') { width: 50%; }
+    padding: .5rem;
+    width: 100%;
+  }
+
+  @at-root #{&}__image {
+    @include media-query('mobile-l') { width: 50%; }
+
+    box-shadow: .2rem .2rem 1rem var(--color-primary-darkest);
+    min-height: 9rem;
+    position: relative;
+    width: 100%;
+
+    h3 {
+      color: var(--color-primary-lighest);
+      margin: .5rem .5rem 0;
+    }
+
+    h4 {
+      color: var(--color-secondary-light);
+      font-family: 'Teko';
+      font-size: .65rem;
+      font-weight: lighter;
+      margin: 0 .5rem;
+    }
+
+    img {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      z-index: -2;
+    }
+  }
+}

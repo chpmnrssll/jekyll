@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background: linear-gradient(-135deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
+  background: var(--color-primary-dark);
   color: var(--color-primary-lighter);
   min-height: 100vh;
   overflow-x: hidden;
@@ -26,7 +26,6 @@ h6 {
 main {
   min-height: 75vh;
   overflow: hidden;
-  // padding: .75rem;
   perspective: 50vw;
   transform-style: preserve-3d;
 }

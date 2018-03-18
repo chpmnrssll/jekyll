@@ -1,12 +1,16 @@
 .article {
+  // https://medium.freecodecamp.org/how-to-recreate-mediums-article-layout-with-css-grid-b4608792bad1
+  @include media-query('tablet') { grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr; }
+  @include media-query('laptop-s') { grid-template-columns: 1fr 1fr 10px 896px 10px 1fr 1fr; }
+  @include media-query('laptop-m') { grid-template-columns: 1fr 1fr 10px 1024px 10px 1fr 1fr; }
+  @include media-query('4k') { grid-template-columns: 1fr 1fr 10px 2000px 10px 1fr 1fr; }
+
   display: grid;
-  grid-template-columns: 1fr 1fr 10px 768px 10px 1fr 1fr;
-  // font-size: .8rem;
-  // margin: 0 auto;
-  // max-width: 100%;
-  // width: 15em;
+  grid-template-columns: 10px 1fr 10px;
+
   > * {
-    grid-column: 4;
+    @include media-query('tablet') { grid-column: 4; }
+    grid-column: 2;
   }
 
   h1,
@@ -16,76 +20,79 @@
   h5,
   h6,
   p {
-    margin: 1rem 0;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
   }
 
   p {
     &::first-letter {
-      font-size: 1.4rem;
-      margin-left: .4rem;
+      font-size: 1.25rem;
+      margin-left: .25rem;
     }
   }
 
   blockquote {
     background-color: var(--color-primary-darker);
     border-left: .4vw solid var(--color-primary);
-    box-shadow: .2rem .2rem 1rem var(--color-primary-darkest);
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-    padding: .8rem;
+    box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    margin: .5rem 1rem 1rem .5rem;
+    padding: 0 1rem;
+    text-shadow: 1px 1px 2px var(--color-primary-darkest);
   }
 
-  @at-root #{&}__footer {
-    align-items: center;
-    border-bottom: 2px solid var(--color-primary-dark);
-    border-top: 2px solid var(--color-primary-dark);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 1rem;
-  }
+  // @at-root #{&}__footer {
+  //   align-items: center;
+  //   border-bottom: 2px solid var(--color-primary-dark);
+  //   border-top: 2px solid var(--color-primary-dark);
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-around;
+  //   padding: 1rem;
+  // }
 
-  @at-root #{&}__author-avatar {
-    height: 12rem;
-    width: 12rem;
+  // @at-root #{&}__author-avatar {
+  //   height: 12rem;
+  //   width: 12rem;
+  //
+  //   // gravatar class is .avatar by default (No BEM ;P)
+  //   .avatar {
+  //     box-shadow: .25rem .25rem 1rem var(--color-primary-dark);
+  //     height: 100%;
+  //     image-rendering: pixelated;
+  //     width: 100%;
+  //   }
+  // }
 
-    // gravatar class is .avatar by default (No BEM ;P)
-    .avatar {
-      box-shadow: .25rem .25rem 1rem var(--color-primary-dark);
-      height: 100%;
-      image-rendering: pixelated;
-      width: 100%;
-    }
-  }
+  // @at-root #{&}__author-name {
+  //   font-family: 'Sarpanch';
+  //   font-size: 1.25rem;
+  //   font-style: italic;
+  //   padding-bottom: .5rem;
+  //   padding-top: .5rem;
+  //   text-align: center;
+  // }
 
-  @at-root #{&}__author-name {
-    font-family: 'Sarpanch';
-    font-size: 1.25rem;
-    font-style: italic;
-    padding-bottom: .5rem;
-    padding-top: .5rem;
-    text-align: center;
-  }
-
-  @at-root #{&}__author-description {
-    border-bottom: 2px solid var(--color-secondary);
-    border-top: 2px solid var(--color-secondary);
-    padding-bottom: .5rem;
-    padding-top: .5rem;
-    width: 12rem;
-
-    @at-root #{&}__tags {
-      padding-top: .5rem;
-
-      a {
-        padding-left: .2rem;
-      }
-    }
-
-    @at-root #{&}__share {
-      a {
-        padding-left: .2rem;
-      }
-    }
-  }
+  // @at-root #{&}__author-description {
+  //   border-bottom: 2px solid var(--color-secondary);
+  //   border-top: 2px solid var(--color-secondary);
+  //   padding-bottom: .5rem;
+  //   padding-top: .5rem;
+  //   width: 12rem;
+  //
+  //   @at-root #{&}__tags {
+  //     padding-top: .5rem;
+  //
+  //     a {
+  //       padding-left: .2rem;
+  //     }
+  //   }
+  //
+  //   @at-root #{&}__share {
+  //     a {
+  //       padding-left: .2rem;
+  //     }
+  //   }
+  // }
 }

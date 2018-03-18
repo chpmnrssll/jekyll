@@ -13,13 +13,6 @@
   grid-template-columns: repeat(1, 1fr);
   margin: 1rem;
 
-  @at-root #{&}__item--background {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
-
   @at-root #{&}__item {
     @include media-query('mobile-s') { height: calc(6rem + 6vw); }
     @include media-query('mobile-m') { height: calc(7rem + 7vw); }
@@ -34,13 +27,12 @@
     height: calc(5rem + 5vw);
     position: relative;
     text-decoration: none;
+  }
 
-    .header__plain {
-      background: linear-gradient(to bottom left, var(--color-primary-gradient), var(--color-gradient-fade));
-      height: 100%;
-      margin: 0;
-      padding: .25rem .5rem;
-      width: 100%;
-    }
+  @at-root #{&}__item--background {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -2;
   }
 }
