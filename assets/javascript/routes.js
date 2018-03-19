@@ -34,6 +34,7 @@ page('*', (context, next) => {
     let oldContent = document.querySelector('.content')
     oldContent.parentNode.replaceChild(newContent, oldContent)
     startAnyCanvasDemos()
+    loader.lazyLoadImages()
 
     newElements.map(element => {
       element.depth = getElementDepth(newContent, element)
