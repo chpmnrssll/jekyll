@@ -1,112 +1,58 @@
-'use strict'
-
 class Navigation {
   constructor () {
-    this.showButtonEl = document.querySelector('.navigation__button--open')
-    this.hideButtonEl = document.querySelector('.navigation__button--close')
-    this.sideNavEl = document.querySelector('.navigation')
+    this.showButton = document.querySelector('.navigation__button--open')
+    this.hideButton = document.querySelector('.navigation__button--close')
+    this.navigation = document.querySelector('.navigation')
 
-    this.showSideNav = this.showSideNav.bind(this)
-    this.hideSideNav = this.hideSideNav.bind(this)
+    this.show = this.show.bind(this)
+    this.hide = this.hide.bind(this)
     this.onTouchStart = this.onTouchStart.bind(this)
     this.onTouchMove = this.onTouchMove.bind(this)
     this.onTouchEnd = this.onTouchEnd.bind(this)
-    this.onTransitionEnd = this.onTransitionEnd.bind(this)
-    this.update = this.update.bind(this)
 
-    this.startX = 0
+    this.touching = false
     this.currentX = 0
-    this.touchingSideNav = false
-    this.supportsPassive = undefined
-    this.addEventListeners()
-  }
+    this.startX = 0
 
-  // apply passive event listening if it's supported
-  applyPassive () {
-    if (this.supportsPassive !== undefined) {
-      return this.supportsPassive ? { passive: true } : false
-    }
-
-    // feature detect
-    let isSupported = false
-    try {
-      document.addEventListener('test', null, { get passive () { isSupported = true } })
-    } catch (e) {
-    }
-
-    this.supportsPassive = isSupported
-    return this.applyPassive()
-  }
-
-  addEventListeners () {
-    this.showButtonEl.addEventListener('click', this.showSideNav)
-    this.hideButtonEl.addEventListener('click', this.hideSideNav)
-    this.sideNavEl.addEventListener('click', this.hideSideNav)
-    this.sideNavEl.addEventListener('touchstart', this.onTouchStart, this.applyPassive())
-    this.sideNavEl.addEventListener('touchmove', this.onTouchMove, this.applyPassive())
-    this.sideNavEl.addEventListener('touchend', this.onTouchEnd)
+    this.showButton.addEventListener('click', this.show)
+    this.hideButton.addEventListener('click', this.hide)
+    this.navigation.addEventListener('click', this.hide)
+    this.navigation.addEventListener('touchstart', this.onTouchStart, { passive: true })
+    this.navigation.addEventListener('touchmove', this.onTouchMove, { passive: true })
+    this.navigation.addEventListener('touchend', this.onTouchEnd)
   }
 
   onTouchStart (event) {
-    if (!this.sideNavEl.classList.contains('navigation__show')) {
-      return
+    if (this.navigation.classList.contains('navigation--showing')) {
+      this.startX = event.touches[0].pageX
+      this.currentX = this.startX
+      this.touching = true
     }
-
-    this.startX = event.touches[0].pageX
-    this.currentX = this.startX
-
-    this.touchingSideNav = true
-    window.requestAnimationFrame(this.update)
   }
 
   onTouchMove (event) {
-    if (!this.touchingSideNav) {
-      return
+    if (this.touching) {
+      this.currentX = event.touches[0].pageX
     }
-
-    this.currentX = event.touches[0].pageX
   }
 
   onTouchEnd (event) {
-    if (!this.touchingSideNav) {
-      return
-    }
-
-    this.touchingSideNav = false
-
-    const translateX = Math.min(0, this.currentX - this.startX)
-    this.sideNavEl.style.transform = ''
-
-    if (translateX < 0) {
-      this.hideSideNav()
+    if (this.touching) {
+      this.touching = false
+      if (Math.min(0, this.currentX - this.startX) < 0) {
+        this.hide()
+      }
     }
   }
 
-  update () {
-    if (!this.touchingSideNav) {
-      return
-    }
-
-    window.requestAnimationFrame(this.update)
-
-    const translateX = Math.min(0, this.currentX - this.startX)
-    this.sideNavEl.style.transform = `translateX(${translateX})`
+  show () {
+    this.navigation.classList.remove('navigation--hidden')
+    this.navigation.classList.add('navigation--showing')
   }
 
-  showSideNav () {
-    this.sideNavEl.classList.remove('navigation__hide')
-    this.sideNavEl.classList.add('navigation__show')
-    this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
-  }
-
-  hideSideNav () {
-    this.sideNavEl.classList.remove('navigation__show')
-    this.sideNavEl.classList.add('navigation__hide')
-    this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
-  }
-
-  onTransitionEnd (event) {
-    this.sideNavEl.removeEventListener('transitionend', this.onTransitionEnd)
+  hide () {
+    this.navigation.classList.remove('navigation--showing')
+    this.navigation.classList.add('navigation--hidden')
   }
 }
 
