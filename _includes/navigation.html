@@ -1,28 +1,20 @@
-<button class="navigation-button__open">
-  <i class="fa fa-bars"></i>
-</button>
-
-<nav class="navigation-menu navigation-menu__hide">
-  <button class="navigation-button__close">
-    <i class="fa fa-times"></i>
+<nav class="navigation__overlay">
+  <button class="navigation__button navigation__button--open">
+    <i class="fa fa-bars"></i>
   </button>
-  <a class="navigation-menu__link" href="/">
-    <i class="navigation-menu__icon fa fa-home"></i><span>Home</span>
-  </a>
-  <a class="navigation-menu__link" href="/categories">
-    <i class="navigation-menu__icon fa fa-newspaper-o"></i><span>Categories</span>
-  </a>
-  <a class="navigation-menu__link" href="/contact">
-    <i class="navigation-menu__icon fa fa-envelope-o"></i><span>Contact</span>
-  </a>
-  <!-- <a class="navigation-menu__link" href="/settings">
-    <i class="navigation-menu__icon fa fa-cog"></i><span>Settings</span>
-  </a> -->
-  <a class="navigation-menu__link" href="/about">
-    <i class="navigation-menu__icon fa fa-question"></i><span>About</span>
-  </a>
+  <button class="navigation__button navigation__button--top">
+    <i class="fa fa-chevron-up"></i>
+  </button>
 </nav>
 
-<button class="navigation-button__top">
-  <i class="fa fa-chevron-up"></i>
-</button>
+<nav class="navigation navigation__hide">
+  <button class="navigation__button navigation__button--close"><i class="fa fa-times"></i></button>
+
+  <section class="navigation__categories">
+    <h4>Categories</h4>
+    <a class="navigation__link" href="/">Home</a>
+    {% for category in site.categories %}
+    <a class="navigation__link" href="/posts/{{ category[0] | downcase }}">{{ category[0] }}</a>
+    {% endfor %}
+  </section>
+</nav>

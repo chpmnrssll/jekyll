@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
-<script src="/assets/javascript/main.js"></script>
-<link rel="import" href="/assets/components/perspective-card.html"></link>
-<link rel="import" href="/assets/components/gradient-overlay.html"></link>
 <body>
   {% include navigation.html %}
   {% include header.html %}
   <main class="content">
     <article class="article">
+      {% if page.image %}
+      <img class="lazyload full" data-src="/assets/images/{{ page.image }}">
+      {% endif %}
       {{ content }}
     </article>
   </main>

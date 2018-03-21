@@ -1,12 +1,12 @@
 ---
-layout: default
-title: Home
-sub-title: Featured
+layout: post
+title: Ipsum
+sub-title: Random Text Generation
+permalink: /posts/ipsum/
 ---
 <section class="featured">
   {% for post in site.posts %}
-  {% for tag in post.tags %}
-  {% if tag == "Featured" %}
+  {% if post.category == "Ipsum" %}
   <a class="featured__item" href="{{ post.url }}">
     {% if post.image %}
     <img class="lazyload featured__item--background" data-src="/assets/images/{{ post.image }}">
@@ -20,6 +20,5 @@ sub-title: Featured
     </header>
   </a>
   {% endif %}
-  {% endfor %}
   {% endfor %}
 </section>

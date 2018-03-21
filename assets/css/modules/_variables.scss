@@ -24,6 +24,6 @@
   --color-secondary-lighter: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 10%), calc(var(--color-secondary-lightness) + 30%));
   --color-secondary-lightest: hsl(var(--color-secondary-hue), calc(var(--color-secondary-saturation) - 15%), calc(var(--color-secondary-lightness) + 45%));
 
-  --color-gradient-start: rgba(7, 7, 7, .5);
-  --color-gradient-end: rgba(255, 255, 255, 0);
+  --color-gradient-start: rgba(0, 0, 0, .75);
+  --color-gradient-end: hsla(var(--color-primary-hue), calc(var(--color-primary-saturation) + 30%), calc(var(--color-primary-lightness) - 40%), .15);
 }

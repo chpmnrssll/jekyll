@@ -1,25 +1,25 @@
 .article {
   // https://medium.freecodecamp.org/how-to-recreate-mediums-article-layout-with-css-grid-b4608792bad1
-  @include media-query('tablet') { grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr; }
-  @include media-query('laptop-s') { grid-template-columns: 1fr 1fr 10px 896px 10px 1fr 1fr; }
-  @include media-query('laptop-m') { grid-template-columns: 1fr 1fr 10px 1024px 10px 1fr 1fr; }
-  @include media-query('4k') { grid-template-columns: 1fr 1fr 10px 2000px 10px 1fr 1fr; }
+  @include media-query('tablet') { grid-template-columns: 1fr 1fr 1rem 740px 1rem 1fr 1fr; }
+  @include media-query('laptop-s') { grid-template-columns: 1fr 1fr 1rem 896px 1rem 1fr 1fr; }
+  @include media-query('laptop-m') { grid-template-columns: 1fr 1fr 1rem 1024px 1rem 1fr 1fr; }
+  @include media-query('4k') { grid-template-columns: 1fr 1fr 1rem 2000px 1rem 1fr 1fr; }
 
   display: grid;
-  grid-template-columns: 10px 1fr 10px;
+  grid-template-columns: 1rem 1fr 1rem;
 
   > * {
     @include media-query('tablet') { grid-column: 4; }
     grid-column: 2;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p {
     margin-bottom: .5rem;
     margin-top: .5rem;
   }
@@ -40,6 +40,18 @@
     margin: .5rem 1rem 1rem .5rem;
     padding: 0 1rem;
     text-shadow: 1px 1px 2px var(--color-primary-darkest);
+  }
+
+  .full {
+    grid-column: 1 / -1;
+    height: calc(9rem + 9vw);
+    width: 100%;
+  }
+
+  .mid {
+    grid-column: 2 / -2;
+    // height: calc(9rem + 9vw);
+    width: 100%;
   }
 
   // @at-root #{&}__footer {
