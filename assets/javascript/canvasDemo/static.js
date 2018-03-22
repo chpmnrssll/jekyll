@@ -1,7 +1,7 @@
 window.demo = {
   start: function (width, height) {
-    window.demo.canvas = document.querySelector('#staticDemo')
-    // canvas.style.imageRendering = 'pixelated'
+    window.demo.canvas = document.querySelector('.canvasDemo')
+    window.demo.canvas.style.imageRendering = 'pixelated'
     window.demo.canvas.width = width
     window.demo.canvas.height = height
     window.demo.canvas.centerX = window.demo.canvas.width / 2
@@ -37,4 +37,4 @@ window.demo = {
   }
 }
 
-window.demo.start(256, 256)
+window.demo.start(256, 128)

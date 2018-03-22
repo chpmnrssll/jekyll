@@ -1,6 +1,7 @@
 ---
 layout: post
 image: backgrounds/primitive/moustacheGlass.svg
+header-image: backgrounds/primitive/moustacheGlass.svg
 title: Moustache
 sub-title: Hairy Lipsum
 date: 2017-10-08T00:00:00.000Z

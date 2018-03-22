@@ -6,8 +6,8 @@
   {% include header.html %}
   <main class="content">
     <article class="article">
-      {% if page.image %}
-      <img class="lazyload full" data-src="/assets/images/{{ page.image }}">
+      {% if page.header-image %}
+      <img class="image image--lazyload full" data-src="/assets/images/{{ page.header-image }}" alt="">
       {% endif %}
       {{ content }}
     </article>

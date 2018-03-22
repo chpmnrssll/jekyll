@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: News
 sub-title: Up to date
 permalink: /posts/news/
@@ -9,7 +9,7 @@ permalink: /posts/news/
   {% if post.category == "News" %}
   <a class="featured__item" href="{{ post.url }}">
     {% if post.image %}
-    <img class="lazyload featured__item--background" data-src="/assets/images/{{ post.image }}">
+    <img class="image image--lazyload" data-src="/assets/images/{{ post.image }}">
     {% endif %}
     <header class="header__plain">
       <section class="header__title">

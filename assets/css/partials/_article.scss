@@ -1,15 +1,12 @@
 .article {
   // https://medium.freecodecamp.org/how-to-recreate-mediums-article-layout-with-css-grid-b4608792bad1
-  @include media-query('tablet') { grid-template-columns: 1fr 1fr 1rem 740px 1rem 1fr 1fr; }
-  @include media-query('laptop-s') { grid-template-columns: 1fr 1fr 1rem 896px 1rem 1fr 1fr; }
-  @include media-query('laptop-m') { grid-template-columns: 1fr 1fr 1rem 1024px 1rem 1fr 1fr; }
-  @include media-query('4k') { grid-template-columns: 1fr 1fr 1rem 2000px 1rem 1fr 1fr; }
+  // @include media-query('laptop-s') { grid-template-columns: 1rem 1rem 1fr 1rem 1rem; }
 
   display: grid;
-  grid-template-columns: 1rem 1fr 1rem;
+  grid-template-columns: 2rem 1fr 2rem;
 
   > * {
-    @include media-query('tablet') { grid-column: 4; }
+    // @include media-query('laptop-s') { grid-column: 3; }
     grid-column: 2;
   }
 
@@ -37,20 +34,29 @@
     box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
     font-size: 1.125rem;
     line-height: 1.125rem;
-    margin: .5rem 1rem 1rem .5rem;
-    padding: 0 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
     text-shadow: 1px 1px 2px var(--color-primary-darkest);
+  }
+
+  cite {
+    display: block;
+    font-size: .75rem;
+    margin-top: .5rem;
+    text-align: right;
   }
 
   .full {
     grid-column: 1 / -1;
     height: calc(9rem + 9vw);
+    position: relative;
     width: 100%;
   }
 
   .mid {
     grid-column: 2 / -2;
     // height: calc(9rem + 9vw);
+    // position: relative;
     width: 100%;
   }
 

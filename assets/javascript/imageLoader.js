@@ -1,5 +1,5 @@
 class ImageLoader {
-  constructor (rootMargin = '0px', threshold = 0.006, imageClass = '.lazyload') {
+  constructor (rootMargin = '0px', threshold = 0.006, imageClass = '.image--lazyload') {
     this.options = {
       rootMargin: rootMargin,
       threshold: threshold
@@ -13,7 +13,7 @@ class ImageLoader {
       if (entry.isIntersecting) {
         entry.target.srcset = entry.target.getAttribute('data-srcset') || ''
         entry.target.src = entry.target.getAttribute('data-src') || ''
-        entry.target.classList.add('visible')
+        entry.target.classList.add('image--visible')
         observer.unobserve(entry.target)
       }
     })
