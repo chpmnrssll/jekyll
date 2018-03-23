@@ -208,7 +208,7 @@ class Heightmap {
           this.buffer.data[bufferIndex] = r - fade
           this.buffer.data[bufferIndex + 1] = g - fade
           this.buffer.data[bufferIndex + 2] = b - fade
-          this.buffer.data[bufferIndex + 3] = 255 - (fade << 1)
+          this.buffer.data[bufferIndex + 3] = 255 - (fade << 2)
 
           bufferIndex += this.buffer.lineHeight
           height--
