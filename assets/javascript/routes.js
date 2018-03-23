@@ -44,6 +44,7 @@ page('*', (context, next) => {
     }).forEach((element, index) => {
       attachElement(element, element.depth + index)
     })
+    console.log('enter')
   }
 
   request.open('GET', context.path, true)
@@ -68,6 +69,7 @@ page.exit('*', (context, next) => {
       setTimeout(next, (list.length * delaySpeed) + waitSpeed)
     }
   })
+  console.log('exit')
 })
 
 page()
