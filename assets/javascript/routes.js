@@ -57,6 +57,9 @@ page.exit('*', (context, next) => {
   let parent = featured ? featured : article ? article : content
   let elements = [].slice.call(parent.querySelectorAll('*'))
 
+  if (window.demo) {
+    window.demo.stop()
+  }
   elements.map(element => {
     element.depth = getElementDepth(content, element)
     return element
