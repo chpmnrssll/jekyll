@@ -46,8 +46,6 @@ page('*', (context, next) => {
     })
   }
 
-  const url = '{{ site.url }}'
-  console.log(url)
   request.open('GET', `${context.path}`, true)
   request.send()
 })
