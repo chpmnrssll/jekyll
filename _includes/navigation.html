@@ -14,7 +14,7 @@
     <h4>Categories</h4>
     <a class="navigation__link" href="/">Home</a>
     {% for category in site.categories %}
-    <a class="navigation__link" href="/posts/{{ category[0] | downcase }}">{{ category[0] }}</a>
+    <a class="navigation__link" href="/posts/{{ category[0] | downcase }}/">{{ category[0] }}</a>
     {% endfor %}
   </section>
 </nav>

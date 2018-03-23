@@ -44,10 +44,11 @@ page('*', (context, next) => {
     }).forEach((element, index) => {
       attachElement(element, element.depth + index)
     })
-    console.log('enter')
   }
 
-  request.open('GET', context.path, true)
+  const url = '{{ site.url }}'
+  console.log(url)
+  request.open('GET', `${context.path}`, true)
   request.send()
 })
 
@@ -69,7 +70,6 @@ page.exit('*', (context, next) => {
       setTimeout(next, (list.length * delaySpeed) + waitSpeed)
     }
   })
-  console.log('exit')
 })
 
 page()

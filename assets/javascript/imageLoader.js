@@ -20,9 +20,8 @@ class ImageLoader {
   }
 
   lazyLoadImages () {
-    console.warn('nvm')
-    // document.querySelectorAll(this.imageClass).forEach(img => {
-    //   this.observer.observe(img)
-    // })
+    document.querySelectorAll(this.imageClass).forEach(img => {
+      this.observer.observe(img)
+    })
   }
 }
