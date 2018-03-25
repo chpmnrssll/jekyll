@@ -1,7 +1,7 @@
 ---
 ---
 window.addEventListener('load', (event) => {
-  {% include_relative nodeList.js %}
+  {% include_relative utils.js %}
   {% include_relative navigation.js %}
   {% include_relative imageLoader.js %}
   {% include_relative routes.js %}
