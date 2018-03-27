@@ -1,15 +1,14 @@
 .navigation {
   @include prefix((transition: transform var(--animation-speed) ease-out), webkit moz ms o);
 
-  // background: radial-gradient(hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 0%, var(--color-primary-darkest) 80%);
-  background: linear-gradient(90deg, var(--color-primary-darkest) 0%, hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 60%), linear-gradient(135deg, var(--color-primary-darkest) 0%, hsla(var(--color-primary-hue), var(--color-primary-saturation), var(--color-primary-lightness), 0) 80%);
+  background: linear-gradient(to bottom right, var(--color-gradient-start) 0%, var(--color-gradient-end) 200%);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   justify-content: flex-start;
   position: fixed;
   top: 0;
-  width: calc(100% + var(--nav-width));
+  width: calc(100vw + var(--nav-width));
   z-index: 100;
 
   @at-root #{&}__button {
@@ -32,9 +31,8 @@
 
     @at-root #{&}--open {
       left: 0;
-      position: fixed;
+      pointer-events: all;
       top: 0;
-      z-index: 99;
     }
 
     @at-root #{&}--close {
@@ -44,14 +42,15 @@
 
     @at-root #{&}--top {
       bottom: 0;
-      position: fixed;
-      right: 0;
-      z-index: 99;
+      pointer-events: all;
+      position: absolute;
+      right: .5rem;
     }
   }
 
   @at-root #{&}--showing {
     @include prefix((transform: none), webkit moz ms o);
+    // @include prefix((transform: translate3d(0, 0, 0)), webkit moz ms o);
     opacity: 1;
   }
 
@@ -82,10 +81,15 @@
   }
 
   @at-root #{&}__overlay {
-    // position: fixed;
+    height: 100vh;
+    pointer-events: none;
+    position: fixed;
+    width: 100vw;
+    z-index: 99;
   }
 
   @at-root #{&}__categories {
+    background: linear-gradient(to bottom right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
     border: 1px solid rgba(255, 255, 255, .1);
     margin-left: .5rem;
     padding: .5rem;

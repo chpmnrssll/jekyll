@@ -8,9 +8,9 @@ body {
   background: var(--color-primary-dark);
   color: var(--color-primary-lighter);
   min-height: 100vh;
-  overflow-x: hidden;
-  perspective: 50vw;
-  transform-style: preserve-3d;
+  // overflow-x: hidden;
+  // perspective: 50vw;
+  // transform-style: preserve-3d;
 }
 
 h1,
@@ -25,9 +25,9 @@ h6 {
 
 main {
   min-height: 75vh;
-  overflow: hidden;
-  perspective: 50vw;
-  transform-style: preserve-3d;
+  // overflow: hidden;
+  // perspective: 50vw;
+  // transform-style: preserve-3d;
 }
 
 a {

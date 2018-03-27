@@ -1,3 +1,12 @@
+<nav class="navigation navigation--hidden">
+  <button class="navigation__button navigation__button--close"><i class="fa fa-times"></i></button>
+  <section class="navigation__categories">
+    <h4>Categories</h4>
+    <a class="navigation__link" href="/">Home</a> {% for category in site.categories %}
+    <a class="navigation__link" href="/posts/{{ category[0] | downcase }}/">{{ category[0] }}</a> {% endfor %}
+  </section>
+</nav>
+
 <nav class="navigation__overlay">
   <button class="navigation__button navigation__button--open">
     <i class="fa fa-bars"></i>
@@ -5,16 +14,4 @@
   <button class="navigation__button navigation__button--top">
     <i class="fa fa-chevron-up"></i>
   </button>
-</nav>
-
-<nav class="navigation navigation--hidden">
-  <button class="navigation__button navigation__button--close"><i class="fa fa-times"></i></button>
-
-  <section class="navigation__categories">
-    <h4>Categories</h4>
-    <a class="navigation__link" href="/">Home</a>
-    {% for category in site.categories %}
-    <a class="navigation__link" href="/posts/{{ category[0] | downcase }}/">{{ category[0] }}</a>
-    {% endfor %}
-  </section>
 </nav>

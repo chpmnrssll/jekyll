@@ -5,36 +5,34 @@
   {% include navigation.html %}
   {% include header.html %}
   <main class="content">
-    <article class="article">
-      <section class="featured">
-        {% if content contains 'About' %}
-        {% assign category = 'About' %}
-        {% elsif content contains 'Article' %}
-        {% assign category = 'Article' %}
-        {% elsif content contains 'Demo' %}
-        {% assign category = 'Demo' %}
-        {% elsif content contains 'Ipsum' %}
-        {% assign category = 'Ipsum' %}
-        {% elsif content contains 'News' %}
-        {% assign category = 'News' %}
+    <section class="featured">
+      {% if content contains 'About' %}
+      {% assign category = 'About' %}
+      {% elsif content contains 'Article' %}
+      {% assign category = 'Article' %}
+      {% elsif content contains 'Demo' %}
+      {% assign category = 'Demo' %}
+      {% elsif content contains 'Ipsum' %}
+      {% assign category = 'Ipsum' %}
+      {% elsif content contains 'News' %}
+      {% assign category = 'News' %}
+      {% endif %}
+      {% for post in site.categories[category] %}
+      <a class="featured__item" href="{{ post.url }}">
+        {% if post.image %}
+        <img class="image image--lazyload" data-src="/assets/images/{{ post.image }}">
         {% endif %}
-        {% for post in site.categories[category] %}
-        <a class="featured__item" href="{{ post.url }}">
-          {% if post.image %}
-          <img class="image image--lazyload" data-src="/assets/images/{{ post.image }}">
-          {% endif %}
-          <header class="header__plain">
-            <section class="header__title">
-              <h3 class="header__title--main">{{ post.title }}</h3>
-              <h4 class="header__title--sub">{{ post.sub-title }}</h4>
-            </section>
-            <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
-          </header>
-        </a>
-        {% endfor %}
+        <header class="header__plain">
+          <section class="header__title">
+            <h3 class="header__title--main">{{ post.title }}</h3>
+            <h4 class="header__title--sub">{{ post.sub-title }}</h4>
+          </section>
+          <time class="header__date">{{ post.date | date: "%b %d, %Y" }}</time>
+        </header>
+      </a>
+      {% endfor %}
 
-      </section>
-    </article>
+    </section>
   </main>
   {% include footer.html %}
 </body>

@@ -2,8 +2,8 @@
   @include media-query('mobile-s') { grid-template-columns: repeat(1, 1fr); }
   @include media-query('mobile-m') { grid-template-columns: repeat(1, 1fr); }
   @include media-query('mobile-l') { grid-template-columns: repeat(2, 1fr); }
-  @include media-query('tablet') { grid-template-columns: repeat(2, 1fr); margin: 1.75rem; }
-  @include media-query('laptop-s') { grid-template-columns: repeat(3, 1fr); margin: 1.5rem; }
+  @include media-query('tablet') { grid-template-columns: repeat(2, 1fr); }
+  @include media-query('laptop-s') { grid-template-columns: repeat(3, 1fr); }
   @include media-query('laptop-m') { grid-template-columns: repeat(3, 1fr); }
   @include media-query('laptop-l') { grid-template-columns: repeat(3, 1fr); }
   @include media-query('4k') { grid-template-columns: repeat(4, 1fr); }
@@ -11,7 +11,7 @@
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(1, 1fr);
-  margin: 2.5rem 1rem;
+  padding: 2rem;
 
   @at-root #{&}__item {
     @include media-query('mobile-s') { height: calc(6rem + 6vw); }
