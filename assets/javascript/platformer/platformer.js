@@ -4,7 +4,10 @@
   let script = document.createElement('script')
   script.onload = () => {
     setTimeout(() => {
-      new Game(1000, 1000, document.querySelector('.canvasDemo'), { width: 640, height: 480 })
+      new Game(1000, 1000, document.querySelector('.canvasDemo'), {
+        width: 640,
+        height: 480
+      })
     }, 1000)
   }
   script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
@@ -13,21 +16,21 @@
 
 {% include_relative Keyboard.js %}
 {% include_relative Player.js %}
+{% include_relative Viewport.js %}
 
 class Game {
-  constructor (width, height, canvas, resolution) {
-    // create engine
+  constructor(width, height, canvas, resolution) {
     // context2D.imageSmoothingEnabled = false
     canvas.style.imageRendering = 'pixelated'
     this.engine = Matter.Engine.create()
     this.world = this.engine.world
     this.canvas = canvas
-    this.width = width
-    this.height = height
-    this.viewport = {
-      scale: 1.0,
-      width: 128,
-      height: 128
+
+    this.viewport = new Viewport(parseInt(this.canvas.clientWidth / 2), parseInt(this.canvas.clientHeight / 2))
+
+    window.onresize = () => {
+      this.viewport.width = parseInt(this.canvas.clientWidth / 2)
+      this.viewport.height = parseInt(this.canvas.clientHeight / 2)
     }
 
     // create renderer
@@ -47,11 +50,11 @@ class Game {
     this.runner = Matter.Runner.create()
     Matter.Runner.run(this.runner, this.engine)
 
-    Matter.World.add(this.world, this.createBounds(this.width, this.height, 200))
-    let wall = Matter.Bodies.rectangle(this.width / 3, this.height / 5, 900, 50, { isStatic: true, angle: 0.075, render: { fillStyle: '#224466' } })
-    let wall2 = Matter.Bodies.rectangle(this.width / 1.5, this.height / 2, 900, 50, { isStatic: true, angle: -0.075, render: { fillStyle: '#224466' } })
-    let wall3 = Matter.Bodies.rectangle(this.width / 3, this.height / 1.25, 900, 50, { isStatic: true, angle: 0.075, render: { fillStyle: '#224466' } })
-    Matter.World.add(this.engine.world, [ wall, wall2, wall3 ])
+    Matter.World.add(this.world, this.createBounds(1000, 1000, 1000))
+    let wall = Matter.Bodies.rectangle(1000 / 3, 1000 / 5, 900, 50, { isStatic: true, angle: 0.075, render: { fillStyle: '#224466' }})
+    let wall2 = Matter.Bodies.rectangle(1000 / 1.5, 1000 / 2, 900, 50, { isStatic: true, angle: -0.075, render: { fillStyle: '#224466' }})
+    let wall3 = Matter.Bodies.rectangle(1000 / 3, 1000 / 1.25, 900, 50, { isStatic: true, angle: 0.075, render: { fillStyle: '#224466' }})
+    Matter.World.add(this.engine.world, [wall, wall2, wall3])
 
     // window.fetch('/assets/images/level.svg')
     //   .then(response => response.text())
@@ -85,15 +88,14 @@ class Game {
     // let mouse = Matter.Mouse.create(this.render.canvas)
     this.render.mouse = Matter.Mouse.create(this.render.canvas)
     Matter.World.add(this.world, Matter.MouseConstraint.create(this.engine, {
-        mouse: this.render.mouse,
-        constraint: {
-          stiffness: 0.2,
-          render: {
-            visible: false
-          }
+      mouse: this.render.mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: true
         }
-      })
-    )
+      }
+    }))
 
     Matter.Events.on(this.render, 'beforeRender', this.beforeRender.bind(this))
     Matter.Events.on(this.engine, 'collisionEnd', this.collisionEnd.bind(this))
@@ -108,62 +110,84 @@ class Game {
     this.spawnLogos()
   }
 
-  beforeRender (event) {
+  beforeRender(event) {
     // keep player at 0 rotation
     Matter.Body.setAngle(this.player.composite, 0)
 
-    this.setViewportPosition(this.player.composite.position.x,  this.player.composite.position.y)
+    this.viewport.x = this.player.composite.position.x
+    this.viewport.y = this.player.composite.position.y
+    const scaledWidth = this.viewport.width * this.viewport.scale
+    const scaledHeight = this.viewport.height * this.viewport.scale
+    Matter.Render.lookAt(this.render, {
+      min: {
+        x: this.viewport.x - scaledWidth,
+        y: this.viewport.y - scaledHeight
+      },
+      max: {
+        x: this.viewport.x + scaledWidth,
+        y: this.viewport.y + scaledHeight
+      }
+    })
 
     if (this.keyboard.keys['w'] && this.keyboard.keys['w'] !== 'holding') {
-      if (this.player.onFloor) {
-        const forceY = -(0.035 * this.player.composite.mass)
-        Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
-        this.keyboard.keys['w'] = false
-      } else if (this.player.onRight) {
-        const forceX = -(0.025 * this.player.composite.mass)
-        const forceY = -(0.05 * this.player.composite.mass)
-        Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
-        this.keyboard.keys['w'] = false
-      } else if (this.player.onLeft) {
-        const forceX = (0.025 * this.player.composite.mass)
-        const forceY = -(0.05 * this.player.composite.mass)
-        Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
-        this.keyboard.keys['w'] = false
+      if (!this.player.onFloor) {
+        if (this.player.onRight) {
+          console.log('walljump onRight')
+          const forceX = -(0.015 * this.player.composite.mass)
+          const forceY = -(0.045 * this.player.composite.mass)
+          Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
+          this.keyboard.keys['w'] = false
+        } else if (this.player.onLeft) {
+          console.log('walljump onLeft')
+          const forceX = (0.015 * this.player.composite.mass)
+          const forceY = -(0.045 * this.player.composite.mass)
+          Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
+          this.keyboard.keys['w'] = false
+        }
+      } else {
+        if (this.player.onRight) {
+          console.log('wallrun onRight')
+          // const forceX = (0.002 * this.player.composite.mass)
+          const forceY = -(0.04 * this.player.composite.mass)
+          Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
+          this.keyboard.keys['w'] = false
+        } else if (this.player.onLeft) {
+          console.log('wallrun onLeft')
+          // const forceX = -(0.002 * this.player.composite.mass)
+          const forceY = -(0.04 * this.player.composite.mass)
+          Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
+          this.keyboard.keys['w'] = false
+        } else {
+          console.log('jump')
+          const forceY = -(0.035 * this.player.composite.mass)
+          Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
+          this.keyboard.keys['w'] = false
+        }
       }
     }
 
     if (this.keyboard.keys['d']) {
-      const forceX = (0.0005 * this.player.composite.mass)
-      Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: 0 })
+      const forceX = (0.001 * this.player.composite.mass)
+      const forceY = -(0.0005 * this.player.composite.mass)
+      Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
     }
 
     if (this.keyboard.keys['a']) {
-      const forceX = -(0.0005 * this.player.composite.mass)
-      Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: 0 })
+      const forceX = -(0.001 * this.player.composite.mass)
+      const forceY = -(0.0005 * this.player.composite.mass)
+      Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
     }
 
     if (this.keyboard.keys['+']) {
-      this.setViewportScale(0.99)
+      this.viewport.scale -= 0.01
     }
 
     if (this.keyboard.keys['-']) {
-      this.setViewportScale(1.01)
-  }
-}
-  setViewportScale (scale) {
-    this.viewport.scale = scale
-    this.viewport.width = this.viewport.width * scale
-    this.viewport.height = this.viewport.height * scale
+      this.viewport.scale += 0.01
+    }
   }
 
-  setViewportPosition (x, y) {
-    Matter.Render.lookAt(this.render, {
-      min: { x: x - this.viewport.width, y: y - this.viewport.height },
-      max: { x: x + this.viewport.width, y: y + this.viewport.height }
-    })
-  }
-
-  collisionEnd (event) {
+  collisionEnd(event) {
     let pairs = event.pairs
 
     for (let i = 0, j = pairs.length; i !== j; ++i) {
@@ -179,7 +203,7 @@ class Game {
     }
   }
 
-  collisionActive (event) {
+  collisionActive(event) {
     let pairs = event.pairs
 
     for (let i = 0, j = pairs.length; i !== j; ++i) {
@@ -193,10 +217,11 @@ class Game {
         this.player.onLeft = true
       }
     }
+    // console.log(this.player.onLeft, this.player.onFloor, this.player.onRight)
   }
 
   // create 4 rectangles just outside the width & height
-  createBounds (width, height, thickness) {
+  createBounds(width, height, thickness) {
     const halfW = width / 2
     const halfH = height / 2
     const halfT = thickness / 2
@@ -204,18 +229,46 @@ class Game {
     const doubleH = height * 2
 
     return [
-      Matter.Bodies.rectangle(halfW, -halfT, doubleW, thickness, { render: { fillStyle: '#224466' }, isStatic: true }),
-      Matter.Bodies.rectangle(width + halfT, halfH, thickness, doubleH, { render: { fillStyle: '#224466' }, isStatic: true }),
-      Matter.Bodies.rectangle(halfW, height + halfT, doubleW, thickness, { render: { fillStyle: '#224466' }, isStatic: true }),
-      Matter.Bodies.rectangle(-halfT, halfH, thickness, doubleH, { render: { fillStyle: '#224466' }, isStatic: true })
+      Matter.Bodies.rectangle(halfW, -halfT, doubleW, thickness, {
+        render: {
+          fillStyle: '#224466'
+        },
+        isStatic: true
+      }),
+      Matter.Bodies.rectangle(width + halfT, halfH, thickness, doubleH, {
+        render: {
+          fillStyle: '#224466'
+        },
+        isStatic: true
+      }),
+      Matter.Bodies.rectangle(halfW, height + halfT, doubleW, thickness, {
+        render: {
+          fillStyle: '#224466'
+        },
+        isStatic: true
+      }),
+      Matter.Bodies.rectangle(-halfT, halfH, thickness, doubleH, {
+        render: {
+          fillStyle: '#224466'
+        },
+        isStatic: true
+      })
     ]
   }
 
-  spawnLogos () {
-    const positions = [
-      { x: 600, y: 96 },
-      { x: 600, y: 256 },
-      { x: 60, y: 127 }
+  spawnLogos() {
+    const positions = [{
+        x: 600,
+        y: 96
+      },
+      {
+        x: 600,
+        y: 256
+      },
+      {
+        x: 60,
+        y: 127
+      }
     ]
 
     if (this.logos.length < 20) {
@@ -223,7 +276,10 @@ class Game {
       let logo = this.randomLogo(positions[randomPosition].x, positions[randomPosition].y)
       this.logos.push(logo)
       Matter.World.add(this.world, logo)
-      Matter.Body.applyForce(logo, logo.position, { x: Math.random() - 0.5, y: 0.05 })
+      Matter.Body.applyForce(logo, logo.position, {
+        x: Math.random() - 0.5,
+        y: 0.05
+      })
       Matter.Body.setAngularVelocity(logo, Math.random() - 0.5)
     } else {
       Matter.World.remove(this.world, this.logos.shift())
@@ -231,7 +287,7 @@ class Game {
     setTimeout(this.spawnLogos.bind(this), 1000)
   }
 
-  randomLogo (x, y) {
+  randomLogo(x, y) {
 
     if (this.lastShape.type === 'circle') {
       let scale = Matter.Common.random(0.5, 1.5)
@@ -242,25 +298,128 @@ class Game {
     }
   }
 
-  randomRectLogo (x, y, scale) {
-    const rectangles = [
-      { type: 'rectangle', density: 0.7, width: 55, height: 64, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoGrunt.png' },
-      { type: 'rectangle', density: 0.8, width: 29, height: 64, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoGulp.png' },
-      { type: 'rectangle', density: 0.8, width: 38, height: 64, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoHTML5.png' },
-      { type: 'rectangle', density: 0.4, width: 50, height: 50, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoJavascript.png' },
-      { type: 'rectangle', density: 0.5, width: 60, height: 22, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoJekyll.png' },
-      { type: 'rectangle', density: 0.6, width: 50, height: 52, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoMarionette.png' },
-      { type: 'rectangle', density: 0.7, width: 64, height: 18, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoMongoDB.png' },
-      { type: 'rectangle', density: 0.8, width: 62, height: 32, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoMySQL.png' },
-      { type: 'rectangle', density: 0.6, width: 52, height: 32, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoNodeJS.png' },
-      { type: 'rectangle', density: 0.8, width: 60, height: 21, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoNpm.png' },
-      { type: 'rectangle', density: 0.7, width: 60, height: 32, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoPHP.png' },
-      { type: 'rectangle', density: 0.7, width: 49, height: 62, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoRubyOnRails.png' },
-      { type: 'rectangle', density: 0.6, width: 62, height: 48, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoSass.png' }
+  randomRectLogo(x, y, scale) {
+    const rectangles = [{
+        type: 'rectangle',
+        density: 0.7,
+        width: 55,
+        height: 64,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoGrunt.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.8,
+        width: 29,
+        height: 64,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoGulp.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.8,
+        width: 38,
+        height: 64,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoHTML5.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.4,
+        width: 50,
+        height: 50,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoJavascript.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.5,
+        width: 60,
+        height: 22,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoJekyll.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.6,
+        width: 50,
+        height: 52,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoMarionette.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.7,
+        width: 64,
+        height: 18,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoMongoDB.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.8,
+        width: 62,
+        height: 32,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoMySQL.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.6,
+        width: 52,
+        height: 32,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoNodeJS.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.8,
+        width: 60,
+        height: 21,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoNpm.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.7,
+        width: 60,
+        height: 32,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoPHP.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.7,
+        width: 49,
+        height: 62,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoRubyOnRails.png'
+      },
+      {
+        type: 'rectangle',
+        density: 0.6,
+        width: 62,
+        height: 48,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoSass.png'
+      }
     ]
 
     let shape = rectangles[parseInt(Matter.Common.random(0, rectangles.length))]
-    while(shape === this.lastShape) {
+    while (shape === this.lastShape) {
       shape = rectangles[parseInt(Matter.Common.random(0, rectangles.length))]
     }
     this.lastShape = shape
@@ -278,18 +437,59 @@ class Game {
     })
   }
 
-  randomCircleLogo (x, y, scale) {
-    const circles = [
-      { type: 'circle', density: 0.025, radius: 30, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoAMP.png' },
-      { type: 'circle', density: 0.05, radius: 30, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoAtom.png' },
-      { type: 'circle', density: 0.015, radius: 31, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoBower.png' },
-      { type: 'circle', density: 0.05, radius: 29, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoChrome.png' },
-      { type: 'circle', density: 0.015, radius: 24, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoWordpress.png' },
-      { type: 'circle', density: 0.05, radius: 28, xScale: 0.25, yScale: 0.25, url: '/assets/images/logo/logoYeoman.png' }
+  randomCircleLogo(x, y, scale) {
+    const circles = [{
+        type: 'circle',
+        density: 0.025,
+        radius: 30,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoAMP.png'
+      },
+      {
+        type: 'circle',
+        density: 0.05,
+        radius: 30,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoAtom.png'
+      },
+      {
+        type: 'circle',
+        density: 0.015,
+        radius: 31,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoBower.png'
+      },
+      {
+        type: 'circle',
+        density: 0.05,
+        radius: 29,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoChrome.png'
+      },
+      {
+        type: 'circle',
+        density: 0.015,
+        radius: 24,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoWordpress.png'
+      },
+      {
+        type: 'circle',
+        density: 0.05,
+        radius: 28,
+        xScale: 0.25,
+        yScale: 0.25,
+        url: '/assets/images/logo/logoYeoman.png'
+      }
     ]
 
     let shape = circles[parseInt(Matter.Common.random(0, circles.length))]
-    while(shape === this.lastShape) {
+    while (shape === this.lastShape) {
       shape = circles[parseInt(Matter.Common.random(0, circles.length))]
     }
     this.lastShape = shape

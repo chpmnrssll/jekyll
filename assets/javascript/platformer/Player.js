@@ -5,7 +5,7 @@ class Player {
     const halfWidth = width / 2
     const halfHeight = height / 2
     const sensorWidth = 1
-    const sensorLength = 0.5
+    const sensorLength = 0.65
 
     this.sensors = {
       top: Matter.Bodies.rectangle(x, y - halfHeight - sensorWidth, width * sensorLength, sensorWidth, { isSensor: true }),
@@ -15,7 +15,7 @@ class Player {
     }
 
     this.body = Matter.Bodies.rectangle(x, y, width, height, {
-      density: 0.95,
+      density: 4.0,
       render: {
         // sprite: {
         //   texture: '/assets/images/badMario.png',
@@ -30,7 +30,7 @@ class Player {
     this.composite = Matter.Body.create({
       // density: 0.01,
       friction: 0.25,
-      frictionStatic: 0.5,
+      frictionStatic: 0.25,
       parts: [ this.body, this.sensors.top, this.sensors.right, this.sensors.bottom, this.sensors.left ],
       restitution: 0.5
     })
