@@ -22,7 +22,7 @@
         {% if post.image %}
         <img class="image image--lazyload" data-src="/assets/images/{{ post.image }}">
         {% endif %}
-        <header class="header__plain">
+        <header class="header__plain gradient-overlay">
           <section class="header__title">
             <h3 class="header__title--main">{{ post.title }}</h3>
             <h4 class="header__title--sub">{{ post.sub-title }}</h4>
@@ -31,7 +31,6 @@
         </header>
       </a>
       {% endfor %}
-
     </section>
   </main>
   {% include footer.html %}

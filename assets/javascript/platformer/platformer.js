@@ -132,13 +132,13 @@ class Game {
     if (this.keyboard.keys['w'] && this.keyboard.keys['w'] !== 'holding') {
       if (!this.player.onFloor) {
         if (this.player.onRight) {
-          console.log('walljump onRight')
+          // console.log('walljump onRight')
           const forceX = -(0.015 * this.player.composite.mass)
           const forceY = -(0.045 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
           this.keyboard.keys['w'] = false
         } else if (this.player.onLeft) {
-          console.log('walljump onLeft')
+          // console.log('walljump onLeft')
           const forceX = (0.015 * this.player.composite.mass)
           const forceY = -(0.045 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
@@ -146,19 +146,19 @@ class Game {
         }
       } else {
         if (this.player.onRight) {
-          console.log('wallrun onRight')
+          // console.log('wallrun onRight')
           // const forceX = (0.002 * this.player.composite.mass)
           const forceY = -(0.04 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
           this.keyboard.keys['w'] = false
         } else if (this.player.onLeft) {
-          console.log('wallrun onLeft')
+          // console.log('wallrun onLeft')
           // const forceX = -(0.002 * this.player.composite.mass)
           const forceY = -(0.04 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
           this.keyboard.keys['w'] = false
         } else {
-          console.log('jump')
+          // console.log('jump')
           const forceY = -(0.035 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
           this.keyboard.keys['w'] = false

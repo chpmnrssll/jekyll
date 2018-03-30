@@ -43,18 +43,26 @@ Thanks for reading,
   Russ
 
 
-I haven't been active on Upwork for quite a while, but this sounds like an interesting project to start back up with. I actually came across that link a while back and read up on pseudo 3D type engines. Here's some other useful code I found too: https://github.com/1kevinxu1/Sunset-Drive
+I haven't been active on Upwork for quite a while, but this sounds like an
+interesting project to start back up with. I actually came across that link a
+while back and read up on pseudo 3D type engines. Here's some other useful code
+I found too: https://github.com/1kevinxu1/Sunset-Drive
 
-If you still need help with this, I'm available and have experience with HTML5, Javascript, & Canvas. I've done some Flash to HTML5 conversions too. More info about me can be found on my Upwork portfolio, my personal site: https://chpmnrssll.github.io/
-or my GitHub profile: https://github.com/chpmnrssll
+If you still need help with this, I'm available and have experience with HTML5,
+Javascript, & Canvas. I've done some Flash to HTML5 conversions too. More info
+about me can be found on my Upwork portfolio, my personal site:
+https://chpmnrssll.github.io/ or my GitHub profile: https://github.com/chpmnrssll
 
 Thanks,
   Russ
 
 
 Hello,
-This looks like an interesting product, and I think I could be of help with the frontend development.
-I haven't been active on oDesk/upWork for quite a while due to a spinal fusion surgery and a toddler keeping me running, but am now ready to get back into it. I'm located in eastern Colorado not far from you, if that'w worth anything.
+This looks like an interesting product, and I think I could be of help with the
+frontend development. I haven't been active on oDesk/upWork for quite a while
+due to a spinal fusion surgery and a toddler keeping me running, but am now
+ready to get back into it. I'm located in eastern Colorado not far from you, if
+that's worth anything.
 
 I can tick all the boxes too:
 HTML5, CSS3, SASS, JavaScript, ES6, Ajax, Rest, APIs
@@ -64,7 +72,9 @@ PHP, Ruby, Node
 Git, Github
 more...
 
-I've built content management systems from scratch before, with and without MVC frameworks, with SQL and MongoDB. I'm sure I can help you build some great UI & components for controlling your CMS. Hope to hear from you!
+I've built content management systems from scratch before, with and without MVC
+frameworks, with SQL and MongoDB. I'm sure I can help you build some great UI &
+components for controlling your CMS. Hope to hear from you!
 
 Thanks,
 Russ
@@ -72,16 +82,22 @@ Russ
 
 ## Past Q/A
 Do you have experience in developing single-page web apps?
-  Yes, single and multi-page apps. My personal dev site has been my playground for playing with SPA/PWA. It's built with Jekyll/Ruby, hosted on Github Pages, and has tons of newer frontend features.
+  Yes, single and multi-page apps. My personal dev site has been my playground
+  for playing with SPA/PWA. It's built with Jekyll/Ruby, hosted on Github Pages,
+   and has tons of newer frontend features.
   https://chpmnrssll.github.io/
 
 
 Do you have experience working with Docker?
-  I've used the RedHat OpenShift PaaS a bit, which is just another layer of abstraction on top of Docker containers and Kubernetes for deployment.
+  I've used the RedHat OpenShift PaaS a bit, which is just another layer of
+  abstraction on top of Docker containers and Kubernetes for deployment.
 
 
 What is the hardest technical problem you've personally had to solve and what KPIs did that project affect?
-  While not related to any KPI, I have spent the past year learning the in/outs of Arch linux and installing it on every piece of hardware that it will run on. Arch's "build it yourself" attitude to everything seems like a programmers playground, and it has some of the best docs around!
+  While not related to any KPI, I have spent the past year learning the in/outs
+  of Arch linux and installing it on every piece of hardware that it will run on.
+  Arch's "build it yourself" attitude to everything seems like a programmers
+  playground, and it has some of the best docs around!
 
 
 How many years experience do you have with CSS?
@@ -103,7 +119,8 @@ Have you created responsive web applications before?
 
 Can you show me examples(links) of your best work? Which part of the project did
 you directly contribute to? No Word Press or TEMPLATE SITES.
-  My current portfolio site is some of my best work. It's a GitHub, Jekyll, Sass, BEM, single page, animated, offline, responsive app.
+  My current portfolio site is some of my best work. It's a GitHub, Jekyll, Sass,
+  BEM, single page, animated, offline, responsive app.
     https://chpmnrssll.github.io/
 
   Multi-user content management app:
