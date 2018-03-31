@@ -80,6 +80,20 @@ Thanks,
 Russ
 
 
+I haven't been active on upWork/oDesk for quite a while, but this sounds like
+just the thing to start back up with, so "Let's Design!". I have experience in
+all of your requirements: HTML, CSS, JavaScript, Ruby, Python, Wordpress, & can
+be flexible with my rate. I'm more concerned with becoming an active developer again.
+
+I've built everything from content management systems to Wordpress plug-ins in
+the past. More info about me can be found on my upWork portfolio,
+my personal site: https://chpmnrssll.github.io/
+or GitHub: https://github.com/chpmnrssll
+
+Thanks for your time,
+Russ
+
+
 ## Past Q/A
 Do you have experience in developing single-page web apps?
   Yes, single and multi-page apps. My personal dev site has been my playground
