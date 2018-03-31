@@ -5,6 +5,11 @@ class Keyboard {
     document.addEventListener('keyup', this.keyupHandler.bind(this))
   }
 
+  stop () {
+    document.removeEventListener('keydown', this.keydownHandler)
+    document.removeEventListener('keyup', this.keyupHandler)
+  }
+
   keydownHandler (event) {
     if (!event.repeat) {
       this.keys[event.key] = true

@@ -20,27 +20,25 @@ class Heightmap {
     }
 
     this.canvas = document.querySelector('.canvasDemo')
-    this.canvas.style.imageRendering = 'pixelated'
-    this.canvas.style.backgroundColor = 'rgba(0, 0, 0, .35)'
     this.canvas.width = width
     this.canvas.height = height
-    this.context = this.canvas.getContext('2d')
-    this.context.imageSmoothingEnabled = false
+    this.context2D = this.canvas.getContext('2d')
+    this.context2D.imageSmoothingEnabled = false
 
     // isometric canvas is twice as wide as map tile
     this.viewport.canvas = document.createElement('canvas')
     this.viewport.canvas.style.imageRendering = 'pixelated'
     this.viewport.canvas.width = width / 2
     this.viewport.canvas.height = height
-    this.viewport.canvas.halfW = this.viewport.canvas.width / 2
-    this.viewport.canvas.halfH = this.viewport.canvas.height / 2
-    this.viewport.context = this.viewport.canvas.getContext('2d')
-    this.viewport.context.imageSmoothingEnabled = false
+    this.viewport.canvas.centerX = this.viewport.canvas.width / 2
+    this.viewport.canvas.centerY = this.viewport.canvas.height / 2
+    this.viewport.context2D = this.viewport.canvas.getContext('2d')
+    this.viewport.context2D.imageSmoothingEnabled = false
 
     // this.canvas.parentElement.appendChild(this.viewport.canvas)
 
-    this.buffer = this.context.createImageData(width, height)
-    this.buffer.size = (width * height) * 4
+    this.buffer = this.context2D.createImageData(width, height)
+    this.buffer.size = width * height * 4
     this.buffer.lineHeight = width * 4
 
     this.keyboard = {}
@@ -53,11 +51,11 @@ class Heightmap {
   }
 
   _loadHandler (event) {
-    this.viewport.pattern = this.viewport.context.createPattern(this.heightmap, 'repeat')
+    this.viewport.pattern = this.viewport.context2D.createPattern(this.heightmap, 'repeat')
     this.updateViewport()
     this.heightmap.loaded = true
     this.running = true
-    window.requestAnimationFrame(this.update.bind(this))
+    this.update()
   }
 
   stop () {
@@ -132,15 +130,15 @@ class Heightmap {
   }
 
   updateViewport () {
-    this.viewport.context.clearRect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
-    this.viewport.context.save()
-    this.viewport.context.translate(this.viewport.canvas.halfW, this.viewport.canvas.halfH)
-    this.viewport.context.scale(this.viewport.scale, this.viewport.scale)
-    this.viewport.context.rotate(this.viewport.angle * Math.PI / 180)
-    this.viewport.context.translate(-this.viewport.canvas.halfW, -this.viewport.canvas.halfH)
-    this.viewport.context.drawImage(this.heightmap, this.viewport.x, this.viewport.y, this.viewport.canvas.width, this.viewport.canvas.height, 0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
-    this.viewport.context.restore()
-    this.viewport.map = this.viewport.context.getImageData(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+    this.viewport.context2D.clearRect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+    this.viewport.context2D.save()
+    this.viewport.context2D.translate(this.viewport.canvas.centerX, this.viewport.canvas.centerY)
+    this.viewport.context2D.scale(this.viewport.scale, this.viewport.scale)
+    this.viewport.context2D.rotate(this.viewport.angle * Math.PI / 180)
+    this.viewport.context2D.translate(-this.viewport.canvas.centerX, -this.viewport.canvas.centerY)
+    this.viewport.context2D.drawImage(this.heightmap, this.viewport.x, this.viewport.y, this.viewport.canvas.width, this.viewport.canvas.height, 0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+    this.viewport.context2D.restore()
+    this.viewport.map = this.viewport.context2D.getImageData(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
 
     // Scale heightmap (alpha channel) values to smaller range
     for (let i = 0; i < this.viewport.map.data.length; i += 4) {
@@ -189,7 +187,7 @@ class Heightmap {
         let height = this.viewport.map.data[mapIndex + 3]
 
         let isoPos = this.cartesianToIsometric(x, y)
-        let bufferIndex = this.coordinateToIndex(isoPos.x - this.viewport.canvas.width, isoPos.y - height + this.viewport.canvas.halfH / 4, this.buffer.width)
+        let bufferIndex = this.coordinateToIndex(isoPos.x - this.viewport.canvas.width, isoPos.y - height + this.viewport.canvas.centerY / 4, this.buffer.width)
         // bufferIndex += parseInt(this.viewport.canvas.height * this.viewport.heightScale) * this.buffer.lineHeight
         let fade = 0
 
@@ -220,7 +218,7 @@ class Heightmap {
     }
 
     // Flip buffer to canvas
-    this.context.putImageData(this.buffer, 0, 0)
+    this.context2D.putImageData(this.buffer, 0, 0)
     this.checkKeys()
 
     if (this.running) {

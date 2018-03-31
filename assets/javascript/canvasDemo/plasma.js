@@ -1,71 +1,72 @@
-window.demo = {
-  start: function (width, height) {
-    window.demo.canvas = document.querySelector('.canvasDemo')
-    window.demo.canvas.style.imageRendering = 'pixelated'
-    window.demo.canvas.width = width
-    window.demo.canvas.height = height
-    window.demo.canvas.centerX = window.demo.canvas.width / 2
-    window.demo.canvas.centerY = window.demo.canvas.height / 2
-    window.demo.context2D = window.demo.canvas.getContext('2d')
-    window.demo.context2D.imageSmoothingEnabled = false
-    window.demo.buffer = window.demo.context2D.createImageData(window.demo.canvas.width, window.demo.canvas.height)
-    window.demo.buffer.size = (window.demo.canvas.width * window.demo.canvas.height) * 4
-    window.demo.buffer.lineHeight = window.demo.canvas.width * 4
-    window.demo.running = true
+class Plasma {
+  constructor (width = 256, height = 256) {
+    this.canvas = document.querySelector('.canvasDemo')
+    this.canvas.width = width
+    this.canvas.height = height
+    this.canvas.centerX = width / 2
+    this.canvas.centerY = height / 2
+    this.context2D = this.canvas.getContext('2d')
+    this.context2D.imageSmoothingEnabled = false
+    this.buffer = this.context2D.createImageData(width, height)
+    this.buffer.size = width * height * 4
+    this.buffer.lineHeight = width * 4
 
     // Precalc y*width values for each horizontal line
-    window.demo.yIndex = []
-    for (let y = 0; y < window.demo.canvas.height; y++) {
-      window.demo.yIndex[y] = y * window.demo.canvas.width
+    this.yIndex = []
+    for (let y = 0; y < height; y++) {
+      this.yIndex[y] = y * width
     }
 
     // Precalc 256 color palette r,g,b values
-    window.demo.palette = {}
+    this.palette = {}
     for (let i = 0; i < 256; i++) {
-      window.demo.palette[i] = {}
-      window.demo.palette[i].r = ~~(128 + 128 * Math.sin(Math.PI * i / 64))
-      window.demo.palette[i].g = ~~(128 + 128 * Math.sin(Math.PI * i / 96))
-      window.demo.palette[i].b = ~~(128 + 128 * Math.sin(Math.PI * i / 128))
+      this.palette[i] = {}
+      this.palette[i].r = ~~(128 + 128 * Math.sin(Math.PI * i / 64))
+      this.palette[i].g = ~~(128 + 128 * Math.sin(Math.PI * i / 96))
+      this.palette[i].b = ~~(128 + 128 * Math.sin(Math.PI * i / 128))
     }
 
     // Precalc Math.sin table
-    window.demo.sinc = {}
+    this.sinc = {}
     for (let i = 0; i < 1800; i++) {
-      window.demo.sinc[i] = (Math.sin((Math.PI * i) / 180) * 1024)
+      this.sinc[i] = (Math.sin((Math.PI * i) / 180) * 1024)
     }
 
-    window.demo.tmp = 0
+    this.running = true
+    this.speed = 1
+    this.tick = 0
+    this.update()
+  }
 
-    window.demo.update()
-  },
-  update: function () {
-    window.demo.tmp = (window.demo.tmp + 1) % 720
+  update () {
+    this.tick = (this.tick + this.speed) % 720
 
     // Main loop with optimized magic plasma color formula
-    for (let y = 0; y < window.demo.canvas.height; y++) {
-      let yc = 128 + ((window.demo.sinc[(y << 1) + (window.demo.tmp >> 1)] + window.demo.sinc[y + (window.demo.tmp << 1)] + (window.demo.sinc[(y >> 1) + window.demo.tmp] << 1)) >> 6)
-      for (let x = 0; x < window.demo.canvas.width; x++) {
-        let xc = 128 + (((window.demo.sinc[x + (window.demo.tmp << 1)] << 1) + window.demo.sinc[(x << 1) + (window.demo.tmp >> 1)] + (window.demo.sinc[x + window.demo.tmp] << 1)) >> 6)
+    for (let y = 0; y < this.canvas.height; y++) {
+      let yc = 128 + ((this.sinc[(y << 1) + (this.tick >> 1)] + this.sinc[y + (this.tick << 1)] + (this.sinc[(y >> 1) + this.tick] << 1)) >> 6)
+      for (let x = 0; x < this.canvas.width; x++) {
+        let xc = 128 + (((this.sinc[x + (this.tick << 1)] << 1) + this.sinc[(x << 1) + (this.tick >> 1)] + (this.sinc[x + this.tick] << 1)) >> 6)
 
-        let index = (window.demo.yIndex[y] + x) << 2
+        let index = (this.yIndex[y] + x) << 2
         let color = Math.abs(((yc * xc) >> 5) % 255)
-        window.demo.buffer.data[index++] = window.demo.palette[color].r
-        window.demo.buffer.data[index++] = window.demo.palette[color].g
-        window.demo.buffer.data[index++] = window.demo.palette[color].b
-        window.demo.buffer.data[index++] = 255
+        this.buffer.data[index++] = this.palette[color].r
+        this.buffer.data[index++] = this.palette[color].g
+        this.buffer.data[index++] = this.palette[color].b
+        this.buffer.data[index++] = 255
       }
     }
 
     // Flip buffer to canvas
-    window.demo.context2D.putImageData(window.demo.buffer, 0, 0)
+    this.context2D.putImageData(this.buffer, 0, 0)
 
-    if (window.demo.running) {
-      window.requestAnimationFrame(window.demo.update)
+    if (this.running) {
+      window.requestAnimationFrame(this.update.bind(this))
     }
-  },
-  stop: function () {
-    window.demo.running = false
+  }
+
+  stop () {
+    this.running = false
   }
 }
 
-window.demo.start(256, 128)
+window.demo = new Plasma(320, 180)

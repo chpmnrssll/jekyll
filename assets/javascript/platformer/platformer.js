@@ -4,10 +4,7 @@
   let script = document.createElement('script')
   script.onload = () => {
     setTimeout(() => {
-      new Game(1000, 1000, document.querySelector('.canvasDemo'), {
-        width: 640,
-        height: 480
-      })
+      window.demo = new Game(1000, 1000, document.querySelector('.canvasDemo'), { width: 640, height: 360 })
     }, 1000)
   }
   script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
@@ -19,19 +16,14 @@
 {% include_relative Viewport.js %}
 
 class Game {
-  constructor(width, height, canvas, resolution) {
-    // context2D.imageSmoothingEnabled = false
-    canvas.style.imageRendering = 'pixelated'
+  constructor (width, height, canvas, resolution) {
     this.engine = Matter.Engine.create()
     this.world = this.engine.world
     this.canvas = canvas
+    this.context2D = this.canvas.getContext('2d')
+    this.context2D.imageSmoothingEnabled = false
 
     this.viewport = new Viewport(parseInt(this.canvas.clientWidth / 2), parseInt(this.canvas.clientHeight / 2))
-
-    window.onresize = () => {
-      this.viewport.width = parseInt(this.canvas.clientWidth / 2)
-      this.viewport.height = parseInt(this.canvas.clientHeight / 2)
-    }
 
     // create renderer
     this.render = Matter.Render.create({
@@ -85,7 +77,6 @@ class Game {
 
     this.keyboard = new Keyboard()
 
-    // let mouse = Matter.Mouse.create(this.render.canvas)
     this.render.mouse = Matter.Mouse.create(this.render.canvas)
     Matter.World.add(this.world, Matter.MouseConstraint.create(this.engine, {
       mouse: this.render.mouse,
@@ -97,6 +88,7 @@ class Game {
       }
     }))
 
+    window.addEventListener('resize', this.resizeViewport.bind(this))
     Matter.Events.on(this.render, 'beforeRender', this.beforeRender.bind(this))
     Matter.Events.on(this.engine, 'collisionEnd', this.collisionEnd.bind(this))
     Matter.Events.on(this.engine, 'collisionActive', this.collisionActive.bind(this))
@@ -110,7 +102,20 @@ class Game {
     this.spawnLogos()
   }
 
-  beforeRender(event) {
+  stop () {
+    Matter.Events.off(this.render, 'beforeRender', this.beforeRender)
+    Matter.Events.off(this.engine, 'collisionEnd', this.collisionEnd)
+    Matter.Events.off(this.engine, 'collisionActive', this.collisionActive)
+    Matter.Runner.stop(this.runner)
+    this.keyboard.stop()
+  }
+
+  resizeViewport () {
+    this.viewport.width = parseInt(this.canvas.clientWidth / 2)
+    this.viewport.height = parseInt(this.canvas.clientHeight / 2)
+  }
+
+  beforeRender (event) {
     // keep player at 0 rotation
     Matter.Body.setAngle(this.player.composite, 0)
 
@@ -147,13 +152,11 @@ class Game {
       } else {
         if (this.player.onRight) {
           // console.log('wallrun onRight')
-          // const forceX = (0.002 * this.player.composite.mass)
           const forceY = -(0.04 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
           this.keyboard.keys['w'] = false
         } else if (this.player.onLeft) {
           // console.log('wallrun onLeft')
-          // const forceX = -(0.002 * this.player.composite.mass)
           const forceY = -(0.04 * this.player.composite.mass)
           Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
           this.keyboard.keys['w'] = false
@@ -166,14 +169,22 @@ class Game {
       }
     }
 
-    if (this.keyboard.keys['d']) {
-      const forceX = (0.001 * this.player.composite.mass)
+    if (this.keyboard.keys['s'] && !this.player.onFloor) {
+      // console.log('pound')
+      const forceY = (0.005 * this.player.composite.mass)
+      Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: 0, y: forceY })
+    }
+
+    if (this.keyboard.keys['a']) {
+      // console.log('move left')
+      const forceX = -(0.001 * this.player.composite.mass)
       const forceY = -(0.0005 * this.player.composite.mass)
       Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
     }
 
-    if (this.keyboard.keys['a']) {
-      const forceX = -(0.001 * this.player.composite.mass)
+    if (this.keyboard.keys['d']) {
+      // console.log('move right')
+      const forceX = (0.001 * this.player.composite.mass)
       const forceY = -(0.0005 * this.player.composite.mass)
       Matter.Body.applyForce(this.player.composite, this.player.composite.position, { x: forceX, y: forceY })
     }
@@ -229,66 +240,36 @@ class Game {
     const doubleH = height * 2
 
     return [
-      Matter.Bodies.rectangle(halfW, -halfT, doubleW, thickness, {
-        render: {
-          fillStyle: '#224466'
-        },
-        isStatic: true
-      }),
-      Matter.Bodies.rectangle(width + halfT, halfH, thickness, doubleH, {
-        render: {
-          fillStyle: '#224466'
-        },
-        isStatic: true
-      }),
-      Matter.Bodies.rectangle(halfW, height + halfT, doubleW, thickness, {
-        render: {
-          fillStyle: '#224466'
-        },
-        isStatic: true
-      }),
-      Matter.Bodies.rectangle(-halfT, halfH, thickness, doubleH, {
-        render: {
-          fillStyle: '#224466'
-        },
-        isStatic: true
-      })
+      Matter.Bodies.rectangle(halfW, -halfT, doubleW, thickness, { render: { fillStyle: '#224466' }, isStatic: true }),
+      Matter.Bodies.rectangle(width + halfT, halfH, thickness, doubleH, { render: { fillStyle: '#224466' }, isStatic: true }),
+      Matter.Bodies.rectangle(halfW, height + halfT, doubleW, thickness, { render: { fillStyle: '#224466' }, isStatic: true }),
+      Matter.Bodies.rectangle(-halfT, halfH, thickness, doubleH, { render: { fillStyle: '#224466' }, isStatic: true })
     ]
   }
 
   spawnLogos() {
-    const positions = [{
-        x: 600,
-        y: 96
-      },
-      {
-        x: 600,
-        y: 256
-      },
-      {
-        x: 60,
-        y: 127
-      }
+    const positions = [
+      { x: 600, y: 96 },
+      { x: 600, y: 256 },
+      { x: 60, y: 127 }
     ]
 
     if (this.logos.length < 20) {
       let randomPosition = parseInt(Math.random() * positions.length)
       let logo = this.randomLogo(positions[randomPosition].x, positions[randomPosition].y)
+
       this.logos.push(logo)
       Matter.World.add(this.world, logo)
-      Matter.Body.applyForce(logo, logo.position, {
-        x: Math.random() - 0.5,
-        y: 0.05
-      })
+      Matter.Body.applyForce(logo, logo.position, { x: Math.random() - 0.5, y: 0.05 })
       Matter.Body.setAngularVelocity(logo, Math.random() - 0.5)
     } else {
       Matter.World.remove(this.world, this.logos.shift())
     }
+
     setTimeout(this.spawnLogos.bind(this), 1000)
   }
 
   randomLogo(x, y) {
-
     if (this.lastShape.type === 'circle') {
       let scale = Matter.Common.random(0.5, 1.5)
       return this.randomRectLogo(x, y, scale)

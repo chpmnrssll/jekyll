@@ -31,3 +31,12 @@ if (typeof window.NodeList.prototype.reverse === 'undefined') {
 if (typeof window.HTMLCollection.prototype.forEach === 'undefined') {
   window.HTMLCollection.prototype.forEach = Array.prototype.forEach
 }
+
+// memoize (fn) {
+//   let cache = {}
+//   return (...args) => {
+//     let stringifiedArgs = JSON.stringify(args)
+//     let result = cache[stringifiedArgs] = cache[stringifiedArgs] || fn(...args)
+//     return result
+//   }
+// }

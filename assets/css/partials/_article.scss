@@ -61,8 +61,47 @@
   }
 
   .canvasDemo {
+    box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
     height: 56.25vw;
+    image-rendering: pixelated;
   }
+
+  .controls {
+    margin: auto;
+    width: 75%;
+
+    thead {
+      border-bottom: 1px solid var(--color-secondary);
+      color: var(--color-primary-light);
+    }
+
+    tbody {
+      color: var(--color-primary-lighter);
+      font-size: .75rem;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: var(--color-primary-darker);
+      }
+    }
+
+    th {
+      // padding-right: .5rem;
+      // text-align: right;
+      text-align: center;
+      width: 50%;
+    }
+
+    td {
+      // padding-left: .5rem;
+      // text-align: left;
+      text-align: center;
+      width: 50%;
+    }
+
+  }
+
   // @at-root #{&}__footer {
   //   align-items: center;
   //   border-bottom: 2px solid var(--color-primary-dark);

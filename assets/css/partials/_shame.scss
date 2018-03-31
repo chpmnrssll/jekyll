@@ -64,6 +64,12 @@
     font-weight: bold;
   }
 
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-primary-darker);
+    }
+  }
+
   td {
     width: 4rem;
 

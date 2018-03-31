@@ -1,40 +1,41 @@
-window.demo = {
-  start: function (width, height) {
-    window.demo.canvas = document.querySelector('.canvasDemo')
-    window.demo.canvas.style.imageRendering = 'pixelated'
-    window.demo.canvas.width = width
-    window.demo.canvas.height = height
-    window.demo.canvas.centerX = window.demo.canvas.width / 2
-    window.demo.canvas.centerY = window.demo.canvas.height / 2
-    window.demo.context2D = window.demo.canvas.getContext('2d')
-    window.demo.context2D.imageSmoothingEnabled = false
-    window.demo.buffer = window.demo.context2D.createImageData(window.demo.canvas.width, window.demo.canvas.height)
-    window.demo.buffer.size = (window.demo.canvas.width * window.demo.canvas.height) * 4
-    window.demo.buffer.lineHeight = window.demo.canvas.width * 4
-    window.demo.running = true
-    window.demo.update()
-  },
-  update: function () {
+class Static {
+  constructor (width = 256, height = 256) {
+    this.canvas = document.querySelector('.canvasDemo')
+    this.canvas.width = width
+    this.canvas.height = height
+    this.canvas.centerX = width / 2
+    this.canvas.centerY = height / 2
+    this.context2D = this.canvas.getContext('2d')
+    this.context2D.imageSmoothingEnabled = false
+    this.buffer = this.context2D.createImageData(width, height)
+    this.buffer.size = width * height * 4
+    this.buffer.lineHeight = width * 4
+    this.running = true
+    this.update()
+  }
+
+  update () {
     // Pick random shade for every pixel (0-255)
-    for (let i = 0; i < window.demo.buffer.size; i++) {
+    for (let i = 0; i < this.buffer.size; i++) {
       let c = Math.floor(Math.random() * 255)
       let index = i * 4
-      window.demo.buffer.data[index++] = c
-      window.demo.buffer.data[index++] = c
-      window.demo.buffer.data[index++] = c
-      window.demo.buffer.data[index++] = 255
+      this.buffer.data[index++] = c
+      this.buffer.data[index++] = c
+      this.buffer.data[index++] = c
+      this.buffer.data[index++] = 255
     }
 
     // Flip buffer to canvas
-    window.demo.context2D.putImageData(window.demo.buffer, 0, 0)
+    this.context2D.putImageData(this.buffer, 0, 0)
 
-    if (window.demo.running) {
-      window.requestAnimationFrame(window.demo.update)
+    if (this.running) {
+      window.requestAnimationFrame(this.update.bind(this))
     }
-  },
-  stop: function () {
-    window.demo.running = false
+  }
+
+  stop () {
+    this.running = false
   }
 }
 
-window.demo.start(256, 128)
+window.demo = new Static(320, 180)

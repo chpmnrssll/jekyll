@@ -77,17 +77,22 @@ page()
 startAnyCanvasDemos()
 
 function startAnyCanvasDemos () {
+  if (window.demo) {
+    try {
+      window.demo.stop()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   const canvasDemo = document.querySelector('.canvasDemo')
   if (canvasDemo) {
-    let req = new window.XMLHttpRequest()
-    req.addEventListener('load', event => {
-      if (window.demo) {
-        window.demo.stop()
-      }
-      eval(req.response)
+    let request = new window.XMLHttpRequest()
+    request.addEventListener('load', event => {
+      eval(request.response)
     })
-    req.open('GET', canvasDemo.getAttribute('src'), true)
-    req.send()
+    request.open('GET', canvasDemo.getAttribute('src'), true)
+    request.send()
   }
 }
 
