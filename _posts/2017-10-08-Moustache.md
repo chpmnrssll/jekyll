@@ -6,7 +6,7 @@ title: Moustache
 sub-title: Hairy Lipsum
 date: 2017-10-08T00:00:00.000Z
 tags: Moustache Ipsum
-category: Ipsum
+category: [ Ipsum ]
 ---
 ## Milkshake Issues
 I drink your milkshake Milkshake issues lady magnets helllloooo goose, quis lady magnets landed gentry toothbrush d’artagnan gentleman goose I drink your milkshake helllloooo robert winston toothbrush Milkshake issues, d’artagnan beefeater I drink your milkshake waiter lady magnets knavish rogue quis Milkshake issues gentleman el snort toothbrush landed gentry toothbrush robert winston goose knavish rogue helllloooo? Crumb catcher joseph stalin cappuccino collector luxurious helllloooo will you do the fandango cripes, educated will you do the fandango groucho-a-like rock n roll star cappuccino collector luxurious blacksmith helllloooo crumb catcher challenge you to a duel challenge you to a duel lipwig joseph stalin cripes great dictator.
