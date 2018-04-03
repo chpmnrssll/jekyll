@@ -50,12 +50,28 @@
 
 
 .gradient-overlay {
-  &::before {
-    background: linear-gradient(180deg, var(--color-gradient-start), var(--color-gradient-end));
+
+  &::after {
+    background: radial-gradient(circle at center, var(--color-gradient-end), var(--color-primary-darkest));
     content: '';
     height: 100%;
     left: 0;
-    mix-blend-mode: multiply;
+    opacity: .75;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+  }
+}
+
+.gradient-overlay--alt {
+  @extend .gradient-overlay;
+
+  &::before {
+    background: linear-gradient(180deg, var(--color-gradient-end) 75%, var(--color-primary-dark) 125%);
+    content: '';
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
     width: 100%;

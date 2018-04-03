@@ -19,7 +19,7 @@
   @at-root #{&}__title--main {
     color: var(--color-primary-lightest);
     margin-bottom: .05rem;
-    text-shadow: 2px 2px 3px var(--color-primary-darkest);
+    text-shadow: 2px 2px 2px var(--color-primary-darkest);
   }
 
   @at-root #{&}__title--sub {
@@ -27,11 +27,11 @@
     font-family: 'Teko';
     font-style: italic;
     font-weight: lighter;
-    text-shadow: 1px 1px 2px var(--color-secondary-darkest);
+    text-shadow: 0 0 0 var(--color-secondary-darkest), 1px 1px 1px var(--color-secondary-darkest);
   }
 
   @at-root #{&}__date {
     color: var(--color-primary-lighter);
-    text-shadow: 1px 1px 2px var(--color-primary-darkest);
+    text-shadow: 0 0 0 var(--color-secondary-darkest), 1px 1px 1px var(--color-secondary-darkest);
   }
 }

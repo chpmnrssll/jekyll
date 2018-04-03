@@ -1,3 +1,6 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 {%- include head.html -%}
@@ -6,7 +9,9 @@
   <main class="content">
     <article class="article">
       {%- if page.header-image -%}
-      <img class="image image--lazyload full" data-src="/assets/images/{{ page.header-image }}" alt="">
+      <header class="full gradient-overlay--alt">
+        <img class="image image--lazyload full" data-src="/assets/images/{{ page.header-image }}" alt="">
+      </header>
       {%- endif -%}
       {{ content }}
     </article>
