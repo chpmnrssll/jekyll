@@ -1,20 +1,11 @@
 ---
-layout: compress
+layout: default
 ---
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en-US' }}">
-{%- include head.html -%}
-<body>
-  {%- include navigation.html -%}
-  <main class="content">
-    <article class="article">
-      {%- if page.header-image -%}
-      <header class="full gradient-overlay--alt">
-        <img class="image image--lazyload full" data-src="/assets/images/{{ page.header-image }}" alt="alt">
-      </header>
-      {%- endif -%}
-      {{ content }}
-    </article>
-  </main>
-</body>
-</html>
+<article class="article">
+  {%- if page.header-image -%}
+  <header class="full gradient-overlay--alt">
+    <img class="image image--lazyload full" data-src="/assets/images/{{ page.header-image }}" alt="alt">
+  </header>
+  {%- endif -%}
+  {{ content }}
+</article>
