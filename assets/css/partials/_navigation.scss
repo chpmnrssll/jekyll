@@ -40,6 +40,13 @@
       width: 1rem;
     }
 
+    @at-root #{&}--update {
+      bottom: 0;
+      left: 0;
+      pointer-events: all;
+      position: absolute;
+    }
+
     @at-root #{&}--top {
       bottom: 0;
       pointer-events: all;

@@ -5,20 +5,22 @@ if (workbox) {
 
   workbox.routing.registerRoute(
     new RegExp('.*.(?:html|css|js)'),
-    workbox.strategies.staleWhileRevalidate()
-    // workbox.strategies.networkFirst()
-    // workbox.strategies.cacheFirst()
+    // workbox.strategies.networkFirst({ cacheName: 'static' })
+    // workbox.strategies.cacheFirst({ cacheName: 'static' })
+    workbox.strategies.staleWhileRevalidate({
+      cacheName: 'static',
+      plugins: [
+        new workbox.broadcastUpdate.Plugin('update-static')
+      ]
+    })
   )
 
   workbox.routing.registerRoute(
     new RegExp('.*.(?:png|jpg|jpeg|svg|gif)'),
-    workbox.strategies.cacheFirst({
+    workbox.strategies.staleWhileRevalidate({
       cacheName: 'images',
       plugins: [
-        new workbox.expiration.Plugin({
-          // maxEntries: 256,
-          maxAgeSeconds: 30 * 24 * 60 * 60
-        })
+        new workbox.broadcastUpdate.Plugin('update-images')
       ]
     })
   )
@@ -27,6 +29,16 @@ if (workbox) {
     new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
     workbox.strategies.cacheFirst({ cacheName: 'googleapis' })
   )
-} else {
-  console.log(`Boo! Workbox didn't load`)
 }
+
+self.addEventListener('message', event => {
+  if (event.data) {
+    switch (event.data) {
+      case 'skipWaiting':
+        self.skipWaiting()
+        break
+      default:
+        break
+    }
+  }
+})
