@@ -136,6 +136,8 @@ class Heightmap {
     this.viewport.context2D.scale(this.viewport.scale, this.viewport.scale)
     this.viewport.context2D.rotate(this.viewport.angle * Math.PI / 180)
     this.viewport.context2D.translate(-this.viewport.canvas.centerX, -this.viewport.canvas.centerY)
+    // this.viewport.context2D.fillStyle = this.viewport.pattern
+    // this.viewport.context2D.fillRect(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
     this.viewport.context2D.drawImage(this.heightmap, this.viewport.x, this.viewport.y, this.viewport.canvas.width, this.viewport.canvas.height, 0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
     this.viewport.context2D.restore()
     this.viewport.map = this.viewport.context2D.getImageData(0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
@@ -219,6 +221,17 @@ class Heightmap {
 
     // Flip buffer to canvas
     this.context2D.putImageData(this.buffer, 0, 0)
+
+    const w16 = this.canvas.width / 16
+    const h9 = this.canvas.height / 9
+    const overlay = {
+      x: this.canvas.centerX + w16,
+      y: this.canvas.centerY + h9,
+      w: w16,
+      h: h9
+    }
+    this.context2D.drawImage(this.heightmap, overlay.x, overlay.y, overlay.w, overlay.h, 0, 0, this.viewport.canvas.width, this.viewport.canvas.height)
+
     this.checkKeys()
 
     if (this.running) {

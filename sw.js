@@ -1,17 +1,17 @@
 this.importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js')
 
+
 if (workbox) {
   workbox.core.setLogLevel(workbox.core.LOG_LEVELS.silent)
 
+  const broadcastUpdate = new workbox.broadcastUpdate.Plugin('update')
   workbox.routing.registerRoute(
     new RegExp('.*.(?:html|css|js)'),
     // workbox.strategies.networkFirst({ cacheName: 'static' })
     // workbox.strategies.cacheFirst({ cacheName: 'static' })
     workbox.strategies.staleWhileRevalidate({
       cacheName: 'static',
-      plugins: [
-        new workbox.broadcastUpdate.Plugin('update-static')
-      ]
+      plugins: [ broadcastUpdate ]
     })
   )
 
@@ -19,9 +19,7 @@ if (workbox) {
     new RegExp('.*.(?:png|jpg|jpeg|svg|gif)'),
     workbox.strategies.staleWhileRevalidate({
       cacheName: 'images',
-      plugins: [
-        new workbox.broadcastUpdate.Plugin('update-images')
-      ]
+      plugins: [ broadcastUpdate ]
     })
   )
 

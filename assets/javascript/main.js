@@ -29,10 +29,11 @@ window.addEventListener('load', event => {
       }
     })
 
-    const updateStatic = new BroadcastChannel('update-static')
-    const updateImages = new BroadcastChannel('update-images')
-    updateStatic.addEventListener('message', showRefreshUI)
-    updateImages.addEventListener('message', showRefreshUI)
+    const updateChannel = new BroadcastChannel('update')
+    updateChannel.addEventListener('message', event => {
+      console.log(event)
+      showRefreshUI({ waiting: false })
+    })
   }
 })
 
@@ -45,9 +46,11 @@ async function showRefreshUI (registration) {
     button.classList.remove('navigation--showing')
     button.classList.add('navigation--hidden')
     if (registration.waiting) {
-      registration.waiting.postMessage('skipWaiting')
+      console.log('service worker updated')
+      // registration.waiting.postMessage('skipWaiting')
     } else {
-      window.location.reload()
+      console.log('cache updated')
+      // window.location.reload()
     }
   })
 }

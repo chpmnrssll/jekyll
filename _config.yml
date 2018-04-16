@@ -1,7 +1,7 @@
 author:          Russell Chapman
 description:     Program all the things...
 github_username: chpmnrssll
-# host:            192.168.1.70
+# host:            192.168.1.64
 permalink:       /posts/:categories/:title
 title:           Russell Chapman
 
