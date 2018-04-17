@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/icons/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/icons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
@@ -27,8 +27,9 @@
   <link rel="preload" href="https://fonts.gstatic.com/s/sharetechmono/v7/J7aHnp1uDWRBEqV98dVQztYldFcLowEF.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://fonts.gstatic.com/s/teko/v7/LYjNdG7kmE0gfaN9pQ.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ '/assets/css/style.css' | prepend: site.baseurl }}" as="style">
-  <script defer src="/assets/javascript/vendor/page/page.js"></script>
-  <script defer src="/assets/javascript/main.js"></script>
-  {%- feed_meta -%}
-  {%- seo -%}
+  <script async defer src="https://{{ site.disqus.shortname }}.disqus.com/embed.js"></script>
+  <script async defer id="dsq-count-scr" src="https://{{ site.disqus.shortname }}.disqus.com/count.js"></script>
+  <script async defer src="/assets/javascript/vendor/page/page.js"></script>
+  <script async defer src="/assets/javascript/main.js"></script>
+  {%- feed_meta -%} {%- seo -%}
 </head>

@@ -9,6 +9,6 @@ layout: default
   {%- endif -%}
   {{ content }}
   {% if page.comments %}
-    {% include disqus.html %}
+  <div id="disqus_thread"></div>
   {% endif %}
 </article>

@@ -19,6 +19,10 @@
   }
 }
 
+#disqus_thread {
+  margin-top: 25vh;
+}
+
 .about {
   @include media-query('mobile-m') { grid-template-columns: repeat(3, 1fr); }
   @include media-query('tablet') { grid-template-columns: repeat(5, 1fr); }
