@@ -5,6 +5,7 @@ if (workbox) {
   workbox.core.setLogLevel(workbox.core.LOG_LEVELS.silent)
 
   const broadcastUpdate = new workbox.broadcastUpdate.Plugin('update')
+
   workbox.routing.registerRoute(
     new RegExp('.*.(?:html|css|js)'),
     // workbox.strategies.networkFirst({ cacheName: 'static' })

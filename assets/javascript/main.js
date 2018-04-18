@@ -28,9 +28,9 @@ window.addEventListener('load', event => {
       }
     })
 
-    const updateChannel = new BroadcastChannel('update')
-    updateChannel.addEventListener('message', event => {
-      console.log(event)
+    let updateChannel = new BroadcastChannel('update')
+    updateChannel.addEventListener('message', async (event) => {
+      console.log('Broadcast update recieved', event)
       showRefreshUI({ waiting: false })
     })
   }
