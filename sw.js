@@ -9,19 +9,26 @@ if (workbox) {
   workbox.routing.registerRoute(
     new RegExp('.*.(?:html|css|js)'),
     // workbox.strategies.networkFirst({ cacheName: 'static' })
-    // workbox.strategies.cacheFirst({ cacheName: 'static' })
-    workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.cacheFirst({
       cacheName: 'static',
       plugins: [ broadcastUpdate ]
     })
+    // workbox.strategies.staleWhileRevalidate({
+    //   cacheName: 'static',
+    //   plugins: [ broadcastUpdate ]
+    // })
   )
 
   workbox.routing.registerRoute(
     new RegExp('.*.(?:png|jpg|jpeg|svg|gif)'),
-    workbox.strategies.staleWhileRevalidate({
+    workbox.strategies.cacheFirst({
       cacheName: 'images',
       plugins: [ broadcastUpdate ]
     })
+    // workbox.strategies.staleWhileRevalidate({
+    //   cacheName: 'images',
+    //   plugins: [ broadcastUpdate ]
+    // })
   )
 
   workbox.routing.registerRoute(

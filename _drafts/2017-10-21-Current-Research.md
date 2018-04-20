@@ -8,6 +8,7 @@ tags: GitHub Pages Jekyll Markdown
 category: About
 ---
 ## PWA Service Worker App Shell
+- [Google Search Features](https://developers.google.com/search/docs/guides/)
 - [UI Element Samples](https://github.com/GoogleChromeLabs/ui-element-samples) - Vanilla web platform features
 - [The Shadow Reader](https://github.com/ampproject/amp-publisher-sample/tree/master/amp-pwa-reader) - PWA+AMP techniques
 - [Workbox](https://workboxjs.org/) - JS Libs for Progressive Web Apps (Service Worker)
@@ -53,6 +54,11 @@ category: About
 - [BEM Resources](https://github.com/sturobson/BEM-resources)
 - [CSS Containment](https://developers.google.com/web/updates/2016/06/css-containment)
 - [CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
+- [PURE CSS ANIMATED TOGGLES](https://codepen.io/soulrider911/pen/qhEzf?editors=1100#0)
+- [Google Material Design Input Boxes](https://codepen.io/sevilayha/pen/IdGKH?editors=1100)
+- [Hop Over Notification Badge](https://codepen.io/plfstr/pen/cgsGH)
+- [Pure CSS Menu Transition](https://codepen.io/mrnathan8/pen/mgFqJ?editors=1100#0)
+- [CSS Gooey Menu (Version 4)](https://codepen.io/lbebber/pen/rawQKR)
 
 ## Lazy Loading Responsive Image Gradient
 - [using svg as placeholders](https://medium.freecodecamp.org/using-svg-as-placeholders-more-image-loading-techniques-bed1b810ab2c)
@@ -109,6 +115,7 @@ category: About
 - [Trianglify](https://github.com/qrohlf/trianglify)
 
 ## Jekyll
+- [Cache-busting in Jekyll, GitHub pages](https://toddmotto.com/cache-busting-jekyll-github-pages)
 - [Jekyll REST API (read-only)](https://github.com/riichard/jekyll-rest-api)
 - [Jekyll Compress HTML](https://github.com/penibelst/jekyll-compress-html)
 - [Jekyll::Livereload](https://github.com/RobertDeRose/jekyll-livereload)
@@ -133,6 +140,9 @@ category: About
 - [webrtc-reversi](https://github.com/bmwalters/webrtc-reversi)
 
 ## !?#
+- [WebAIM Accessibility](https://webaim.org/#maincontent)
+- [JSONBIN.IO](https://jsonbin.io/about)
+- [Mapbox GL](https://www.mapbox.com/mapbox-gl-js/api/)
 - [remoteStorage.js](https://remotestoragejs.readthedocs.io/en/latest/index.html)
 - [Computer Graphics from scratch](http://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html)
 - [Platformer Power](https://platformerpower.com/)

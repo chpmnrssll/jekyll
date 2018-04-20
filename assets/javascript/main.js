@@ -30,7 +30,7 @@ window.addEventListener('load', event => {
 
     let updateChannel = new BroadcastChannel('update')
     updateChannel.addEventListener('message', async (event) => {
-      console.log('Broadcast update recieved', event)
+      console.log('Update broadcast recieved', event)
       showRefreshUI({ waiting: false })
     })
   }
@@ -46,10 +46,10 @@ async function showRefreshUI (registration) {
     button.classList.add('navigation--hidden')
     if (registration.waiting) {
       console.log('service worker updated')
-      // registration.waiting.postMessage('skipWaiting')
+      registration.waiting.postMessage('skipWaiting')
     } else {
       console.log('cache updated')
-      // window.location.reload()
+      window.location.reload()
     }
   })
 }
