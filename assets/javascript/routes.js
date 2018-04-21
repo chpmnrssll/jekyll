@@ -45,7 +45,7 @@ page('*', (context, next) => {
       attachElement(element, element.depth + index)
     })
 
-    resetComments(context.path, window.location.origin + context.path)
+    // resetComments(context.path, window.location.origin + context.path)
   }
 
   request.open('GET', `${context.path}`, true)

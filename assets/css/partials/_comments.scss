@@ -1,0 +1,47 @@
+.form-inputs {
+  background-color: var(--color-primary-dark);
+  border: 0;
+  color: var(--color-primary-lighter);
+  font-family: 'Teko';
+  font-size: .75rem;
+  line-height: .75rem;
+  margin: .25rem auto;
+  padding: auto .1rem;
+}
+
+.shadow {
+  box-shadow: 1px 1px 1rem var(--color-primary-darker);
+}
+
+.comments {
+  @at-root #{&}__form {
+    @extend .shadow;
+    background-color: var(--color-primary-darker);
+    margin: 2rem auto;
+    padding: .25rem;
+    width: 75%;
+
+    @at-root #{&}--name {
+      @extend .form-inputs;
+      @extend .shadow;
+      width: 100%;
+    }
+    @at-root #{&}--email {
+      @extend .form-inputs;
+      @extend .shadow;
+      width: 100%;
+    }
+    @at-root #{&}--message {
+      @extend .form-inputs;
+      @extend .shadow;
+      height: 6rem;
+      width: 100%;
+    }
+    @at-root #{&}--submit {
+      @extend .form-inputs;
+      @extend .shadow;
+      float: right;
+      padding: .25rem;
+    }
+  }
+}
