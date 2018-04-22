@@ -44,8 +44,6 @@ page('*', (context, next) => {
     }).forEach((element, index) => {
       attachElement(element, element.depth + index)
     })
-
-    // resetComments(context.path, window.location.origin + context.path)
   }
 
   request.open('GET', `${context.path}`, true)
@@ -77,16 +75,6 @@ page.exit('*', (context, next) => {
 
 page()
 startAnyCanvasDemos()
-
-function resetComments (id, url) {
-  DISQUS.reset({
-    reload: true,
-    config: function () {
-      this.page.identifier = id
-      this.page.url = url
-    }
-  })
-}
 
 function startAnyCanvasDemos () {
   if (window.demo) {
