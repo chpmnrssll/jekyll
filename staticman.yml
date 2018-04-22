@@ -1,13 +1,13 @@
 comments:
-  allowedFields: [ "email", "message", "name" ]
+  allowedFields: [ "name", "email", "message" ]
   branch: "master"
-  commitMessage: "Add comment {@id}"
+  commitMessage: "Add comment from Staticman"
   filename: "{@id}"
   format: "json"
   moderation: false
   name: "chpmnrssll.github.io"
   path: "_data/comments/{options.slug}"
-  requiredFields: [ "email", "message", "name" ]
+  requiredFields: [ "name", "email", "message" ]
   generatedFields:
     date:
       type: date
