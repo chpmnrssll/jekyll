@@ -12,6 +12,7 @@
   <input name="options[slug]" type="hidden" value="{{ page.slug }}">
   <input name="fields[name]" type="text" placeholder="Name" class="comments__form--name">
   <input name="fields[email]" type="email" placeholder="E-mail" class="comments__form--email">
-  <textarea name="fields[message]" placeholder="Message" class="comments__form--message"></textarea>
-  <input type="submit" value="Submit" class="comments__form--submit"/>
+  <textarea name="fields[msg]" placeholder="Message" class="comments__form--message"></textarea>
+  <input name="fields[message]" type="hidden" value="blank">
+  <input type="submit" value="Submit" class="comments__form--submit">
 </form>
