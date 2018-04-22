@@ -1,5 +1,5 @@
 comments:
-  allowedFields: [ "name", "email", "message" ]
+  allowedFields: ["name", "email", "message", "text"]
   branch: "master"
   commitMessage: "Add comment from Staticman"
   filename: "{@id}"
@@ -7,12 +7,11 @@ comments:
   moderation: false
   name: "chpmnrssll.github.io"
   path: "_data/comments/{options.slug}"
-  requiredFields: [ "name", "email", "message" ]
+  requiredFields: ["name", "email", "text"]
   generatedFields:
     date:
       type: date
       options:
         format: "timestamp-seconds"
-
   transforms:
     email: md5
