@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["category", "email", "name", "message", "text"]
+  allowedFields: ["category", "email", "name", "message"]
   branch: "master"
   commitMessage: "Added a comment"
   filename: "{@timestamp}-{@id}"
@@ -7,7 +7,7 @@ comments:
   moderation: false
   name: "chpmnrssll.github.io"
   path: "_data/comments/{options.slug}"
-  requiredFields: ["email", "name", "text"]
+  requiredFields: ["email", "name", "message"]
   generatedFields:
     date:
       type: date
