@@ -2,7 +2,7 @@ comments:
   allowedFields: ["category", "email", "name", "message"]
   branch: "master"
   commitMessage: "Added a comment"
-  filename: "{@timestamp}-{@id}"
+  filename: "{@timestamp}"
   format: "yml"
   moderation: false
   name: "chpmnrssll.github.io"

@@ -10,6 +10,7 @@
         </header>
         <section class="comment__body">
           <span class="comment__text">{{ comment.message }}</span>
+          <button value="Reply"/>
         </section>
       </li>
     {%- endfor  -%}
@@ -22,7 +23,6 @@
     <input name="fields[name]" type="text" placeholder="Name" class="comments__form--name">
     <input name="fields[email]" type="email" placeholder="E-mail" class="comments__form--email">
     <textarea name="fields[message]" placeholder="Message" class="comments__form--message"></textarea>
-    <!-- <input name="fields[message]" type="hidden" value="Staticman always inserts a blank value here, but other field names work"> -->
     <input type="submit" value="Submit" class="comments__form--submit">
   </form>
 </section>
