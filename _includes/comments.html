@@ -1,7 +1,6 @@
 <section class="comments">
-  {%- assign category = page.category -%}
-  {%- assign slug = page.slug -%}
-  {%- assign data = site.data.comments[category][slug] -%}
+  {%- assign comments = site.data.comments[page.slug] -%}
+  {{ comments }}
   {%- if data -%}
     <ul class="comments__list">
       {%- for comments in data -%}

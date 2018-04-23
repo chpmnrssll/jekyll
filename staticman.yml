@@ -2,11 +2,11 @@ comments:
   allowedFields: ["category", "email", "name", "message", "text"]
   branch: "master"
   commitMessage: "Added a comment"
-  filename: "{@id}"
+  filename: "{@timestamp}-{@id}"
   format: "yml"
   moderation: false
   name: "chpmnrssll.github.io"
-  path: "_data/comments/{options.category}/{options.slug}"
+  path: "_data/comments/{options.slug}"
   requiredFields: ["email", "name", "text"]
   generatedFields:
     date:
