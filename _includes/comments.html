@@ -1,11 +1,36 @@
-<form method="POST" action="https://api.staticman.net/v2/entry/{{ site.github_username }}/{{ site.github_repository }}/{{ site.github_branch }}/comments" class="comments__form">
-  <h3>Comment</h3>
-  <!-- <input name="options[redirect]" type="hidden" value="{{ page.url }}"> -->
-  <input name="options[slug]" type="hidden" value="{{ page.slug }}">
-  <input name="options[category]" type="hidden" value="{{ page.category }}">
-  <input name="fields[name]" type="text" placeholder="Name" class="comments__form--name">
-  <input name="fields[email]" type="email" placeholder="E-mail" class="comments__form--email">
-  <textarea name="fields[text]" placeholder="Message" class="comments__form--message"></textarea>
-  <input name="fields[message]" type="hidden" value="Staticman always inserts a blank value here, but other field names work">
-  <input type="submit" value="Submit" class="comments__form--submit">
-</form>
+<section class="comments">
+  {%- assign category = page.category -%}
+  {%- assign slug = page.slug -%}
+  {%- assign data = site.data.comments[category][slug] -%}
+  {%- if data -%}
+    <ul class="comments__list">
+      {%- for comments in data -%}
+        {%- for comment in comments -%}
+          {%- if comment.name -%}
+            <li class="comment">
+              <header class="comment__header">
+                <img class="comment__avatar" src="https://www.gravatar.com/avatar/{{ comment.email }}?default=mm"/>
+              </header>
+              <section class="comment__body">
+                <span class="comment__name">{{ comment.name }}</span>
+                <time class="comment__time" datetime="{{ comment.date }}">{{ comment.date }}</time>
+                <span class="comment__text">{{ comment.text }}</span>
+              </section>
+            </li>
+          {%- endif -%}
+        {%- endfor  -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+  <form method="POST" action="https://api.staticman.net/v2/entry/{{ site.github_username }}/{{ site.github_repository }}/{{ site.github_branch }}/comments" class="comments__form">
+    <h3>Comment</h3>
+    <!-- <input name="options[redirect]" type="hidden" value="{{ page.url }}"> -->
+    <input name="options[slug]" type="hidden" value="{{ page.slug }}">
+    <input name="options[category]" type="hidden" value="{{ page.category }}">
+    <input name="fields[name]" type="text" placeholder="Name" class="comments__form--name">
+    <input name="fields[email]" type="email" placeholder="E-mail" class="comments__form--email">
+    <textarea name="fields[text]" placeholder="Message" class="comments__form--message"></textarea>
+    <input name="fields[message]" type="hidden" value="Staticman always inserts a blank value here, but other field names work">
+    <input type="submit" value="Submit" class="comments__form--submit">
+  </form>
+</section>

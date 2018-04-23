@@ -8,8 +8,7 @@ layout: default
   </header>
   {%- endif -%}
   {{ content }}
-  {% if page.comments %}
+  {%- if page.comments -%}
   {%- include comments.html -%}
-  <!-- <div id="disqus_thread"></div> -->
-  {% endif %}
+  {%- endif -%}
 </article>

@@ -14,13 +14,16 @@
 }
 
 .comments {
+  @at-root #{&}__list {
+    list-style: none;
+  }
+
   @at-root #{&}__form {
     @extend .shadow;
     background-color: var(--color-primary-darker);
     margin: 2rem auto;
     padding: .25rem;
     width: 75%;
-
     @at-root #{&}--name {
       @extend .form-inputs;
       @extend .shadow;
@@ -43,5 +46,26 @@
       float: right;
       padding: .25rem;
     }
+  }
+}
+
+.comment {
+  background-color: var(--color-primary-darker);
+  display: flex;
+  flex-direction: row;
+  margin: .5rem;
+  padding: .5rem;
+
+  @at-root #{&}__header {
+    width: 3rem;
+  }
+  @at-root #{&}__body {
+    display: flex;
+    flex-direction: column;
+  }
+  @at-root #{&}__name {}
+  @at-root #{&}__date {}
+  @at-root #{&}__text {
+    margin: .5rem;
   }
 }
