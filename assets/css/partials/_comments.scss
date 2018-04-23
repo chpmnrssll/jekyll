@@ -1,5 +1,13 @@
+.transparent {
+  background-color: rgba(32, 32, 32, .1);
+}
+
+.shadow {
+  box-shadow: .15rem .15rem .15rem rgba(0, 0, 0, .1);
+}
+
 .form-inputs {
-  background-color: var(--color-primary-dark);
+  @extend .transparent;
   border: 0;
   color: var(--color-primary-lighter);
   font-family: 'Teko';
@@ -9,10 +17,6 @@
   padding: auto .1rem;
 }
 
-.shadow {
-  box-shadow: 1px 1px 1rem var(--color-primary-darker);
-}
-
 .comments {
   @at-root #{&}__list {
     list-style: none;
@@ -20,37 +24,42 @@
 
   @at-root #{&}__form {
     @extend .shadow;
-    background-color: var(--color-primary-darker);
+    @extend .transparent;
     margin: 2rem auto;
     padding: .25rem;
     width: 75%;
+
     @at-root #{&}--name {
       @extend .form-inputs;
       @extend .shadow;
+      padding: .25rem;
       width: 100%;
     }
     @at-root #{&}--email {
       @extend .form-inputs;
       @extend .shadow;
+      padding: .25rem;
       width: 100%;
     }
     @at-root #{&}--message {
       @extend .form-inputs;
       @extend .shadow;
+      padding: .25rem;
       height: 6rem;
       width: 100%;
     }
     @at-root #{&}--submit {
       @extend .form-inputs;
       @extend .shadow;
-      float: right;
+      // float: right;
       padding: .25rem;
     }
   }
 }
 
 .comment {
-  background-color: var(--color-primary-darker);
+  @extend .shadow;
+  @extend .transparent;
   display: flex;
   flex-direction: row;
   margin: .5rem;
@@ -60,12 +69,15 @@
     width: 3rem;
   }
   @at-root #{&}__body {
+    @extend .shadow;
+    @extend .transparent;
     display: flex;
+    flex: 1;
     flex-direction: column;
   }
   @at-root #{&}__name {}
   @at-root #{&}__date {}
   @at-root #{&}__text {
-    margin: .5rem;
+    padding: .25rem;
   }
 }
