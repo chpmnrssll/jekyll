@@ -5,6 +5,7 @@
   const title = document.head.querySelector('title').innerText
   const params = encodeURIComponent(`uri=${uri}&title=${title}`)
   const container = document.querySelector('.recommendations__container')
+  const endpoint = 'http://widget.high.fi/silakka-json.cfm'
 
   function dataLoaded (event) {
     let response = event.response.entries
@@ -41,7 +42,7 @@
   let request = new window.XMLHttpRequest()
   request.onload = dataLoaded
   request.withCredentials = true
-  request.open('POST', 'http://widget.high.fi/silakka-json.cfm', true)
+  request.open('POST', endpoint, true)
   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   // request.send(params)
