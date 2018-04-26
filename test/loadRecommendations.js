@@ -1,9 +1,10 @@
-function callback (json) {
+function dataLoaded (json) {
   const scale = 0.4
   const pictureWidth = 600 * scale
   const pictureHeight = 400 * scale
   const logoWidth = 24
   const logoHeight = 24
+
   let response = json.entries
   // let response = JSON.parse(request.response).entries
 
@@ -76,17 +77,17 @@ function callback (json) {
   const uri = encodeURIComponent(window.location)
   const title = encodeURIComponent(document.head.querySelector('title').innerText)
   const endpoint = 'https://widget.high.fi/silakka-json.cfm'
-  const callbackName = 'callback'
+  const callbackName = 'dataLoaded'
+
+  // let request = new window.XMLHttpRequest()
+  // request.onload = dataLoaded
+  // request.withCredentials = true
+  // request.open('POST', endpoint, true)
+  // request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+  // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  // request.send({ uri: uri, title: title })
 
   let script = document.createElement('script')
   script.src = `${endpoint}?callback=${callbackName}&uri=${uri}&title=${title}`
   document.body.appendChild(script)
-
-  // let request = new window.XMLHttpRequest()
-  // request.onload = recommendationsLoaded
-  // request.withCredentials = true
-  // request.open('GET', endpoint, true)
-  // request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-  // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  // request.send(params)
 })()
