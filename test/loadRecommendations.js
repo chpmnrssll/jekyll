@@ -75,7 +75,7 @@ function callback (json) {
 (() => {
   const uri = encodeURIComponent(window.location)
   const title = encodeURIComponent(document.head.querySelector('title').innerText)
-  const endpoint = 'http://widget.high.fi/silakka-json.cfm'
+  const endpoint = 'https://widget.high.fi/silakka-json.cfm'
   const callbackName = 'callback'
 
   let script = document.createElement('script')
