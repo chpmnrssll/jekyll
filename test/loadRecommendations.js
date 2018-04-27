@@ -1,7 +1,7 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      this.scale = 0.33
+      this.scale = 0.25
       this.logoWidth = 28
       this.logoHeight = 28
       this.pictureWidth = 600 * this.scale
@@ -13,7 +13,8 @@
         gridGap: '.5em',
         gridTemplateColumns: `repeat(auto-fill, minmax(${this.pictureWidth}px, 1fr))`,
         justifyItems: 'center',
-        overflow: 'auto'
+        overflow: 'auto',
+        padding: '.5em'
       })
       document.querySelector('.article-custom-box').appendChild(this.container)
 
@@ -42,14 +43,17 @@
         let link = document.createElement('a')
         link.href = entry.linkURI
         Object.assign(link.style, {
-          textDecoration: 'none',
-          width: `${this.pictureWidth}px`
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          textDecoration: 'none'
         })
 
         let picture = document.createElement('img')
         picture.src = entry.pictureURI
         Object.assign(picture.style, {
           height: `${this.pictureHeight}px`,
+          alignSelf: 'center',
           width: `${this.pictureWidth}px`
         })
 
@@ -57,6 +61,7 @@
         headline.innerText = entry.headline
         Object.assign(headline.style, {
           color: '#444',
+          fontSize: '1em',
           margin: '0',
           padding: '.5em'
         })
@@ -66,7 +71,7 @@
         Object.assign(source.style, {
           color: '#999',
           fontFamily: 'serif',
-          fontSize: '.8em',
+          fontSize: '.75em',
           margin: '0',
           padding: '.5em'
         })
@@ -99,7 +104,7 @@
       Object.assign(text.style, {
         alignSelf: 'center',
         color: '#888',
-        fontSize: '.8em'
+        fontSize: '.75em'
       })
 
       logo.appendChild(img)
@@ -111,5 +116,5 @@
   const uri = encodeURIComponent(window.location)
   const title = encodeURIComponent(document.head.querySelector('title').innerText)
   const endpoint = 'https://widget.high.fi/silakka-json.cfm'
-  console.log(new Recommendations(uri, title, endpoint))
+  return new Recommendations(uri, title, endpoint)
 })()
