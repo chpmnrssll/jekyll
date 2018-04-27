@@ -18,7 +18,7 @@
         padding: '1em',
         resize: 'both'
       })
-      document.querySelector('.advertisement_below_news_article').appendChild(this.container)
+      document.querySelector('.article-custom-box').appendChild(this.container)
 
       // CORS
       // this.request = new window.XMLHttpRequest()
