@@ -16,7 +16,8 @@
         overflow: 'auto',
         padding: '.5em'
       })
-      document.querySelector('.article-custom-box').appendChild(this.container)
+      let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
+      outer.appendChild(this.container)
 
       // CORS
       // this.request = new window.XMLHttpRequest()
