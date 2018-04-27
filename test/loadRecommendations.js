@@ -7,8 +7,7 @@
       this.pictureWidth = 600 * this.scale
       this.pictureHeight = 400 * this.scale
 
-      // this.container = document.querySelector('.recommendations__container')
-      this.container = document.getElementById('taboola-below-article-thumbnails')
+      this.container = document.createElement('div')
       Object.assign(this.container.style, {
         border: '1px solid #ddd',
         display: 'grid',
@@ -19,6 +18,7 @@
         padding: '1em',
         resize: 'both'
       })
+      document.querySelector('.advertisement_below_news_article').appendChild(this.container)
 
       // CORS
       // this.request = new window.XMLHttpRequest()
