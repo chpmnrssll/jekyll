@@ -1,22 +1,19 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      this.scale = 0.4
-      this.logoWidth = 24
-      this.logoHeight = 24
+      this.scale = 0.33
+      this.logoWidth = 28
+      this.logoHeight = 28
       this.pictureWidth = 600 * this.scale
       this.pictureHeight = 400 * this.scale
 
       this.container = document.createElement('div')
       Object.assign(this.container.style, {
-        border: '1px solid #ddd',
         display: 'grid',
-        gridGap: '1em',
+        gridGap: '.5em',
         gridTemplateColumns: `repeat(auto-fill, minmax(${this.pictureWidth}px, 1fr))`,
         justifyItems: 'center',
-        overflow: 'auto',
-        padding: '1em',
-        resize: 'both'
+        overflow: 'auto'
       })
       document.querySelector('.article-custom-box').appendChild(this.container)
 
@@ -60,7 +57,6 @@
         headline.innerText = entry.headline
         Object.assign(headline.style, {
           color: '#444',
-          fontFamily: 'serif',
           margin: '0',
           padding: '.5em'
         })
@@ -69,6 +65,7 @@
         source.innerText = entry.source
         Object.assign(source.style, {
           color: '#999',
+          fontFamily: 'serif',
           fontSize: '.8em',
           margin: '0',
           padding: '.5em'
