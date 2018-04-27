@@ -7,7 +7,8 @@
       this.pictureWidth = 600 * this.scale
       this.pictureHeight = 400 * this.scale
 
-      this.container = document.querySelector('.recommendations__container')
+      // this.container = document.querySelector('.recommendations__container')
+      this.container = document.getElementById('taboola-below-article-thumbnails')
       Object.assign(this.container.style, {
         border: '1px solid #ddd',
         display: 'grid',
@@ -113,5 +114,5 @@
   const uri = encodeURIComponent(window.location)
   const title = encodeURIComponent(document.head.querySelector('title').innerText)
   const endpoint = 'https://widget.high.fi/silakka-json.cfm'
-  return new Recommendations(uri, title, endpoint)
+  console.log(new Recommendations(uri, title, endpoint))
 })()
