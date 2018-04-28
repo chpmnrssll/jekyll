@@ -23,7 +23,7 @@
         this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
         this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
       } else {
-        const scale = 0.5
+        const scale = 0.45
         this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
         this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
       }
