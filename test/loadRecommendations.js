@@ -1,14 +1,16 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      this.pictureWidth = 600
-      this.pictureHeight = 400
+      this.scale = 0.35
+      this.pictureWidth = 600 * this.scale
+      this.pictureHeight = 400 * this.scale
 
       this.container = document.createElement('div')
       Object.assign(this.container.style, {
         display: 'grid',
         gridGap: '.5em',
-        gridTemplateColumns: `repeat(auto-fill, var(--pictureWidth))`,
+        // gridTemplateColumns: `repeat(auto-fill, var(--pictureWidth))`,
+        gridTemplateColumns: `repeat(auto-fill, ${this.pictureWidth}px)`,
         justifyContent: 'center',
         justifyItems: 'center',
         overflow: 'auto',
@@ -18,15 +20,15 @@
       let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
       outer.appendChild(this.container)
 
-      if (this.container.clientWidth < 600) {
-        const scale = 0.35
-        this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
-        this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
-      } else {
-        const scale = 0.45
-        this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
-        this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
-      }
+      // if (this.container.clientWidth < 600) {
+      //   const scale = 0.35
+      //   this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
+      //   this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
+      // } else {
+      //   const scale = 0.4
+      //   this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
+      //   this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
+      // }
 
       // CORS
       // this.request = new window.XMLHttpRequest()
@@ -63,9 +65,9 @@
         let picture = document.createElement('img')
         picture.src = entry.pictureURI
         Object.assign(picture.style, {
-          height: 'var(--pictureHeight)',
+          height: `${this.pictureHeight}`,
           alignSelf: 'center',
-          width: 'var(--pictureWidth)'
+          width: `${this.pictureWidth}`
         })
 
         let headline = document.createElement('p')
