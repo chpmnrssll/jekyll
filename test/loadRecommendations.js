@@ -65,9 +65,9 @@
         let picture = document.createElement('img')
         picture.src = entry.pictureURI
         Object.assign(picture.style, {
-          height: `${this.pictureHeight}`,
+          height: `${this.pictureHeight}px`,
           alignSelf: 'center',
-          width: `${this.pictureWidth}`
+          width: `${this.pictureWidth}px`
         })
 
         let headline = document.createElement('p')
