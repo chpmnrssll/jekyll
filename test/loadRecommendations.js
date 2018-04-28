@@ -1,23 +1,31 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      this.scale = 0.25
-      this.logoWidth = 28
-      this.logoHeight = 28
-      this.pictureWidth = 600 * this.scale
-      this.pictureHeight = 400 * this.scale
+      this.pictureWidth = 600
+      this.pictureHeight = 400
 
       this.container = document.createElement('div')
       Object.assign(this.container.style, {
         display: 'grid',
         gridGap: '.5em',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${this.pictureWidth}px, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fill, var(--pictureWidth))`,
         justifyItems: 'center',
         overflow: 'auto',
         padding: '.5em'
       })
+
       let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
       outer.appendChild(this.container)
+
+      if (this.container.clientWidth < 768) {
+        const scale = 0.3
+        this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
+        this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
+      } else {
+        const scale = 0.5
+        this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
+        this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
+      }
 
       // CORS
       // this.request = new window.XMLHttpRequest()
@@ -47,15 +55,16 @@
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          textDecoration: 'none'
+          textDecoration: 'none',
+          width: '100%'
         })
 
         let picture = document.createElement('img')
         picture.src = entry.pictureURI
         Object.assign(picture.style, {
-          height: `${this.pictureHeight}px`,
+          height: 'var(--pictureHeight)',
           alignSelf: 'center',
-          width: `${this.pictureWidth}px`
+          width: 'var(--pictureWidth)'
         })
 
         let headline = document.createElement('p')
@@ -95,9 +104,9 @@
       let img = document.createElement('img')
       img.src = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
       Object.assign(img.style, {
-        height: `${this.logoHeight}px`,
+        height: `28px`,
         opacity: '.5',
-        width: `${this.logoWidth}px`
+        width: `28px`
       })
 
       let text = document.createElement('p')
