@@ -9,6 +9,7 @@
         display: 'grid',
         gridGap: '.5em',
         gridTemplateColumns: `repeat(auto-fill, var(--pictureWidth))`,
+        justifyContent: 'center',
         justifyItems: 'center',
         overflow: 'auto',
         padding: '.5em'
