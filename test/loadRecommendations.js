@@ -1,7 +1,11 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      this.scale = 0.35
+      if (window.matchMedia('(min-width: 600px)').matches) {
+        this.scale = 0.35
+      } else {
+        this.scale = 0.25
+      }
       this.pictureWidth = 600 * this.scale
       this.pictureHeight = 400 * this.scale
 
