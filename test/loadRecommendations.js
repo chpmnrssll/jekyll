@@ -17,8 +17,8 @@
       let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
       outer.appendChild(this.container)
 
-      if (this.container.clientWidth < 512) {
-        const scale = 0.4
+      if (this.container.clientWidth < 500) {
+        const scale = 0.35
         this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
         this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
       } else {
