@@ -99,13 +99,14 @@
         alignSelf: 'end',
         display: 'flex',
         gridColumnEnd: '-1',
+        justifyContent: 'flex-end',
         justifySelf: 'end'
       })
 
       let text = document.createElement('p')
       text.innerText = 'Powered by OctoCats'
       Object.assign(text.style, {
-        alignSelf: 'center',
+        // alignSelf: 'center',
         color: '#999999',
         fontSize: '.75em'
       })
@@ -113,9 +114,9 @@
       let img = document.createElement('img')
       img.src = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
       Object.assign(img.style, {
-        height: `24px`,
-        opacity: '.5',
-        width: `24px`
+        height: `18px`,
+        opacity: '.65',
+        width: `18px`
       })
 
       logo.appendChild(text)
