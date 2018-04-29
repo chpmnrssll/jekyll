@@ -26,7 +26,7 @@
       // CORS
       const response = JSON.parse(event.target.response)
 
-      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.45 : 0.3
+      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.5 : 0.3
       const pictureWidth = 600 * scale
       const pictureHeight = 400 * scale
 
@@ -38,10 +38,8 @@
         justifyContent: 'center',
         justifyItems: 'center',
         overflow: 'auto'
-        // padding: '.5em'
       })
 
-      // let container = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
       let container = document.querySelector('.post') || document.querySelector('.content-primary')
       container.appendChild(grid)
 
@@ -68,23 +66,21 @@
         headline.innerText = entry.headline
         Object.assign(headline.style, {
           color: '#303030',
-          // fontSize: '1em',
           fontSize: '16px',
           fontWeight: 'bold',
+          lineHeight: '22px',
           margin: '0',
-          padding: '0'
+          wordWrap: 'break-word'
         })
 
         let source = document.createElement('p')
         source.innerText = entry.source
         Object.assign(source.style, {
           color: '#999999',
-          fontFamily: 'serif',
-          // fontSize: '.75em',
           fontSize: '11px',
           fontWeight: 'bold',
           margin: '0',
-          padding: '0'
+          wordWrap: 'break-word'
         })
 
         link.appendChild(picture)
