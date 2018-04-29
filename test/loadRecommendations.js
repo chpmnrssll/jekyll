@@ -41,7 +41,8 @@
         padding: '.5em'
       })
 
-      let container = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
+      // let container = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
+      let container = document.querySelector('.post') || document.querySelector('.content-primary')
       container.appendChild(grid)
 
       response.entries.forEach(entry => {
