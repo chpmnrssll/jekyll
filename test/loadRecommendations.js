@@ -71,6 +71,7 @@
           lineHeight: '22px',
           margin: '5px 0 0 0',
           maxHeight: '66px',
+          overflow: 'hidden',
           wordWrap: 'break-word'
         })
 
