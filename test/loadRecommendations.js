@@ -26,7 +26,7 @@
       // CORS
       const response = JSON.parse(event.target.response)
 
-      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.5 : 0.3
+      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.55 : 0.3
       const pictureWidth = 600 * scale
       const pictureHeight = 400 * scale
 
@@ -69,7 +69,8 @@
           fontSize: '16px',
           fontWeight: 'bold',
           lineHeight: '22px',
-          margin: '0',
+          margin: '5px 0 0 0',
+          maxHeight: '66px',
           wordWrap: 'break-word'
         })
 
