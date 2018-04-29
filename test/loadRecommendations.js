@@ -26,19 +26,19 @@
       // CORS
       const response = JSON.parse(event.target.response)
 
-      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.35 : 0.3
+      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.45 : 0.3
       const pictureWidth = 600 * scale
       const pictureHeight = 400 * scale
 
       let grid = document.createElement('div')
       Object.assign(grid.style, {
         display: 'grid',
-        gridGap: '.5em',
+        gridGap: '1em',
         gridTemplateColumns: `repeat(auto-fill, ${pictureWidth}px)`,
         justifyContent: 'center',
         justifyItems: 'center',
-        overflow: 'auto',
-        padding: '.5em'
+        overflow: 'auto'
+        // padding: '.5em'
       })
 
       // let container = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
@@ -67,20 +67,24 @@
         let headline = document.createElement('p')
         headline.innerText = entry.headline
         Object.assign(headline.style, {
-          color: '#444',
-          fontSize: '1em',
+          color: '#303030',
+          // fontSize: '1em',
+          fontSize: '16px',
+          fontWeight: 'bold',
           margin: '0',
-          padding: '.5em'
+          padding: '0'
         })
 
         let source = document.createElement('p')
         source.innerText = entry.source
         Object.assign(source.style, {
-          color: '#999',
+          color: '#999999',
           fontFamily: 'serif',
-          fontSize: '.75em',
+          // fontSize: '.75em',
+          fontSize: '11px',
+          fontWeight: 'bold',
           margin: '0',
-          padding: '.5em'
+          padding: '0'
         })
 
         link.appendChild(picture)
