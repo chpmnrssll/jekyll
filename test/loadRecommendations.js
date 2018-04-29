@@ -26,7 +26,7 @@
       // CORS
       const response = JSON.parse(event.target.response)
 
-      const scale = window.matchMedia('(max-width: 599px)').matches ? 0.45 : 0.315
+      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.55 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
 
@@ -37,7 +37,8 @@
         gridTemplateColumns: `repeat(auto-fill, ${pictureWidth}px)`,
         justifyContent: 'center',
         justifyItems: 'center',
-        overflow: 'auto'
+        overflow: 'auto',
+        marginTop: '1em'
       })
 
       let container = document.querySelector('.post') || document.querySelector('.content-primary')
@@ -101,14 +102,6 @@
         justifySelf: 'end'
       })
 
-      let img = document.createElement('img')
-      img.src = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
-      Object.assign(img.style, {
-        height: `28px`,
-        opacity: '.5',
-        width: `28px`
-      })
-
       let text = document.createElement('p')
       text.innerText = 'Powered by OctoCats'
       Object.assign(text.style, {
@@ -117,8 +110,16 @@
         fontSize: '.75em'
       })
 
-      logo.appendChild(img)
+      let img = document.createElement('img')
+      img.src = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
+      Object.assign(img.style, {
+        height: `28px`,
+        opacity: '.5',
+        width: `28px`
+      })
+
       logo.appendChild(text)
+      logo.appendChild(img)
       grid.appendChild(logo)
     }
   }
