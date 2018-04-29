@@ -5,7 +5,7 @@
       // window.JSONPHandler = this._loadHandler.bind(this)
       // let callbackName = encodeURIComponent('JSONPHandler')
       // let script = document.createElement('script')
-      // script.src = `${endpoint}?callback=${callbackName}&uri=${uri}&title=${title}`
+      // script.src = `${endpoint}?callback=${callbackName}&uri=${encodeURIComponent(uri)}&title=${encodeURIComponent(title)}`
       // document.body.appendChild(script)
 
       // CORS
@@ -13,21 +13,25 @@
       this.request.onload = this._loadHandler
       this.request.open('POST', endpoint, true)
       this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      this.request.send({ uri: uri, title: title })
+      this.request.send({
+        uri: uri,
+        title: title
+      })
     }
 
     _loadHandler (event) {
       // JSONP
-      // const response = event.entries
+      // const response = event
 
       // CORS
-      const response = JSON.parse(event.target.response).entries
+      const response = JSON.parse(event.target.response)
 
       const scale = window.matchMedia('(max-width: 600px)').matches ? 0.35 : 0.3
       const pictureWidth = 600 * scale
       const pictureHeight = 400 * scale
-      let container = document.createElement('div')
-      Object.assign(container.style, {
+
+      let grid = document.createElement('div')
+      Object.assign(grid.style, {
         display: 'grid',
         gridGap: '.5em',
         gridTemplateColumns: `repeat(auto-fill, ${pictureWidth}px)`,
@@ -37,10 +41,10 @@
         padding: '.5em'
       })
 
-      let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
-      outer.appendChild(container)
+      let container = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
+      container.appendChild(grid)
 
-      response.forEach(entry => {
+      response.entries.forEach(entry => {
         let link = document.createElement('a')
         link.href = entry.linkURI
         Object.assign(link.style, {
@@ -81,7 +85,7 @@
         link.appendChild(picture)
         link.appendChild(headline)
         link.appendChild(source)
-        container.appendChild(link)
+        grid.appendChild(link)
       })
 
       let logo = document.createElement('div')
@@ -111,12 +115,12 @@
 
       logo.appendChild(img)
       logo.appendChild(text)
-      container.appendChild(logo)
+      grid.appendChild(logo)
     }
   }
 
-  const uri = encodeURIComponent(window.location)
-  const title = encodeURIComponent(document.head.querySelector('title').innerText)
+  const uri = window.location
+  const title = document.head.querySelector('title').innerText
   const endpoint = 'https://widget.high.fi/silakka-json.cfm'
   return new Recommendations(uri, title, endpoint)
 })()
