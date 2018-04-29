@@ -38,7 +38,7 @@
         justifyContent: 'center',
         justifyItems: 'center',
         overflow: 'auto',
-        marginTop: '1em'
+        paddingTop: '1em'
       })
 
       let container = document.querySelector('.post') || document.querySelector('.content-primary')
@@ -95,7 +95,7 @@
 
       let logo = document.createElement('div')
       Object.assign(logo.style, {
-        alignItems: 'center',
+        // alignItems: 'center',
         alignSelf: 'end',
         display: 'flex',
         gridColumnEnd: '-1',
@@ -106,7 +106,6 @@
       let text = document.createElement('p')
       text.innerText = 'Powered by OctoCats'
       Object.assign(text.style, {
-        // alignSelf: 'center',
         color: '#999999',
         fontSize: '.75em'
       })
