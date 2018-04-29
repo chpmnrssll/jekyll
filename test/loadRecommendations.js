@@ -26,9 +26,9 @@
       // CORS
       const response = JSON.parse(event.target.response)
 
-      const scale = window.matchMedia('(max-width: 599px)').matches ? 0.45 : 0.31
+      const scale = window.matchMedia('(max-width: 599px)').matches ? 0.45 : 0.315
       const pictureWidth = 600 * scale
-      const pictureHeight = 400 * scale
+      const pictureHeight = 480 * scale
 
       let grid = document.createElement('div')
       Object.assign(grid.style, {
