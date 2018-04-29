@@ -106,16 +106,16 @@
       text.innerText = 'Powered by OctoCats'
       Object.assign(text.style, {
         alignSelf: 'center',
-        color: '#888',
+        color: '#999999',
         fontSize: '.75em'
       })
 
       let img = document.createElement('img')
       img.src = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
       Object.assign(img.style, {
-        height: `28px`,
+        height: `24px`,
         opacity: '.5',
-        width: `28px`
+        width: `24px`
       })
 
       logo.appendChild(text)
