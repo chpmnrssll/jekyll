@@ -79,6 +79,7 @@
           color: '#999999',
           fontSize: '11px',
           fontWeight: 'bold',
+          lineHeight: '22px',
           margin: '0',
           wordWrap: 'break-word'
         })
