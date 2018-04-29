@@ -1,20 +1,36 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      if (window.matchMedia('(max-width: 600px)').matches) {
-        this.scale = 0.35
-      } else {
-        this.scale = 0.25
-      }
-      this.pictureWidth = 600 * this.scale
-      this.pictureHeight = 400 * this.scale
+      // JSONP
+      // window.JSONPHandler = this._loadHandler.bind(this)
+      // let callbackName = encodeURIComponent('JSONPHandler')
+      // let script = document.createElement('script')
+      // script.src = `${endpoint}?callback=${callbackName}&uri=${uri}&title=${title}`
+      // document.body.appendChild(script)
 
-      this.container = document.createElement('div')
-      Object.assign(this.container.style, {
+      // CORS
+      this.request = new window.XMLHttpRequest()
+      this.request.onload = this._loadHandler
+      this.request.open('POST', endpoint, true)
+      this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+      this.request.send({ uri: uri, title: title })
+    }
+
+    _loadHandler (event) {
+      // JSONP
+      // const response = event.entries
+
+      // CORS
+      const response = JSON.parse(event.target.response).entries
+
+      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.35 : 0.25
+      const pictureWidth = 600 * scale
+      const pictureHeight = 400 * scale
+      let container = document.createElement('div')
+      Object.assign(container.style, {
         display: 'grid',
         gridGap: '.5em',
-        // gridTemplateColumns: `repeat(auto-fill, var(--pictureWidth))`,
-        gridTemplateColumns: `repeat(auto-fill, ${this.pictureWidth}px)`,
+        gridTemplateColumns: `repeat(auto-fill, ${pictureWidth}px)`,
         justifyContent: 'center',
         justifyItems: 'center',
         overflow: 'auto',
@@ -22,38 +38,7 @@
       })
 
       let outer = document.querySelector('.article-custom-box') || document.querySelector('.content-primary')
-      outer.appendChild(this.container)
-
-      // if (this.container.clientWidth < 600) {
-      //   const scale = 0.35
-      //   this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
-      //   this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
-      // } else {
-      //   const scale = 0.4
-      //   this.container.style.setProperty('--pictureWidth', `${this.pictureWidth * scale}px`)
-      //   this.container.style.setProperty('--pictureHeight', `${this.pictureHeight * scale}px`)
-      // }
-
-      // CORS
-      // this.request = new window.XMLHttpRequest()
-      // this.request.onload = this._loadHandler
-      // this.request.withCredentials = true
-      // this.request.open('POST', endpoint, true)
-      // this.request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-      // this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      // this.request.send({ uri: uri, title: title })
-
-      // JSONP
-      window.JSONPHandler = this._loadHandler.bind(this)
-      let callbackName = encodeURIComponent('JSONPHandler')
-      let script = document.createElement('script')
-      script.src = `${endpoint}?callback=${callbackName}&uri=${uri}&title=${title}`
-      document.body.appendChild(script)
-    }
-
-    _loadHandler (json) {
-      // const response = JSON.parse(this.request.response).entries
-      const response = json.entries
+      outer.appendChild(container)
 
       response.forEach(entry => {
         let link = document.createElement('a')
@@ -69,9 +54,9 @@
         let picture = document.createElement('img')
         picture.src = entry.pictureURI
         Object.assign(picture.style, {
-          height: `${this.pictureHeight}px`,
           alignSelf: 'center',
-          width: `${this.pictureWidth}px`
+          height: `${pictureHeight}px`,
+          width: `${pictureWidth}px`
         })
 
         let headline = document.createElement('p')
@@ -96,7 +81,7 @@
         link.appendChild(picture)
         link.appendChild(headline)
         link.appendChild(source)
-        this.container.appendChild(link)
+        container.appendChild(link)
       })
 
       let logo = document.createElement('div')
@@ -126,7 +111,7 @@
 
       logo.appendChild(img)
       logo.appendChild(text)
-      this.container.appendChild(logo)
+      container.appendChild(logo)
     }
   }
 
