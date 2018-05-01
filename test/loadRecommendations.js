@@ -1,14 +1,6 @@
 (() => {
   class Recommendations {
     constructor (uri, title, endpoint) {
-      // JSONP
-      // window.JSONPHandler = this._loadHandler.bind(this)
-      // let callbackName = encodeURIComponent('JSONPHandler')
-      // let script = document.createElement('script')
-      // script.src = `${endpoint}?callback=${callbackName}&uri=${encodeURIComponent(uri)}&title=${encodeURIComponent(title)}`
-      // document.body.appendChild(script)
-
-      // CORS
       this.request = new window.XMLHttpRequest()
       this.request.onload = this._loadHandler
       this.request.open('POST', endpoint, true)
@@ -20,12 +12,7 @@
     }
 
     _loadHandler (event) {
-      // JSONP
-      // const response = event
-
-      // CORS
       const response = JSON.parse(event.target.response)
-
       const scale = window.matchMedia('(max-width: 600px)').matches ? 0.55 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
@@ -95,7 +82,7 @@
 
       let logo = document.createElement('div')
       Object.assign(logo.style, {
-        // alignItems: 'center',
+        alignItems: 'center',
         alignSelf: 'end',
         display: 'flex',
         gridColumnEnd: '-1',
@@ -127,5 +114,6 @@
   const uri = window.location
   const title = document.head.querySelector('title').innerText
   const endpoint = 'https://widget.high.fi/silakka-json.cfm'
+
   return new Recommendations(uri, title, endpoint)
 })()
