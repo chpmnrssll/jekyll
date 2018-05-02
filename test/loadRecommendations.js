@@ -5,15 +5,14 @@
       this.request.onload = this._loadHandler
       this.request.open('POST', endpoint, true)
       this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      this.request.send({
-        uri: uri,
-        title: title
-      })
+      this.request.send({uri: uri, title: title})
     }
 
     _loadHandler (event) {
       const response = JSON.parse(event.target.response)
-      const scale = window.matchMedia('(max-width: 600px)').matches ? 0.55 : 0.315
+      const breakpointSmall = window.matchMedia('(max-width: 500px)').matches
+      const breakpointMed = window.matchMedia('(max-width: 600px)').matches
+      const scale = breakpointSmall ? 0.65 : breakpointMed ? 0.45 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
 
@@ -31,7 +30,13 @@
       let container = document.querySelector('.post') || document.querySelector('.content-primary')
       container.appendChild(grid)
 
-      response.entries.forEach(entry => {
+      response.entries.forEach((entry, index) => {
+        if (breakpointSmall && index > 1) {
+          return
+        } else if (breakpointMed && index > 3) {
+          return
+        }
+
         let link = document.createElement('a')
         link.href = entry.linkURI
         Object.assign(link.style, {
