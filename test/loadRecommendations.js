@@ -12,7 +12,7 @@
       const response = JSON.parse(event.target.response)
       const breakpointSmall = window.matchMedia('(max-width: 500px)').matches
       const breakpointMed = window.matchMedia('(max-width: 600px)').matches
-      const scale = breakpointSmall ? 0.65 : breakpointMed ? 0.45 : 0.315
+      const scale = breakpointSmall ? 0.65 : breakpointMed ? 0.415 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
 
