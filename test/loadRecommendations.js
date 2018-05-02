@@ -10,9 +10,10 @@
 
     _loadHandler (event) {
       const response = JSON.parse(event.target.response)
-      const breakpointSmall = window.matchMedia('(max-width: 560px)').matches
-      const breakpointMed = window.matchMedia('(max-width: 768px)').matches
-      const scale = breakpointSmall ? 0.65 : breakpointMed ? 0.4 : 0.315
+      const breakpoint1 = window.matchMedia('(max-width: 500px)').matches
+      const breakpoint2 = window.matchMedia('(max-width: 600px)').matches
+      const breakpoint3 = window.matchMedia('(max-width: 768px)').matches
+      const scale = breakpoint1 ? 0.65 : breakpoint2 ? 0.4 : breakpoint3 ? 0.35 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
 
@@ -31,7 +32,7 @@
       container.appendChild(grid)
 
       response.entries.forEach((entry, index) => {
-        if ((breakpointSmall && index > 1) || (breakpointMed && index > 3)) {
+        if ((breakpoint1 && index > 1) || (breakpoint2 && index > 3)) {
           return
         }
 
