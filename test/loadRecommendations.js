@@ -10,8 +10,8 @@
 
     _loadHandler (event) {
       const response = JSON.parse(event.target.response)
-      const breakpointSmall = window.matchMedia('(max-width: 550px)').matches
-      const breakpointMed = window.matchMedia('(max-width: 650px)').matches
+      const breakpointSmall = window.matchMedia('(max-width: 560px)').matches
+      const breakpointMed = window.matchMedia('(max-width: 768px)').matches
       const scale = breakpointSmall ? 0.65 : breakpointMed ? 0.415 : 0.315
       const pictureWidth = 600 * scale
       const pictureHeight = 480 * scale
