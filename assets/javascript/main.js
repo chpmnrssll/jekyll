@@ -10,7 +10,8 @@ window.addEventListener('load', event => {
   const loader = new ImageLoader()
   loader.lazyLoadImages()
 
-  if (navigator.serviceWorker) {
+  // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(registration => {
       if (navigator.serviceWorker.controller) {
         let preventDevToolsReloadLoop = false
