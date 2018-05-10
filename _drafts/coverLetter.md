@@ -83,6 +83,7 @@ or Github: https://github.com/chpmnrssll/
 It fought me a little bit, but I usually always win in the end.
 I recommend looking into
 
+
 Yeah, I've seen those recommended content ads. A few questions though:
 Do you have the backend setup to test with?
 Can I use CSS Grid for layout?
@@ -97,6 +98,20 @@ Let me know when you're ready to move forward.
 
 Still getting "No 'Access-Control-Allow-Origin' headers" errors with an AJAX GET/POST request, but JSONP works great.
 https://chpmnrssll.github.io/test/taboola.html
+
+Petteri,
+I swapped out the JSONP for a POST request, works great now. I didn't know exactly how the original Taboola section looked until I realized that ad-blocker was still active (facepalm). It should look a lot closer now. It's kind of an unusual approach to build & style elements in vanilla JavaScript, but it's tiny (under 3.5k without minifying), and should be very fast to load. There's a breakpoint @600px where I change the scale of the items (larger in a smaller container), then just let the grid flow responsively to fill in from there. It only checks the media query the first time it is rendered, so to see different widths correctly the page must be refreshed. I didn't think it was a big deal as developers are about the only people I see constantly resizing their windows. There's a few variables included to customize logo text, image, endpoint, etc.
+
+I'm going to send the source file rather than screen-shots so you can take a look. Let me know if there's any more I need to take a look at.
+
+
+Petteri, here's an updated copy with your changes. I limited the grid to 1 row below 550px, 2 rows below 600px, and tweaked the widths some more. It's trial and error getting the grid to do exactly what you want without a normal media query from a stylesheet. It looks ok here, but I've only tested in dev tools w/device toolbar (kinda hard to inject a script from javascript console on a mobile device). I can make more adjustments if you need or find a different way to do the breakpoints if it's not quite what you need.
+
+
+Nilay, Sorry I went silent for bit, I ended up tearing StreamSaver.js completely apart, refactored it, and built a somewhat working test.
+I had trouble getting fetch to do a proper CORS request for your public bucket files on B2. So I ended up putting together the test with Google Drive & gapi (they use range requests too). Looking through the docs I found something about adding CORS rules to your bucket, but it sounds like you need to do this with your account access. It should be simple to swap the B2 api in once the access control issues are fixed.
+
+I'm still working on how to use readable/writable streams to re-assemble the chunks write to single file, but splitting requests into multiple range requests works well. Would it be possible to enable GitHub Pages in the repo settings? Then I could setup a live demo/test page.
 
 ## Past Q/A
 
