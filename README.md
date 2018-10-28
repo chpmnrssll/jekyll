@@ -11,13 +11,13 @@
 - [Commitizen command line utility](https://github.com/commitizen/cz-cli)
 - [conventiona changelog](https://github.com/conventional-changelog/conventional-changelog)
 
-### Local Server / Build Instructions
+### Local Server
 ```bash
 $ bundle exec jekyll serve --livereload
 ```
 
 ### cloc.sh
-Counts lines of code and writes to
+Counts lines of code and writes to json.
 ```bash
 $ _data/linesOfCode.json
 ```
