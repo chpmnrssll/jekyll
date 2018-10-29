@@ -1,15 +1,11 @@
 .image {
   height: 100%;
   left: 0;
+  object-fit: cover;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: -2;
-
-  @at-root #{&}--lazyload {}
-  @at-root #{&}--visible {
-    // opacity: 0;
-  }
 
   @at-root #{&}__list {
     display: flex;
