@@ -57,7 +57,7 @@ page.exit('*', (context, next) => {
   let parent = featured ? featured : article ? article : content
   let elements = [].slice.call(parent.querySelectorAll('*'))
 
-  if (window.demo) {
+  if (window.demo && window.demo.stop) {
     window.demo.stop()
   }
   elements.map(element => {
@@ -77,12 +77,8 @@ page()
 startAnyCanvasDemos()
 
 function startAnyCanvasDemos () {
-  if (window.demo) {
-    try {
-      window.demo.stop()
-    } catch (e) {
-      console.error(e)
-    }
+  if (window.demo && window.demo.stop) {
+    window.demo.stop()
   }
 
   const canvasDemo = document.querySelector('.canvasDemo')

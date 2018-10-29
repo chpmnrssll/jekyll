@@ -1,5 +1,5 @@
 class ImageLoader {
-  constructor (rootMargin = '0px', threshold = 0.006, imageClass = '.image--lazyload') {
+  constructor (rootMargin = '100%', threshold = 0.006, imageClass = '.image--lazyload') {
     this.options = {
       rootMargin: rootMargin,
       threshold: threshold
