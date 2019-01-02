@@ -54,13 +54,13 @@ if (workbox) {
       'url': '404.html',
       'revision': 'fb56716fbe7e0d6a96973b6d2d2f1b77'
     }, {
-      'url': 'assets/css/style.css',
+      'url': 'public/css/style.css',
       'revision': 'e5f4ab7c51321235e324ccde31adc87b'
     }, {
-      'url': 'assets/javascript/main.js',
+      'url': 'public/javascript/main.js',
       'revision': '00224c77214d55e9d488fd87735ea179'
     }, {
-      'url': 'assets/javascript/vendor/page/page.js',
+      'url': 'public/javascript/vendor/page/page.js',
       'revision': '0c1064a437446f76206a6b6ec5f7731e'
     }, {
       'url': 'index.html',

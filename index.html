@@ -9,7 +9,7 @@ sub-title: Featured
       {%- if tag == "Featured" -%}
       <a class="featured__item" href="{{ post.url }}">
         {%- if post.image -%}
-        <img class="image image--lazyload" data-src="/assets/images/{{ post.image }}" alt="alt">
+        <img class="image image--lazyload" data-src="/public/assets/{{ post.image }}" alt="alt">
         {%- endif -%}
         <header class="header__plain gradient-overlay">
           <section class="header__title">

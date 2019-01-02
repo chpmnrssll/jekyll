@@ -13,7 +13,7 @@ disqus:
 
 sass:
   style: compressed
-  sass_dir: /assets/css
+  sass_dir: /public/css
 
 plugins:
   - jekyll-feed
