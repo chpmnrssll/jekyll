@@ -4,6 +4,16 @@ title: Home
 sub-title: Featured
 ---
 <section class="featured">
+  <a class="featured__item" href="https://chpmnrssll.github.io/aluminium-spider/">
+    <img class="image image--lazyload" data-src="/public/assets/aluminiumSpider.png" alt="Aluminium-Spider">
+    <header class="header__plain gradient-overlay">
+      <section class="header__title">
+        <h3 class="header__title--main">VuePress Portfolio</h3>
+        <h4 class="header__title--sub">Codename: Aluminium-Spider</h4>
+      </section>
+      <time class="header__date" datetime="2019-01-01">Jan 2, 2019</time>
+    </header>
+  </a>
   {%- for post in site.posts -%}
     {%- for tag in post.tags -%}
       {%- if tag == "Featured" -%}
