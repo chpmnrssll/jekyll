@@ -7,7 +7,7 @@
       window.demo = new Game(1000, 1000, document.querySelector('.canvasDemo'), { width: 640, height: 360 })
     }, 1000)
   }
-  script.setAttribute('src', '/assets/javascript/vendor/Matter/build/matter.min.js')
+  script.setAttribute('src', '/public/javascript/vendor/Matter/build/matter.min.js')
   document.querySelector('article').appendChild(script)
 })()
 
@@ -48,7 +48,7 @@ class Game {
     let wall3 = Matter.Bodies.rectangle(1000 / 3, 1000 / 1.25, 900, 50, { isStatic: true, angle: 0.075, render: { fillStyle: '#224466' }})
     Matter.World.add(this.engine.world, [wall, wall2, wall3])
 
-    // window.fetch('/assets/images/level.svg')
+    // window.fetch('/public/assets/level.svg')
     //   .then(response => response.text())
     //   .then(data => {
     //     let parser = new window.DOMParser()
@@ -287,7 +287,7 @@ class Game {
         height: 64,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoGrunt.png'
+        url: '/public/assets/logo/logoGrunt.png'
       },
       {
         type: 'rectangle',
@@ -296,7 +296,7 @@ class Game {
         height: 64,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoGulp.png'
+        url: '/public/assets/logo/logoGulp.png'
       },
       {
         type: 'rectangle',
@@ -305,7 +305,7 @@ class Game {
         height: 64,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoHTML5.png'
+        url: '/public/assets/logo/logoHTML5.png'
       },
       {
         type: 'rectangle',
@@ -314,7 +314,7 @@ class Game {
         height: 50,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoJavascript.png'
+        url: '/public/assets/logo/logoJavascript.png'
       },
       {
         type: 'rectangle',
@@ -323,7 +323,7 @@ class Game {
         height: 22,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoJekyll.png'
+        url: '/public/assets/logo/logoJekyll.png'
       },
       {
         type: 'rectangle',
@@ -332,7 +332,7 @@ class Game {
         height: 52,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoMarionette.png'
+        url: '/public/assets/logo/logoMarionette.png'
       },
       {
         type: 'rectangle',
@@ -341,7 +341,7 @@ class Game {
         height: 18,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoMongoDB.png'
+        url: '/public/assets/logo/logoMongoDB.png'
       },
       {
         type: 'rectangle',
@@ -350,7 +350,7 @@ class Game {
         height: 32,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoMySQL.png'
+        url: '/public/assets/logo/logoMySQL.png'
       },
       {
         type: 'rectangle',
@@ -359,7 +359,7 @@ class Game {
         height: 32,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoNodeJS.png'
+        url: '/public/assets/logo/logoNodeJS.png'
       },
       {
         type: 'rectangle',
@@ -368,7 +368,7 @@ class Game {
         height: 21,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoNpm.png'
+        url: '/public/assets/logo/logoNpm.png'
       },
       {
         type: 'rectangle',
@@ -377,7 +377,7 @@ class Game {
         height: 32,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoPHP.png'
+        url: '/public/assets/logo/logoPHP.png'
       },
       {
         type: 'rectangle',
@@ -386,7 +386,7 @@ class Game {
         height: 62,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoRubyOnRails.png'
+        url: '/public/assets/logo/logoRubyOnRails.png'
       },
       {
         type: 'rectangle',
@@ -395,7 +395,7 @@ class Game {
         height: 48,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoSass.png'
+        url: '/public/assets/logo/logoSass.png'
       }
     ]
 
@@ -425,7 +425,7 @@ class Game {
         radius: 30,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoAMP.png'
+        url: '/public/assets/logo/logoAMP.png'
       },
       {
         type: 'circle',
@@ -433,7 +433,7 @@ class Game {
         radius: 30,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoAtom.png'
+        url: '/public/assets/logo/logoAtom.png'
       },
       {
         type: 'circle',
@@ -441,7 +441,7 @@ class Game {
         radius: 31,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoBower.png'
+        url: '/public/assets/logo/logoBower.png'
       },
       {
         type: 'circle',
@@ -449,7 +449,7 @@ class Game {
         radius: 29,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoChrome.png'
+        url: '/public/assets/logo/logoChrome.png'
       },
       {
         type: 'circle',
@@ -457,7 +457,7 @@ class Game {
         radius: 24,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoWordpress.png'
+        url: '/public/assets/logo/logoWordpress.png'
       },
       {
         type: 'circle',
@@ -465,7 +465,7 @@ class Game {
         radius: 28,
         xScale: 0.25,
         yScale: 0.25,
-        url: '/assets/images/logo/logoYeoman.png'
+        url: '/public/assets/logo/logoYeoman.png'
       }
     ]
 
