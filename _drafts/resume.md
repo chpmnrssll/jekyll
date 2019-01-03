@@ -68,18 +68,18 @@ edX/BerkeleyX Online
 https://s3.amazonaws.com/verify.edx.org/downloads/6a1ff7532b1a43069d55e1bb8932ad0d/Certificate.pdf
 
 SKILLS
-C++ Intermediate
-C Intermediate
-3D Math/Physics/Simulation Intermediate
-Automobile Repair/Maintenance Expert
-HTML/XHTML/HTML5 Expert
-Javascript/JQuery Expert
-CSS/CSS3 Expert
-PHP/MySQL Expert
-Wordpress/Joomla Intermediate
-Ruby on Rails Beginner
-Python Beginner
-LUA Intermediate
+C++
+C
+3D Math, Physics, Simulation
+Automobile Repair/Maintenance
+HTML/XHTML/HTML5
+Javascript/JQuery
+CSS/CSS3
+PHP/MySQL
+Wordpress/Joomla
+Ruby on Rails
+Python
+LUA
 
 INTERESTS
 Web Design/Programming
@@ -88,12 +88,12 @@ Working on cars and engines
 Playing/Writing music for guitar & keyboard
 
 REFERENCES
-Sue Fletcher
-Owner/CEO, Colorado Casket Company
-719-541-3339
-coloradocasketcompany@gmail.com
-
 Julie Quigley
 Graphic Designer, Like Minds Designs
-601-350-0005
 info@likemindsdesigns.com
+601-350-0005
+
+Sue Fletcher
+Owner/CEO, Colorado Casket Company
+coloradocasketcompany@gmail.com
+719-541-3339

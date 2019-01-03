@@ -1,13 +1,20 @@
+## Build Instructions
+
+The first paragraph tells the company why you want to work for them. Once you
+have written down why you want to work there, back it up with a single specific
+reason why.
+
+The second paragraph tells the company why they want to hire you. Highlight the
+exact things you want to bring to the company, whether it’s knowledge of some
+tech, domain knowledge, a process you follow, or whatever else you think might
+work to help solve their problems. And again, back it up with a specific example.
+
+A great cover letter is an opportunity to explain any shortcomings you might have.
+Horribly under-qualified but pretty sure you have what it takes? Have a huge gap
+in your resume? Really, really want to work for this particular company?
+The cover letter is where you do it.
+
 ## Profile
-
-Beside programming you'll often find me wrenching on a truck or playing guitar.
-
-Learning to code well requires a lot of patience, a lot of enthusiasm and a lot of time.
-As a developer knowing how to phrase search queries, review other developers’ code, and apply it to the problem that you’re trying to solve.
-A big part of freelancing is estimating how long things will take.
-There will always be something that will take a massive amount of time to figure out in a new programming language or framework.
-Don’t put yourself in an awkward spot by projecting time for something you don’t already know.
-Only agree to freelance work with technologies that you know.
 
 I'm a US developer based in eastern Colorado. I've been programming for more than 20 years and have studied a wide variety of languages and computer science topics. Real-time graphics, web application development, and open source often grab my attention.  I've worked on client and server side code and have experience with things like:
 
@@ -22,39 +29,45 @@ I'm a US developer based in eastern Colorado. I've been programming for more tha
 • SQL, NoSQL, MongoDB, JSON, CSV, XML
 • DevOps, CI/CD, Docker, Linux, Bash, SSH, Git
 
+My local development environment is Arch/Manjaro Linux with Gnome desktop and Atom.io.
+Beside programming you'll often find me wrenching on a truck or playing guitar.
+
 Feel free to contact me about your project.
 
-## Experience
+## CV / Bullshit
 
-I've worked on many different types of web related projects from content management systems and web apps to real-time graphics in several languages.
-
-I have experience building everything from REST APIs, content management systems, single page apps, and more.
-I have experience in most of your requirements, and am not afraid of learning more.
-I have experience in everything you're looking for.
-
-I've built content management systems from scratch (with and without frameworks) in PHP, Node, & Ruby.
-I've built everything from content management systems to WordPress plug-ins in the past,
 I'd be happy to help with this or anything else you might need my skills for.
 
+I have experience in everything you're looking for.
+I have quite a bit of experience working with interactive/animated web sites.
+I have experience building everything from REST APIs, content management systems, single page apps, and more.
+I have experience in most of your requirements, and am not afraid of learning more.
+I've worked on many different types of web related projects from content management systems and web apps to real-time graphics.
+
+I've worked on many web related projects in several languages (including Node.js and PHP).
+I've built content management systems from scratch (with and without frameworks) in PHP, Node, & Ruby.
+I've built everything from content management systems to WordPress plug-ins in the past,
+
 I've been working with Jekyll for quite a while now so I know a lot of it's quirks.
-I've worked with a few static site generators like Jekyll, Hexo, Nuxt.js, and VuePress.
-They all do similar things from what I've seen (static routes, converts md to html, layouts, templates, themes).
+I've worked with a several static site generators like Jekyll, Nuxt.js, and VuePress.
 
 I've worked as developer on the front and back end on a few WordPress sites.
 I've also worked with other content management systems like Joomla and even pure PHP+SQL.
 
 I am proficient in git with Github, GitLab, BitBucket, etc...
-My local development environment is Arch/Manjaro Linux with Gnome desktop and Atom.io.
 
 I have been using HTML, CSS, and Javascript for more than 20 years.
 I remember Microsoft JScript nonsense and the first browser wars.
 
-More info about me is available on my upWork profile, my portfolio site, or my GitHub acount:
-https://github.com/chpmnrssll
-
 
 My portfolio site is a single-page progressive web app. It's built on Jekyll/GitHub Pages and gets 95/100 PageSpeed scores.
 https://github.com/chpmnrssll/chpmnrssll.github.io
+https://chpmnrssll.github.io/
+
+More info about me is available on my upWork profile or on GitHub @chpmnrssll
+More info about me is available on my upWork profile, my portfolio site, or on GitHub @chpmnrssll
+
+## Experience
 
 Nov, 2018
 Developed automated GitBook markdown to WordPress compatible HTML pipeline using GitHub, Travis-CI, Docker, and Jekyll.
@@ -116,21 +129,16 @@ Here is a WordPress project I worked on for the Mississippi Court Reporters Asso
 https://chpmnrssll.github.io/posts/about/MCRA
 http://mscra.com/
 
-## Build Instructions
+## Other
 
-The first paragraph tells the company why you want to work for them. Once you
-have written down why you want to work there, back it up with a single specific
-reason why.
+Learning to code well requires a lot of patience, a lot of enthusiasm and a lot of time.
+As a developer knowing how to phrase search queries, review other developers’ code, and apply it to the problem that you’re trying to solve.
 
-The second paragraph tells the company why they want to hire you. Highlight the
-exact things you want to bring to the company, whether it’s knowledge of some
-tech, domain knowledge, a process you follow, or whatever else you think might
-work to help solve their problems. And again, back it up with a specific example.
+A big part of freelancing is estimating how long things will take.
+There will always be something that will take a massive amount of time to figure out in a new programming language or framework.
 
-A great cover letter is an opportunity to explain any shortcomings you might have.
-Horribly under-qualified but pretty sure you have what it takes? Have a huge gap
-in your resume? Really, really want to work for this particular company?
-The cover letter is where you do it.
+Don’t put yourself in an awkward spot by projecting time for something you don’t already know.
+Only agree to freelance work with technologies that you know.
 
 Based on real Hired interview data, Front-end Engineers in Denver earn an average
 annual salary of $110,014. The salaries of candidates in this role range from a
