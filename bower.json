@@ -1,0 +1,21 @@
+{
+  "name": "chpmnrssll.github.io",
+  "homepage": "https://github.com/chpmnrssll/chpmnrssll.github.io",
+  "authors": [
+    "chpmnrssll <chpmnrssll@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Matter": "matter-js#^0.12.0",
+    "page": "visionmedia/page.js#^1.8.3"
+  }
+}

@@ -1,0 +1,34 @@
+<html>
+<script>
+  class GradientOverlay extends window.HTMLElement {
+    constructor() {
+      super()
+    }
+
+    static get observedAttributes() {
+      return ['gradient', 'background']
+    }
+
+    get gradient() {
+      return this.getAttribute('gradient') || ''
+    }
+    set gradient(value) {
+      this.setAttribute('gradient', value)
+    }
+    get background() {
+      return this.getAttribute('background') || ''
+    }
+    set background(value) {
+      this.setAttribute('background', value)
+    }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+      if (this.gradient !== null && this.background !== null) {
+        this.parentElement.style.backgroundImage = `${this.gradient}, url(${this.background})`
+      }
+    }
+  }
+
+  window.customElements.define('gradient-overlay', GradientOverlay)
+</script>
+</html>

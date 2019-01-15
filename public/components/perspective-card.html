@@ -1,0 +1,161 @@
+<html>
+<template id="template">
+  <style>
+    :host {
+      display: block;
+      /*overflow: hidden;*/
+      perspective: 50vw;
+      transform-style: preserve-3d;
+    }
+    #container {
+      box-shadow: .25rem .25rem 1rem var(--color-primary-darkest);
+      height: 100%;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      transform-style: preserve-3d;
+      -webkit-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 40deg));
+      -moz-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 40deg));
+      -o-transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 40deg));
+      transform: rotateY(calc(var(--x-offset) * -35deg)) rotateX(calc(var(--y-offset) * 40deg));
+      -webkit-transition: transform var(--animation-speed) ease-out;
+      -moz-transition: transform var(--animation-speed) ease-out;
+      -o-transition: transform var(--animation-speed) ease-out;
+      transition: transform var(--animation-speed) ease-out;
+      width: 100%;
+      will-change: transform;
+    }
+    #gradient {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-darkest) 100%);
+      content: "";
+      height: 100%;
+      mix-blend-mode: hue;
+      opacity: 0.3;
+      position: absolute;
+      top: 0;
+      transform-style: preserve-3d;
+      -webkit-transition: opacity calc(var(--animation-speed) * 4) ease-out;
+      -moz-transition: opacity calc(var(--animation-speed) * 4) ease-out;
+      -o-transition: opacity calc(var(--animation-speed) * 4) ease-out;
+      transition: opacity calc(var(--animation-speed) * 4) ease-out;
+      width: 100%;
+      will-change: opacity;
+      z-index: 0;
+    }
+    *:hover #gradient {
+      opacity: 0;
+    }
+    #background-image {
+      /* height: 100%; */
+      opacity: 0.7;
+      position: absolute;
+      top: 0%;
+      transform-style: preserve-3d;
+      -webkit-transition: opacity var(--animation-speed) ease-out;
+      -moz-transition: opacity var(--animation-speed) ease-out;
+      -o-transition: opacity var(--animation-speed) ease-out;
+      transition: opacity var(--animation-speed) ease-out;
+      width: 100%;
+      will-change: opacity;
+      z-index: -1;
+    }
+    *:hover #background-image {
+      opacity: 1;
+    }
+  </style>
+  <div id="container">
+    <div id="gradient"></div>
+    <slot id="content"></slot>
+  </div>
+</template>
+<script>
+  const perspectiveCardDocument = document.currentScript.ownerDocument
+
+  window.customElements.define('perspective-card', class extends window.HTMLElement {
+    constructor() {
+      super()
+      const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+      this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
+      this.template = perspectiveCardDocument.querySelector('#template').content.cloneNode(true)
+      this.shadowDOM = this.attachShadow({ mode: 'open' })
+      this.shadowDOM.appendChild(this.template)
+      this.containerElement = this.shadowDOM.querySelector('#container')
+      this.frameSkip = 4
+    }
+
+    connectedCallback() {
+      this.addEventListener('mouseenter', this._mouseenterHandler, { passive: true })
+      this.addEventListener('mousemove', this._mousemoveHandler, { passive: true, capture: true })
+      this.addEventListener('mouseleave', this._mouseleaveHandler, { passive: true })
+      }
+
+    disconnectedCallback() {
+      this.removeEventListener('mouseenter', this._mouseenterHandler)
+      this.removeEventListener('mousemove', this._mousemoveHandler)
+      this.removeEventListener('mouseleave', this._mouseleaveHandler)
+    }
+
+    _mouseenterHandler(event) {
+      this.frameCount = 0
+      this.running = true
+      window.requestAnimationFrame(this._update.bind(this))
+    }
+
+    _mousemoveHandler(event) {
+      this.currentX = event.clientX
+      this.currentY = event.clientY
+    }
+
+    _mouseleaveHandler(event) {
+      // reset card rotation after a short delay
+      setTimeout(() => {
+        this.currentX = 0
+        this.currentY = 0
+        this.running = false
+        this._setCustomProperties(0, 0)
+      }, this.animationSpeed * 2)
+    }
+
+    _update() {
+
+      if (this.frameCount < this.frameSkip) {
+        this.frameCount++
+      } else {
+        if (this.currentX !== 0 && this.currentY !== 0 && this.offsetParent) {
+          const scrollOffset = this.offsetParent.offsetTop + this.offsetTop - window.pageYOffset
+
+          // offset from center of card, range(-0.5, 0.5)
+          const xOffset = ((this.currentX - this.offsetLeft) / this.clientWidth) - 0.5
+          const yOffset = ((this.currentY - scrollOffset) / this.clientHeight) - 0.75
+
+          this._setCustomProperties(xOffset, yOffset)
+          this.frameCount = 0
+        }
+      }
+
+      if (this.running) {
+        window.requestAnimationFrame(this._update.bind(this))
+      }
+    }
+
+    _setCustomProperties(xOffset, yOffset) {
+      this.style.setProperty('--x-offset', xOffset)
+      this.style.setProperty('--y-offset', yOffset)
+    }
+
+    static get observedAttributes() {
+      return ['background-image']
+    }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+      if (attr === 'background-image' && newValue.includes('.')) {
+        this.backgroundImage = new window.Image()
+        this.backgroundImage.id = 'background-image'
+        this.backgroundImage.src = newValue
+        this.containerElement.appendChild(this.backgroundImage)
+      }
+    }
+  })
+</script>
+</html>

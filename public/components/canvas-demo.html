@@ -1,0 +1,97 @@
+<html>
+<script>
+  const KEY = {
+    LEFT: 65,
+    UP: 87,
+    RIGHT: 68,
+    DOWN: 83,
+    ADD: 38,
+    SUB: 40,
+    ROTL: 37,
+    ROTR: 39
+  }
+
+  window.customElements.define('canvas-demo', class extends window.HTMLElement {
+    constructor() {
+      super()
+      this.style.backgroundColor = 'black'
+      const htmlStyles = window.getComputedStyle(document.querySelector('html'))
+      this.animationSpeed = parseInt(htmlStyles.getPropertyValue('--animation-speed').slice(0, -2))
+      this.canvas = document.createElement('canvas')
+      this.canvas.style.imageRendering = 'pixelated'
+      this.canvas.style.width = '100%'
+      this.canvas.style.height = '100%'
+      this.canvas.width = parseInt(this.getAttribute('w') || 256)
+      this.canvas.height = parseInt(this.getAttribute('h') || 256)
+      this.canvas.centerX = this.canvas.width / 2
+      this.canvas.centerY = this.canvas.height / 2
+      this.context2D = this.canvas.getContext('2d')
+      this.context2D.imageSmoothingEnabled = false
+      this.createBuffer(this.canvas.width, this.canvas.height)
+      this.shadowDOM = this.attachShadow({ mode: 'open' })
+      this.shadowDOM.appendChild(this.canvas)
+    }
+
+    static get observedAttributes() { return ['src', 'mouseover'] }
+
+    get src() { return this.getAttribute('src') || false }
+    get mouseover() { return this.getAttribute('mouseover') || false }
+    set src(value) { this.setAttribute('src', value) }
+    set mouseover(value) { this.setAttribute('mouseover', value) }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+      if (attr === 'src') {
+        this.req = new window.XMLHttpRequest()
+        this.req.addEventListener('load', this._loadHandler.bind(this))
+        this.req.open('GET', newValue, true)
+        this.req.send()
+      }
+    }
+
+    _loadHandler(event) {
+      let response = eval(event.srcElement.responseText)
+
+      response.forEach((item) => {
+        this[item.name] = item
+      })
+
+      this.running = this.mouseover ? false : true
+      this.init()
+    }
+
+    createBuffer(width, height) {
+      this.buffer = this.context2D.createImageData(width, height)
+      this.buffer.size = (width * height) * 4
+      this.buffer.lineHeight = width * 4
+    }
+
+    connectedCallback() {
+      if (this.mouseover) {
+        this.parentElement.addEventListener('mouseenter', this._mouseenterHandler.bind(this), { passive: true })
+        this.parentElement.addEventListener('mouseleave', this._mouseleaveHandler.bind(this), { passive: true })
+      }
+    }
+
+    disconnectedCallback() {
+      if (this.kill) {
+        this.kill()
+      }
+      if (this.mouseover) {
+        this.parentElement.removeEventListener('mouseenter', this._mouseenterHandler)
+        this.parentElement.removeEventListener('mouseleave', this._mouseleaveHandler)
+      }
+    }
+
+    _mouseenterHandler(event) {
+      this.running = true
+      window.requestAnimationFrame(this.update.bind(this))
+    }
+
+    _mouseleaveHandler(event) {
+      setTimeout(() => {
+        this.running = false
+      }, this.animationSpeed * 4)
+    }
+  })
+</script>
+</html>

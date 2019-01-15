@@ -1,0 +1,272 @@
+[ 
+  {
+    "title": "Development History",
+    "subTitle": "Old School",
+    "date": "Oct 28, 2018",
+    "image": "backgrounds/primitive/roadBlueSky.svg",
+    "category": ["About"],
+    "tags": ["Featured","Programming","Professional","Portfolio"],
+    "url": "/posts/about/History"
+  },
+  {
+    "title": "Multithreaded Downloader",
+    "subTitle": "With HTTP Range Requests",
+    "date": "Aug 27, 2018",
+    "image": "backgrounds/primitive/servers.svg",
+    "category": ["Article"],
+    "tags": ["Javascript","Async","WhatWG","Streams"],
+    "url": "/posts/article/Multithread"
+  },
+  {
+    "title": "Articles",
+    "subTitle": "Projects and info",
+    "date": "Jun 25, 2018",
+    "image": "/backgrounds/primitive/spaceCapsule.svg",
+    "category": null,
+    "tags": ["Featured"],
+    "url": "/posts/article/"
+  },
+  {
+    "title": "Development Portfolio",
+    "subTitle": "Professional Experience Points",
+    "date": "Mar 29, 2018",
+    "image": "backgrounds/primitive/filesOnAShelf.svg",
+    "category": ["About"],
+    "tags": ["Featured","Programming","Professional","Portfolio"],
+    "url": "/posts/about/Portfolio"
+  },
+  {
+    "title": "About",
+    "subTitle": "Russell Chapman",
+    "date": "Mar 28, 2018",
+    "image": "about/primitiveAvatar.gif",
+    "category": ["About"],
+    "tags": ["Featured","About","Programming"],
+    "url": "/posts/about/Russell-Chapman"
+  },
+  {
+    "title": "2D Physics Platformer",
+    "subTitle": "With Matter.js",
+    "date": "Mar 27, 2018",
+    "image": "about/Platformer.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","Game"],
+    "url": "/posts/demo/Platformer"
+  },
+  {
+    "title": "Normal Mapping",
+    "subTitle": "Demo Effect",
+    "date": "Mar 26, 2018",
+    "image": "about/NormalMapping.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","Game"],
+    "url": "/posts/demo/NormalMapping"
+  },
+  {
+    "title": "MCRA Membership Directory",
+    "subTitle": "PHP Wordpress Plugin",
+    "date": "Jan 28, 2018",
+    "image": "professional/MCRA/MCRAHome.jpg",
+    "category": ["About"],
+    "tags": ["Programming","Professional","Portfolio"],
+    "url": "/posts/about/MCRA"
+  },
+  {
+    "title": "Content Management System",
+    "subTitle": "CMS in PHP/MySQL/Activerecord",
+    "date": "Jan 20, 2018",
+    "image": "professional/MVCSite.png",
+    "category": ["About"],
+    "tags": ["Programming","Professional","Portfolio"],
+    "url": "/posts/about/MVC"
+  },
+  {
+    "title": "Isometric Voxel Heightmap",
+    "subTitle": "Demo Effect",
+    "date": "Oct 21, 2017",
+    "image": "about/Isometric.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","2.5D","Isometric","Heightmap"],
+    "url": "/posts/demo/Isometric"
+  },
+  {
+    "title": "Plasma",
+    "subTitle": "Demo Effect",
+    "date": "Oct 19, 2017",
+    "image": "about/Plasma.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","Demo","Effect"],
+    "url": "/posts/demo/Plasma"
+  },
+  {
+    "title": "Fire",
+    "subTitle": "Demo Effect",
+    "date": "Oct 18, 2017",
+    "image": "about/Fire.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","Demo","Effect"],
+    "url": "/posts/demo/Fire"
+  },
+  {
+    "title": "Static",
+    "subTitle": "Demo Effect",
+    "date": "Oct 17, 2017",
+    "image": "about/Static.png",
+    "category": ["Demo"],
+    "tags": ["HTML5","Javascript","Canvas","Demo","Effect"],
+    "url": "/posts/demo/Static"
+  },
+  {
+    "title": "Image to ASCII",
+    "subTitle": "Javascript + HTML5 Canvas Demo",
+    "date": "Oct 13, 2017",
+    "image": "about/jsAscii.png",
+    "category": ["Demo"],
+    "tags": ["Ascii","Art","Generator"],
+    "url": "/posts/demo/Ascii-Demo"
+  },
+  {
+    "title": "Image to ASCII",
+    "subTitle": "Generating ASCII art from images",
+    "date": "Oct 12, 2017",
+    "image": "backgrounds/ascii.jpg",
+    "category": ["Article"],
+    "tags": ["Ascii","Javascript","Canvas"],
+    "url": "/posts/article/Ascii"
+  },
+  {
+    "title": "Skate",
+    "subTitle": "Skate Ipsum",
+    "date": "Oct 10, 2017",
+    "image": "backgrounds/primitive/skatePark.svg",
+    "category": ["Ipsum"],
+    "tags": ["Skate","Ipsum"],
+    "url": "/posts/ipsum/Skate"
+  },
+  {
+    "title": "Corporate",
+    "subTitle": "Corporate Ipsum",
+    "date": "Oct 10, 2017",
+    "image": "backgrounds/primitive/cityGlow.svg",
+    "category": ["Ipsum"],
+    "tags": ["Corporate","Ipsum"],
+    "url": "/posts/ipsum/Corporate"
+  },
+  {
+    "title": "Television",
+    "subTitle": "TV Ipsum",
+    "date": "Oct 09, 2017",
+    "image": "backgrounds/television.jpg",
+    "category": ["Ipsum"],
+    "tags": ["TV","Ipsum"],
+    "url": "/posts/ipsum/TV"
+  },
+  {
+    "title": "My shizz bizzle",
+    "subTitle": "Gangsta Ipsum",
+    "date": "Oct 09, 2017",
+    "image": "backgrounds/primitive/graffiti.svg",
+    "category": ["Ipsum"],
+    "tags": ["Gangsta","Ipsum"],
+    "url": "/posts/ipsum/Gangsta"
+  },
+  {
+    "title": "Moustache",
+    "subTitle": "Hairy Lipsum",
+    "date": "Oct 08, 2017",
+    "image": "backgrounds/primitive/moustacheGlass.svg",
+    "category": ["Ipsum"],
+    "tags": ["Moustache","Ipsum"],
+    "url": "/posts/ipsum/Moustache"
+  },
+  {
+    "title": "Zombies",
+    "subTitle": "Zombie Ipsum",
+    "date": "Aug 31, 2017",
+    "image": "backgrounds/primitive/bookSkullPotion.svg",
+    "category": ["Ipsum"],
+    "tags": ["Zombie","Ipsum"],
+    "url": "/posts/ipsum/Zombies"
+  },
+  {
+    "title": "Arrrgh!",
+    "subTitle": "Pirate Ipsum",
+    "date": "Aug 30, 2017",
+    "image": "backgrounds/primitive/marooned.svg",
+    "category": ["Ipsum"],
+    "tags": ["Pirate","Ipsum"],
+    "url": "/posts/ipsum/Pirates"
+  },
+  {
+    "title": "Billions",
+    "subTitle": "Carl Sagan Ipsum",
+    "date": "Aug 29, 2017",
+    "image": "backgrounds/primitive/starsSky.svg",
+    "category": ["Ipsum"],
+    "tags": ["Carl","Sagan","Ipsum"],
+    "url": "/posts/ipsum/Billions"
+  },
+  {
+    "title": "The Final Frontier",
+    "subTitle": "Space Ipsum",
+    "date": "Aug 28, 2017",
+    "image": "backgrounds/primitive/archNightStars.svg",
+    "category": ["Ipsum"],
+    "tags": ["Space","Ipsum"],
+    "url": "/posts/ipsum/Space"
+  },
+  {
+    "title": "About",
+    "subTitle": "This Site",
+    "date": "Aug 16, 2017",
+    "image": "backgrounds/primitive/miningMachines.svg",
+    "category": "About",
+    "tags": ["Featured","Programming"],
+    "url": "/posts/about/Site"
+  },
+  {
+    "title": "Site Launched!",
+    "subTitle": "In The Beginning",
+    "date": "Aug 15, 2017",
+    "image": "backgrounds/primitive/rocketLaunch1.svg",
+    "category": ["News"],
+    "tags": ["Featured","News","Jekyll","Markdown"],
+    "url": "/posts/news/Launch"
+  },
+  {
+    "title": "News",
+    "subTitle": "Up to date",
+    "date": "Jan 01, 2017",
+    "image": null,
+    "category": null,
+    "tags": [],
+    "url": "/posts/news/"
+  },
+  {
+    "title": "Ipsum",
+    "subTitle": "Random Text",
+    "date": "Jan 01, 2017",
+    "image": "/backgrounds/lettersRandom.jpg",
+    "category": "Demo",
+    "tags": [],
+    "url": "/posts/ipsum/"
+  },
+  {
+    "title": "Demos",
+    "subTitle": "Real Time Software Rendering",
+    "date": "Jan 01, 2017",
+    "image": "/backgrounds/primitive/spaceCapsule.svg",
+    "category": null,
+    "tags": ["Featured"],
+    "url": "/posts/demo/"
+  },
+  {
+    "title": "About",
+    "subTitle": "Everything you wanna know",
+    "date": "Jan 01, 2017",
+    "image": null,
+    "category": null,
+    "tags": [],
+    "url": "/posts/about/"
+  }
+]
