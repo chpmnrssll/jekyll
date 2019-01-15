@@ -1,48 +1,59 @@
-## Build Instructions
+# Proposal Framework
 
-The first paragraph tells the company why you want to work for them. Once you
-have written down why you want to work there, back it up with a single specific
-reason why.
+A great cover letter is an opportunity to explain any shortcomings you might
+have. Really, really want to work for this particular company? The cover letter
+is where you do it.
 
-The second paragraph tells the company why they want to hire you. Highlight the
-exact things you want to bring to the company, whether it’s knowledge of some
-tech, domain knowledge, a process you follow, or whatever else you think might
-work to help solve their problems. And again, back it up with a specific example.
+### Interest
 
-A great cover letter is an opportunity to explain any shortcomings you might have.
-Horribly under-qualified but pretty sure you have what it takes? Have a huge gap
-in your resume? Really, really want to work for this particular company?
-The cover letter is where you do it.
+Why you want to work for them. Once you have written down why, back it up with a
+specific reason.
+
+### Credibility
+
+Why would they want to hire you. Highlight the exact things you want to bring to
+the company/project, whether it’s knowledge of some tech, domain knowledge, a
+process you follow, or whatever else you think might work to help solve their
+problems.
+
+Demonstrate that you read the entire job description and back it up with a specifics.
+
+### Sell Value
+
+- address low-ball bids
+- instill fear of project failure!
 
 ## Profile
 
-I'm a US developer based in eastern Colorado. I've been programming for more than 20 years and have studied a wide variety of languages and computer science topics. Real-time graphics, web application development, and open source often grab my attention.  I've worked on client and server side code and have experience with things like:
+I've been programming for more than 20 years and have been involved in freelancing off and on since 2012. Computer science, Real-time graphics, web application development, and open source often grab my attention.  I've worked on client and server side code and have experience with things like:
 
-• Content management systems (WordPress, custom)
-• Static site generators (Jekyll, Hugo, Nuxt.js, VuePress)
-• Responsive design (HTML5, CSS3, BEM, Sass, Stylus)
-• JavaScript, Node.js, Google Apps Script, PHP
-• 2D/3D Graphics, SVG, Canvas, WebGL
-• Backbone, jQuery, Vue.js, Express
-• Bower, Gulp, Grunt, NPM, Webpack
-• OOP, MVC, REST, API, SPA, PWA
-• SQL, NoSQL, MongoDB, JSON, CSV, XML
-• DevOps, CI/CD, Docker, Linux, Bash, SSH, Git
+    • JAMstack & Static site generators (Jekyll, Nuxt.js, VuePress, Gatsby)
+    • Content management systems (WordPress, Netlify)
+    • Responsive design, lazy loading, SEO, site optimization
+    • JavaScript, Node.js, PHP, Google Apps Script
+    • Vue.js, React, Backbone.js, jQuery, Express.js
+    • Canvas, WebGL, SVG
+    • Bower, Gulp, Grunt, Webpack
+    • HTML5, CSS3, BEM, Sass, Stylus
+    • DevOps, CI/CD, Docker, Linux, Git
+    • API, MVC, MV*, PWA, REST, SPA
+    • MongoDB, SQL, CSV, XML
+
+Feel free to contact me about your project, even if it's something not on my list. I'm always willing to learn.
 
 My local development environment is Arch/Manjaro Linux with Gnome desktop and Atom.io.
-Beside programming you'll often find me wrenching on a truck or playing guitar.
 
-Feel free to contact me about your project.
-
-## CV / Bullshit
+## Clipboard
 
 I'd be happy to help with this or anything else you might need my skills for.
 
 I have experience in everything you're looking for.
 I have quite a bit of experience working with interactive/animated web sites.
+
 I have experience building everything from REST APIs, content management systems, single page apps, and more.
 I have experience in most of your requirements, and am not afraid of learning more.
 I've worked on many different types of web related projects from content management systems and web apps to real-time graphics.
+I've worked on many different types of web related projects ranging from advanced content management systems and web apps to simple static websites.
 
 I've worked on many web related projects in several languages (including Node.js and PHP).
 I've built content management systems from scratch (with and without frameworks) in PHP, Node, & Ruby.
@@ -60,7 +71,7 @@ I have been using HTML, CSS, and Javascript for more than 20 years.
 I remember Microsoft JScript nonsense and the first browser wars.
 
 
-My portfolio site is a single-page progressive web app. It's built on Jekyll/GitHub Pages and gets 95/100 PageSpeed scores.
+My portfolio site is a single-page progressive web app built with Jekyll/GitHub Pages. You'll find more about other projects I've worked on under the "Development Portfolio" or "Development History" sections:
 https://github.com/chpmnrssll/chpmnrssll.github.io
 https://chpmnrssll.github.io/
 
@@ -69,22 +80,25 @@ More info about me is available on my upWork profile, my portfolio site, or on G
 
 ## Experience
 
+Gatsby/React static site converted from old Google Site (WIP).
+https://dentalcarearvada.netlify.com/
+
 Nov, 2018
 Developed automated GitBook markdown to WordPress compatible HTML pipeline using GitHub, Travis-CI, Docker, and Jekyll.
 https://github.com/ggeorgelewis/help-portal
 https://ggeorgelewis.github.io/help-portal/
 
 Nov, 2018
-Developed small website using Netlify-CMS, Nuxt.js/Vue, and Bootstrap-Vue based on a Sketch design.
+Developed site using Netlify-CMS, Nuxt.js, Vue.js, and Bootstrap-Vue based on a Sketch design.
 https://github.com/bgiovand/magnafire-website
 
 Oct, 2018
-Here's a project where I helped improve page speed scores, implemented lazy loading, background videos, and CSS/Design updates on a Jekyll based site.
+Improved page speed scores, implemented lazy loading, background videos, and CSS/Design updates on a Jekyll based site.
 https://github.com/paulhershey/lazerTiger
 https://www.paulhershey.com/
 
 Oct, 2018
-Create a Jekyll template from an existing WordPress/PHP site.
+Converted an existing WordPress/PHP site to a Jekyll static site. Makes use of the Jekyll Archives plugin.
 https://github.com/gwidgets/gwidgets.github.io
 http://www.g-widgets.com/
 
@@ -93,7 +107,7 @@ Google Scholar citation scraper for the Berkeley Existential Risk Initiative. Us
 https://github.com/chpmnrssll/scraper
 
 Jul, 2018
-Jekyll/GitHub pages management for the Berkeley Existential Risk Initiative.
+Jekyll/GitHub Pages development & management for the Berkeley Existential Risk Initiative.
 https://github.com/joshjacobson/beri-site
 http://existence.org/
 
@@ -131,15 +145,17 @@ http://mscra.com/
 
 ## Other
 
-Learning to code well requires a lot of patience, a lot of enthusiasm and a lot of time.
-As a developer knowing how to phrase search queries, review other developers’ code, and apply it to the problem that you’re trying to solve.
+Learning to code well requires a lot of patience, a lot of enthusiasm and a lot
+of time. As a developer knowing how to phrase search queries, review other
+developers’ code, and apply it to the problem that you’re trying to solve.
 
-A big part of freelancing is estimating how long things will take.
-There will always be something that will take a massive amount of time to figure out in a new programming language or framework.
+A big part of freelancing is estimating how long things will take. There will
+always be something that will take a massive amount of time to figure out in a
+new programming language or framework.
 
-Don’t put yourself in an awkward spot by projecting time for something you don’t already know.
-Only agree to freelance work with technologies that you know.
+Don’t put yourself in an awkward spot by projecting time for something you don’t
+already know. Only agree to freelance work with technologies that you know.
 
-Based on real Hired interview data, Front-end Engineers in Denver earn an average
-annual salary of $110,014. The salaries of candidates in this role range from a
-low of $60,000 to a high of $198,000, with a median salary of $110,000.
+Based on real Hired interview data, Front-end Engineers in Denver earn an
+average annual salary of $110,014. The salaries of candidates in this role range
+from a low of $60,000 to a high of $198,000, with a median salary of $110,000.
