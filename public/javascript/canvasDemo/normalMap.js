@@ -51,9 +51,9 @@ class NormalMap {
       normalMap: new window.Image()
     }
 
-    this.texture.image.src = '/public/assets/route-66.png'
+    this.texture.image.src = '/jekyll/public/assets/route-66.png'
     this.texture.image.onload = this.loadHandler.bind(this)
-    this.texture.normalMap.src = '/public/assets/route-66_normals.png'
+    this.texture.normalMap.src = '/jekyll/public/assets/route-66_normals.png'
     this.texture.normalMap.onload = this.loadHandler.bind(this)
 
     this.imagesLoaded = 0

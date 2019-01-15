@@ -4,9 +4,9 @@ layout: default
 <section class="featured">
   {%- for category in page.children -%}
   {%- for post in site.categories[category] -%}
-  <a class="featured__item" href="{{ post.url }}">
+  <a class="featured__item" href="{{ site.baseurl }}{{ post.url }}">
     {%- if post.image -%}
-    <img class="image image--lazyload" data-src="/public/assets/{{ post.image }}" alt="alt">
+    <img class="image image--lazyload" data-src="{{ site.baseurl }}/public/assets/{{ post.image }}" alt="alt">
     {%- endif -%}
     <header class="header__plain gradient-overlay">
       <section class="header__title">

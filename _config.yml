@@ -1,6 +1,7 @@
 author: Russell Chapman
 description: Program all the things...
 # host: 192.168.1.64
+baseurl: /jekyll
 permalink: /posts/:categories/:title
 title: Russell Chapman
 

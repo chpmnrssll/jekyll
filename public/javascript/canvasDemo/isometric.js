@@ -46,7 +46,7 @@ class Heightmap {
     document.addEventListener('keyup', this._keyupHandler.bind(this))
 
     this.heightmap = new window.Image()
-    this.heightmap.src = '/public/assets/about/map2.png'
+    this.heightmap.src = '/jekyll/public/assets/about/map2.png'
     this.heightmap.addEventListener('load', this._loadHandler.bind(this))
   }
 

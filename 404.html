@@ -1,7 +1,19 @@
 ---
-layout: default
+layout: compress
 title: 404
 sub-title: Nothing Here
-permalink: /404.html
+# permalink: /404
 ---
-<H1>404</h1>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+{%- include head.html -%}
+<body>
+  {%- include navigation.html -%}
+  <main class="content">
+    <h1>404</h1>
+  </main>
+  <link rel="stylesheet" href="{{ site.baseurl }}/public/css/style.css">
+  <script defer src="{{ site.baseurl }}/public/javascript/vendor/page/page.js"></script>
+  <script defer src="{{ site.baseurl }}/public/javascript/main.js"></script>
+</body>
+</html>
