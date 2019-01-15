@@ -11,6 +11,11 @@
 - [Commitizen command line utility](https://github.com/commitizen/cz-cli)
 - [conventiona changelog](https://github.com/conventional-changelog/conventional-changelog)
 
+### Submodule /public/assets/
+```bash
+$ git submodule update --init --recursive
+```
+
 ### Local Server
 ```bash
 $ bundle exec jekyll serve --livereload
