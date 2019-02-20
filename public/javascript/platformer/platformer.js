@@ -5,7 +5,7 @@
       window.demo = new Game(1000, 1000, document.querySelector('.canvasDemo'), { width: 640, height: 360 })
     }, 1000)
   }
-  script.setAttribute('src', '/public/javascript/vendor/Matter/build/matter.min.js')
+  script.setAttribute('src', '/jekyll/public/javascript/vendor/Matter/build/matter.min.js')
   document.querySelector('article').appendChild(script)
 })()
 
